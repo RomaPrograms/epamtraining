@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <File name="FILE" fileName="src\\main\\resources\\log.log" append="false">
+            <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+        </File>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers><!--логеры просто помогают нам настроить отдельные классы и доступ к ним, также можно прописать
+    куда каждый класс будет записываться-->
+        <Root level="debug"><!--уже для всех логеров описывает куда им записываться, те здесь мы указываем настройки для
+        всех элементов, а не для кого-то индивдуально-->
+            <!--Бывают случаи, когда в логере мы отдельно настроили класс и тогда инфа запишется сначала по инструкциям этого нашего отдельного
+            класса, а потом по инструкциям root-а, но это не есть хорошо, тогда нужно прописывать appender=false в атрибуте <logger>, чтобы
+            избежать двоичности-->
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+</Configuration>

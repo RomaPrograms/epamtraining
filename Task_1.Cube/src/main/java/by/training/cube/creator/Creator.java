@@ -1,4 +1,4 @@
-/**
+/*
  * These package contain the class {@code Creator}.
  *
  * @since 1.0
@@ -36,6 +36,7 @@ public class Creator {
                     new Point(arrayList.get(i).get(6), arrayList.get(i).get(7),
                             arrayList.get(i).get(8))));
         }
+
         return cubes;
     }
 

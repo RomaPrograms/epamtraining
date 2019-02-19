@@ -1,4 +1,4 @@
-/**
+/*
  * These package contain enum {@code Plane}.
  *
  * @since 1.0

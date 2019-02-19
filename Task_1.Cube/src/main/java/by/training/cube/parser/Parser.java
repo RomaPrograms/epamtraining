@@ -1,4 +1,4 @@
-/**
+/*
  * These package contain the class {@code Parser}
  *
  * @since 1.0

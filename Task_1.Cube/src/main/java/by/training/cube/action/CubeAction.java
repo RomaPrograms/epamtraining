@@ -1,4 +1,4 @@
-/**
+/*
  * These package contain the class {@code CubeAction}.
  *
  * @since 1.0
@@ -25,17 +25,17 @@ public class CubeAction {
     /**
      * number of all cube sides.
      */
-    public static final int NUMBER_OF_CUBE_SIDES = 6;
+    private static final int NUMBER_OF_CUBE_SIDES = 6;
 
     /**
      * count of numbers after comma.
      */
-    public static final int COUNT_OF_ROUNDING_NUMBERS = 8;
+    private static final int COUNT_OF_ROUNDING_NUMBERS = 8;
 
     /**
      * degree for calculation Volume of cube.
      */
-    public static final int POWER_3 = 3;
+    private static final int POWER_3 = 3;
 
     /**
      * Logger for creation notes to some appender.
@@ -48,6 +48,7 @@ public class CubeAction {
      * @return returns square
      */
     public double calculateSquare(final double cubeSide) {
+        LOGGER.info("Square of cube was calculated.");
         return Math.pow(cubeSide, 2) * NUMBER_OF_CUBE_SIDES;
     }
 
@@ -57,6 +58,7 @@ public class CubeAction {
      * @return returns volume
      */
     public double calculateVolume(final double cubeSide) {
+        LOGGER.info("Volume of cube was calculated.");
         return Math.pow(cubeSide, POWER_3);
     }
 
@@ -69,6 +71,7 @@ public class CubeAction {
         double side = Math.sqrt((Math.pow(point1.getX() - point2.getX(), 2)
                 + Math.pow(point1.getY() - point2.getY(), 2)
                 + Math.pow(point1.getZ() - point2.getZ(), 2))) / Math.sqrt(2);
+        LOGGER.info("Side of cube was calculated.");
         return new BigDecimal(side).setScale(COUNT_OF_ROUNDING_NUMBERS,
                 RoundingMode.UP).doubleValue();
     }
@@ -81,6 +84,7 @@ public class CubeAction {
      * */
     public double calculateSegmentVolume(final double cubeSide,
                                          final double height) {
+        LOGGER.info("Segment volume of cube was calculated.");
         return cubeSide * cubeSide * height;
     }
 
@@ -99,7 +103,7 @@ public class CubeAction {
                 - cube.getC().getX()) / 2, Math.abs(cube.getA().getY()
                 - cube.getB().getY() / 2), Math.abs(cube.getA().getZ()
                 - cube.getC().getZ()) / 2);
-        double segmentVolume = 0;
+        double segmentVolume;
         double pointCoordinate;
 
         switch (plane) {
@@ -135,14 +139,15 @@ public class CubeAction {
                     segmentVolume = calculateSegmentVolume(cubeSide,
                             point.getX()
                                     - (cubeCenter.getX() - cubeSide / 2));
-                }
-                else {
+                } else {
                     return 0.0;
                 }
                 break;
             default:
                 return 0.0;
         }
+
+        LOGGER.info("Ration of segments of cube was calculated.");
         return (calculateVolume(cubeSide) - segmentVolume) / segmentVolume;
     }
     /**
@@ -159,15 +164,11 @@ public class CubeAction {
                 - cube.getC().getX()) / 2, Math.abs(cube.getA().getY()
                 - cube.getB().getY() / 2), Math.abs(cube.getA().getZ()
                 - cube.getC().getZ()) / 2);
-        if ((cubeCenter.getZ() + cubeSide / 2) == point.getZ()
+        return ((cubeCenter.getZ() + cubeSide / 2) == point.getZ()
                 || (cubeCenter.getZ() + cubeSide / 2) == point.getZ()
                 || (cubeCenter.getY() + cubeSide / 2) == point.getY()
                 || (cubeCenter.getY() + cubeSide / 2) == point.getY()
                 || (cubeCenter.getX() + cubeSide / 2) == point.getX()
-                || (cubeCenter.getX() + cubeSide / 2) == point.getX()) {
-            return true;
-        } else {
-            return false;
-        }
+                || (cubeCenter.getX() + cubeSide / 2) == point.getX());
     }
 }

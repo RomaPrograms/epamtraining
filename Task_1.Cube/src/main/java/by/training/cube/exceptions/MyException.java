@@ -1,4 +1,4 @@
-/**
+/*
  * These package contain the class {@code MyException}.
  *
  * @since 1.0

@@ -1,4 +1,4 @@
-/**
+/*
  * These package contain the class {@code CubeActionTest}
  *
  * @since 1.0
@@ -44,8 +44,18 @@ public class CubeActionTest {
      * testCalculateSquare method
      * @return returns to some methods cubes and supposed result of method
      */
-    @DataProvider(name = "dataProviderForCalculateSquare")
-    public Object[][] dataProviderForCalculateSquare(){
+    @DataProvider(name = "dataProviderForFalseCalculateSquare")
+    public Object[][] dataProviderForFalseCalculateSquare(){
+        return new Object[][]{ {cube1, 78}, {cube2, 26} };
+    }
+
+    /**
+     * dataProviderForCalculateSquare transmits information to
+     * testCalculateSquare method
+     * @return returns to some methods cubes and supposed result of method
+     */
+    @DataProvider(name = "dataProviderForTrueCalculateSquare")
+    public Object[][] dataProviderForTrueCalculateSquare(){
         return new Object[][]{ {cube1, 54}, {cube2, 96} };
     }
 
@@ -60,17 +70,36 @@ public class CubeActionTest {
     }
 
     /**
-     * testCalculateSquare tests our method with cube "calculateSquare"*/
-    @Test(description = "test positive calculation of cube square",
-            dataProvider = "dataProviderForCalculateSquare")
-    public void testCalculateSquare(Cube cube, double c){
+     * testCalculateSquare tests our method {@code calculateSquare}.
+     * @param c - expected result
+     * @param cube - cube
+     */
+    @Test(description = "test negative calculation of cube square",
+            dataProvider = "dataProviderForFalseCalculateSquare")
+    public void falseTestCalculateSquare(Cube cube, double c){
         double actual = cubeAction.calculateSquare(
                 cubeAction.calculateSide(cube.getA(), cube.getB()));
         double expected = c;
         Assert.assertEquals(actual, expected);
     }
 
-    /**@testCalculateVolume tests our method with cube "calculateVolume"*/
+    /**
+     * testCalculateSquare tests our method {@code calculateSquare}.
+     * @param c - expected result
+     * @param cube - cube
+     */
+    @Test(description = "test positive calculation of cube square",
+            dataProvider = "dataProviderForTrueCalculateSquare")
+    public void trueTestCalculateSquare(Cube cube, double c){
+        double actual = cubeAction.calculateSquare(
+                cubeAction.calculateSide(cube.getA(), cube.getB()));
+        double expected = c;
+        Assert.assertEquals(actual, expected);
+    }
+
+    /**Method tests our method with cube {@code calculateVolume}
+     * @param cube - cube
+     * @param c - expected result*/
     @Test(description = "test positive calculation of cube volume",
             dataProvider = "dataProviderForCalculateVolume")
     public void testCalculateVolume(Cube cube, double c){
@@ -81,8 +110,7 @@ public class CubeActionTest {
     }
 
     /**
-     * dataProviderForCalculateVolume return information to
-     * testCalculateSquare Volume
+     * {@code dataProviderForCalculateRationOfSegment} returns parameters.
      * @return returns to some methods cubes, planes and points
      */
     @DataProvider()
@@ -92,8 +120,13 @@ public class CubeActionTest {
                 new Point(0.0, 0.0, 2.0), 0.5} };
     }
 
-    /**@testCalculateRationOfSegment tests our method with
-     * cube calculateRationOfSegment*/
+    /**testCalculateRationOfSegment tests our method with cube
+     * {@code calculateRationOfSegment}
+     * @param c - expected value
+     * @param cube - cube
+     * @param point - point
+     * @param plane - plane
+     */
     @Test(description = "test positive calculation ration of segments",
             dataProvider = "dataProviderForCalculateRationOfSegment")
     public void testCalculateRationOfSegment(Cube cube, Plane plane,
@@ -103,8 +136,7 @@ public class CubeActionTest {
         Assert.assertEquals(actual, expected);
     }
 
-    /**dataProviderForCalculateVolume return information to
-     * testCalculateSquare Volume
+    /**dataProviderForIsBaseOfCubeLiesOnPlane returns some parameters
      * @return returns to some methods cubes and points*/
     @DataProvider()
     public Object[][] dataProviderForIsBaseOfCubeLiesOnPlane() throws Exception{
@@ -112,8 +144,11 @@ public class CubeActionTest {
         };
     }
 
-    /**@testIsBaseOfCubeLiesOnPlane tests our method with cube
-     * isBaseOfCubeLiesOnPlane*/
+    /**testIsBaseOfCubeLiesOnPlane tests our method with cube
+     *{@code isBaseOfCubeLiesOnPlane}
+     * @param point - point
+     * @param cube - cube
+     */
     @Test(description = "test positive is some side of cube lies on the plane",
             dataProvider = "dataProviderForIsBaseOfCubeLiesOnPlane")
     public void testIsBaseOfCubeLiesOnPlane(Cube cube, Point point) {

@@ -1,4 +1,4 @@
-/**
+/*
  * These package contain the class {@code Cube}.
  *
  * @since 1.0

@@ -1,4 +1,4 @@
-/**
+/*
  * These package contain the class {@code Point}
  *
  * @since 1.0

@@ -1,0 +1,30 @@
+2019-02-19 17:49:04,214 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,246 INFO  [main] action.CubeAction (CubeAction.java:51) - Square of cube was calculated.
+2019-02-19 17:49:04,277 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,277 INFO  [main] action.CubeAction (CubeAction.java:51) - Square of cube was calculated.
+2019-02-19 17:49:04,292 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,292 INFO  [main] action.CubeAction (CubeAction.java:51) - Square of cube was calculated.
+2019-02-19 17:49:04,324 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,324 INFO  [main] action.CubeAction (CubeAction.java:51) - Square of cube was calculated.
+2019-02-19 17:49:04,384 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,392 INFO  [main] action.CubeAction (CubeAction.java:61) - Volume of cube was calculated.
+2019-02-19 17:49:04,398 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,401 INFO  [main] action.CubeAction (CubeAction.java:61) - Volume of cube was calculated.
+2019-02-19 17:49:04,436 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,439 INFO  [main] action.CubeAction (CubeAction.java:87) - Segment volume of cube was calculated.
+2019-02-19 17:49:04,443 INFO  [main] action.CubeAction (CubeAction.java:150) - Ration of segments of cube was calculated.
+2019-02-19 17:49:04,446 INFO  [main] action.CubeAction (CubeAction.java:61) - Volume of cube was calculated.
+2019-02-19 17:49:04,459 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,511 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,519 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,524 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,534 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,536 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,540 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,574 ERROR [main] exceptions.MyException (MyException.java:30) - We can't create cube from line 1 cause parameters not for cube
+2019-02-19 17:49:04,575 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,576 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,578 ERROR [main] exceptions.MyException (MyException.java:30) - We can't create cube from line 3 cause parameters incorrect
+2019-02-19 17:49:04,584 ERROR [main] exceptions.MyException (MyException.java:30) - We can't create cube from line 4cause it hasn't enough parameters
+2019-02-19 17:49:04,585 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.
+2019-02-19 17:49:04,587 INFO  [main] action.CubeAction (CubeAction.java:74) - Side of cube was calculated.

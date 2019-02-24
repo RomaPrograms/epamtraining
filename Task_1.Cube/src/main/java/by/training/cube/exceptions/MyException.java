@@ -16,17 +16,10 @@ import org.apache.logging.log4j.Logger;
  * */
 public class MyException extends Exception {
     /**
-     * Logger for creating notes in some appender.
-     */
-    static final Logger LOGGER =
-            LogManager.getLogger(MyException.class.getName());
-
-    /**
      * Constructor - initialized exception and transmit message.
      * @param str - message for Exception
      */
     public MyException(final String str) {
         super(str);
-        LOGGER.error(str);
     }
 }

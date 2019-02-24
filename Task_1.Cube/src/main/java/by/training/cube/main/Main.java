@@ -1,11 +1,11 @@
 /*
- * These package contain the class {@code Main}
+ * These package contain the class {@code main}
  *
  * @since 1.0
  * @author Roman
  * @version 1.0
  */
-package by.training.cube.Main;
+package by.training.cube.main;
 
 import by.training.cube.action.CubeAction;
 import by.training.cube.creator.Creator;
@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-/**Main is class were we start our program.
+/**main is class were we start our program.
  * @author Roman
  * @version 1.0
  */

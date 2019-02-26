@@ -8,6 +8,7 @@
 package by.training.cube.parser;
 
 import by.training.cube.validator.ParserValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;

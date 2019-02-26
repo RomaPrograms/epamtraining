@@ -9,15 +9,6 @@ import by.training.cube.finding.FindById;
 import by.training.cube.finding.FindByName;
 import by.training.cube.finding.FindBySquare;
 import by.training.cube.finding.FindByVolume;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_1_X;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_1_Y;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_1_Z;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_2_X;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_2_Y;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_2_Z;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_3_X;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_3_Y;
-import static by.training.cube.entity.Constants.INDEX_OF_POINT_3_Z;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +19,43 @@ import java.util.Comparator;
  * contains repository with cubes and all information about them.
  */
 final public class CubeRepository implements Repository {
+
+    /**
+     * index of x in first point.
+     */
+    public static final int INDEX_OF_POINT_1_X = 0;
+    /**
+     * index of y in first point.
+     */
+    public static final int INDEX_OF_POINT_1_Y = 1;
+    /**
+     * index of z in first point.
+     */
+    public static final int INDEX_OF_POINT_1_Z = 2;
+    /**
+     * index of x in second point.
+     */
+    public static final int INDEX_OF_POINT_2_X = 3;
+    /**
+     * index of y in second point.
+     */
+    public static final int INDEX_OF_POINT_2_Y = 4;
+    /**
+     * index of z in second point.
+     */
+    public static final int INDEX_OF_POINT_2_Z = 5;
+    /**
+     * index of x in third point.
+     */
+    public static final int INDEX_OF_POINT_3_X = 6;
+    /**
+     * index of y in third point.
+     */
+    public static final int INDEX_OF_POINT_3_Y = 7;
+    /**
+     * index of z in third point.
+     */
+    public static final int INDEX_OF_POINT_3_Z = 8;
 
     /**
      * repository object.
@@ -100,7 +128,6 @@ final public class CubeRepository implements Repository {
      * @param id - id of cube
      * @param name - name of cube
      */
-    @Override
     public void add(final Cube cube, final String id, final String name) {
         cubes.put(id, cube);
         cubesData.add(factory.create(id, name, cube));
@@ -110,7 +137,6 @@ final public class CubeRepository implements Repository {
      * delete cube from repository.
      * @param id - id of cube
      */
-    @Override
     public void delete(final String id) {
         for (int i = 0; i < cubes.size(); i++) {
             if (cubes.containsKey(id) && cubesData.get(i).getId().equals(id)) {
@@ -125,7 +151,6 @@ final public class CubeRepository implements Repository {
      * @param id - cube id
      * @param coordinates - cube coordinate
      */
-    @Override
     public void changeCoordinates(final String id,
                                   final List<Double> coordinates) {
         if (cubes.containsKey(id)) {
@@ -188,31 +213,21 @@ final public class CubeRepository implements Repository {
      * @return sorted list
      */
     public List<Cube> sort(final Parameter parameter) {
-        Comparator<CubeData> comparator = null;
+        Comparator<CubeData> comparator;
        List<Cube> arrayList = new ArrayList<>();
 
         switch (parameter) {
             case ID:
                 comparator = Comparator.comparing(CubeData::getId);
-//                comparator = (final CubeData object1, final CubeData object)
-//                        -> object1.getId().compareTo(object2.getId());
                 break;
             case NAME:
                 comparator = Comparator.comparing(CubeData::getName);
-//                comparator = (final CubeData object1, final CubeData object2)
-//                          -> object1.getName().compareTo(object2.getName());
                 break;
             case VOLUME:
                 comparator = Comparator.comparing(CubeData::getVolume);
-//                comparator = (final CubeData object1, final CubeData object2)
-//                        -> Double.compare(object1.getVolume(),
-//                                object2.getVolume());
                 break;
             case SQUARE:
                 comparator = Comparator.comparing(CubeData::getSquare);
-//                comparator = (final CubeData object1, final CubeData object2)
-//                        -> Double.compare(object1.getSquare(),
-//                                object2.getSquare());
                 break;
             default:
                 comparator = null;

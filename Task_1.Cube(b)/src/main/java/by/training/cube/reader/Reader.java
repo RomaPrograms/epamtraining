@@ -7,12 +7,17 @@
  */
 package by.training.cube.reader;
 
+import by.training.cube.action.CubeAction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Reader is class which gets information from our file.
@@ -20,11 +25,11 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Reader {
+
     /**
-     * string for problems with file.
+     * Logger for creation notes to some appender.
      */
-    private static final String PROBLEMS_WITH_FILE =
-            "File has problems, choose another file please.";
+    private static final Logger LOGGER = LogManager.getLogger(CubeAction.class);
     /**
      * string for incorrect data.
      */
@@ -42,11 +47,9 @@ public class Reader {
     /**readFromFile reads data from file.
      * @param file - file with data
      * @return returns arrayList of strings with data from file*/
-    public ArrayList<String> readFromFile(final String file) {
+    public List<String> readFromFile(final String file) {
         String str;
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader(new File(file));
+        try (FileReader fileReader = new FileReader(new File(file))) {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while (bufferedReader.ready()) {
                 str = bufferedReader.readLine();
@@ -54,19 +57,12 @@ public class Reader {
                     arrayList.add(str);
                 }
             }
-        } catch (FileNotFoundException ex) {
-            new Exception(FILE_NOT_FOUND);
-        } catch (IOException ex) {
-            new Exception(INCORRECT_DATA);
-        } finally {
-            try {
-                if (fileReader != null) {
-                    fileReader.close();
-                }
-            } catch (IOException e) {
-                new Exception(PROBLEMS_WITH_FILE);
-            }
+            bufferedReader.close();
 
+        } catch (FileNotFoundException ex) {
+            LOGGER.debug(FILE_NOT_FOUND);
+        } catch (IOException ex) {
+            LOGGER.debug(INCORRECT_DATA);
         }
         return arrayList;
     }

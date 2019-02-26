@@ -4,7 +4,6 @@ import by.training.cube.creator.Creator;
 import by.training.cube.entity.Cube;
 import by.training.cube.entity.CubeData;
 import by.training.cube.entity.Parameter;
-import by.training.cube.entity.Point;
 import by.training.cube.repository.CubeRepository;
 import by.training.cube.repository.Repository;
 import org.testng.Assert;

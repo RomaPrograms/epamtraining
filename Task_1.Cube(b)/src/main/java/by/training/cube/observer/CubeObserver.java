@@ -18,7 +18,6 @@ public class CubeObserver implements Observer {
      * @param event - event
      * @param id - id
      */
-    @Override
     public void handleEvent(final CubeEvent event, final String id) {
         CubeAction cubeAction = new CubeAction();
 

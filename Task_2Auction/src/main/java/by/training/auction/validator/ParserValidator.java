@@ -2,9 +2,7 @@ package by.training.auction.validator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * validator for class parser.
@@ -27,12 +25,11 @@ public class ParserValidator {
      * @return true if string is correct
      */
     public boolean validate(final String string) {
-        String[] stringMassive = string.split("\\s");
         try {
-            List<Double> arrayListDouble = new ArrayList<>();
-            for (int i = 0; i < stringMassive.length; i++) {
-                arrayListDouble.add(Double.parseDouble(stringMassive[i]));
-            }
+            StringTokenizer stringTokenizer = new StringTokenizer(
+                    string, " ");
+            String.valueOf(stringTokenizer.nextToken());
+            Integer.parseInt(stringTokenizer.nextToken());
         } catch (NumberFormatException ex) {
             LOGGER.debug(INCORRECT_LINE);
             return false;

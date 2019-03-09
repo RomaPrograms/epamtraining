@@ -2,9 +2,11 @@ package by.training.auction.thread;
 
 import by.training.auction.entity.Auction;
 import by.training.auction.entity.ClientData;
+import by.training.auction.validator.ClientValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Random;
+import java.util.concurrent.Callable;
 import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
@@ -13,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * class - thread object of whom we will use for every Client.
  */
-public class ClientAction extends Thread {
+public class ClientAction implements Callable<Boolean> {
     /**
      * data about client.
      */
@@ -54,7 +56,11 @@ public class ClientAction extends Thread {
     /**
      * lock for locking some methods.
      */
-    private static final Lock lock = new ReentrantLock();
+    private static Lock lock = new ReentrantLock();
+    /**
+     * object for checking budget of every client.
+     */
+    private static final ClientValidator VALIDATOR = new ClientValidator();
     /**
      * constructor for information about lot and client.
      * @param clientData - client
@@ -72,8 +78,9 @@ public class ClientAction extends Thread {
 
     /**
      * function with actions during bidding.
+     * @return true if bidding ended successfully
      */
-    public void run() {
+    public Boolean call() {
         try {
             String message;
             int increasingPrice;
@@ -103,15 +110,17 @@ public class ClientAction extends Thread {
                     LOGGER.info(message);
                     TimeUnit.SECONDS.sleep(1);
 
+
                     if (phaser.getArrivedParties()
                             != auction.getNumberOfClients()) {
 
-                        if (isEnoughMoney()) {
+                        if (VALIDATOR.isEnoughMoney(auction, client)) {
                             if (firstBid) {
                                 price = auction.getCurrentPriceOfLot();
                                 increasingPrice =
                                         new Random().nextInt(FIRST_INCREASING);
-                                if (isEnoughMoney(increasingPrice)) {
+                                if (VALIDATOR.isEnoughMoney(increasingPrice,
+                                        auction, client)) {
                                     price += increasingPrice;
                                     firstBid = false;
                                 } else {
@@ -120,9 +129,10 @@ public class ClientAction extends Thread {
                             } else {
                                 increasingPrice =
                                         new Random().nextInt(NEXT_INCREASING);
-                                if (isEnoughMoney(increasingPrice)) {
+                                if (VALIDATOR.isEnoughMoney(increasingPrice,
+                                        auction, client)) {
                                 price = auction.getCurrentPriceOfLot()
-                                        + NEXT_INCREASING;
+                                        + increasingPrice;
                                 } else {
                                     break;
                                 }
@@ -140,7 +150,8 @@ public class ClientAction extends Thread {
                                 >= price) {
                             increasingPrice =
                                     new Random().nextInt(NEXT_INCREASING);
-                            if (isEnoughMoney(increasingPrice)) {
+                            if (VALIDATOR.isEnoughMoney(increasingPrice,
+                                    auction, client)) {
                                 price = auction.getCurrentPriceOfLot()
                                         + increasingPrice;
                             } else {
@@ -155,12 +166,10 @@ public class ClientAction extends Thread {
                         }
                     }
 
-                    lock.lock();
                     if (this.price > this.auction.getCurrentPriceOfLot()) {
                         auction.setCurrentPriceOfLot(this.price);
                         auction.setWinner(this.client);
                     }
-                    lock.unlock();
 
                     if (random) {
                         random = new Random().nextBoolean();
@@ -178,41 +187,7 @@ public class ClientAction extends Thread {
 
         } catch (InterruptedException e) {
             LOGGER.error("Bidding were interrupted unexpectedly!");
-        }
-    }
-
-    /**
-     * validate data about money of our clients.
-     * @return - true if client have enough money for bidding, false otherwise
-     */
-    public boolean isEnoughMoney() {
-        String message;
-
-        if (this.client.getCountOfMoney()
-                < auction.getCurrentPriceOfLot()) {
-            message = client.getId() + "does't have enough"
-                    + " money for continuation this bidding";
-            LOGGER.info(message);
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * validate data about money of our clients.
-     * @param increasingPrice - additional price for buying lot
-     * @return - true if client have enough money for bidding, false otherwise
-     */
-    public boolean isEnoughMoney(final int increasingPrice) {
-        String message;
-
-        if (auction.getCurrentPriceOfLot() + increasingPrice
-                > this.client.getCountOfMoney()) {
-            message = client.getId() + " does't have enough"
-                    + " money for continuation this bidding";
-            LOGGER.info(message);
-            return false;
+            Thread.currentThread().interrupt();
         }
 
         return true;

@@ -2,6 +2,8 @@ package by.training.auction.creator;
 
 import by.training.auction.entity.ClientData;
 import by.training.auction.entity.Lot;
+import by.training.auction.validator.CreatorValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,10 @@ import java.util.Map;
  */
 public class Creator {
     /**
+     * validator for checking our information.
+     */
+    private CreatorValidator creatorValidator = new CreatorValidator();
+    /**
      * creates list with information about clients.
      * @param list - list with primary information
      * @return list with clients
@@ -22,8 +28,10 @@ public class Creator {
             Entry<String, Integer>>, List<Map.Entry<String, Integer>>> list) {
         List<ClientData> lots = new ArrayList<>();
         for (int i = 0; i < list.getKey().size(); i++) {
-            lots.add(new ClientData(list.getKey().get(i).getKey(),
-                    list.getKey().get(i).getValue()));
+            if (creatorValidator.isRightParameters(list.getKey().get(i))) {
+                lots.add(new ClientData(list.getKey().get(i).getKey(),
+                        list.getKey().get(i).getValue()));
+            }
         }
         return lots;
     }
@@ -38,8 +46,10 @@ public class Creator {
             String, Integer>>> list) {
         List<Lot> clients = new ArrayList<>();
         for (int i = 0; i < list.getValue().size(); i++) {
-            clients.add(new Lot(list.getValue().get(i).getKey(),
-                    list.getValue().get(i).getValue()));
+            if (creatorValidator.isRightParameters(list.getKey().get(i))) {
+                clients.add(new Lot(list.getValue().get(i).getKey(),
+                        list.getValue().get(i).getValue()));
+            }
         }
         return clients;
     }

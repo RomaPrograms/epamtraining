@@ -1,6 +1,7 @@
 package by.training.auction.parser;
 
 import by.training.auction.validator.ParserValidator;
+
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -29,33 +30,36 @@ public class Parser {
 
     /**
      * parses our strings with information.
+     *
      * @param arrayListStrings - list with information
      * @return lists with information about lots and clients
      */
     public Map.Entry<List<Map.Entry<String, Integer>>,
-            List<Map.Entry<String, Integer>>>  parse(final List<String>
+            List<Map.Entry<String, Integer>>> parse(final List<String>
                                                             arrayListStrings) {
-         int i = 0;
-         while (arrayListStrings.get(i).equals("lots:") == false) {
-            StringTokenizer stringTokenizer = new StringTokenizer(
-                    arrayListStrings.get(i), " ");
-            clients.add(new HashMap.SimpleEntry<>(stringTokenizer.nextToken(),
-                    Integer.parseInt(stringTokenizer.nextToken())));
+        int i = 0;
+        while (!arrayListStrings.get(i).equals("lots:")) {
+            if (validator.validate(arrayListStrings.get(i))) {
+                StringTokenizer stringTokenizer = new StringTokenizer(
+                        arrayListStrings.get(i), " ");
+                clients.add(new HashMap.SimpleEntry<>(
+                        stringTokenizer.nextToken(),
+                        Integer.parseInt(stringTokenizer.nextToken())));
+            }
             i++;
         }
 
         i++;
         while (i != arrayListStrings.size()) {
-            StringTokenizer stringTokenizer = new StringTokenizer(
-                    arrayListStrings.get(i), " ");
-            lots.add(new HashMap.SimpleEntry<>(stringTokenizer.nextToken(),
-                    Integer.parseInt(stringTokenizer.nextToken())));
+            if (validator.validate(arrayListStrings.get(i))) {
+                StringTokenizer stringTokenizer = new StringTokenizer(
+                        arrayListStrings.get(i), " ");
+                lots.add(new HashMap.SimpleEntry<>(stringTokenizer.nextToken(),
+                        Integer.parseInt(stringTokenizer.nextToken())));
+            }
             i++;
         }
 
-        Map.Entry<List<Map.Entry<String, Integer>>,
-                List<Map.Entry<String, Integer>>> pair =
-                new HashMap.SimpleEntry<>(clients, lots);
-        return pair;
+        return new HashMap.SimpleEntry<>(clients, lots);
     }
 }

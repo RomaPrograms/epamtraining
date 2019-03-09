@@ -13,6 +13,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.Phaser;
 
 /**
@@ -34,20 +37,19 @@ public class Main {
     /**
      * object of class Reader for getting information.
      */
-    private static final Reader reader = new Reader();
+    private static Reader reader = new Reader();
     /**
      * object of class Parser for parsing information.
      */
-    private static final Parser parser = new Parser();
+    private static Parser parser = new Parser();
     /**
      * object of class Creator for processing information.
      */
-    private static final Creator creator = new Creator();
+    private static Creator creator = new Creator();
     /**
      * list with our threads.
      */
-    private static final List<ClientAction> clientActions
-            = new ArrayList<>();
+    private static List<Future<Boolean>> clientActions = new ArrayList<>();
     /**
      * main function where we launch our threads.
      * @param args some arguments which we can enter from command line
@@ -63,6 +65,8 @@ public class Main {
         List<ClientData> clients = creator.createListOfClients(pair);
 
         Phaser phaser = new Phaser(clients.size() + 1);
+        ExecutorService executor = Executors.newFixedThreadPool(clients.size());
+
         Auction auction = new Auction(clients.size(),
                 MAX_TIME_OF_BIDDING_FOR_EVERY_LOT,
                 MAX_TIME_OF_SLEEPING, lots.size(), lots.get(0).getStartPrice());
@@ -75,14 +79,11 @@ public class Main {
         for (int i = 0; i < clients.size(); i++) {
             ClientAction clientAction = new ClientAction(clients.get(i),
                     phaser, auction, lots.get(0).getStartPrice());
-            clientActions.add(clientAction);
-        }
-
-        for (int i = 0; i < clientActions.size(); i++){
-            clientActions.get(i).start();
+            clientActions.add(executor.submit(clientAction));
         }
 
         startBidding(lots, phaser, auction);
+        executor.shutdown();
     }
 
     /**
@@ -91,8 +92,8 @@ public class Main {
      * @param phaser - phaser
      * @param auction - data about auction
      */
-    public static void startBidding(List<Lot> lots, Phaser phaser,
-                                    Auction auction) {
+    public static void startBidding(final List<Lot> lots, final Phaser phaser,
+                                    final Auction auction) {
         String message;
 
         for (int i = 0; i < lots.size(); i++) {
@@ -103,7 +104,7 @@ public class Main {
                         + lots.get(i).getName()
                         + " wasn't sold. Nobody wanted to buy it.\n";
             } else {
-                message = "Loot number " + i + " with "
+                message = "Loot number " + (i + 1) + " with "
                         + lots.get(i).getName()
                         + " was sold! It was sold for the "
                         + auction.getCurrentPriceOfLot() + "$ to "

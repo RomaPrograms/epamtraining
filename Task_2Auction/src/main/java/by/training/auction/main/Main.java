@@ -67,7 +67,7 @@ public class Main {
         Phaser phaser = new Phaser(clients.size() + 1);
         ExecutorService executor = Executors.newFixedThreadPool(clients.size());
 
-        Auction auction = new Auction(clients.size(),
+        Auction auction = Auction.getInstance(clients.size(),
                 MAX_TIME_OF_BIDDING_FOR_EVERY_LOT,
                 MAX_TIME_OF_SLEEPING, lots.size(), lots.get(0).getStartPrice());
 

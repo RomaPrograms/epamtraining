@@ -3,7 +3,7 @@ package by.training.auction.entity;
 /**
  * class for additional information about current bids.
  */
-public class Auction {
+public final class Auction {
     /**
      * current price of lot.
      */
@@ -29,21 +29,47 @@ public class Auction {
      */
     private int lotsNumber;
     /**
-     * Constructor which takes number of clients.
+     * object of class auction.
+     */
+    private static Auction instance;
+
+    /**
+     * private constructor for realization pattern singleton.
      * @param number - number of clients
      * @param maxTimeOfBidding - max time of bidding
      * @param timeOfSleeping - time of sleeping
      * @param lotsNumb - number of lots
      * @param currentPrice - current price
      */
-    public Auction(final int number, final int maxTimeOfBidding,
-                   final int timeOfSleeping, final int lotsNumb,
-                   final int currentPrice) {
+    private Auction(final int number, final int maxTimeOfBidding,
+                    final int timeOfSleeping, final int lotsNumb,
+                    final int currentPrice) {
         this.numberOfClients = number;
         this.maxTimeOfBiddingInMilliseconds = maxTimeOfBidding;
         this.timeOfSleepingInMilliseconds = timeOfSleeping;
         this.lotsNumber = lotsNumb;
         this.currentPriceOfLot = currentPrice;
+    }
+
+    /**
+     * getter for object of class auction.
+     * @param number - number of clients
+     * @param maxTimeOfBidding - max time of bidding
+     * @param timeOfSleeping - time of sleeping
+     * @param lotsNumb - number of lots
+     * @param currentPrice - current price
+     * @return object of class auction
+     */
+    public static synchronized Auction getInstance(final int number,
+                                                   final int maxTimeOfBidding,
+                                                   final int timeOfSleeping,
+                                                   final int lotsNumb,
+                                                   final int currentPrice) {
+        if (instance == null) {
+            instance = new Auction(number, maxTimeOfBidding, timeOfSleeping,
+                    lotsNumb, currentPrice);
+        }
+        return instance;
     }
 
     /**

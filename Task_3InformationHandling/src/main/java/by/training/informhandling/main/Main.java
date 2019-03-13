@@ -1,7 +1,11 @@
 package by.training.informhandling.main;
 
+import by.training.informhandling.reader.Reader;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Reader reader = new Reader();
+        String string = reader.readFromFile("src\\main\\resources\\data\\data");
+        System.out.println(string);
     }
 }

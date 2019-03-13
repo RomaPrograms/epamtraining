@@ -2,19 +2,25 @@ package by.training.informhandling.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WorldExpression {
-    private List<Symbol> arrayList = new ArrayList<>();
+    private static final String REGULAR_EXPRESSION = "";
+    Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
 
-    public WorldExpression(List<Symbol> arrayList) {
-        this.arrayList = arrayList;
+    private List<Symbol> symbols = new ArrayList<>();
+
+    public WorldExpression(String string) {
+        Matcher matcher = pattern.matcher(string);
+        while(matcher.find()) {
+            symbols.add(new Symbol(string));
+        }
     }
 
-    public List<Symbol> getArrayList() {
-        return arrayList;
-    }
-
-    public void setArrayList(List<Symbol> arrayList) {
-        this.arrayList = arrayList;
+    public void print() {
+        for (var symbol:symbols) {
+            symbol.print();
+        }
     }
 }

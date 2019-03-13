@@ -2,19 +2,25 @@ package by.training.informhandling.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Sentence {
-    private List<Lexeme> arrayList = new ArrayList<>();
+    private static final String REGULAR_EXPRESSION = "";
+    Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
 
-    public Sentence(List<Lexeme> arrayList) {
-        this.arrayList = arrayList;
+    private List<Lexeme> lexemes = new ArrayList<>();
+
+    public Sentence(String string) {
+        Matcher matcher = pattern.matcher(string);
+        while(matcher.find()) {
+            lexemes.add(new Lexeme(string));
+        }
     }
 
-    public List<Lexeme> getArrayList() {
-        return arrayList;
-    }
-
-    public void setArrayList(List<Lexeme> arrayList) {
-        this.arrayList = arrayList;
+    public void print() {
+        for (var lexem:lexemes) {
+            lexem.print();
+        }
     }
 }

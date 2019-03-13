@@ -1,0 +1,1 @@
+package by.training.informhandling.entity;

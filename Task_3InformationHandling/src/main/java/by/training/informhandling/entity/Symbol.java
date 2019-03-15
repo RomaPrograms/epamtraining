@@ -1,6 +1,6 @@
 package by.training.informhandling.entity;
 
-public class Symbol {
+public class Symbol implements PrintTree {
     private String symbol;
 
     public Symbol(String symbol) {

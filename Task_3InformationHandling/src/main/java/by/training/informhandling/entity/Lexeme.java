@@ -1,21 +1,17 @@
 package by.training.informhandling.entity;
 
+import by.training.informhandling.parsing.ParseToLexeme;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class Lexeme {
-    private static final String REGULAR_EXPRESSION = "";
-    Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
-
-    private List<WorldExpression> words = new ArrayList<>();
+public class Lexeme implements PrintTree{
+    private List<WordExpression> words = new ArrayList<>();
+    private ParseToLexeme parseToLexeme;
 
     public Lexeme(String string) {
-        Matcher matcher = pattern.matcher(string);
-        while(matcher.find()) {
-            words.add(new WorldExpression(string));
-        }
+        parseToLexeme = new ParseToLexeme(string);
+        parseToLexeme.parseCurrentText();
     }
 
     public void print() {

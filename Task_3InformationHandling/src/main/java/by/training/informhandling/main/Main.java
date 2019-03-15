@@ -8,6 +8,7 @@ public class Main {
         Reader reader = new Reader();
         String string = reader.readFromFile("src\\main\\resources\\data\\data");
         Text text = new Text(string);
-        System.out.println(string);
+
+        //System.out.println(string);
     }
 }

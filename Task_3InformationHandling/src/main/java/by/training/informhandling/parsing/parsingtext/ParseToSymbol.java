@@ -1,7 +1,8 @@
-package by.training.informhandling.parsing;
+package by.training.informhandling.parsing.parsingtext;
 
 import by.training.informhandling.entity.Symbol;
 import by.training.informhandling.entity.WordExpression;
+import by.training.informhandling.parsing.ParsingChain;
 
 import java.util.ArrayList;
 import java.util.List;

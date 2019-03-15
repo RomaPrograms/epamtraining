@@ -1,6 +1,7 @@
-package by.training.informhandling.parsing;
+package by.training.informhandling.parsing.parsingtext;
 
 import by.training.informhandling.entity.Lexeme;
+import by.training.informhandling.parsing.ParsingChain;
 
 import java.util.ArrayList;
 import java.util.List;

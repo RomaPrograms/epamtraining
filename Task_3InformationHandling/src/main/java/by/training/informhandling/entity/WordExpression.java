@@ -1,6 +1,6 @@
 package by.training.informhandling.entity;
 
-import by.training.informhandling.parsing.ParseToSymbol;
+import by.training.informhandling.parsing.parsingtext.ParseToSymbol;
 
 import java.util.ArrayList;
 import java.util.List;

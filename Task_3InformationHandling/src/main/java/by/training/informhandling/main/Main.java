@@ -18,5 +18,7 @@ public class Main {
         //        System.out.println("[ " + expression + " ] = " + interpreter.calculate());
 
         //System.out.println(string);
+
+        text.print();
     }
 }

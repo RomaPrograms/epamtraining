@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class ParseToSentence {
     //private static final String REGULAR_EXPRESSION = "(.*[gd][.?!])*";
-    private static final String REGULAR_EXPRESSION = "(([^[!]]+[!])|([^[?]]+[?]))";
+    private static final String REGULAR_EXPRESSION = "(.*?[!?.](\\s{4})?)"; //(([^[!]]+[!])|([^[?]]+[?]))
     private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
     private ParsingChain parsingChain;
     private String text;

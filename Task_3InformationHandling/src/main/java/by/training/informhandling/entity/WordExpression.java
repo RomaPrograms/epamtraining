@@ -11,6 +11,7 @@ public class WordExpression implements PrintTree {
 
     public WordExpression(String string) {
         parseToSymbol = new ParseToSymbol(string);
+        System.out.println(string);
         symbols = parseToSymbol.parseCurrentText();
     }
 

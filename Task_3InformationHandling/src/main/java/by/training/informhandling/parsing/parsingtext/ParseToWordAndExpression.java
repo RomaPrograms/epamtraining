@@ -1,6 +1,4 @@
 package by.training.informhandling.parsing.parsingtext;
-
-import by.training.informhandling.entity.Lexeme;
 import by.training.informhandling.entity.WordExpression;
 import by.training.informhandling.parsing.ParsingChain;
 
@@ -10,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ParseToWordAndExpression {
-    private static final String REGULAR_EXPRESSION = "";
+    private static final String REGULAR_EXPRESSION = "([A-Za-z]+)|([\\d&~|^<>()]+)|(\\s)+|\\W";
     private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
     private ParsingChain parsingChain;
     private String text;

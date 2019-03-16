@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ParseToLexeme{
-    private static final String REGULAR_EXPRESSION = "";
+    private static final String REGULAR_EXPRESSION = ".+?[\\s.!?]+";
     private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
     private ParsingChain parsingChain;
     private String text;

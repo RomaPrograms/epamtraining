@@ -10,7 +10,7 @@ public class Sentence implements PrintTree {
     public Sentence(String string) {
         parseToLexeme = new ParseToLexeme(string);
         System.out.println(string);
-        //lexemes = parseToLexeme.parseCurrentText();
+        lexemes = parseToLexeme.parseCurrentText();
     }
 
 

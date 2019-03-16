@@ -1,5 +1,7 @@
-package by.training.informhandling.parsing.parsingexpression;
+package by.training.informhandling.parsing.parsingexpression
+        .interpretationtorpn;
 
+import by.training.informhandling.parsing.parsingexpression.bitoperation.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -41,8 +43,8 @@ public class Client {
                 default:
                     Scanner scan = new Scanner(lexeme);
                     if (scan.hasNextInt()) {
-                        listExpression.add(
-                                new NonTerminalExpressionNumber(scan.nextInt()));
+                        listExpression.add(new
+                                NonTerminalExpressionNumber(scan.nextInt()));
                     }
             }
         }

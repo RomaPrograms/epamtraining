@@ -1,9 +1,9 @@
 package by.training.informhandling.parsing;
 
-import by.training.informhandling.entity.PrintTree;
+import by.training.informhandling.entity.TextTree;
 
 import java.util.List;
 
 public interface ParsingChain {
-    List<PrintTree> parseCurrentText();
+    List<TextTree> parseCurrentText();
 }

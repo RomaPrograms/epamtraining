@@ -1,29 +1,27 @@
 package by.training.informhandling.parsing.parsingtext;
 
+import by.training.informhandling.entity.TextTree;
 import by.training.informhandling.entity.Symbol;
-import by.training.informhandling.entity.WordExpression;
 import by.training.informhandling.parsing.ParsingChain;
-import by.training.informhandling.parsing.parsingexpression.Calculator;
-import by.training.informhandling.parsing.parsingexpression.Client;
+import by.training.informhandling.parsing.parsingexpression.interpretationtorpn.Calculator;
+import by.training.informhandling.parsing.parsingexpression.interpretationtorpn.Client;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParseToSymbol{
+public class ParseToSymbol implements ParsingChain{
     private static final String REGULAR_EXPRESSION_FOR_LETTERS = "[a-zA-Z]";
     private static final String REGULAR_EXPRESSION_FOR_EXPRESIONS = "([\\d&~|^<>()][\\d&~|^<>()]+)";
-    private Pattern patternForLetters;// = Pattern.compile(REGULAR_EXPRESSION);
-    private ParsingChain parsingChain;
     private String text;
 
     public ParseToSymbol(String string) {
         text = string;
     }
 
-    public List<Symbol> parseCurrentText() {
-        List<Symbol> symbols = new ArrayList<>();
+    public List<TextTree> parseCurrentText() {
+        List<TextTree> symbols = new ArrayList<>();
         Matcher matcher = Pattern.compile(REGULAR_EXPRESSION_FOR_LETTERS).matcher(text);
         if (matcher.find()) {
             do {

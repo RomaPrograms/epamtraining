@@ -1,4 +1,4 @@
-package by.training.informhandling.parsing.parsingexpression;
+package by.training.informhandling.parsing.parsingexpression.interpretationtorpn;
 
 import java.util.ArrayDeque;
 

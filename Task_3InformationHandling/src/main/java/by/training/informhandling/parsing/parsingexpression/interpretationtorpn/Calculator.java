@@ -1,4 +1,4 @@
-package by.training.informhandling.parsing.parsingexpression;
+package by.training.informhandling.parsing.parsingexpression.interpretationtorpn;
 
 import java.util.Stack;
 
@@ -7,18 +7,17 @@ public class Calculator {
         String current = "";
         Stack<String> stack = new Stack<>();
         int priority;
-        int incrementation = 0;
 
         for (int i = 0; i < expr.length(); i++) {
             StringBuilder currentExpression = new StringBuilder();
             if (expr.charAt(i) == '<' || expr.charAt(i) == '>') {
                 currentExpression.append(expr.charAt(i));
                 if (expr.charAt(i + 2) == '<' || expr.charAt(i + 2) == '>') {
-                   currentExpression.append(expr.charAt(i+1));
-                    currentExpression.append(expr.charAt(i+2));
+                   currentExpression.append(expr.charAt(i + 1));
+                    currentExpression.append(expr.charAt(i + 2));
                    i += 2;
                 } else {
-                    currentExpression.append(expr.charAt(i+1));
+                    currentExpression.append(expr.charAt(i + 1));
                     i++;
                 }
                 priority = getP(currentExpression.toString());
@@ -55,7 +54,7 @@ public class Calculator {
 
                 stack.pop();
             }
-            if(priority == 3) {
+            if (priority == 3) {
                 current += String.valueOf(expr.charAt(i + 1));
                 current += " ";
                 current += currentExpression.toString();
@@ -71,16 +70,16 @@ public class Calculator {
     }
 
     private static int getP(String token) {
-        if(token.equals("(")) {
+        if (token.equals("(")) {
             return 1;
         } else {
-            if(token.equals(")")) {
+            if (token.equals(")")) {
                 return -1;
             } else {
-                if (token.equals("<<")||token.equals(">>")||token.equals(">>>")
-                        ||token.equals("^")||token.equals("^")
-                        ||token.equals("|")||token.equals("&")
-                        ||token.equals("-")||token.equals("+")) {
+                if (token.equals("<<") || token.equals(">>") || token.equals(">>>")
+                        || token.equals("^") || token.equals("^")
+                        || token.equals("|") || token.equals("&")
+                        || token.equals("-") || token.equals("+")) {
                    return 2;
                 } else {
                     if (token.equals("~")) {

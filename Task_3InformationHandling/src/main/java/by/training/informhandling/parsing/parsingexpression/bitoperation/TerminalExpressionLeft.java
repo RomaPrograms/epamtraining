@@ -1,4 +1,6 @@
-package by.training.informhandling.parsing.parsingexpression;
+package by.training.informhandling.parsing.parsingexpression.bitoperation;
+
+import by.training.informhandling.parsing.parsingexpression.interpretationtorpn.Context;
 
 public class TerminalExpressionLeft extends AbstractMathExpression {
     @Override

@@ -1,32 +1,26 @@
 package by.training.informhandling.parsing.parsingtext;
 
-import by.training.informhandling.entity.Paragraph;
-import by.training.informhandling.entity.TextTree;
-import by.training.informhandling.parsing.ParsingChain;
+import by.training.informhandling.entity.Category;
+import by.training.informhandling.entity.Component;
+import by.training.informhandling.entity.Composit;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+public class ParseToParagraph extends ParseText {
+    private static final String REGULAR_EXPRESSION = "\\s{4}+";
 
-public class ParseToParagraph implements ParsingChain {
-    private static final String REGULAR_EXPRESSION = ".{1}.*?\\s{4}";//.*\\s{4}.+\\s{4}
-    private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION, Pattern.MULTILINE);
-    private String text;
-    private int lastIndex;
+    public ParseToParagraph() {
+        parser = new ParseToSentence();
+    }//Изменить, чтобы это не создавалось для каждого объекта
 
-    public ParseToParagraph(String string) {
-        text = string;
-    }
+    @Override
+    public Component parse(Composit curParser, String text) {
+        String[] sentences = text.split(REGULAR_EXPRESSION);
 
-    public List<TextTree> parseCurrentText() {
-        List<TextTree> paragraphs = new ArrayList<>();
-        Matcher matcher = pattern.matcher(text);
-        while(matcher.find()) {
-            lastIndex = matcher.end();
-            paragraphs.add(new Paragraph(matcher.group()));
+        for (int i = 1; i < sentences.length; i++) {
+            Composit paragraph = new Composit(Category.PARAGRAPH);
+            curParser.add(parser.parse(paragraph, sentences[i]),
+                    Category.PARAGRAPH);
         }
-        paragraphs.add(new Paragraph(text.substring(lastIndex)));
-        return paragraphs;
+
+        return curParser;
     }
 }

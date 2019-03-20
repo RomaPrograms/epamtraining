@@ -1,29 +1,32 @@
 package by.training.informhandling.parsing.parsingtext;
 
-import by.training.informhandling.entity.Lexeme;
-import by.training.informhandling.entity.TextTree;
-import by.training.informhandling.parsing.ParsingChain;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
+import by.training.informhandling.entity.Category;
+import by.training.informhandling.entity.Component;
+import by.training.informhandling.entity.Composit;
 import java.util.regex.Pattern;
 
-public class ParseToLexeme implements ParsingChain {
-    private static final String REGULAR_EXPRESSION = ".+?[\\s.!?]+";
+public class ParseToLexeme extends ParseText {
+    private static final String REGULAR_EXPRESSION = ".+?[\\s.!?]+";  //решить проблему с Польской записью про которую мы говорили.
     private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
-    private String text;
 
-    public ParseToLexeme(String string) {
-        text = string;
+    public ParseToLexeme() {
+        parser = new ParseToWordAndExpression();
     }
 
-    public List<TextTree> parseCurrentText() {
-        List<TextTree> paragraphs = new ArrayList<>();
-        Matcher matcher = pattern.matcher(text);
-        while(matcher.find()) {
-            paragraphs.add(new Lexeme(matcher.group()));
+    @Override
+    public Component parse(Composit curParser, String text) {
+//        Matcher matcher = pattern.matcher(text);
+//        while(matcher.find()) {
+//            Composit lexeme = new Composit();
+//            curParser.add(parser.parse(lexeme, matcher.group()));
+//        }
+
+        String[] mass = text.split("\\s+");
+        for (int i = 0; i < mass.length; i++) {
+            Composit sentence = new Composit(Category.LEXEME);
+            curParser.add(parser.parse(sentence, mass[i]), Category.LEXEME);
         }
-        return paragraphs;
+
+        return curParser;
     }
 }

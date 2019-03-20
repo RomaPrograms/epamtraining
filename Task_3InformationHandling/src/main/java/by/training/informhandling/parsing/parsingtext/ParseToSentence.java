@@ -1,30 +1,29 @@
 package by.training.informhandling.parsing.parsingtext;
 
-import by.training.informhandling.entity.Sentence;
-import by.training.informhandling.entity.TextTree;
-import by.training.informhandling.parsing.ParsingChain;
-
-import java.util.ArrayList;
-import java.util.List;
+import by.training.informhandling.entity.Category;
+import by.training.informhandling.entity.Component;
+import by.training.informhandling.entity.Composit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParseToSentence implements ParsingChain {
-    //private static final String REGULAR_EXPRESSION = "(.*[gd][.?!])*";
-    private static final String REGULAR_EXPRESSION = "(.*?[!?.](\\s{4})?)"; //(([^[!]]+[!])|([^[?]]+[?]))
+public class ParseToSentence extends ParseText {
+    private static final String REGULAR_EXPRESSION = ".*?([!?]|[.]+)"; //(([^[!]]+[!])|([^[?]]+[?]))
     private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
-    private String text;
 
-    public ParseToSentence(String string) {
-        text = string;
+    public ParseToSentence() {
+        parser = new ParseToLexeme();
     }
 
-    public List<TextTree> parseCurrentText() {
-        List<TextTree> sentences = new ArrayList<>();
+    @Override
+    public Component parse(Composit curParser, String text) {
         Matcher matcher = pattern.matcher(text);
+
         while(matcher.find()) {
-            sentences.add(new Sentence(matcher.group()));
+            Composit sentence = new Composit(Category.SENTENCE);
+            curParser.add(parser.parse(sentence, matcher.group()),
+                    Category.SENTENCE);
         }
-        return sentences;
+
+        return curParser;
     }
 }

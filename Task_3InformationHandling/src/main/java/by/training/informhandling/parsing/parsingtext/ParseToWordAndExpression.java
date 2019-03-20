@@ -1,28 +1,27 @@
 package by.training.informhandling.parsing.parsingtext;
-import by.training.informhandling.entity.TextTree;
-import by.training.informhandling.entity.WordExpression;
-import by.training.informhandling.parsing.ParsingChain;
 
-import java.util.ArrayList;
-import java.util.List;
+import by.training.informhandling.entity.Category;
+import by.training.informhandling.entity.Component;
+import by.training.informhandling.entity.Composit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParseToWordAndExpression implements ParsingChain{
+public class ParseToWordAndExpression extends ParseText {
     private static final String REGULAR_EXPRESSION = "([A-Za-z]+)|([\\d&~|^<>()]+)|(\\s)+|\\W";
     private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
-    private String text;
 
-    public ParseToWordAndExpression(String string) {
-        text = string;
+    public ParseToWordAndExpression() {
+        parser = new ParseToSymbol();
     }
 
-    public List<TextTree> parseCurrentText() {
-        List<TextTree> paragraphs = new ArrayList<>();
+    @Override
+    public Component parse(Composit curParser, String text) {
         Matcher matcher = pattern.matcher(text);
         while(matcher.find()) {
-            paragraphs.add(new WordExpression(matcher.group()));
+            Composit wordAndExpression = new Composit(Category.WORDANDEXPRESSION);
+            curParser.add(parser.parse(wordAndExpression, matcher.group()),
+                    Category.WORDANDEXPRESSION);
         }
-        return paragraphs;
+        return curParser;
     }
 }

@@ -1,43 +1,45 @@
 package by.training.informhandling.parsing.parsingtext;
 
-import by.training.informhandling.entity.TextTree;
-import by.training.informhandling.entity.Symbol;
-import by.training.informhandling.parsing.ParsingChain;
-import by.training.informhandling.parsing.parsingexpression.interpretationtorpn.Calculator;
-import by.training.informhandling.parsing.parsingexpression.interpretationtorpn.Client;
+import by.training.informhandling.entity.Category;
+import by.training.informhandling.entity.Component;
+import by.training.informhandling.entity.Composit;
+import by.training.informhandling.entity.Leaf;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class ParseToSymbol implements ParsingChain{
+public class ParseToSymbol extends ParseText {
     private static final String REGULAR_EXPRESSION_FOR_LETTERS = "[a-zA-Z]";
     private static final String REGULAR_EXPRESSION_FOR_EXPRESIONS = "([\\d&~|^<>()][\\d&~|^<>()]+)";
-    private String text;
 
-    public ParseToSymbol(String string) {
-        text = string;
-    }
+    @Override
+    public Component parse(Composit curParser, String text) {
 
-    public List<TextTree> parseCurrentText() {
-        List<TextTree> symbols = new ArrayList<>();
-        Matcher matcher = Pattern.compile(REGULAR_EXPRESSION_FOR_LETTERS).matcher(text);
-        if (matcher.find()) {
-            do {
-                symbols.add(new Symbol(matcher.group()));
-            } while (matcher.find());
-            return symbols;
+//        Matcher matcher = Pattern.compile(REGULAR_EXPRESSION_FOR_LETTERS).matcher(text);
+//        if (matcher.find()) {
+//            do {
+//                curParser.add(new Leaf(matcher.group()), Category.SYMBOL);
+//                //System.out.print(matcher.group());
+//            } while (matcher.find());
+//            return curParser;
+//        }
+//
+//        Matcher matcher1 = Pattern.compile(REGULAR_EXPRESSION_FOR_EXPRESIONS).matcher(text);
+//        if (matcher1.find()) {
+//            String expression = Calculator.ExpressionToRPN(matcher1.group());
+//            Client interpreter = new Client(expression);
+//            curParser.add(new Leaf(String.valueOf(interpreter.calculate())),
+//                    Category.SYMBOL);
+//            //System.out.print(matcher1.group());
+//            return curParser;
+//        }
+//
+//        //System.out.print(text);
+//        curParser.add(new Leaf(text), Category.SYMBOL);
+//        return curParser;
+
+        ///////////////////////////////////////////////////////////////////////////////////////
+        for (int i = 0; i < text.length(); i++) {
+            curParser.add(new Leaf(String.valueOf(text.charAt(i))),
+                    Category.SYMBOL);
         }
-        Matcher matcher1 = Pattern.compile(REGULAR_EXPRESSION_FOR_EXPRESIONS).matcher(text);
-        if (matcher1.find()) {
-            String expression = Calculator.ExpressionToRPN(matcher1.group());
-            Client interpreter = new Client(expression);
-            symbols.add(new Symbol(String.valueOf(interpreter.calculate())));
-            return symbols;
-        }
-
-        symbols.add(new Symbol(text));
-        return symbols;
+        return curParser;
     }
 }

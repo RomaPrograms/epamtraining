@@ -7,8 +7,7 @@ import by.training.informhandling.parsing.parsingexpression.bitoperation
         .TerminalExpressionAnd;
 import by.training.informhandling.parsing.parsingexpression.bitoperation
         .TerminalExpressionOr;
-import by.training.informhandling.parsing.parsingexpression.bitoperation
-        .TerminalExpressionExcludeOr;
+import by.training.informhandling.parsing.parsingexpression.bitoperation.TerminalExpressionExcludingOr;
 import by.training.informhandling.parsing.parsingexpression.bitoperation
         .TerminalExpressionDoubleRight;
 import by.training.informhandling.parsing.parsingexpression.bitoperation
@@ -72,7 +71,7 @@ public class Client {
                     listExpression.add(new TerminalExpressionOr());
                     break;
                 case '^':
-                    listExpression.add(new TerminalExpressionExcludeOr());
+                    listExpression.add(new TerminalExpressionExcludingOr());
                     break;
                 case '>':
                     if (lexeme.length()

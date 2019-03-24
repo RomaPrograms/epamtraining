@@ -128,8 +128,8 @@ public class ParsingTextToElementsAction {
      * @return text and number of paragraphs
      */
     @DataProvider(name = "dataProviderForParseToParagraphAction")
-    public Object[] dataProviderForParseToParagraphAction() {
-        return new Object[]{wholeText, 4};
+    public Object[][] dataProviderForParseToParagraphAction() {
+        return new Object[][] {{wholeText, 4}};
     }
 
     /**

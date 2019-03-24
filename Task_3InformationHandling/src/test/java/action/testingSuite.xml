@@ -6,15 +6,25 @@
         <classes>
             <class name = "action.parsingaction.ParsingTextToElementsAction">
                 <methods>
-                    <include  name = "trueTestCalculateSquare"/>
-
+                    <include  name = "parseToParagraphAction"/>
+                    <include  name = "parseToSentenceAction"/>
+                    <include  name = "parseToLexemeAction"/>
+                    <include  name = "parseToWordAndExpressionAction"/>
+                    <include  name = "parseToSymbolAction"/>
                 </methods>
             </class>
 
             <class name = "action.sortingaction.SortingAction">
                 <methods>
-                    <include  name = "testReader"/>
+                    <include  name = "sortingByNumberOfSentencesAction"/>
+                    <include  name = "sortingTextByLengthOfWordsAction"/>
+                    <include  name = "sortingLexemesByNumberOfEntranceAction"/>
+                </methods>
+            </class>
 
+            <class name = "action.calculateexpressionaction.CalculateExpressionAction">
+                <methods>
+                    <include  name = "calculateBitExpressionAction"/>
                 </methods>
             </class>
 

@@ -25,5 +25,4 @@ public interface Component extends Cloneable {
      * @param category - category of component
      */
     void add(Component c, Category category);
-    //Component clone();
 }

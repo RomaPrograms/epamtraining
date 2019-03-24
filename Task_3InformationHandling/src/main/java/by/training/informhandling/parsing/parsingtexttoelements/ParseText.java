@@ -1,4 +1,4 @@
-package by.training.informhandling.parsing.parsingtext;
+package by.training.informhandling.parsing.parsingtexttoelements;
 
 import by.training.informhandling.entity.Component;
 import by.training.informhandling.entity.Composit;

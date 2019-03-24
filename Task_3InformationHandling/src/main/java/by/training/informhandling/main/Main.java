@@ -2,10 +2,9 @@ package by.training.informhandling.main;
 
 import by.training.informhandling.actions.TextAction;
 import by.training.informhandling.entity.Composit;
-import by.training.informhandling.parsing.parsingtext.ParseText;
-import by.training.informhandling.parsing.parsingtext.ParseToParagraph;
+import by.training.informhandling.parsing.parsingtexttoelements.ParseText;
+import by.training.informhandling.parsing.parsingtexttoelements.ParseToParagraph;
 import by.training.informhandling.reader.Reader;
-import java.util.List;
 
 public class Main {
     public static void main(final String[] args) {

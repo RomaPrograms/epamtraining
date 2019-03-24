@@ -2,23 +2,53 @@ package action.sortingaction;
 
 import by.training.informhandling.actions.TextAction;
 import by.training.informhandling.entity.Composit;
-import by.training.informhandling.parsing.parsingtext.ParseText;
-import by.training.informhandling.parsing.parsingtext.ParseToParagraph;
+import by.training.informhandling.parsing.parsingtexttoelements.ParseText;
+import by.training.informhandling.parsing.parsingtexttoelements.ParseToParagraph;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+/**
+ * class tests methods for sorting.
+ */
 public class SortingAction {
+    /**
+     * original text.
+     */
     private static String wholeText;
+    /**
+     * text sorted by number of sentences.
+     */
     private static String sortedTextByNumberOfSentences;
+    /**
+     * text sorted by length of words.
+     */
     private static String sortedTextByLengthOfWords;
+    /**
+     * text sorted by number of entrance in lexemes.
+     */
     private static String sortedLexemesByNumberOfEntrance;
+    /**
+     * first composit.
+     */
     private Composit composit = new Composit();
+    /**
+     * second composit.
+     */
     private Composit composit1 = new Composit();
+    /**
+     * object of ParseToParagraph class.
+     */
     private ParseText parseToParagraph = new ParseToParagraph();
+    /**
+     * object of class with text action classes.
+     */
     private TextAction actions = new TextAction();
 
+    /**
+     * method for initialization parameters before other methods.
+     */
     @BeforeClass
     public void initialiseSortingAction() {
         wholeText = "    It has survived - not only (five) centuries, but also "
@@ -89,11 +119,20 @@ public class SortingAction {
         parseToParagraph.parse(composit1, wholeText);
     }
 
+    /**
+     * data for method with sorting by number of sentences.
+     * @return - composit and expected result
+     */
     @DataProvider(name = "dataProviderForSortingByNumberOfSentences")
     public Object[][] dataProviderForSortingByNumberOfSentences() {
         return new Object[][] {{composit, sortedTextByNumberOfSentences}};
     }
 
+    /**
+     * test for method with sorting by number of sentences.
+     * @param composit - composit
+     * @param sortedText - expected result
+     */
     @Test(dataProvider = "dataProviderForSortingByNumberOfSentences")
     public void sortingByNumberOfSentencesAction(Composit composit,
                                              String sortedText) {
@@ -103,11 +142,20 @@ public class SortingAction {
         Assert.assertEquals(actual, expected);
     }
 
+    /**
+     * data for method with sorting by length of words.
+     * @return - composit and expected result
+     */
     @DataProvider(name = "dataProviderForSortingTextByLengthOfWords")
     public Object[][] dataProviderForSortingTextByLengthOfWords() {
         return new Object[][] {{composit1, sortedTextByLengthOfWords}};
     }
 
+    /**
+     * test for method with sorting by length of words.
+     * @param composit - composit
+     * @param sortedText - expected result
+     */
     @Test(dataProvider = "dataProviderForSortingTextByLengthOfWords")
     public void sortingTextByLengthOfWordsAction(Composit composit,
                                                  String sortedText) {
@@ -117,11 +165,20 @@ public class SortingAction {
         Assert.assertEquals(actual, expected);
     }
 
+    /**
+     * data for method with sorting lexemes by number of sentences.
+     * @return - composit and expected result
+     */
     @DataProvider(name = "dataProviderForSortingLexemesByNumberOfEntrance")
     public Object[][] dataProviderForSortingLexemesByNumberOfEntrance() {
         return new Object[][] {{composit1, sortedLexemesByNumberOfEntrance}};
     }
 
+    /**
+     * test for method with sorting lexemes by number of sentences.
+     * @param composit - composit
+     * @param sortedText - expected result
+     */
     @Test(dataProvider = "dataProviderForSortingLexemesByNumberOfEntrance")
     public void sortingLexemesByNumberOfEntranceAction(Composit composit,
                                                  String sortedText) {

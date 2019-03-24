@@ -7,9 +7,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * class that reads information from file.
  */
@@ -28,14 +25,13 @@ public class Reader {
      */
     private static final String FILE_NOT_FOUND =
             "File wasn't found. Please, check name of the file.";
-
     /**
      * readFromFile reads data from file.
      * @param file - file with data
      * @return returns arrayList of strings with data from file
      */
     public String readFromFile(final String file) {
-        StringBuffer string = new StringBuffer();
+        StringBuilder string = new StringBuilder();
         String line;
         try (FileReader fileReader = new FileReader(new File(file))) {
             BufferedReader bufferedReader = new BufferedReader(fileReader);

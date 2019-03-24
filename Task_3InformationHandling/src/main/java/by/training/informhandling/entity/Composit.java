@@ -5,89 +5,107 @@ import by.training.informhandling.parsing.parsingexpression.interpretationtorpn.
 import java.util.ArrayList;
 import java.util.List;
 
-public class Composit implements Component, Cloneable{
-
+/**
+ * class contains methods and variables for every element of text.
+ */
+public class Composit implements Component, Cloneable {
+    /**
+     * list with components of current component.
+     */
     private List<Component> components = new ArrayList<>();
+    /**
+     * category of current component.
+     */
     private Category category;
-    private boolean isOutputText = true;
+    /**
+     * variable for determining will we simply output text or we will work with
+     * it.
+     */
+    private static boolean isOutputText = true;
 
-    public Composit() { }
-
-    public Composit(Category category){
-       this.category = category;
+    /**
+     * constructor without parameters.
+     */
+    public Composit() {
     }
 
+    /**
+     * constructor with single parameter.
+     * @param textCategory - category of current composit
+     */
+    public Composit(final Category textCategory) {
+        this.category = textCategory;
+    }
+
+    /**
+     * returns list with components of current component.
+     * @return - list with components of current component
+     */
     public List<Component> getComponents() {
         return components;
     }
 
-    public void setComponents(List<Component> components) {
-        this.components = components;
-    }
-
+    /**
+     * sets will we simply output our text or just do some sorting or some
+     * operations.
+     * @param isReading - boolean variable
+     */
     @Override
-    public void setIsOutputText(boolean isOutputText) {
-        this.isOutputText = isOutputText;
+    public void setIsOutputText(final boolean isReading) {
+        this.isOutputText = isReading;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public void add(Component component, Category category) {
-        this.category = category;
+    /**
+     * method add components to list after parsing.
+     * @param component - component
+     * @param currentCategory - category of component
+     */
+    public void add(final Component component, final Category currentCategory) {
+        this.category = currentCategory;
         components.add(component);
     }
 
-    public void remove(Component component) {
-        components.remove(component);
-    }
-
-    public Object getChild(int index) {
-        return components.get(index);
-    }
-
-    @Override
-    public Composit clone() {
-        Composit composit = this.clone();
-
+//    @Override
+//    public Composit clone() {
+//        Composit composit = this.clone();
+//
 //        for (int i = 0; i < composit.getComponents().size(); i++) {
 //            composit.getComponents().add(this.getComponents().get(i).clone());
 //        }
+//
+//        return composit;
+//    }
 
-        return composit;
-    }
-
+    /**
+     * makes string from components of current component.
+     * @return - list with components of current component in single string
+     */
     @Override
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
 
-        for (var component:components) {
-            stringBuffer.append(component.toString());
+        for (var component : components) {
+            stringBuilder.append(component.toString());
         }
 
-        if (category == Category.WORDANDEXPRESSION) {//Разделить на слова и выражения, чтобы были отдельно слова и отдельно выражения
-            if (isOutputText) {
-                if (Checker.isNumber(stringBuffer.toString())) {
-                    String expression
-                            = Calculator.ExpressionToRPN(stringBuffer.toString());
-                    stringBuffer.delete(0,
-                            stringBuffer.length());
-                    Client interpreter = new Client(expression);
-                    stringBuffer.append(interpreter.calculate());
-                }
-                stringBuffer.append(" ");
-            }
+        if (category == Category.EXPRESSION && isOutputText) {
+            String expression
+                    = Calculator.expressionToRPN(stringBuilder.toString());
+            stringBuilder.delete(0,
+                    stringBuilder.length());
+            Client interpreter = new Client(expression);
+            stringBuilder.append(interpreter.calculate());
+            stringBuilder.append(" ");
         } else {
             if (category == Category.SENTENCE) {
-                stringBuffer.append("\n");
+                stringBuilder.append("\n");
+            } else {
+                if (category == Category.WORD && isOutputText) {
+                    stringBuilder.append(" ");
+                }
             }
         }
 
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 }

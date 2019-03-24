@@ -4,7 +4,7 @@
 <suite name="Suite1" verbose="1" >
     <test name="action"   >
         <classes>
-            <class name = "action.parsingaction.ParsingAction">
+            <class name = "action.parsingaction.ParsingTextToElementsAction">
                 <methods>
                     <include  name = "trueTestCalculateSquare"/>
 

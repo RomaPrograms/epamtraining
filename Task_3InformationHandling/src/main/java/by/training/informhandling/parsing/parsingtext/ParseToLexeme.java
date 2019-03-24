@@ -3,30 +3,48 @@ package by.training.informhandling.parsing.parsingtext;
 import by.training.informhandling.entity.Category;
 import by.training.informhandling.entity.Component;
 import by.training.informhandling.entity.Composit;
-import java.util.regex.Pattern;
 
+/**
+ * class with all necessary for parsing Sentences to Lexemes.
+ */
 public class ParseToLexeme extends ParseText {
-    private static final String REGULAR_EXPRESSION = ".+?[\\s.!?]+";  //решить проблему с Польской записью про которую мы говорили.
-    private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
+//    private static ParseText parser;
 
+    /**
+     * constructor without parameters.
+     */
     public ParseToLexeme() {
-        parser = new ParseToWordAndExpression();
+        if (getParser() == null) {
+            setParser(new ParseToWordAndExpression());
+        }
     }
 
-    @Override
-    public Component parse(Composit curParser, String text) {
-//        Matcher matcher = pattern.matcher(text);
-//        while(matcher.find()) {
-//            Composit lexeme = new Composit();
-//            curParser.add(parser.parse(lexeme, matcher.group()));
+//    private ParseToLexeme() {
+//    }
+//
+//    public static synchronized ParseText getParser() {
+//        if (parser == null) {
+//            parser = ParseToWordAndExpression.getParser();
 //        }
+//        return parser;
+//    }
+
+    /**
+     * methods where Sentences of text will be parsed to Lexemes.
+     * @param curTextElement - current element of text
+     * @param text - text for parsing
+     * @return parsed element of text
+     */
+    @Override
+    public Component parse(final Composit curTextElement, final String text) {
 
         String[] mass = text.split("\\s+");
         for (int i = 0; i < mass.length; i++) {
             Composit sentence = new Composit(Category.LEXEME);
-            curParser.add(parser.parse(sentence, mass[i]), Category.LEXEME);
+            curTextElement.add(getParser().parse(sentence, mass[i]),
+                    Category.LEXEME);
         }
 
-        return curParser;
+        return curTextElement;
     }
 }

@@ -1,10 +1,29 @@
-package by.training.informhandling.parsing.parsingexpression.interpretationtorpn;
+package by.training.informhandling.parsing
+        .parsingexpression.interpretationtorpn;
 
 import java.util.Stack;
 
-public class Calculator {
-    public static String ExpressionToRPN(String expr) {
-        String current = "";
+/**
+ * class translates our bit expression to RPN.
+ */
+public final class Calculator {
+
+    /**
+     * priority for operation "not".
+     */
+    private static final int PRIORITY_FOR_OPERATION_NOT = 3;
+    /**
+     * private constructor without parameters.
+     */
+    private Calculator() { }
+
+    /**
+     * method translate our expression to RPN.
+     * @param expr - normal view of expression
+     * @return expression in RPN
+     */
+    public static String expressionToRPN(final String expr) {
+        StringBuilder finalExpressionInRPN = new StringBuilder(" ");
         Stack<String> stack = new Stack<>();
         int priority;
 
@@ -20,25 +39,25 @@ public class Calculator {
                     currentExpression.append(expr.charAt(i + 1));
                     i++;
                 }
-                priority = getP(currentExpression.toString());
+                priority = getPriority(currentExpression.toString());
             } else {
                 currentExpression.append(expr.charAt(i));
-                priority = getP(String.valueOf(expr.charAt(i)));
+                priority = getPriority(String.valueOf(expr.charAt(i)));
             }
 
             if (priority == 0) {
-                current += currentExpression.toString();
+                finalExpressionInRPN.append(currentExpression.toString());
             }
             if (priority == 1) {
                 stack.push(currentExpression.toString());
             }
             if (priority == 2) {
-                current += " ";
+                finalExpressionInRPN.append(" ");
 
-                while(!stack.empty()) {
-                    if(getP(stack.peek()) >= priority) {
-                        current += stack.pop();
-                        current += " ";
+                while (!stack.empty()) {
+                    if (getPriority(stack.peek()) >= priority) {
+                        finalExpressionInRPN.append(stack.pop());
+                        finalExpressionInRPN.append(" ");
                     } else {
                         break;
                     }
@@ -46,44 +65,49 @@ public class Calculator {
                 stack.push(currentExpression.toString());
             }
             if (priority == -1) {
-                current += " ";
-                while(getP(stack.peek()) != 1) {
-                    current += stack.pop();
-                    current += " ";
+                finalExpressionInRPN.append(" ");
+                while (getPriority(stack.peek()) != 1) {
+                    finalExpressionInRPN.append(stack.pop());
+                    finalExpressionInRPN.append(" ");
                 }
 
                 stack.pop();
             }
-            if (priority == 3) {
-                current += String.valueOf(expr.charAt(i + 1));
-                current += " ";
-                current += currentExpression.toString();
+            if (priority == PRIORITY_FOR_OPERATION_NOT) {
+                finalExpressionInRPN.append(String.valueOf(expr.charAt(i + 1)));
+                finalExpressionInRPN.append(" ");
+                finalExpressionInRPN.append(currentExpression.toString());
                 i++;
             }
         }
 
         while (!stack.empty()) {
-            current += " ";
-            current += stack.pop();
+            finalExpressionInRPN.append(" ");
+            finalExpressionInRPN.append(stack.pop());
         }
-        return current;
+        return finalExpressionInRPN.toString();
     }
 
-    private static int getP(String token) {
+    /**
+     * method which gives some priority to every element of expression.
+     * @param token - some element of expression
+     * @return priority of element
+     */
+    private static int getPriority(final String token) {
         if (token.equals("(")) {
             return 1;
         } else {
             if (token.equals(")")) {
                 return -1;
             } else {
-                if (token.equals("<<") || token.equals(">>") || token.equals(">>>")
-                        || token.equals("^") || token.equals("^")
+                if (token.equals("<<") || token.equals(">>")
+                        || token.equals(">>>") || token.equals("^")
                         || token.equals("|") || token.equals("&")
                         || token.equals("-") || token.equals("+")) {
                    return 2;
                 } else {
                     if (token.equals("~")) {
-                        return 3;
+                        return PRIORITY_FOR_OPERATION_NOT;
                     } else {
                         return 0;
                     }

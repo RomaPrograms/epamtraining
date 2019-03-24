@@ -1,47 +1,56 @@
 package by.training.informhandling.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Leaf implements Component, Cloneable{
-    private String value; //Нельзя хранить стринг, нам нужно хранить чар
+/**
+ * class with last level component called leaf.
+ */
+public class Leaf implements Component, Cloneable {
+    /**
+     * single symbol from word.
+     */
+    private char symbol;
 
-    public Leaf(String symbol) {
-        value = symbol;
+    /**
+     * constructor with single parameter.
+     * @param text - word or expression
+     */
+    public Leaf(final char text) {
+        this.symbol = text;
     }
 
     @Override
-    public void setIsOutputText(boolean isOutputText) {
+    public void setIsOutputText(final boolean isOutputText) {
         System.out.println("-------------");
     }
 
-    public void operation() {
-        System.out.println("Leaf -> Performing operation");
-    }
-    public void add(Component c, Category category) {
+    //у меня получается, что методы в Leaf бесполезно перегружать,
+    //что с этим делать?
+    public void add(final Component c, final Category category) {
         System.out.println("Leaf -> add. Doing nothing");
-        // генерация исключения и return false (если метод не void)
-    }
-    public void remove(Component c) {
-        System.out.println("Leaf -> remove. Doing nothing");
-        // генерация исключения и return false (если метод не void)
-    }
-    public Object getChild(int index) {
-        throw new UnsupportedOperationException();
     }
 
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
+    /**
+     * returns empty list cause it's last level component.
+     * @return - list with components of current component
+     */
     @Override
     public List<Component> getComponents() {
-        return null;
+        return new ArrayList<>();
     }
 
+    /**
+     * method creates string from symbol.
+     * @return - symbol
+     */
     @Override
-    public Leaf clone() {
-        return this.clone();
+    public String toString() {
+        return String.valueOf(symbol);
     }
+
+//    @Override
+//    public Leaf clone() {
+//        return this.clone();
+//    }
 }

@@ -65,16 +65,14 @@ public class Composit implements Component, Cloneable {
         components.add(component);
     }
 
-//    @Override
-//    public Composit clone() {
-//        Composit composit = this.clone();
-//
-//        for (int i = 0; i < composit.getComponents().size(); i++) {
-//            composit.getComponents().add(this.getComponents().get(i).clone());
-//        }
-//
-//        return composit;
-//    }
+    /**
+     * method for creating copy of current object.
+     * @return - copy of current object
+     */
+    @Override
+    public Composit clone() {
+        return (Composit) this.getComponents().get(0).clone();
+    }
 
     /**
      * makes string from components of current component.

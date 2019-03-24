@@ -20,13 +20,16 @@ public class Leaf implements Component, Cloneable {
         this.symbol = text;
     }
 
+    /**
+     * method for
+     * @param isOutputText - boolean variable
+     */
     @Override
     public void setIsOutputText(final boolean isOutputText) {
         System.out.println("-------------");
     }
 
-    //у меня получается, что методы в Leaf бесполезно перегружать,
-    //что с этим делать?
+
     public void add(final Component c, final Category category) {
         System.out.println("Leaf -> add. Doing nothing");
     }
@@ -49,8 +52,12 @@ public class Leaf implements Component, Cloneable {
         return String.valueOf(symbol);
     }
 
-//    @Override
-//    public Leaf clone() {
-//        return this.clone();
-//    }
+    /**
+     * methods creates copy of current object.
+     * @return - copy of this class
+     */
+    @Override
+    public Leaf clone() {
+        return this.clone();
+    }
 }

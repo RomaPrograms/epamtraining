@@ -1,7 +1,6 @@
 package by.training.informhandling.parsing.parsingexpression
         .interpretationtorpn;
 
-import by.training.informhandling.actions.TextAction;
 import by.training.informhandling.parsing.parsingexpression.bitoperation
         .AbstractMathExpression;
 import by.training.informhandling.parsing.parsingexpression.bitoperation

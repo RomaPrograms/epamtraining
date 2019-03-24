@@ -17,8 +17,9 @@ public class Main {
 
         Composit composit = new Composit();
         parseToParagraph.parse(composit, string);
+        Composit composit1 = composit.clone();
 
-        textAction.sortByNumberOfSentences(composit);
+        //textAction.sortByNumberOfSentences(composit);
         //textAction.sortWordsByLength(composit);
         //String textAfterSortingAllLexemes = textAction
                 //.sortLexemesByEntranceOfSomeSymbol(composit, "a");
@@ -27,6 +28,6 @@ public class Main {
 //            System.out.print(lexeme + " ");
 //        }
 
-        System.out.println(composit.toString());
+        System.out.println(composit1.toString());
     }
 }

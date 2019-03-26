@@ -28,6 +28,12 @@
                 </methods>
             </class>
 
+            <class name = "action.readingaction.ReadingAction">
+                <methods>
+                    <include  name = "readingFromFileAction"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 </suite>

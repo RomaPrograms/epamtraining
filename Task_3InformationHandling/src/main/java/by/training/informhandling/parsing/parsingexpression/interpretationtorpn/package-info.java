@@ -1,5 +1,4 @@
 /**
- * package contains all classes for parsing to RPN.
+ * package contain classes for calculating bit expressions.
  */
-package by.training.informhandling.parsing.parsingexpression
-        .interpretationtorpn;
+package by.training.informhandling.parsing.parsingexpression.interpretationtorpn;

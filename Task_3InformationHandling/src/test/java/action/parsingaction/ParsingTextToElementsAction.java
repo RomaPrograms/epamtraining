@@ -1,13 +1,13 @@
 package action.parsingaction;
 
 import by.training.informhandling.entity.Component;
-import by.training.informhandling.entity.Composit;
-import by.training.informhandling.parsing.parsingtexttoelements.ParseText;
-import by.training.informhandling.parsing.parsingtexttoelements.ParseToParagraph;
-import by.training.informhandling.parsing.parsingtexttoelements.ParseToLexeme;
-import by.training.informhandling.parsing.parsingtexttoelements.ParseToSymbol;
-import by.training.informhandling.parsing.parsingtexttoelements.ParseToSentence;
-import by.training.informhandling.parsing.parsingtexttoelements.ParseToWordAndExpression;
+import by.training.informhandling.entity.Composite;
+import by.training.informhandling.parsing.parsingtext.ParseText;
+import by.training.informhandling.parsing.parsingtext.ParseToParagraph;
+import by.training.informhandling.parsing.parsingtext.ParseToLexeme;
+import by.training.informhandling.parsing.parsingtext.ParseToSymbol;
+import by.training.informhandling.parsing.parsingtext.ParseToSentence;
+import by.training.informhandling.parsing.parsingtext.ParseToWordAndExpression;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -20,24 +20,24 @@ public class ParsingTextToElementsAction {
     /**
      * object of class for parsing text to paragraphs.
      */
-    private static ParseText parseToParagraph = new ParseToParagraph();
+    private static ParseText parseToParagraph = ParseToParagraph.getInstance();
     /**
      * object of class for parsing text to sentences.
      */
-    private static ParseText parseToSentence = new ParseToSentence();
+    private static ParseText parseToSentence = ParseToSentence.getInstance();
     /**
      * object of class for parsing text to lexemes.
      */
-    private static ParseText parseToLexeme = new ParseToLexeme();
+    private static ParseText parseToLexeme =ParseToLexeme.getInstance();
     /**
      * object of class for parsing text to words and expressions.
      */
     private static ParseText parseToWordAndExpression
-            = new ParseToWordAndExpression();
+            = ParseToWordAndExpression.getInstance();
     /**
      * object of class for parsing text to symbols.
      */
-    private static ParseText parseToSymbol = new ParseToSymbol();
+    private static ParseText parseToSymbol = ParseToSymbol.getInstance();
     /**
      * original text.
      */
@@ -140,8 +140,8 @@ public class ParsingTextToElementsAction {
     @Test (dataProvider = "dataProviderForParseToParagraphAction")
     public void parseToParagraphAction(String text,
                                        int numberOfParagraphs) {
-        Composit composit = new Composit();
-        Component actual = parseToParagraph.parse(composit, text);
+        Composite composite = new Composite();
+        Component actual = parseToParagraph.parse(composite, text);
         int expected = numberOfParagraphs;
         Assert.assertEquals(actual.getComponents().size(), expected);
     }
@@ -162,8 +162,8 @@ public class ParsingTextToElementsAction {
      */
     @Test (dataProvider = "dataProviderForParseToSentenceAction")
     public void parseToSentenceAction(String paragraph, int size) {
-        Composit composit = new Composit();
-        Component actual = parseToSentence.parse(composit, paragraph);
+        Composite composite = new Composite();
+        Component actual = parseToSentence.parse(composite, paragraph);
         int expected = size;
         Assert.assertEquals(actual.getComponents().size(), expected);
     }
@@ -184,8 +184,8 @@ public class ParsingTextToElementsAction {
      */
     @Test (dataProvider = "dataProviderForParseToLexemeAction")
     public void parseToLexemeAction(String sentence, int size) {
-        Composit composit = new Composit();
-        Component actual = parseToLexeme.parse(composit, sentence);
+        Composite composite = new Composite();
+        Component actual = parseToLexeme.parse(composite, sentence);
         int expected = size;
         Assert.assertEquals(actual.getComponents().size(), expected);
     }
@@ -207,8 +207,8 @@ public class ParsingTextToElementsAction {
      */
     @Test (dataProvider = "dataProviderForParseToWordAndExpressionAction")
     public void parseToWordAndExpressionAction(String lexeme, int size) {
-        Composit composit = new Composit();
-        Component actual = parseToWordAndExpression.parse(composit, lexeme);
+        Composite composite = new Composite();
+        Component actual = parseToWordAndExpression.parse(composite, lexeme);
         int expected = size;
         Assert.assertEquals(actual.getComponents().size(), expected);
     }
@@ -230,8 +230,8 @@ public class ParsingTextToElementsAction {
      */
     @Test (dataProvider = "dataProviderForParseToSymbolAction")
     public void parseToSymbolAction(String word, int size) {
-        Composit composit = new Composit();
-        Component actual = parseToSymbol.parse(composit, word);
+        Composite composite = new Composite();
+        Component actual = parseToSymbol.parse(composite, word);
         int expected = size;
         Assert.assertEquals(actual.getComponents().size(), expected);
     }

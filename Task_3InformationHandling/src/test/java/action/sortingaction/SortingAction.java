@@ -1,9 +1,9 @@
 package action.sortingaction;
 
 import by.training.informhandling.actions.TextAction;
-import by.training.informhandling.entity.Composit;
-import by.training.informhandling.parsing.parsingtexttoelements.ParseText;
-import by.training.informhandling.parsing.parsingtexttoelements.ParseToParagraph;
+import by.training.informhandling.entity.Composite;
+import by.training.informhandling.parsing.parsingtext.ParseText;
+import by.training.informhandling.parsing.parsingtext.ParseToParagraph;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -30,17 +30,17 @@ public class SortingAction {
      */
     private static String sortedLexemesByNumberOfEntrance;
     /**
-     * first composit.
+     * first composite.
      */
-    private Composit composit = new Composit();
+    private Composite composite = new Composite();
     /**
-     * second composit.
+     * second composite.
      */
-    private Composit composit1 = new Composit();
+    private Composite composite1 = new Composite();
     /**
      * object of ParseToParagraph class.
      */
-    private ParseText parseToParagraph = new ParseToParagraph();
+    private ParseText parseToParagraph = ParseToParagraph.getInstance();
     /**
      * object of class with text action classes.
      */
@@ -115,74 +115,74 @@ public class SortingAction {
                 + " publishing recently sheets survived the the the the to"
                 + " typesetting, using using versions when when will will"
                 + " with with ~6&9|(3&4) ";
-        parseToParagraph.parse(composit, wholeText);
-        parseToParagraph.parse(composit1, wholeText);
+        parseToParagraph.parse(composite, wholeText);
+        parseToParagraph.parse(composite1, wholeText);
     }
 
     /**
      * data for method with sorting by number of sentences.
-     * @return - composit and expected result
+     * @return - composite and expected result
      */
     @DataProvider(name = "dataProviderForSortingByNumberOfSentences")
     public Object[][] dataProviderForSortingByNumberOfSentences() {
-        return new Object[][] {{composit, sortedTextByNumberOfSentences}};
+        return new Object[][] {{composite, sortedTextByNumberOfSentences}};
     }
 
     /**
      * test for method with sorting by number of sentences.
-     * @param composit - composit
+     * @param composite - composite
      * @param sortedText - expected result
      */
     @Test(dataProvider = "dataProviderForSortingByNumberOfSentences")
-    public void sortingByNumberOfSentencesAction(Composit composit,
-                                             String sortedText) {
-        actions.sortByNumberOfSentences(composit);
-        String actual = composit.toString();
+    public void sortingByNumberOfSentencesAction(Composite composite,
+                                                 String sortedText) {
+        actions.sortByNumberOfSentences(composite);
+        String actual = composite.toString();
         String expected = sortedText;
         Assert.assertEquals(actual, expected);
     }
 
     /**
      * data for method with sorting by length of words.
-     * @return - composit and expected result
+     * @return - composite and expected result
      */
     @DataProvider(name = "dataProviderForSortingTextByLengthOfWords")
     public Object[][] dataProviderForSortingTextByLengthOfWords() {
-        return new Object[][] {{composit1, sortedTextByLengthOfWords}};
+        return new Object[][] {{composite1, sortedTextByLengthOfWords}};
     }
 
     /**
      * test for method with sorting by length of words.
-     * @param composit - composit
+     * @param composite - composite
      * @param sortedText - expected result
      */
     @Test(dataProvider = "dataProviderForSortingTextByLengthOfWords")
-    public void sortingTextByLengthOfWordsAction(Composit composit,
+    public void sortingTextByLengthOfWordsAction(Composite composite,
                                                  String sortedText) {
-        actions.sortWordsByLength(composit);
-        String actual = composit.toString();
+        actions.sortWordsByLength(composite);
+        String actual = composite.toString();
         String expected = sortedText;
         Assert.assertEquals(actual, expected);
     }
 
     /**
      * data for method with sorting lexemes by number of sentences.
-     * @return - composit and expected result
+     * @return - composite and expected result
      */
     @DataProvider(name = "dataProviderForSortingLexemesByNumberOfEntrance")
     public Object[][] dataProviderForSortingLexemesByNumberOfEntrance() {
-        return new Object[][] {{composit1, sortedLexemesByNumberOfEntrance}};
+        return new Object[][] {{composite1, sortedLexemesByNumberOfEntrance}};
     }
 
     /**
      * test for method with sorting lexemes by number of sentences.
-     * @param composit - composit
+     * @param composite - composite
      * @param sortedText - expected result
      */
     @Test(dataProvider = "dataProviderForSortingLexemesByNumberOfEntrance")
-    public void sortingLexemesByNumberOfEntranceAction(Composit composit,
-                                                 String sortedText) {
-        String actual = actions.sortLexemesByEntranceOfSomeSymbol(composit,
+    public void sortingLexemesByNumberOfEntranceAction(Composite composite,
+                                                       String sortedText) {
+        String actual = actions.sortLexemesByEntranceOfSomeSymbol(composite,
                 "a");
         String expected = sortedText;
         Assert.assertEquals(actual, expected);

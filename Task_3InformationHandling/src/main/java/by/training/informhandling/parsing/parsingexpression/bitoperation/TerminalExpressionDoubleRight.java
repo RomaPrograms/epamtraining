@@ -7,7 +7,7 @@ import java.util.function.IntBinaryOperator;
 /**
  * class for calculating operation with "DOUBLE RIGHT SHIFTING".
  */
-public class TerminalExpressionDoubleRight extends AbstractMathExpression {
+public class TerminalExpressionDoubleRight implements AbstractMathExpression {
     /**
      * functional interface for operation "DOUBLE RIGHT SHIFTING".
      */

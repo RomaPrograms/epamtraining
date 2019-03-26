@@ -5,7 +5,7 @@ import by.training.informhandling.parsing.parsingexpression
 /**
  * class for pushing number to stack.
  */
-public class NonTerminalExpressionNumber extends AbstractMathExpression {
+public class NonTerminalExpressionNumber implements AbstractMathExpression {
     /**
      * number.
      */

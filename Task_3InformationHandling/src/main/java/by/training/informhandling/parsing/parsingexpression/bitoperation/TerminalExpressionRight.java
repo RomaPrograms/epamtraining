@@ -8,7 +8,7 @@ import java.util.function.IntBinaryOperator;
 /**
  * class for calculating operation with "RIGHT SHIFTING".
  */
-public class TerminalExpressionRight extends AbstractMathExpression {
+public class TerminalExpressionRight implements AbstractMathExpression {
     /**
      * functional interface for operation "RIGHT SHIFTING".
      */

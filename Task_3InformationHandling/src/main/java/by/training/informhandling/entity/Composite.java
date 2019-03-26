@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * class contains methods and variables for every element of text.
  */
-public class Composit implements Component, Cloneable {
+public class Composite implements Component {
     /**
      * list with components of current component.
      */
@@ -26,14 +26,14 @@ public class Composit implements Component, Cloneable {
     /**
      * constructor without parameters.
      */
-    public Composit() {
+    public Composite() {
     }
 
     /**
      * constructor with single parameter.
      * @param textCategory - category of current composit
      */
-    public Composit(final Category textCategory) {
+    public Composite(final Category textCategory) {
         this.category = textCategory;
     }
 
@@ -41,8 +41,18 @@ public class Composit implements Component, Cloneable {
      * returns list with components of current component.
      * @return - list with components of current component
      */
+    @Override
     public List<Component> getComponents() {
         return components;
+    }
+
+    /**
+     * returns category of current Component.
+     * @return - category
+     */
+    @Override
+    public Category getCategory() {
+        return this.category;
     }
 
     /**
@@ -52,7 +62,7 @@ public class Composit implements Component, Cloneable {
      */
     @Override
     public void setIsOutputText(final boolean isReading) {
-        this.isOutputText = isReading;
+        isOutputText = isReading;
     }
 
     /**
@@ -60,6 +70,7 @@ public class Composit implements Component, Cloneable {
      * @param component - component
      * @param currentCategory - category of component
      */
+    @Override
     public void add(final Component component, final Category currentCategory) {
         this.category = currentCategory;
         components.add(component);
@@ -70,8 +81,17 @@ public class Composit implements Component, Cloneable {
      * @return - copy of current object
      */
     @Override
-    public Composit clone() {
-        return (Composit) this.getComponents().get(0).clone();
+    public Component clone(final Component cloneComponent,
+                           final Component component) {
+        for (int i = 0; i < component.getComponents().size(); i++) {
+            Component cloneChild = new Composite(component
+                    .getComponents().get(i).getCategory());
+            cloneChild = component.getComponents().get(i).clone(cloneChild,
+                    this.getComponents().get(i));
+            cloneComponent.add(cloneChild, this.getCategory());
+        }
+
+        return cloneComponent;
     }
 
     /**

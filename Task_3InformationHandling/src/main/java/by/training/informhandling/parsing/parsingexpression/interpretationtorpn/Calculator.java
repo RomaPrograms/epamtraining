@@ -1,7 +1,8 @@
 package by.training.informhandling.parsing
         .parsingexpression.interpretationtorpn;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * class translates our bit expression to RPN.
@@ -12,29 +13,33 @@ public final class Calculator {
      * priority for operation "not".
      */
     private static final int PRIORITY_FOR_OPERATION_NOT = 3;
+
     /**
      * private constructor without parameters.
      */
-    private Calculator() { }
+    private Calculator() {
+    }
 
     /**
      * method translate our expression to RPN.
+     *
      * @param expr - normal view of expression
      * @return expression in RPN
      */
     public static String expressionToRPN(final String expr) {
         StringBuilder finalExpressionInRPN = new StringBuilder(" ");
-        Stack<String> stack = new Stack<>();
+        Deque<String> deque = new ArrayDeque<>();
         int priority;
+        int i = 0;
 
-        for (int i = 0; i < expr.length(); i++) {
+        while (i != expr.length()) {
             StringBuilder currentExpression = new StringBuilder();
             if (expr.charAt(i) == '<' || expr.charAt(i) == '>') {
                 currentExpression.append(expr.charAt(i));
                 if (expr.charAt(i + 2) == '<' || expr.charAt(i + 2) == '>') {
-                   currentExpression.append(expr.charAt(i + 1));
+                    currentExpression.append(expr.charAt(i + 1));
                     currentExpression.append(expr.charAt(i + 2));
-                   i += 2;
+                    i += 2;
                 } else {
                     currentExpression.append(expr.charAt(i + 1));
                     i++;
@@ -45,51 +50,55 @@ public final class Calculator {
                 priority = getPriority(String.valueOf(expr.charAt(i)));
             }
 
-            if (priority == 0) {
-                finalExpressionInRPN.append(currentExpression.toString());
-            }
-            if (priority == 1) {
-                stack.push(currentExpression.toString());
-            }
-            if (priority == 2) {
-                finalExpressionInRPN.append(" ");
-
-                while (!stack.empty()) {
-                    if (getPriority(stack.peek()) >= priority) {
-                        finalExpressionInRPN.append(stack.pop());
-                        finalExpressionInRPN.append(" ");
-                    } else {
-                        break;
-                    }
-                }
-                stack.push(currentExpression.toString());
-            }
-            if (priority == -1) {
-                finalExpressionInRPN.append(" ");
-                while (getPriority(stack.peek()) != 1) {
-                    finalExpressionInRPN.append(stack.pop());
+            switch (priority) {
+                case 0:
+                    finalExpressionInRPN.append(currentExpression.toString());
+                    break;
+                case 1:
+                    deque.push(currentExpression.toString());
+                    break;
+                case 2:
                     finalExpressionInRPN.append(" ");
-                }
 
-                stack.pop();
+                    while (!deque.isEmpty()) {
+                        if (getPriority(deque.peek()) >= priority) {
+                            finalExpressionInRPN.append(deque.pop());
+                            finalExpressionInRPN.append(" ");
+                        } else {
+                            break;
+                        }
+                    }
+                    deque.push(currentExpression.toString());
+
+                    break;
+                case -1:
+                    finalExpressionInRPN.append(" ");
+                    while (getPriority(deque.peek()) != 1) {
+                        finalExpressionInRPN.append(deque.pop());
+                        finalExpressionInRPN.append(" ");
+                    }
+
+                    deque.pop();
+                    break;
+                default:
+                    finalExpressionInRPN.append(String
+                            .valueOf(expr.charAt(i + 1)));
+                    finalExpressionInRPN.append(" ");
+                    finalExpressionInRPN.append(currentExpression.toString());
+                    i++;
             }
-            if (priority == PRIORITY_FOR_OPERATION_NOT) {
-                finalExpressionInRPN.append(String.valueOf(expr.charAt(i + 1)));
-                finalExpressionInRPN.append(" ");
-                finalExpressionInRPN.append(currentExpression.toString());
-                i++;
-            }
+            i++;
         }
 
-        while (!stack.empty()) {
+        while (!deque.isEmpty()) {
             finalExpressionInRPN.append(" ");
-            finalExpressionInRPN.append(stack.pop());
+            finalExpressionInRPN.append(deque.pop());
         }
         return finalExpressionInRPN.toString();
     }
-
     /**
      * method which gives some priority to every element of expression.
+     *
      * @param token - some element of expression
      * @return priority of element
      */
@@ -104,7 +113,7 @@ public final class Calculator {
                         || token.equals(">>>") || token.equals("^")
                         || token.equals("|") || token.equals("&")
                         || token.equals("-") || token.equals("+")) {
-                   return 2;
+                    return 2;
                 } else {
                     if (token.equals("~")) {
                         return PRIORITY_FOR_OPERATION_NOT;

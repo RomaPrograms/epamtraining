@@ -1,7 +1,7 @@
 package by.training.informhandling.actions;
 
 import by.training.informhandling.entity.Component;
-import by.training.informhandling.entity.Composit;
+import by.training.informhandling.entity.Composite;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -66,24 +66,24 @@ public class TextAction {
 
     /**
      * method sorts paragraphs by number of sentences.
-     * @param composit - text tree
+     * @param composite - text tree
      */
-    public void sortByNumberOfSentences(final Composit composit) {
-        composit.setIsOutputText(false);
-        Collections.sort(composit.getComponents(),
+    public void sortByNumberOfSentences(final Composite composite) {
+        composite.setIsOutputText(false);
+        Collections.sort(composite.getComponents(),
                 comparatorForSortingByNumberOfSentences);
         LOGGER.info("Sorting paragraphs by number of sentences ended"
                 + " successful");
-        composit.setIsOutputText(true);
+        composite.setIsOutputText(true);
     }
 
     /**
      * method sorts words in every sentence by length of word.
-     * @param composit - text tree
+     * @param composite - text tree
      */
-    public void sortWordsByLength(final Composit composit) {
-        composit.setIsOutputText(false);
-        for (var paragraphComponent : composit.getComponents()) {
+    public void sortWordsByLength(final Composite composite) {
+        composite.setIsOutputText(false);
+        for (var paragraphComponent : composite.getComponents()) {
             for (var sentenceComponent : paragraphComponent.getComponents()) {
                 Collections.sort(sentenceComponent.getComponents(),
                         comparatorForSortingWordsByLength);
@@ -91,16 +91,16 @@ public class TextAction {
         }
         LOGGER.info("Sorting words in every sentence by length of word ended"
                 + " successful");
-        composit.setIsOutputText(true);
+        composite.setIsOutputText(true);
     }
 
     /**
      * method that sorts lexemes by entrance of some symbol.
-     * @param composit - text tree
+     * @param composite - text tree
      * @param symbol - symbol
      * @return list with lexemes
      */
-    public String sortLexemesByEntranceOfSomeSymbol(final Composit composit,
+    public String sortLexemesByEntranceOfSomeSymbol(final Composite composite,
             final String symbol) {
         Comparator<String> comparatorForSortingByNumberOfEntrance
                 = (o1, o2) -> {
@@ -120,7 +120,7 @@ public class TextAction {
 
         List<String> listWithLexemes = new ArrayList<>();
 
-        for (var paragraph : composit.getComponents()) {
+        for (var paragraph : composite.getComponents()) {
             for (var sentence : paragraph.getComponents()) {
                 sentence.setIsOutputText(false);
                 for (var lexeme : sentence.getComponents()) {

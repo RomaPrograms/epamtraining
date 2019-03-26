@@ -1,36 +1,36 @@
-package by.training.informhandling.parsing.parsingtexttoelements;
+package by.training.informhandling.parsing.parsingtext;
 
 import by.training.informhandling.entity.Category;
 import by.training.informhandling.entity.Component;
-import by.training.informhandling.entity.Composit;
+import by.training.informhandling.entity.Composite;
 
 /**
  * class with all necessary for parsing text to Paragraphs.
  */
-public class ParseToParagraph extends ParseText {
+public final class ParseToParagraph extends ParseText {
     /**
      * regular expression for parsing Text to Paragraphs.
      */
     private static final String REGULAR_EXPRESSION = "\\s{4}+";
-//    private static ParseText parser;
     /**
-     * constructor without parameters.
+     * constant object of class ParseToParagraph.
      */
-    public ParseToParagraph() {
-        if (getParser() == null) {
-            setParser(new ParseToSentence());
-        }
+    private static final ParseToParagraph INSTANCE = new ParseToParagraph();
+
+    /**
+     * returns object of current class for realization Singleton.
+     * @return - object of class ParseToParagraph
+     */
+    public static ParseToParagraph getInstance() {
+        return INSTANCE;
     }
 
-//    private ParseToParagraph() {
-//    }
-//
-//    public static synchronized ParseText getParser() {
-//        if(parser == null) {
-//            parser = ParseToSentence.getParser();
-//        }
-//        return parser;
-//    }
+    /**
+     * sets next parser for realization Chain Of Responsibility.
+     */
+    private ParseToParagraph() {
+        setParser(ParseToSentence.getInstance());
+    }
 
     /**
      * methods where Text will be parsed to Paragraphs.
@@ -39,11 +39,11 @@ public class ParseToParagraph extends ParseText {
      * @return parsed element of text
      */
     @Override
-    public Component parse(final Composit curTextElement, final String text) {
+    public Component parse(final Component curTextElement, final String text) {
         String[] sentences = text.split(REGULAR_EXPRESSION);
 
         for (int i = 1; i < sentences.length; i++) {
-            Composit paragraph = new Composit(Category.PARAGRAPH);
+            Composite paragraph = new Composite(Category.PARAGRAPH);
             curTextElement.add(getParser().parse(paragraph, sentences[i]),
                     Category.PARAGRAPH);
         }

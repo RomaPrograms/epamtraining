@@ -8,7 +8,7 @@ import java.util.function.IntBinaryOperator;
 /**
  * class for calculating operation with "LEFT SHIFTING".
  */
-public class TerminalExpressionLeft extends AbstractMathExpression {
+public class TerminalExpressionLeft implements AbstractMathExpression {
     /**
      * functional interface for operation "LEFT SHIFTING".
      */

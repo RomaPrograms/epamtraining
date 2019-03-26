@@ -7,7 +7,7 @@ import java.util.function.IntBinaryOperator;
 /**
  * class for calculating operation with "AND".
  */
-public class TerminalExpressionAnd extends AbstractMathExpression {
+public class TerminalExpressionAnd implements AbstractMathExpression {
     /**
      * functional interface for operation AND.
      */

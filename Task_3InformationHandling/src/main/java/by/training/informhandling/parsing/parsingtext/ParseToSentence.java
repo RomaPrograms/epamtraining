@@ -1,15 +1,16 @@
-package by.training.informhandling.parsing.parsingtexttoelements;
+package by.training.informhandling.parsing.parsingtext;
 
 import by.training.informhandling.entity.Category;
 import by.training.informhandling.entity.Component;
-import by.training.informhandling.entity.Composit;
+import by.training.informhandling.entity.Composite;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * class with all necessary for parsing Paragraph to Sentences.
  */
-public class ParseToSentence extends ParseText {
+public final class ParseToSentence extends ParseText {
     /**
      * regular expression for parsing Paragraph to Sentences.
      */
@@ -18,26 +19,26 @@ public class ParseToSentence extends ParseText {
      * pattern for parsing Paragraph to Sentences.
      */
     private Pattern pattern = Pattern.compile(REGULAR_EXPRESSION);
-//    private static ParseText parser;
+    /**
+     * constant object of class ParseToSentence.
+     */
+    private static final ParseToSentence INSTANCE = new ParseToSentence();
 
     /**
-     * constructor without parameters.
+     * returns object of current class for realization Singleton.
+     * @return - object of class ParseToSentence
      */
-    public ParseToSentence() {
-        if (getParser() == null) {
-            setParser(new ParseToLexeme());
-        }
+    public static ParseToSentence getInstance() {
+        return INSTANCE;
     }
 
-//    private ParseToSentence() {
-//    }
-//
-//    public static synchronized ParseText getParser() {
-//        if(parser == null) {
-//            parser = ParseToLexeme.getParser();
-//        }
-//        return parser;
-//    }
+    /**
+     * sets next parser for realization Chain Of Responsibility.
+     */
+    private ParseToSentence() {
+        setParser(ParseToLexeme.getInstance());
+    }
+
 
     /**
      * methods where Paragraph of text will be parsed to Sentences.
@@ -46,11 +47,11 @@ public class ParseToSentence extends ParseText {
      * @return parsed element of text
      */
     @Override
-    public Component parse(final Composit curTextElement, final String text) {
+    public Component parse(final Component curTextElement, final String text) {
         Matcher matcher = pattern.matcher(text);
 
         while (matcher.find()) {
-            Composit sentence = new Composit(Category.SENTENCE);
+            Composite sentence = new Composite(Category.SENTENCE);
             curTextElement.add(getParser().parse(sentence, matcher.group()),
                     Category.SENTENCE);
         }

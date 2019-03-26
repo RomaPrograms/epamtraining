@@ -8,7 +8,7 @@ import java.util.function.IntBinaryOperator;
 /**
  * class for calculating operation "OR".
  */
-public class TerminalExpressionOr extends AbstractMathExpression {
+public class TerminalExpressionOr implements AbstractMathExpression {
     /**
      * functional interface for operation "OR".
      */

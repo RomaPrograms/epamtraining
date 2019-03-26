@@ -1,7 +1,6 @@
-package by.training.informhandling.parsing.parsingtexttoelements;
+package by.training.informhandling.parsing.parsingtext;
 
 import by.training.informhandling.entity.Component;
-import by.training.informhandling.entity.Composit;
 
 /**
  * class that contains common methods and variables of all classes for parsing.
@@ -34,5 +33,5 @@ public abstract class ParseText {
      * @param text - text for parsing
      * @return parsed element of text
      */
-    public abstract Component parse(Composit curTextElement, String text);
+    public abstract Component parse(Component curTextElement, String text);
 }

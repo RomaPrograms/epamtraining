@@ -1,12 +1,9 @@
 package by.training.informhandling.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * class with last level component called leaf.
  */
-public class Leaf implements Component, Cloneable {
+public class Leaf implements Component {
     /**
      * single symbol from word.
      */
@@ -21,26 +18,12 @@ public class Leaf implements Component, Cloneable {
     }
 
     /**
-     * method for
-     * @param isOutputText - boolean variable
+     * returns category of current component - SYMBOL.
+     * @return - category
      */
     @Override
-    public void setIsOutputText(final boolean isOutputText) {
-        System.out.println("-------------");
-    }
-
-
-    public void add(final Component c, final Category category) {
-        System.out.println("Leaf -> add. Doing nothing");
-    }
-
-    /**
-     * returns empty list cause it's last level component.
-     * @return - list with components of current component
-     */
-    @Override
-    public List<Component> getComponents() {
-        return new ArrayList<>();
+    public Category getCategory() {
+        return Category.SYMBOL;
     }
 
     /**
@@ -53,11 +36,14 @@ public class Leaf implements Component, Cloneable {
     }
 
     /**
-     * methods creates copy of current object.
-     * @return - copy of this class
+     * method for cloning object of Leaf.
+     * @param cloneComponent - component for cloning
+     * @param component - component which we will clone
+     * @return cloned Leaf
      */
     @Override
-    public Leaf clone() {
-        return this.clone();
+    public Component clone(final Component cloneComponent,
+                           final Component component) {
+        return new Leaf(symbol);
     }
 }

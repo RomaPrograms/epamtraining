@@ -7,7 +7,7 @@ import java.util.function.IntBinaryOperator;
 /**
  * class for calculating operation with "EXCLUDING OR".
  */
-public class TerminalExpressionExcludingOr extends AbstractMathExpression {
+public class TerminalExpressionExcludingOr implements AbstractMathExpression {
     /**
      * functional interface for operation "EXCLUDING OR".
      */

@@ -7,7 +7,7 @@ import java.util.function.IntUnaryOperator;
 /**
  * class for calculating operation with "NOT".
  */
-public class TerminalExpressionNot extends AbstractMathExpression {
+public class TerminalExpressionNot implements AbstractMathExpression {
     /**
      * functional interface for operation "NOT".
      */

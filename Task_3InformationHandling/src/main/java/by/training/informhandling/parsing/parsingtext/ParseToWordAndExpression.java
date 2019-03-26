@@ -1,15 +1,16 @@
-package by.training.informhandling.parsing.parsingtexttoelements;
+package by.training.informhandling.parsing.parsingtext;
 
 import by.training.informhandling.entity.Category;
 import by.training.informhandling.entity.Component;
-import by.training.informhandling.entity.Composit;
+import by.training.informhandling.entity.Composite;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * class with all necessary for parsing Lexeme to Words and Expressions.
  */
-public class ParseToWordAndExpression extends ParseText {
+public final class ParseToWordAndExpression extends ParseText {
     /**
      * regular expression for parsing all kind of lexeme.
      */
@@ -28,25 +29,26 @@ public class ParseToWordAndExpression extends ParseText {
      * pattern for finding bit expressions in text.
      */
     private Pattern pattern1 = Pattern.compile(BIT_REGULAR_EXPRESSION);
-//    private static ParseText parser;
+    /**
+     * constant object of class ParseToWordAndExpression.
+     */
+    private static final ParseToWordAndExpression INSTANCE
+            = new ParseToWordAndExpression();
 
     /**
-     * constructor without parameters.
+     * returns object of current class for realization Singleton.
+     * @return - object of class ParseToWordAndExpression
      */
-    public ParseToWordAndExpression() {
-        if (getParser() == null) {
-            setParser(new ParseToSymbol());
-        }
+    public static ParseToWordAndExpression getInstance() {
+        return INSTANCE;
     }
 
-//    private ParseToWordAndExpression() { }
-//
-//    public static synchronized ParseText getParser() {
-//            if(parser == null) {
-//                parser = new ParseToSymbol();
-//            }
-//            return parser;
-//    }
+    /**
+     * sets next parser for realization Chain Of Responsibility.
+     */
+    private ParseToWordAndExpression() {
+        setParser(ParseToSymbol.getInstance());
+    }
 
     /**
      * methods where Lexeme of text will be parsed to Words and Expressions.
@@ -55,16 +57,17 @@ public class ParseToWordAndExpression extends ParseText {
      * @return parsed element of text
      */
     @Override
-    public Component parse(final Composit curTextElement, final  String text) {
+    public Component parse(final Component curTextElement, final  String text) {
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
             Matcher matcher1 = pattern1.matcher(matcher.group());
             if (matcher1.find() && matcher1.group().length() >= 2) {
-                Composit wordAndExpression = new Composit(Category.EXPRESSION);
+                Composite wordAndExpression
+                        = new Composite(Category.EXPRESSION);
                 curTextElement.add(getParser().parse(wordAndExpression,
                         matcher.group()), Category.EXPRESSION);
             } else {
-                Composit wordAndExpression = new Composit(Category.WORD);
+                Composite wordAndExpression = new Composite(Category.WORD);
                 curTextElement.add(getParser().parse(wordAndExpression,
                         matcher.group()), Category.WORD);
             }

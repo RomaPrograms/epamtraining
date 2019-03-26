@@ -1,0 +1,36 @@
+2019-03-26 21:47:42,676 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:42,739 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:42,802 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:42,833 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:42,903 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:42,934 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:42,950 INFO  [main] actions.TextAction (TextAction.java:75) - Sorting paragraphs by number of sentences ended successful
+2019-03-26 21:47:43,035 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,052 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,053 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,053 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,256 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,352 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,381 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,491 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,616 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,679 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,726 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,811 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,827 INFO  [main] actions.TextAction (TextAction.java:92) - Sorting words in every sentence by length of word ended successful
+2019-03-26 21:47:43,843 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,858 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,858 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,858 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,889 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,889 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,962 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,962 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,962 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,978 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,993 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:43,993 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:44,123 INFO  [main] actions.TextAction (TextAction.java:135) - Sorting lexemes in text by number of entrance of some symbol ended successful
+2019-03-26 21:47:44,178 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:44,194 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.
+2019-03-26 21:47:44,225 INFO  [main] interpretationtorpn.Client (Client.java:112) - Bit expression were calculated successfully.

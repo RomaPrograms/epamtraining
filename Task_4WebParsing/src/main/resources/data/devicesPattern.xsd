@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        targetNamespace="http://www.training.by"
+        xmlns:tns="http://www.training.by">
+
+    <element name="devices">
+        <complexType>
+            <sequence>
+                <element ref="tns:device"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="device" type="tns:DeviceType" abstract="true"/>
+    <element name="peripheralDevice" type="tns:PeripheralDevice"
+             substitutionGroup="tns:device"/>
+    <element name="innerDevice" type="tns:InnerDevice"
+             substitutionGroup="tns:device"/>
+
+    <complexType name="DeviceType" abstract="true">
+        <all>
+            <element name="name" type="string" default="absent"/>
+            <element name="origin" type="string" default="absent"/>
+            <element name="price" type="positiveInteger" default="1"/>
+            <element name="type" type="tns:Type"/>
+            <element name="date-of-delivery" type="date"/>
+        </all>
+    </complexType>
+
+    <complexType name="PeripheralDevice">
+        <complexContent>
+            <extension base="tns:DeviceType">
+                <all>
+                    <element name="connection" type="string">
+                        <simpleType>
+                            <restriction base="string">
+                                <enumeration value="Bluetooth"/>
+                                <enumeration value="Wire"/>
+                                <enumeration value="Wi-Fi"/>
+                            </restriction>
+                        </simpleType>
+                    </element>
+                </all>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="InnerDevice">
+        <complexContent>
+            <extension base="tns:DeviceType">
+                <all>
+                    <element name="version" type="string" default="version-1.0"/>
+                </all>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Type">
+        <all>
+            <element name="power-usage" type="positiveInteger" default="1"/>
+            <element name="group-of-complects" type="string" default="absent"/>
+        </all>
+        <attribute name="cooler" type="boolean" use="required"/> <!--атрибуты тоже должны иметь нежёсткий порядок-->
+        <attribute name="critical" type="boolean" use="optional"/>
+        <attribute name="ports" use="required">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="USB"/>
+                    <enumeration value="LPT"/>
+                    <enumeration value="COM"/>
+                    <enumeration value="none"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+</schema>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://www.training.by"
-         xsi:schemaLocation="http://www.training.by devicesPattern.xsd">
+         xmlns="http://www.webparsing.training.by/devices"
+         xsi:schemaLocation="http://www.webparsing.training.by/devices devicesPattern.xsd">
 
-    <!--<peripheralDevice>
+    <peripheralDevice>
         <name>Defender Doom Keeper GK-100DL</name>
         <origin>Belarus</origin>
         <price>100</price>
@@ -12,9 +12,9 @@
             <power-usage>500</power-usage>
             <group-of-complects>input-output device</group-of-complects>
         </type>
-        <date-of-delivery>11-02-2018</date-of-delivery>
+        <date-of-delivery>2018-11-02</date-of-delivery>
         <connection>Bluetooth</connection>
-    </peripheralDevice>-->
+    </peripheralDevice>
 
     <innerDevice>
         <name>ASUS Mining Radeon RX 580 8GB GDDR5</name>
@@ -24,21 +24,21 @@
             <power-usage>400</power-usage>
             <group-of-complects>video card</group-of-complects>
         </type>
-        <date-of-delivery>12.02.2018</date-of-delivery>
+        <date-of-delivery>2014-09-11</date-of-delivery>
         <version>version-1.4</version>
     </innerDevice>
 
-    <innerDevice>
-        <name>ASUS Mining Radeon RX 580 8GB GDDR5</name>
-        <origin>Russia</origin>
-        <price>150</price>
-        <type cooler="false" critical="true" ports="none">
-            <power-usage>400</power-usage>
-            <group-of-complects>video card</group-of-complects>
-        </type>
-        <date-of-delivery>12.02.2018</date-of-delivery>
-        <version>version-1.4</version>
-    </innerDevice>
+    <!--<innerDevice>-->
+        <!--<name>ASUS Mining Radeon RX 580 8GB GDDR5</name>-->
+        <!--<origin>Russia</origin>-->
+        <!--<price>150</price>-->
+        <!--<type cooler="false" critical="true" ports="none">-->
+            <!--<power-usage>400</power-usage>-->
+            <!--<group-of-complects>video card</group-of-complects>-->
+        <!--</type>-->
+        <!--<date-of-delivery>12.02.2018</date-of-delivery>-->
+        <!--<version>version-1.4</version>-->
+    <!--</innerDevice>-->
 
     <!--<device>
         <name>Winchester</name>

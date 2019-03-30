@@ -1,0 +1,225 @@
+<!--<innerDevice>-->
+<!--<name>ASUS Mining Radeon RX 580 8GB GDDR5</name>-->
+<!--<origin>Russia</origin>-->
+<!--<price>150</price>-->
+<!--<type cooler="false" critical="true" ports="none">-->
+<!--<power-usage>400</power-usage>-->
+<!--<group-of-complects>video card</group-of-complects>-->
+<!--</type>-->
+<!--<date-of-delivery>2014-09-11</date-of-delivery>-->
+<!--<version>version-1.4</version>-->
+<!--</innerDevice>-->
+
+<!--<innerDevice>-->
+<!--<name>ASUS Mining Radeon RX 580 8GB GDDR5</name>-->
+<!--<origin>Russia</origin>-->
+<!--<price>150</price>-->
+<!--<type cooler="false" critical="true" ports="none">-->
+<!--<power-usage>400</power-usage>-->
+<!--<group-of-complects>video card</group-of-complects>-->
+<!--</type>-->
+<!--<date-of-delivery>12.02.2018</date-of-delivery>-->
+<!--<version>version-1.4</version>-->
+<!--</innerDevice>-->
+
+<!--<device>
+    <name>Winchester</name>
+    <origin>China</origin>
+    <price>300</price>
+    <type peripheral="No" cooler="No" ports="None">
+        <power-usage>400</power-usage>
+        <group-of-complects>
+            <complect>none</complect>
+        </group-of-complects>
+    </type>
+    <critical>yes</critical>
+    <date-of-delivery data = "13.02.2018"/>
+</device>
+
+<device>
+    <name>CPU</name>
+    <origin>China</origin>
+    <price>800</price>
+    <type peripheral="No" cooler="No" ports="none">
+        <power-usage>900</power-usage>
+        <group-of-complects>
+            <complect>none</complect>
+        </group-of-complects>
+    </type>
+    <critical>yes</critical>
+    <date-of-delivery data = "14.02.2018"/>
+</device>
+
+<device>
+    <name>motherboard</name>
+    <origin>Belarus</origin>
+    <price>1000</price>
+    <type peripheral="No" cooler="No" ports="none">
+        <power-usage>1000</power-usage>
+        <group-of-complects>
+            <complect>none</complect>
+        </group-of-complects>
+    </type>
+    <critical>yeas</critical>
+    <date-of-delivery data = "15.02.2018"/>
+</device>
+
+<device>
+    <name>display</name>
+    <origin>Austria</origin>
+    <price>250</price>
+    <type peripheral="Yes" cooler="Yes" ports="LPT">
+        <power-usage>400</power-usage>
+        <group-of-complects>
+            <complect>wire1</complect>
+            <complect>wire2</complect>
+        </group-of-complects>
+    </type>
+    <critical>Yes</critical>
+    <date-of-delivery data = "16.02.2018"/>
+</device>
+
+
+<device>
+    <name>printer</name>
+    <origin>America</origin>
+    <price>290</price>
+    <type peripheral="Yes" cooler="Yes" ports="COM">
+        <power-usage>600</power-usage>
+        <group-of-complects>
+            <complect>wire</complect>
+            <complect>paints</complect>
+        </group-of-complects>
+    </type>
+    <critical>not</critical>
+    <date-of-delivery data = "17.02.2018"/>
+</device>
+
+<device>
+    <name>scanner</name>
+    <origin>Czech</origin>
+    <price>400</price>
+    <type peripheral="Yes" cooler="Yes" ports="USB">
+        <power-usage>400</power-usage>
+        <group-of-complects>
+            <complect>wire</complect>
+        </group-of-complects>
+    </type>
+    <critical>not</critical>
+    <date-of-delivery data = "18.02.2018"/>
+</device>
+
+<device>
+    <name>web-camera</name>
+    <origin>Romania</origin>
+    <price>60</price>
+    <type peripheral="Yes" cooler="No" ports="USB">
+        <power-usage>120</power-usage>
+        <group-of-complects>
+            <complect>wire</complect>
+        </group-of-complects>
+    </type>
+    <critical>not</critical>
+    <date-of-delivery data = "19.02.2018"/>
+</device>
+
+<device>
+    <name>video-card</name>
+    <origin>USA</origin>
+    <price>650</price>
+    <type peripheral="No" cooler="No" ports="none">
+        <power-usage>600</power-usage>
+        <group-of-complects>
+            <complect>none</complect>
+        </group-of-complects>
+    </type>
+    <critical>yes</critical>
+    <date-of-delivery data = "20.02.2018"/>
+</device>
+
+<device>
+    <name>keyboard</name>
+    <origin>United Kingdom</origin>
+    <price>550</price>
+    <type peripheral="Yes" cooler="Yes" ports="USB">
+        <power-usage>150</power-usage>
+        <group-of-complects>
+            <complect>wire</complect>
+        </group-of-complects>
+    </type>
+    <critical>not</critical>
+    <date-of-delivery data = "21.02.2018"/>
+</device>
+
+<device>
+    <name>flash drive</name>
+    <origin>Austria</origin>
+    <price>450</price>
+    <type peripheral="Yes" cooler="No" ports="none">
+        <power-usage>20</power-usage>
+        <group-of-complects>
+            <complect>none</complect>
+        </group-of-complects>
+    </type>
+    <critical>not</critical>
+    <date-of-deivery data = "22.02.2018"/>
+</device>
+
+<device>
+    <name>motherboard</name>
+    <origin>Austria</origin>
+    <price>250</price>
+    <type peripheral="No" cooler="No" ports="none">
+        <power-usage>400</power-usage>
+        <group-of-complects>
+            <complect>none</complect>
+        </group-of-complects>
+    </type>
+    <critical>yeas</critical>
+    <date-of-delivery data = "11.02.2017"/>
+</device>
+
+<device>
+    <name>display</name>
+    <origin>Canada</origin>
+    <price>290</price>
+    <type peripheral="Yes" cooler="Yes" ports="LPT">
+        <power-usage>600</power-usage>
+        <group-of-complects>
+            <complect>wire1</complect>
+            <complect>wire2</complect>
+        </group-of-complects>
+    </type>
+    <critical>Yes</critical>
+    <date-of-delivery data = "11.02.2016"/>
+</device>
+
+
+<device>
+    <name>printer</name>
+    <origin></origin>
+    <price>290</price>
+    <type peripheral="Yes" cooler="Yes" ports="COM">
+        <power-usage>600</power-usage>
+        <group-of-complects>
+            <complect>wire</complect>
+            <complect>paints</complect>
+        </group-of-complects>
+    </type>
+    <critical>not</critical>
+    <date-of-delivery data = "11.02.2015"/>
+</device>
+
+<device>
+    <name>keyboard</name>
+    <origin>Turkey</origin>
+    <price>250</price>
+    <type peripheral="Yes" cooler="Yes" ports="USB">
+        <power-usage>350</power-usage>
+        <group-of-complects>
+            <complect>wire</complect>
+        </group-of-complects>
+    </type>
+    <critical>not</critical>
+    <date-of-delivery data = "11.02.2014"/>
+</device>-->

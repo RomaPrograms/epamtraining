@@ -1,0 +1,193 @@
+package by.training.webparsing.parser;
+
+import by.training.webparsing.entity.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+public class DeviceHandler extends DefaultHandler {
+
+    private List<DeviceType> devices;
+    private PeripheralDevice peripheralDevice;
+    private InnerDevice innerDevice;
+    private Parameter currentParam;
+    private Set<Parameter> enumSet;
+
+    /**
+     * Logger for creation notes to some appender.
+     */
+    private static final Logger LOGGER
+            = LogManager.getLogger(DeviceHandler.class);
+
+    public DeviceHandler(List<DeviceType> devices) {
+        devices = devices;
+    }
+
+    public List<DeviceType> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<DeviceType> devices) {
+        this.devices = devices;
+    }
+
+    @Override
+    public void startDocument() {
+        LOGGER.info("Parsing xml-file began by Sax parser.");
+    }
+
+    @Override
+    public void startElement(String uri, String localName, String qName, Attributes attrs) {
+        if (qName.equals("peripheralDevice")) {
+            peripheralDevice = new PeripheralDevice();
+            isInnerDevice = false;
+        }
+        if (qName.equals("innerDevice")) {
+            innerDevice = new InnerDevice();
+            isInnerDevice = true;
+        }
+        if (qName.equals("name")) {
+            isName = true;
+        }
+        if (qName.equals("origin")) {
+            isOrigin = true;
+        }
+        if (qName.equals("price")) {
+            isPrice = true;
+        }
+        if (qName.equals("type")) {
+            isType = true;
+            if (isInnerDevice) {
+                innerDevice.getType().setCooler(Boolean
+                        .parseBoolean(attrs.getValue("cooler")));
+                innerDevice.getType().setCritical(Boolean
+                        .parseBoolean(attrs.getValue("critical")));
+                innerDevice.getType().setPort(Port
+                        .valueOf(attrs.getValue("ports")));
+            } else {
+                peripheralDevice.getType().setCooler(Boolean
+                        .parseBoolean(attrs.getValue("cooler")));
+                peripheralDevice.getType().setCritical(Boolean
+                        .parseBoolean(attrs.getValue("critical")));
+                peripheralDevice.getType().setPort(Port
+                        .valueOf(attrs.getValue("ports")));
+            }
+        }
+        if (qName.equals("power-usage")) {
+            isPowerUsage = true;
+        }
+        if (qName.equals("group-of-complects")) {
+            isGroupOfComplects = true;
+        }
+        if (qName.equals("date-of-delivery")) {
+            isDateOfDelivery = true;
+        }
+        if (qName.equals("connection")) {
+            isConnection = true;
+        }
+        if (qName.equals("version")) {
+            isVersion = true;
+        }
+    }
+
+    @Override
+    public void characters(char[] ch, int start, int length) {
+        if (isName) {
+            if (isInnerDevice) {
+                innerDevice.setName(new String(ch, start, length));
+            } else {
+                peripheralDevice.setName(new String(ch, start, length));
+            }
+            isName = false;
+        }
+        if (isOrigin) {
+            if (isInnerDevice) {
+                innerDevice.setOrigin(new String(ch, start, length));
+            } else {
+                peripheralDevice.setOrigin(new String(ch, start, length));
+            }
+            isOrigin = false;
+        }
+        if (isPrice) {
+            if (isInnerDevice) {
+                innerDevice.setPrice(Double
+                        .parseDouble(new String(ch, start, length)));
+            } else {
+                peripheralDevice.setPrice(Double
+                        .parseDouble(new String(ch, start, length)));
+            }
+
+            isPrice = false;
+        }
+        if (isType && isPowerUsage) {
+            if (isInnerDevice) {
+                innerDevice.getType().setPowerUsage(Double
+                        .parseDouble(new String(ch, start, length)));
+            } else {
+                peripheralDevice.getType().setPowerUsage(Double
+                        .parseDouble(new String(ch, start, length)));
+            }
+
+            isPowerUsage = false;
+        }
+        if (isType && isGroupOfComplects) {
+            if (isInnerDevice) {
+                innerDevice.getType().setGroupOfComplects(new String(ch,
+                        start, length));
+            } else {
+                peripheralDevice.getType().setGroupOfComplects(new String(ch,
+                        start, length));
+            }
+
+            isGroupOfComplects = false;
+        }
+        if (isDateOfDelivery) {
+            String string = new String(ch, start, length);
+            StringTokenizer tokenizer = new StringTokenizer(string, "-");
+            if (isInnerDevice) {
+                innerDevice.setDateOfDelivery(new GregorianCalendar(Integer
+                        .parseInt(tokenizer.nextToken()),
+                        Integer.parseInt(tokenizer.nextToken()),
+                        Integer.parseInt(tokenizer.nextToken())));
+            } else {
+                peripheralDevice.setDateOfDelivery(new GregorianCalendar(Integer
+                        .parseInt(tokenizer.nextToken()),
+                        Integer.parseInt(tokenizer.nextToken()),
+                        Integer.parseInt(tokenizer.nextToken())));
+            }
+
+            isDateOfDelivery = false;
+        }
+        if (isConnection) {
+            peripheralDevice.setConnection(Connection
+                    .valueOf(new String(ch, start, length)));
+            isConnection = false;
+        }
+
+        if (isVersion) {
+            innerDevice.setVersion(new String(ch, start, length));
+            isVersion = false;
+        }
+    }
+
+    @Override
+    public void endElement(String uri, String localName, String qName) {
+        if (qName.equals("peripheralDevice")) {
+            devices.add(peripheralDevice);
+        }
+        if (qName.equals("innerDevice") && isInnerDevice) {
+            devices.add(innerDevice);
+        }
+
+    }
+
+    @Override
+    public void endDocument() {
+        LOGGER.info("Parsing xml-file ended by Sax parser.");
+    }
+}

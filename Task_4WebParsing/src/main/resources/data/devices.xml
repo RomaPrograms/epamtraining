@@ -14,6 +14,7 @@
         <dateOfDelivery>2018-11-02</dateOfDelivery>
         <connection>Bluetooth</connection>
     </peripheralDevice>
+
     <innerDevice>
         <name>ASUS Mining Radeon RX 580 8GB GDDR5</name>
         <origin>Russia</origin>
@@ -25,5 +26,17 @@
         <dateOfDelivery>2014-09-11</dateOfDelivery>
         <version>version-1.4</version>
     </innerDevice>
+
+    <peripheralDevice>
+        <name>Logitech C922 (960-001088)</name>
+        <origin>China</origin>
+        <price>227</price>
+        <type cooler="false" ports="USB">
+            <powerUsage>50</powerUsage>
+            <groupOfComplects>web-camera</groupOfComplects>
+        </type>
+        <dateOfDelivery>2013-05-25</dateOfDelivery>
+        <connection>Wire</connection>
+    </peripheralDevice>
 
 </devices>

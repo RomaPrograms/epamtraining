@@ -23,7 +23,13 @@
         <sequence>
             <element name="name" type="string" default="absent"/>
             <element name="origin" type="string" default="absent"/>
-            <element name="price" type="positiveInteger" default="1"/>
+            <element name="price" default="1">
+                <simpleType>
+                    <restriction base="int">
+                        <minInclusive value="1"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element name="type" type="tns:Type"/>
             <element name="dateOfDelivery" type="date"/>
         </sequence>
@@ -65,7 +71,13 @@
 
     <complexType name="Type">
         <all>
-            <element name="powerUsage" type="positiveInteger" default="1"/>
+            <element name="powerUsage" default="1">
+                <simpleType>
+                    <restriction base="int">
+                        <minInclusive value="1"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element name="groupOfComplects" type="string" default="absent"/>
         </all>
         <attribute name="cooler" type="boolean" use="required"/>

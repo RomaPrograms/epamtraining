@@ -3,7 +3,7 @@ package by.training.webparsing.entity;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class PeripheralDevice extends DeviceType {
+public class PeripheralDevice extends Device {
     private Connection connection;
 
     public  PeripheralDevice() { }

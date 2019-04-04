@@ -1,7 +1,7 @@
 package by.training.webparsing.parser;
 
 import by.training.webparsing.entity.Parameter;
-import by.training.webparsing.entity.DeviceType;
+import by.training.webparsing.entity.Device;
 import by.training.webparsing.entity.PeripheralDevice;
 import by.training.webparsing.entity.InnerDevice;
 import by.training.webparsing.entity.Port;
@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
 
 public class DeviceHandler extends DefaultHandler {
 
-    private List<DeviceType> devices;
+    private List<Device> devices;
     private EnumSet<Parameter> enumSet;
     private PeripheralDevice peripheralDevice;
     private InnerDevice innerDevice;
@@ -30,16 +30,16 @@ public class DeviceHandler extends DefaultHandler {
     private static final Logger LOGGER
             = LogManager.getLogger(DeviceHandler.class);
 
-    public DeviceHandler(final List<DeviceType> devicesList) {
+    public DeviceHandler(final List<Device> devicesList) {
         devices = devicesList;
         enumSet = EnumSet.range(Parameter.NAME, Parameter.VERSION);
     }
 
-    public List<DeviceType> getDevices() {
+    public List<Device> getDevices() {
         return devices;
     }
 
-    public void setDevices(final List<DeviceType> devicesList) {
+    public void setDevices(final List<Device> devicesList) {
         this.devices = devicesList;
     }
 

@@ -3,7 +3,7 @@ package by.training.webparsing.entity;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class InnerDevice extends DeviceType{
+public class InnerDevice extends Device {
     private String version;
 
     public InnerDevice() { }
@@ -44,6 +44,6 @@ public class InnerDevice extends DeviceType{
     public String toString() {
         return "InnerDevice{" + super.toString() +
                 "\nversion='" + version + '\'' +
-                '}';
+                "\n}";
     }
 }

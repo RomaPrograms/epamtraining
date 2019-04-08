@@ -16,12 +16,10 @@ some page to our jsp page--%>
 <%--<%! ResourceManager manager = ResourceManager.INSTANCE;
     Locale locale = new Locale("be","BY");
     manager.changeResource(locale);%>--%>
-<%! Locale locale = new Locale("be","BY");
-    ResourceBundle resource = ResourceBundle.getBundle("property.text", locale);;
-    %>
+<%! Locale locale = new Locale("be","BY");%>
 
-<h1><%= resource.getString("str1")%></h1>
-<form name="Simple" action="timeaction" method="POST">
+<h1><%= ResourceBundle.getBundle("property.text", locale).getString("str1")%></h1>
+<form name="Simple" action="timeaction" method="GET">
     <input type="submit" name="button1" value="SAX Parser"/>
     <input type="submit" name="button2" value="DOM Parser"/>
     <input type="submit" name="button3" value="StAX Parser"/>

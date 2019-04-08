@@ -10,11 +10,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
+
 import java.util.EnumSet;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * Class for p
+ */
 public class DeviceHandler extends DefaultHandler {
 
     private List<Device> devices;

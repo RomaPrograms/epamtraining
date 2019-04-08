@@ -1,6 +1,8 @@
 package by.training.webparsing.parser;
 
 import by.training.webparsing.entity.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,30 +18,56 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * Class for parsing by DOM parser.
+ */
 public class DevicesDOMBuilder extends AbstractDeviceBuilder {
+    /**
+     * Instance of {@code DocumentBuilder} class.
+     */
     private DocumentBuilder docBuilder;
 
+    /**
+     * Logger for creation notes to some appender.
+     */
+    private static final Logger LOGGER
+            = LogManager.getLogger(DeviceHandler.class);
+
+    /**
+     * Constructor which initializes docBuilder property.
+     */
     public DevicesDOMBuilder() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            System.err.println("Ошибка конфигурации парсера: " + e);
+            LOGGER.error("Issue of configuration parser.");
         }
     }
 
-    public DevicesDOMBuilder (List<Device> students) {
-        super(students);
+    /**
+     * Constructor which initializes docBuilder property and list with devices.
+     *
+     * @param devices - created devices
+     */
+    public DevicesDOMBuilder(final List<Device> devices) {
+        super(devices);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            System.err.println("Ошибка конфигурации парсера: " + e);
+            LOGGER.error("Issue of configuration parser.");
         }
     }
 
+    /**
+     * Method that gets some name of file, parses data from it and initialize
+     * list of devices.
+     *
+     * @param fileName - name of file with data about devices.
+     */
     @Override
-    public void buildListDevices(String fileName) {
+    public void buildListDevices(final String fileName) {
         Document document = null;
         try {
             document = docBuilder.parse(new File(fileName));
@@ -58,12 +86,18 @@ public class DevicesDOMBuilder extends AbstractDeviceBuilder {
                 getDevices().add(createInnerDevice(node));
             }
         } catch (IOException e) {
-            System.err.println("File error or I/O error: " + e);
+            LOGGER.error("File error or I/O error.");
         } catch (SAXException e) {
-            System.err.println("Parsing failure: " + e);
+            LOGGER.error("Parsing failure.");
         }
     }
 
+    /**
+     * Method that during parsing creates PeripheralDevice.
+     *
+     * @param node - node of XML file where stores data about peripheral device
+     * @return - object of peripheral device after parsing
+     */
     private static PeripheralDevice createPeripheralDevice(final Node node) {
         PeripheralDevice peripheralDevice = new PeripheralDevice();
         addCommonInformation(peripheralDevice, (Element) node);
@@ -73,6 +107,12 @@ public class DevicesDOMBuilder extends AbstractDeviceBuilder {
         return peripheralDevice;
     }
 
+    /**
+     * Method that during parsing creates InnerDevice.
+     *
+     * @param node - node of XML file where stores data about inner device
+     * @return - object of inner device after parsing
+     */
     private static InnerDevice createInnerDevice(final Node node) {
         InnerDevice innerDevice = new InnerDevice();
         addCommonInformation(innerDevice, (Element) node);
@@ -81,6 +121,13 @@ public class DevicesDOMBuilder extends AbstractDeviceBuilder {
         return innerDevice;
     }
 
+    /**
+     * Methods parses common information of all devices and initialize them.
+     *
+     * @param device  - device which we will initialize.
+     * @param element - element of node of XML file where stores data about
+     *                inner device
+     */
     private static void addCommonInformation(final Device device,
                                              final Element element) {
         device.setName(getElementTextContent(element, "name"));
@@ -116,6 +163,13 @@ public class DevicesDOMBuilder extends AbstractDeviceBuilder {
                 Integer.parseInt(tokenizer.nextToken())));
     }
 
+    /**
+     * Methods that takes value of parameter for device from xml tag.
+     *
+     * @param element     - tag from xml
+     * @param elementName - name of parameter
+     * @return string with value from element
+     */
     private static String getElementTextContent(final Element element,
                                                 final String elementName) {
         NodeList nList = element.getElementsByTagName(elementName);

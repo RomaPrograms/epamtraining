@@ -14,21 +14,41 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * Class for parsing by StAX parser.
+ */
 public class DevicesStAXBuilder extends AbstractDeviceBuilder {
+    /**
+     * Instance of {@code XMLInputFactory} for StAX paring.
+     */
     private XMLInputFactory inputFactory;
 
+    /**
+     * Constructor that initialize inputFactory property.
+     */
     public DevicesStAXBuilder() {
         super();
         inputFactory = XMLInputFactory.newInstance();
     }
 
-    public DevicesStAXBuilder (List<Device> students) {
-        super(students);
+    /**
+     * Constructor that initialize inputFactory property and list with devices.
+     *
+     * @param devices - devices from file
+     */
+    public DevicesStAXBuilder(final List<Device> devices) {
+        super(devices);
         inputFactory = XMLInputFactory.newInstance();
     }
 
+    /**
+     * Method that gets some name of file, parses data from it and initialize
+     * list of devices.
+     *
+     * @param fileName - name of file with data about devices.
+     */
     @Override
-    public void buildListDevices(String fileName) {
+    public void buildListDevices(final String fileName) {
         FileInputStream inputStream = null;
         XMLStreamReader reader = null;
         String name;
@@ -64,12 +84,12 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
                     inputStream.close();
                 }
             } catch (IOException e) {
-                System.err.println("Impossible close file "+fileName+" : "+e);
+                System.err.println("Impossible close file " + fileName + " : " + e);
             }
         }
     }
 
-    private PeripheralDevice buildPeripheralDevice(XMLStreamReader reader)
+    private PeripheralDevice buildPeripheralDevice(final XMLStreamReader reader)
             throws XMLStreamException {
         PeripheralDevice peripheralDevice = new PeripheralDevice();
         buildCommonInformation(peripheralDevice, reader);
@@ -108,7 +128,7 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
     private void buildCommonInformation(Device device, XMLStreamReader reader) throws XMLStreamException {
         String tagName;
         int numberOfCommonTags = 0;
-        while(reader.hasNext()) {
+        while (reader.hasNext()) {
             int parameter = reader.next();
             switch (parameter) {
                 case XMLStreamReader.START_ELEMENT:
@@ -156,10 +176,10 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
     private void buildTypeInformation(Device device, XMLStreamReader reader) throws XMLStreamException {
         String name;
         int numberOfElementsInTypeTag = 0;
-        while(reader.hasNext()) {
+        while (reader.hasNext()) {
             int type = reader.next();
-            switch(type) {
-                case XMLStreamReader.START_ELEMENT :
+            switch (type) {
+                case XMLStreamReader.START_ELEMENT:
                     name = reader.getLocalName();
                     switch (Parameter.valueOf(name.toUpperCase())) {
                         case POWERUSAGE:
@@ -172,8 +192,8 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
                             break;
                     }
                     break;
-                case XMLStreamReader.END_ELEMENT :
-                    if(numberOfElementsInTypeTag == 1) {
+                case XMLStreamReader.END_ELEMENT:
+                    if (numberOfElementsInTypeTag == 1) {
                         return;
                     }
                     numberOfElementsInTypeTag++;

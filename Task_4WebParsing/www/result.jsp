@@ -34,7 +34,7 @@
 
     <c:set var="peripheralDevice" scope="page" value="PeripheralDevice"/>
     <c:set var="innerDevice" scope="page" value="InnerDevice"/>
-    <jsp:useBean id="df" class="java.text.SimpleDateFormat" scope="page"/>
+    <jsp:useBean id="df" class="java.text.SimpleDateFormat"/>
     <%df.applyPattern("dd MMM yyy");%>
     <c:forEach var="elem" items="${res}" varStatus="status">
         <tr>
@@ -53,7 +53,7 @@
             <td><c:out value="${ elem.getType().getGroupOfComplects()}" /></td>
             <td><c:out value="${ elem.getType().getPort().toString()}" /></td>
             <c:if test="${elem.getClass().getSimpleName().equals(peripheralDevice)}">
-                <td><c:out value="${ elem.getConnection().toString()}"/></td>
+                <td><c:out value="${ elem.getConnection().getValue()}"/></td>
                 <td><c:out value=""/></td>
             </c:if>
             <c:if test="${ elem.getClass().getSimpleName().equals(innerDevice)}">
@@ -63,25 +63,6 @@
             <td><c:out value="${ df.format(elem.getDateOfDelivery().getTime())}" /></td>
         </tr>
     </c:forEach>
-    <%--<% List<Device> list = (List<Device>) request.getAttribute("res");
-        for (Device elem : list) {%>
-    <tr>
-        <td><%=elem.getName()%></td>
-        <td><%=elem.getOrigin()%></td>
-        <td><%=elem.getPrice()%></td>
-        <%if (elem instanceof PeripheralDevice) {%>
-        <td><%="Peripheral"%></td>
-        <%} else {%>
-        <td><%="Inner"%></td>
-        <%}%>
-        <td><%=elem.getType().isCooler()%></td>
-        <td><%=elem.getType().isCritical()%></td>
-        <td><%=elem.getType().getPowerUsage()%></td>
-        <td><%=elem.getType().getGroupOfComplects()%></td>
-        <td><%=elem.getType().getPort().toString()%></td>
-        <td><%=elem.getDateOfDelivery().getCalendarType()%></td>
-    </tr>
-    <%}%>--%>
 </table>
 </body>
 </html>

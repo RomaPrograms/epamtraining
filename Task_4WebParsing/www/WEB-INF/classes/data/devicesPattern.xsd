@@ -88,7 +88,6 @@
                     <enumeration value="USB"/>
                     <enumeration value="LPT"/>
                     <enumeration value="COM"/>
-                    <enumeration value="none"/>
                 </restriction>
             </simpleType>
         </attribute>

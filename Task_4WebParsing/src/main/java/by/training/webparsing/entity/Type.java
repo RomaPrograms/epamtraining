@@ -19,7 +19,7 @@ public class Type {
      */
     private double powerUsage;
     /**
-     * Group of complects of device
+     * Group of complects of device.
      */
     private String groupOfComplects;
     /**
@@ -154,14 +154,19 @@ public class Type {
      */
     @Override
     public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Type)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Type)) {
+            return false;
+        }
         Type type = (Type) o;
-        return isCooler() == type.isCooler() &&
-                isCritical() == type.isCritical() &&
-                Double.compare(type.getPowerUsage(), getPowerUsage()) == 0 &&
-                Objects.equals(getGroupOfComplects(), type.getGroupOfComplects()) &&
-                getPort() == type.getPort();
+        return isCooler() == type.isCooler()
+                && isCritical() == type.isCritical()
+                && Double.compare(type.getPowerUsage(), getPowerUsage()) == 0
+                && Objects.equals(getGroupOfComplects(),
+                type.getGroupOfComplects())
+                && getPort() == type.getPort();
     }
 
     /**
@@ -171,7 +176,8 @@ public class Type {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(isCooler(), isCritical(), getPowerUsage(), getGroupOfComplects(), getPort());
+        return Objects.hash(isCooler(), isCritical(), getPowerUsage(),
+                getGroupOfComplects(), getPort());
     }
 
     /**
@@ -181,10 +187,10 @@ public class Type {
      */
     @Override
     public String toString() {
-        return "cooler=" + cooler +
-                ", \ncritical=" + critical +
-                ", \nport=" + port.toString() +
-                ", \npowerUsage=" + powerUsage +
-                ", \ngroupOfComplects='" + groupOfComplects + '\'';
+        return "cooler=" + cooler
+                + ", \ncritical=" + critical
+                + ", \nport=" + port.toString()
+                + ", \npowerUsage=" + powerUsage
+                + ", \ngroupOfComplects='" + groupOfComplects + '\'';
     }
 }

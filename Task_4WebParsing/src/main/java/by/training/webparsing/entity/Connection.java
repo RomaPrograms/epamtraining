@@ -7,13 +7,36 @@ public enum Connection {
     /**
      * Type of connection by bluetooth.
      */
-    Bluetooth,
+    BLUETOOTH("Bluetooth"),
     /**
      * Type of connection by Wire.
      */
-    Wire,
+    WIRE("Wire"),
     /**
      * Type of connection by WiFi.
      */
-    WiFi
+    WIFI("WiFi");
+
+    /**
+     * Value of enum connection.
+     */
+    private String value;
+
+    /**
+     * One-argument constructor.
+     *
+     * @param connectionType - type of connection
+     */
+    Connection(final String connectionType) {
+        this.value = connectionType;
+    }
+
+    /**
+     * Gets the value of type Parameter.
+     *
+     * @return - parameter of device
+     */
+    public String getValue() {
+        return value;
+    }
 }

@@ -21,7 +21,7 @@ public class PeripheralDevice extends Device {
     /**
      * One-argument constructor.
      *
-     * @param dConnection
+     * @param dConnection - connection of our device
      */
     public PeripheralDevice(final Connection dConnection) {
         this.connection = dConnection;
@@ -57,10 +57,10 @@ public class PeripheralDevice extends Device {
     /**
      * Sets the value of connection property.
      *
-     * @param connection - connection type of device
+     * @param dConnection - connection type of device
      */
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setConnection(final Connection dConnection) {
+        this.connection = dConnection;
     }
 
     /**
@@ -76,8 +76,12 @@ public class PeripheralDevice extends Device {
      */
     @Override
     public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PeripheralDevice)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof PeripheralDevice)) {
+            return false;
+        }
         PeripheralDevice that = (PeripheralDevice) o;
         return getConnection() == that.getConnection();
     }
@@ -99,8 +103,8 @@ public class PeripheralDevice extends Device {
      */
     @Override
     public String toString() {
-        return "PeripheralDevice{" + super.toString() +
-                "\nconnection=" + connection +
-                "\n}";
+        return "PeripheralDevice{" + super.toString()
+                + "\nconnection=" + connection.getValue()
+                + "\n}";
     }
 }

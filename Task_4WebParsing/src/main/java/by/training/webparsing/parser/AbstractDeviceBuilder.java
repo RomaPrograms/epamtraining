@@ -53,5 +53,5 @@ public abstract class AbstractDeviceBuilder {
      *
      * @param fileName - name of file with data about devices.
      */
-    abstract public void buildListDevices(String fileName);
+    public abstract void buildListDevices(String fileName);
 }

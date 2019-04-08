@@ -1,6 +1,13 @@
 package by.training.webparsing.parser;
 
-import by.training.webparsing.entity.*;
+import by.training.webparsing.entity.InnerDevice;
+import by.training.webparsing.entity.Device;
+import by.training.webparsing.entity.PeripheralDevice;
+import by.training.webparsing.entity.Parameter;
+import by.training.webparsing.entity.Connection;
+import by.training.webparsing.entity.Port;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -22,6 +29,16 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
      * Instance of {@code XMLInputFactory} for StAX paring.
      */
     private XMLInputFactory inputFactory;
+
+    /**
+     * Number of tags that we should pass for initializing parameter Type.
+     */
+    private static final int TAGS_NUMBER_FOR_TYPE = 4;
+    /**
+     * Logger for creation notes to some appender.
+     */
+    private static final Logger LOGGER
+            = LogManager.getLogger(DeviceHandler.class);
 
     /**
      * Constructor that initialize inputFactory property.
@@ -75,20 +92,27 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
                 }
             }
         } catch (XMLStreamException ex) {
-            System.err.println("StAX parsing error! " + ex.getMessage());
+            LOGGER.error("StAX parsing error!");
         } catch (FileNotFoundException ex) {
-            System.err.println("File " + fileName + " not found! " + ex);
+            LOGGER.error("File " + fileName + " not found!");
         } finally {
             try {
                 if (inputStream != null) {
                     inputStream.close();
                 }
             } catch (IOException e) {
-                System.err.println("Impossible close file " + fileName + " : " + e);
+                LOGGER.error("Impossible close file " + fileName);
             }
         }
     }
 
+    /**
+     * Method that creates instance of {@PeripheralDevice} during StAX parsing.
+     *
+     * @param reader - reader for parsing XML files by StAX parser
+     * @return returns initialized peripheral device
+     * @throws XMLStreamException - exception with stream issue
+     */
     private PeripheralDevice buildPeripheralDevice(final XMLStreamReader reader)
             throws XMLStreamException {
         PeripheralDevice peripheralDevice = new PeripheralDevice();
@@ -100,7 +124,7 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
                 if (Parameter.valueOf(tagName.toUpperCase())
                         .equals(Parameter.CONNECTION)) {
                     peripheralDevice.setConnection(Connection
-                            .valueOf(getXMLText(reader)));
+                            .valueOf(getXMLText(reader).toUpperCase()));
                     return peripheralDevice;
                 }
             }
@@ -108,7 +132,14 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
         return peripheralDevice;
     }
 
-    private InnerDevice buildInnerDevice(XMLStreamReader reader)
+    /**
+     * Method that creates instance of {@InnerDevice} during StAX parsing.
+     *
+     * @param reader - reader for parsing XML files by StAX parser
+     * @return returns initialized peripheral device
+     * @throws XMLStreamException - exception with stream issue
+     */
+    private InnerDevice buildInnerDevice(final XMLStreamReader reader)
             throws XMLStreamException {
         InnerDevice innerDevice = new InnerDevice();
         buildCommonInformation(innerDevice, reader);
@@ -116,7 +147,8 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
             int parameter = reader.next();
             if (parameter == XMLStreamReader.START_ELEMENT) {
                 String tagName = reader.getLocalName();
-                if (Parameter.valueOf(tagName.toUpperCase()).equals(Parameter.VERSION)) {
+                if (Parameter.valueOf(tagName.toUpperCase())
+                        .equals(Parameter.VERSION)) {
                     innerDevice.setVersion(getXMLText(reader));
                     return innerDevice;
                 }
@@ -125,7 +157,16 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
         return innerDevice;
     }
 
-    private void buildCommonInformation(Device device, XMLStreamReader reader) throws XMLStreamException {
+    /**
+     * Method that initialize device during StAX parsing.
+     *
+     * @param reader - reader for parsing XML files by StAX parser
+     * @param device - device which we will initialize
+     * @throws XMLStreamException - exception with stream issue
+     */
+    private void buildCommonInformation(final Device device,
+                                        final XMLStreamReader reader)
+            throws XMLStreamException {
         String tagName;
         int numberOfCommonTags = 0;
         while (reader.hasNext()) {
@@ -141,11 +182,13 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
                             device.setOrigin(getXMLText(reader));
                             break;
                         case PRICE:
-                            device.setPrice(Double.parseDouble(getXMLText(reader)));
+                            device.setPrice(Double.parseDouble(getXMLText(
+                                    reader)));
                             break;
                         case DATEOFDELIVERY:
                             String date = getXMLText(reader);
-                            StringTokenizer tokenizer = new StringTokenizer(date, "-");
+                            StringTokenizer tokenizer
+                                    = new StringTokenizer(date, "-");
                             device.setDateOfDelivery(new
                                     GregorianCalendar(Integer
                                     .parseInt(tokenizer.nextToken()),
@@ -153,16 +196,21 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
                                     Integer.parseInt(tokenizer.nextToken())));
                             break;
                         case TYPE:
-                            device.getType().setCooler(Boolean.parseBoolean(reader
-                                    .getAttributeValue(null, Parameter.COOLER.getValue())));
+                            device.getType().setCooler(Boolean
+                                    .parseBoolean(reader.getAttributeValue(
+                                            null,
+                                            Parameter.COOLER.getValue())));
                             device.getType().setPort(Port.valueOf(reader
-                                    .getAttributeValue(null, Parameter.PORTS.getValue())));
+                                    .getAttributeValue(null,
+                                            Parameter.PORTS.getValue())));
                             buildTypeInformation(device, reader);
                             break;
+                        default:
+
                     }
                     break;
                 case XMLStreamReader.END_ELEMENT:
-                    if (numberOfCommonTags == 4) {
+                    if (numberOfCommonTags == TAGS_NUMBER_FOR_TYPE) {
                         return;
                     }
                     numberOfCommonTags++;
@@ -173,7 +221,16 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
         }
     }
 
-    private void buildTypeInformation(Device device, XMLStreamReader reader) throws XMLStreamException {
+    /**
+     * Method that initialize all Type properties of device.
+     *
+     * @param device - device Type of which we will initialize
+     * @param reader - reader for parsing XML files by StAX parser
+     * @throws XMLStreamException - exception with stream issue
+     */
+    private void buildTypeInformation(final Device device,
+                                      final XMLStreamReader reader)
+            throws XMLStreamException {
         String name;
         int numberOfElementsInTypeTag = 0;
         while (reader.hasNext()) {
@@ -183,10 +240,12 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
                     name = reader.getLocalName();
                     switch (Parameter.valueOf(name.toUpperCase())) {
                         case POWERUSAGE:
-                            device.getType().setPowerUsage(Double.parseDouble(getXMLText(reader)));
+                            device.getType().setPowerUsage(Double
+                                    .parseDouble(getXMLText(reader)));
                             break;
                         case GROUPOFCOMPLECTS:
-                            device.getType().setGroupOfComplects(getXMLText(reader));
+                            device.getType().setGroupOfComplects(getXMLText(
+                                    reader));
                             break;
                         default:
                             break;
@@ -202,7 +261,15 @@ public class DevicesStAXBuilder extends AbstractDeviceBuilder {
         }
     }
 
-    private String getXMLText(XMLStreamReader reader) throws XMLStreamException {
+    /**
+     * Gets data from current tag.
+     *
+     * @param reader - reader for parsing XML files by StAX parser
+     * @return data from current tag
+     * @throws XMLStreamException - exception with stream issue
+     */
+    private String getXMLText(final XMLStreamReader reader)
+            throws XMLStreamException {
         String text = null;
         if (reader.hasNext()) {
             reader.next();

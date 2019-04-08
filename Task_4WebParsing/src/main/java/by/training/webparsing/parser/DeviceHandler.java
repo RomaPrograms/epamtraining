@@ -17,15 +17,33 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * Class for p
+ * Class which contains methods for parsing by SAX paring.
  */
 public class DeviceHandler extends DefaultHandler {
 
+    /**
+     * List with devices.
+     */
     private List<Device> devices;
+    /**
+     * Set with parameters.
+     */
     private EnumSet<Parameter> enumSet;
+    /**
+     * Instance of peripheral device.
+     */
     private PeripheralDevice peripheralDevice;
+    /**
+     * Instance of inner device.
+     */
     private InnerDevice innerDevice;
+    /**
+     * Current parameter of device which we read from XML file.
+     */
     private Parameter currentParam;
+    /**
+     * Boolean that shows which kind of device we are currently parsing.
+     */
     private boolean isInnerDevice;
 
     /**
@@ -34,24 +52,62 @@ public class DeviceHandler extends DefaultHandler {
     private static final Logger LOGGER
             = LogManager.getLogger(DeviceHandler.class);
 
+    /**
+     * Constructor which initialize devices property and enumSet property.
+     *
+     * @param devicesList - list with devices
+     */
     public DeviceHandler(final List<Device> devicesList) {
         devices = devicesList;
         enumSet = EnumSet.range(Parameter.NAME, Parameter.VERSION);
     }
 
+    /**
+     * Gets the list with devices.
+     *
+     * @return list with devices
+     */
     public List<Device> getDevices() {
         return devices;
     }
 
+    /**
+     * Sets the list with devices.
+     *
+     * @param devicesList - list with devices
+     */
     public void setDevices(final List<Device> devicesList) {
         this.devices = devicesList;
     }
 
+    /**
+     * Method that shows that parsing by SAX parser began.
+     */
     @Override
     public void startDocument() {
         LOGGER.info("Parsing xml-file began by Sax parser.");
     }
 
+    /**
+     * Receive notification of the start of an element.
+     *
+     * <p>By default, do nothing.  Application writers may override this
+     * method in a subclass to take specific actions at the start of
+     * each element (such as allocating a new tree node or writing
+     * output to a file).</p>
+     *
+     * @param uri       The Namespace URI, or the empty string if the
+     *                  element has no Namespace URI or if Namespace
+     *                  processing is not being performed.
+     * @param localName The local name (without prefix), or the
+     *                  empty string if Namespace processing is not being
+     *                  performed.
+     * @param qName     The qualified name (with prefix), or the
+     *                  empty string if qualified names are not available.
+     * @param attrs     The attributes attached to the element.  If
+     *                  there are no attributes, it shall be an empty
+     *                  Attributes object.
+     */
     @Override
     public void startElement(final String uri, final String localName,
                              final String qName, final Attributes attrs) {
@@ -92,6 +148,19 @@ public class DeviceHandler extends DefaultHandler {
         }
     }
 
+    /**
+     * Receive notification of character data inside an element.
+     *
+     * <p>By default, do nothing.  Application writers may override this
+     * method to take specific actions for each chunk of character data
+     * (such as adding the data to a node or buffer, or printing it to
+     * a file).</p>
+     *
+     * @param ch     The characters.
+     * @param start  The start position in the character array.
+     * @param length The number of characters to use from the
+     *               character array.
+     */
     @Override
     public void characters(final char[] ch, final int start, final int length) {
         String data = new String(ch, start, length);
@@ -160,7 +229,7 @@ public class DeviceHandler extends DefaultHandler {
                         break;
                     case CONNECTION:
                         peripheralDevice.setConnection(Connection
-                                .valueOf(data));
+                                .valueOf(data.toUpperCase()));
                         break;
                     case VERSION:
                         innerDevice.setVersion(data);
@@ -176,6 +245,23 @@ public class DeviceHandler extends DefaultHandler {
         }
     }
 
+    /**
+     * Receive notification of the end of an element.
+     *
+     * <p>By default, do nothing.  Application writers may override this
+     * method in a subclass to take specific actions at the end of
+     * each element (such as finalising a tree node or writing
+     * output to a file).</p>
+     *
+     * @param uri       The Namespace URI, or the empty string if the
+     *                  element has no Namespace URI or if Namespace
+     *                  processing is not being performed.
+     * @param localName The local name (without prefix), or the
+     *                  empty string if Namespace processing is not being
+     *                  performed.
+     * @param qName     The qualified name (with prefix), or the
+     *                  empty string if qualified names are not available.
+     */
     @Override
     public void endElement(final String uri, final String localName,
                            final String qName) {
@@ -188,6 +274,9 @@ public class DeviceHandler extends DefaultHandler {
 
     }
 
+    /**
+     * Receive notification of the end of the document.
+     */
     @Override
     public void endDocument() {
         LOGGER.info("Parsing xml-file ended by Sax parser.");

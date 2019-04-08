@@ -1,6 +1,10 @@
 package by.training.webparsing.parser;
 
-import by.training.webparsing.entity.*;
+import by.training.webparsing.entity.Connection;
+import by.training.webparsing.entity.Device;
+import by.training.webparsing.entity.PeripheralDevice;
+import by.training.webparsing.entity.InnerDevice;
+import by.training.webparsing.entity.Port;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -59,7 +63,6 @@ public class DevicesDOMBuilder extends AbstractDeviceBuilder {
             LOGGER.error("Issue of configuration parser.");
         }
     }
-
     /**
      * Method that gets some name of file, parses data from it and initialize
      * list of devices.
@@ -103,7 +106,7 @@ public class DevicesDOMBuilder extends AbstractDeviceBuilder {
         addCommonInformation(peripheralDevice, (Element) node);
         peripheralDevice.setConnection(Connection
                 .valueOf(getElementTextContent((Element) node,
-                        "connection")));
+                        "connection").toUpperCase()));
         return peripheralDevice;
     }
 

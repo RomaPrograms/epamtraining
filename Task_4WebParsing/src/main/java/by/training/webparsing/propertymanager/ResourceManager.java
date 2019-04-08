@@ -3,20 +3,45 @@ package by.training.webparsing.propertymanager;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class ResourceManager {
+/**
+ * Class for getting data from {@code ResourceBundle} on different languages.
+ */
+public final class ResourceManager {
+    /**
+     * Instance of {@code ResourceManager} class for using Singleton.
+     */
     public static final ResourceManager INSTANCE = new ResourceManager();
+    /**
+     * Instance of {@code ResourceBundle} class for using different language.
+     */
     private ResourceBundle resourceBundle;
-    private final String resourceName = "property.text";
+    /**
+     * Name of resource with text on different languages.
+     */
+    private static final String resourceName = "property.text";
 
+    /**
+     * Constructor of ResourceManager that initialize resourceBundle property.
+     */
     private ResourceManager() {
-        resourceBundle = ResourceBundle.getBundle(resourceName, Locale.getDefault());
+        resourceBundle = ResourceBundle.getBundle(resourceName,
+                Locale.getDefault());
     }
 
-    public void changeResource(Locale locale) {
+    /**
+     * Method that changes language of text form resource bundle.
+     * @param locale - locale of Country whose language we will use
+     */
+    public void changeResource(final Locale locale) {
         resourceBundle = ResourceBundle.getBundle(resourceName, locale);
     }
 
-    public String getString(String key) {
+    /**
+     * Gets the string from resource bundle.
+     * @param key - name of string
+     * @return value of string from resource bundle with key from attributes
+     */
+    public String getString(final String key) {
         return resourceBundle.getString(key);
     }
 }

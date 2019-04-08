@@ -16,15 +16,23 @@ import java.util.List;
  * Class for parsing by SAX parser.
  */
 public class DevicesSAXBuilder extends AbstractDeviceBuilder {
+    /**
+     * Instance of {@code SAXParer} class.
+     */
     private SAXParser parser;
+    /**
+     * Instance of {@code DeviceHandler} for handling SAX parsing.
+     */
     private DeviceHandler deviceHandler;
-
     /**
      * Logger for creation notes to some appender.
      */
     private static final Logger LOGGER
             = LogManager.getLogger(DeviceHandler.class);
 
+    /**
+     * Constructor initializes parser property and deviceHandler property.
+     */
     public DevicesSAXBuilder() {
         try {
             parser = SAXParserFactory.newInstance().newSAXParser();
@@ -36,8 +44,14 @@ public class DevicesSAXBuilder extends AbstractDeviceBuilder {
         }
     }
 
-    public DevicesSAXBuilder(final List<Device> students) {
-        super(students);
+    /**
+     * Constructor initializes parser property and deviceHandler property and
+     * add devices to device list.
+     *
+     * @param devices - devices for device list
+     */
+    public DevicesSAXBuilder(final List<Device> devices) {
+        super(devices);
         try {
             parser = SAXParserFactory.newInstance().newSAXParser();
             deviceHandler = new DeviceHandler(getDevices());
@@ -52,7 +66,7 @@ public class DevicesSAXBuilder extends AbstractDeviceBuilder {
      * Method that gets some name of file, parses data from it and initialize
      * list of devices.
      *
-     * @param fileName - name of file with data about devices.
+     * @param fileName - name of file with data about devices
      */
     @Override
     public void buildListDevices(final String fileName) {

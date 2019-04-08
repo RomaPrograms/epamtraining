@@ -19,7 +19,7 @@
         <name>ASUS Mining Radeon RX 580 8GB GDDR5</name>
         <origin>Russia</origin>
         <price>150</price>
-        <type cooler="false" critical="true" ports="none">
+        <type cooler="false" critical="true" ports="COM">
             <powerUsage>400</powerUsage>
             <groupOfComplects>video card</groupOfComplects>
         </type>

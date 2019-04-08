@@ -1,5 +1,6 @@
 package by.training.webparsing.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -188,11 +189,13 @@ public abstract class Device {
      */
     @Override
     public String toString() {
+        SimpleDateFormat simpleDateFormat
+                = new SimpleDateFormat("dd MMM yyy");
+
         return "name='" + name + '\''
                 + ", \norigin='" + origin + '\''
                 + ", \nprice=" + price + ", \n" + type.toString()
-                + ", \ndateOfDelivery=" + dateOfDelivery.get(Calendar.YEAR)
-                + "- dateOfDelivery.get(Calendar.MONTH) - "
-                + dateOfDelivery.get(Calendar.DAY_OF_MONTH);
+                + ", \ndateOfDelivery="
+                + simpleDateFormat.format(dateOfDelivery.getTime());
     }
 }

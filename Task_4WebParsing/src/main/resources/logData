@@ -1,2 +1,0 @@
-2019-04-07 11:08:42,974 INFO  [main] parser.DeviceHandler (DeviceHandler.java:48) - Parsing xml-file began by Sax parser.
-2019-04-07 11:08:43,064 INFO  [main] parser.DeviceHandler (DeviceHandler.java:189) - Parsing xml-file ended by Sax parser.

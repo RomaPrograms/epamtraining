@@ -56,10 +56,10 @@ public class InnerDevice extends Device {
     /**
      * Sets the value of version property.
      *
-     * @param version - version of device
+     * @param dVersion - version of device
      */
-    public void setVersion(final String version) {
-        this.version = version;
+    public void setVersion(final String dVersion) {
+        this.version = dVersion;
     }
 
     /**
@@ -74,9 +74,15 @@ public class InnerDevice extends Device {
      */
     @Override
     public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (!(o instanceof InnerDevice)) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof InnerDevice)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         InnerDevice that = (InnerDevice) o;
         return Objects.equals(getVersion(), that.getVersion());
     }
@@ -98,8 +104,8 @@ public class InnerDevice extends Device {
      */
     @Override
     public String toString() {
-        return "InnerDevice{" + super.toString() +
-                "\nversion='" + version + '\'' +
-                "\n}";
+        return "InnerDevice{" + super.toString()
+                + "\nversion='" + version + '\''
+                + "\n}";
     }
 }

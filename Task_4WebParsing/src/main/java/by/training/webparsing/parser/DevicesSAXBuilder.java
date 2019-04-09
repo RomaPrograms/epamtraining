@@ -29,7 +29,10 @@ public class DevicesSAXBuilder extends AbstractDeviceBuilder {
      */
     private static final Logger LOGGER
             = LogManager.getLogger(DeviceHandler.class);
-
+    /**
+     * Message if we get issue with parsers.
+     */
+    private static final String PARSING_ISSUE = "Parsing issue.";
     /**
      * Constructor initializes parser property and deviceHandler property.
      */
@@ -40,7 +43,7 @@ public class DevicesSAXBuilder extends AbstractDeviceBuilder {
         } catch (ParserConfigurationException e) {
             LOGGER.error("Issue of configuration parser.");
         } catch (SAXException e) {
-            LOGGER.error("Parsing failure.");
+            LOGGER.error(PARSING_ISSUE);
         }
     }
 
@@ -58,7 +61,7 @@ public class DevicesSAXBuilder extends AbstractDeviceBuilder {
         } catch (ParserConfigurationException e) {
             LOGGER.error("Issue of configuration parser.");
         } catch (SAXException e) {
-            LOGGER.error("Parsing failure.");
+            LOGGER.error(PARSING_ISSUE);
         }
     }
 
@@ -72,8 +75,9 @@ public class DevicesSAXBuilder extends AbstractDeviceBuilder {
     public void buildListDevices(final String fileName) {
         try {
             parser.parse(new File(fileName), deviceHandler);
+            LOGGER.info("Parsing by DOM parser was successfully done!");
         } catch (SAXException e) {
-            LOGGER.error("Parsing failure.");
+            LOGGER.error(PARSING_ISSUE);
         } catch (IOException e) {
             LOGGER.error("File failure.");
         }

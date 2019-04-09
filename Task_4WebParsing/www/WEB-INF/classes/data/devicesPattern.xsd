@@ -13,7 +13,7 @@
     <element name="devices">
         <complexType>
             <sequence>
-                <element ref="tns:device" minOccurs="1"
+                <element ref="tns:device" minOccurs="2"
                          maxOccurs="unbounded"/>
             </sequence>
         </complexType>
@@ -81,7 +81,7 @@
             <element name="groupOfComplects" type="string" default="absent"/>
         </all>
         <attribute name="cooler" type="boolean" use="required"/>
-        <attribute name="critical" type="boolean" use="optional"/>
+        <attribute name="critical" type="boolean"/>
         <attribute name="ports" use="required">
             <simpleType>
                 <restriction base="string">

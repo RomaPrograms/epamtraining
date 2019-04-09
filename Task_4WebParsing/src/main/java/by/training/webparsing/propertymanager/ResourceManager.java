@@ -12,28 +12,29 @@ public final class ResourceManager {
      */
     public static final ResourceManager INSTANCE = new ResourceManager();
     /**
-     * Instance of {@code ResourceBundle} class for using different language.
+     * Instance of {@code ResourceBundle} class for using different
+     * languageProp.
      */
     private ResourceBundle resourceBundle;
     /**
      * Name of resource with text on different languages.
      */
-    private static final String resourceName = "property.text";
+    private static final String RESOURCE_NAME = "property.text";
 
     /**
      * Constructor of ResourceManager that initialize resourceBundle property.
      */
     private ResourceManager() {
-        resourceBundle = ResourceBundle.getBundle(resourceName,
+        resourceBundle = ResourceBundle.getBundle(RESOURCE_NAME,
                 Locale.getDefault());
     }
 
     /**
-     * Method that changes language of text form resource bundle.
-     * @param locale - locale of Country whose language we will use
+     * Method that changes languageProp of text form resource bundle.
+     * @param locale - locale of Country whose languageProp we will use
      */
     public void changeResource(final Locale locale) {
-        resourceBundle = ResourceBundle.getBundle(resourceName, locale);
+        resourceBundle = ResourceBundle.getBundle(RESOURCE_NAME, locale);
     }
 
     /**

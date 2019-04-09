@@ -1,15 +1,14 @@
-package by.training.auction.programexception;
+package by.training.webparsing.exception;
 
 /**ProgramException is class with Exceptions.
  * @author Roman
  * @version 1.0
  */
-public class ProgramException extends Exception {
-
+public class ParsingException extends Exception {
     /**
      * Constructor - creates exception.
      */
-    public ProgramException() {
+    public ParsingException() {
     }
 
     /**
@@ -18,7 +17,7 @@ public class ProgramException extends Exception {
      * @param str - message
      * @param exception - exception
      */
-    public ProgramException(final String str, final Throwable exception) {
+    public ParsingException(final String str, final Throwable exception) {
         super(str, exception);
     }
 
@@ -26,7 +25,7 @@ public class ProgramException extends Exception {
      * Constructor with exception.
      * @param exception - exception
      */
-    public ProgramException(final Throwable exception) {
+    public ParsingException(final Throwable exception) {
         super(exception);
     }
 
@@ -34,7 +33,7 @@ public class ProgramException extends Exception {
      * Constructor - initialized exception with string and transmit message.
      * @param str - message for Exception
      */
-    public ProgramException(final String str) {
+    public ParsingException(final String str) {
         super(str);
     }
 }

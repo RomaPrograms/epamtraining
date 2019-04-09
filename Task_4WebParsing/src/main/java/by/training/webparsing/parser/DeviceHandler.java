@@ -120,24 +120,7 @@ public class DeviceHandler extends DefaultHandler {
                 isInnerDevice = true;
             } else {
                 if (qName.equals("type")) {
-                    if (isInnerDevice) {
-                        innerDevice.getType().setCooler(Boolean
-                                .parseBoolean(attrs.getValue("cooler")));
-                        innerDevice.getType()
-                                .setCritical(Boolean.parseBoolean(attrs
-                                        .getValue("critical")));
-                        innerDevice.getType()
-                                .setPort(Port.valueOf(attrs
-                                        .getValue("ports")));
-                    } else {
-                        peripheralDevice.getType().setCooler(Boolean
-                                .parseBoolean(attrs.getValue("cooler")));
-                        peripheralDevice.getType()
-                                .setCritical(Boolean.parseBoolean(attrs
-                                        .getValue("critical")));
-                        peripheralDevice.getType().setPort(Port
-                                .valueOf(attrs.getValue("ports")));
-                    }
+                    handleTypeParameter(attrs);
                 } else {
                     Parameter temp = Parameter.valueOf(qName.toUpperCase());
                     if (enumSet.contains(temp)) {
@@ -145,6 +128,31 @@ public class DeviceHandler extends DefaultHandler {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Method which handle data from tag "type".
+     * @param attrs - attributes of type tag
+     */
+    private void handleTypeParameter(final Attributes attrs) {
+        if (isInnerDevice) {
+            innerDevice.getType().setCooler(Boolean
+                    .parseBoolean(attrs.getValue("cooler")));
+            innerDevice.getType()
+                    .setCritical(Boolean.parseBoolean(attrs
+                            .getValue("critical")));
+            innerDevice.getType()
+                    .setPort(Port.valueOf(attrs
+                            .getValue("ports")));
+        } else {
+            peripheralDevice.getType().setCooler(Boolean
+                    .parseBoolean(attrs.getValue("cooler")));
+            peripheralDevice.getType()
+                    .setCritical(Boolean.parseBoolean(attrs
+                            .getValue("critical")));
+            peripheralDevice.getType().setPort(Port
+                    .valueOf(attrs.getValue("ports")));
         }
     }
 
@@ -168,64 +176,22 @@ public class DeviceHandler extends DefaultHandler {
             if (currentParam != null) {
                 switch (currentParam) {
                     case NAME:
-                        if (isInnerDevice) {
-                            innerDevice.setName(data);
-                        } else {
-                            peripheralDevice.setName(data);
-                        }
+                        setName(data);
                         break;
                     case ORIGIN:
-                        if (isInnerDevice) {
-                            innerDevice.setOrigin(data);
-                        } else {
-                            peripheralDevice.setOrigin(data);
-                        }
+                        setOrigin(data);
                         break;
                     case PRICE:
-                        if (isInnerDevice) {
-                            innerDevice.setPrice(Double
-                                    .parseDouble(data));
-                        } else {
-                            peripheralDevice.setPrice(Double
-                                    .parseDouble(data));
-                        }
+                        setPrice(data);
                         break;
                     case POWERUSAGE:
-
-                        if (isInnerDevice) {
-                            innerDevice.getType().setPowerUsage(Double
-                                    .parseDouble(data));
-                        } else {
-                            peripheralDevice.getType().setPowerUsage(Double
-                                    .parseDouble(data));
-                        }
+                        setPowerUsage(data);
                         break;
                     case GROUPOFCOMPLECTS:
-
-                        if (isInnerDevice) {
-                            innerDevice.getType().setGroupOfComplects(data);
-                        } else {
-                            peripheralDevice.getType()
-                                    .setGroupOfComplects(data);
-                        }
+                        setGroupOfComplects(data);
                         break;
                     case DATEOFDELIVERY:
-                        String string = new String(ch, start, length);
-                        StringTokenizer tokenizer
-                                = new StringTokenizer(string, "-");
-                        if (isInnerDevice) {
-                            innerDevice.setDateOfDelivery(new
-                                    GregorianCalendar(Integer
-                                    .parseInt(tokenizer.nextToken()),
-                                    Integer.parseInt(tokenizer.nextToken()),
-                                    Integer.parseInt(tokenizer.nextToken())));
-                        } else {
-                            peripheralDevice.setDateOfDelivery(new
-                                    GregorianCalendar(Integer
-                                    .parseInt(tokenizer.nextToken()),
-                                    Integer.parseInt(tokenizer.nextToken()),
-                                    Integer.parseInt(tokenizer.nextToken())));
-                        }
+                        setDateOfDelivery(new String(ch, start, length));
                         break;
                     case CONNECTION:
                         peripheralDevice.setConnection(Connection
@@ -240,11 +206,96 @@ public class DeviceHandler extends DefaultHandler {
                 }
                 currentParam = null;
             }
-        } catch (EnumConstantNotPresentException e) {
+        } catch (IllegalArgumentException | EnumConstantNotPresentException e) {
             LOGGER.error(e.getMessage());
         }
     }
 
+    /**
+     * Method sets name of device.
+     * @param data - name of device
+     */
+    private void setName(final String data) {
+        if (isInnerDevice) {
+            innerDevice.setName(data);
+        } else {
+            peripheralDevice.setName(data);
+        }
+    }
+
+    /**
+     * Method sets origin of device.
+     * @param data - origin of device
+     */
+    private void setOrigin(final String data) {
+        if (isInnerDevice) {
+            innerDevice.setOrigin(data);
+        } else {
+            peripheralDevice.setOrigin(data);
+        }
+    }
+
+    /**
+     * Method sets price of device.
+     * @param data - price of device
+     */
+    private void setPrice(final String data) {
+        if (isInnerDevice) {
+            innerDevice.setPrice(Double
+                    .parseDouble(data));
+        } else {
+            peripheralDevice.setPrice(Double
+                    .parseDouble(data));
+        }
+    }
+
+    /**
+     * Method sets power usage of device.
+     * @param data - power usage of device
+     */
+    private void setPowerUsage(final String data) {
+        if (isInnerDevice) {
+            innerDevice.getType().setPowerUsage(Double
+                    .parseDouble(data));
+        } else {
+            peripheralDevice.getType().setPowerUsage(Double
+                    .parseDouble(data));
+        }
+    }
+
+    /**
+     * Method sets group of complects of device.
+     * @param data - group of complects of device
+     */
+    private void setGroupOfComplects(final String data) {
+        if (isInnerDevice) {
+            innerDevice.getType().setGroupOfComplects(data);
+        } else {
+            peripheralDevice.getType()
+                    .setGroupOfComplects(data);
+        }
+    }
+    /**
+     * Method sets date of delivery of device.
+     * @param string - date of delivery
+     */
+    private void setDateOfDelivery(final String string) {
+        StringTokenizer tokenizer
+                = new StringTokenizer(string, "-");
+        if (isInnerDevice) {
+            innerDevice.setDateOfDelivery(new
+                    GregorianCalendar(Integer
+                    .parseInt(tokenizer.nextToken()),
+                    Integer.parseInt(tokenizer.nextToken()),
+                    Integer.parseInt(tokenizer.nextToken())));
+        } else {
+            peripheralDevice.setDateOfDelivery(new
+                    GregorianCalendar(Integer
+                    .parseInt(tokenizer.nextToken()),
+                    Integer.parseInt(tokenizer.nextToken()),
+                    Integer.parseInt(tokenizer.nextToken())));
+        }
+    }
     /**
      * Receive notification of the end of an element.
      *

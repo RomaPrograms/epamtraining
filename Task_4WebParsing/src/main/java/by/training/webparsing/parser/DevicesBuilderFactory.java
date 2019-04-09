@@ -1,5 +1,6 @@
 package by.training.webparsing.parser;
 
+import by.training.webparsing.exception.ParsingException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,11 +41,13 @@ public class DevicesBuilderFactory {
      * @param typeParser - type of parser
      * @return returns instance of class that will parse data by type that we
      * chose
+     * @throws ParsingException - some problems with parsers
      */
-    public AbstractDeviceBuilder createDeviceBuilder(final String
-                                                             typeParser) {
+    public AbstractDeviceBuilder createDeviceBuilder(
+            final String typeParser) throws ParsingException {
         try {
             TypeParser type = TypeParser.valueOf(typeParser.toUpperCase());
+
             switch (type) {
                 case DOM:
                     return new DevicesDOMBuilder();
@@ -56,9 +59,10 @@ public class DevicesBuilderFactory {
                     throw new EnumConstantNotPresentException(type
                             .getDeclaringClass(), type.name());
             }
-        } catch (EnumConstantNotPresentException e) { //TODO Is it necessarily to use our oun Exceptions?
+        } catch (IllegalArgumentException | EnumConstantNotPresentException e) {
             LOGGER.error("Such type of parsing doesn't exist!");
         }
-        return null; //TODO What can I return instead of NULL in such situation?
+
+        throw new ParsingException("Type of parser was chosen incorrectly.");
     }
 }

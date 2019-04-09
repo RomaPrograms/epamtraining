@@ -71,7 +71,7 @@ public class DevicesDOMBuilder extends AbstractDeviceBuilder {
      */
     @Override
     public void buildListDevices(final String fileName) {
-        Document document = null;
+        Document document;
         try {
             document = docBuilder.parse(new File(fileName));
             NodeList peripheralDevices = document.getDocumentElement()
@@ -88,6 +88,8 @@ public class DevicesDOMBuilder extends AbstractDeviceBuilder {
                 Node node = innerDevices.item(i);
                 getDevices().add(createInnerDevice(node));
             }
+
+            LOGGER.info("Parsing by DOM parser was successfully done!");
         } catch (IOException e) {
             LOGGER.error("File error or I/O error.");
         } catch (SAXException e) {

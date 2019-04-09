@@ -13,23 +13,36 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 </head>
 <body>
+
+<%--<a href=${path}>english</a>
+<br><a href=${"timeaction?button2=DOM+Parser&lang=be_BY"}>belorussian</a>
+<br><a href=${"timeaction?button2=DOM+Parser&lang=ru_RU"}>russian</a>
+
+<c:if test="${lang == null}">
+    <c:redirect url="http://localhost:8080/webParsingApp/timeaction?button2=DOM+Parser&lang=en_US"/>
+</c:if>--%>
+
+<c:if test="${lang == null}">
+    <c:redirect url="http://localhost:8080/webParsingApp/timeaction?button2=DOM+Parser&lang=en_US"/>
+</c:if>
+
 <table align="center">
     <tr>
         <td colspan="12"><h1>Computer elements</h1></td>
     </tr>
     <tr>
-        <th>Name of element</th>
-        <th>Origin</th>
-        <th>Price</th>
-        <th>Type</th>
-        <th>Power usage</th>
-        <th>Cooler</th>
-        <th>Component group</th>
-        <th>Port</th>
-        <th>Critical</th>
-        <th>Connection</th>
-        <th>Version</th>
-        <th>Date of delivery</th>
+        <th>${nameOfElemProp}</th>
+        <th>${originProp}</th>
+        <th>${priceProp}</th>
+        <th>${typeProp}</th>
+        <th>${powerUsageProp}</th>
+        <th>${coolerProp}</th>
+        <th>${componentGroupProp}</th>
+        <th>${portProp}</th>
+        <th>${criticalProp}</th>
+        <th>${connectionProp}</th>
+        <th>${versionProp}</th>
+        <th>${dateOfDeliveryProp}</th>
     </tr>
 
     <c:set var="peripheralDevice" scope="page" value="PeripheralDevice"/>

@@ -1,0 +1,5 @@
+2019-04-09 21:08:02,085 INFO  [main] parser.DeviceHandler (DeviceHandler.java:88) - Parsing xml-file began by Sax parser.
+2019-04-09 21:08:02,116 INFO  [main] parser.DeviceHandler (DeviceHandler.java:333) - Parsing xml-file ended by Sax parser.
+2019-04-09 21:08:02,116 INFO  [main] parser.DevicesSAXBuilder (DevicesSAXBuilder.java:78) - Parsing by DOM parser was successfully done!
+2019-04-09 21:08:02,158 INFO  [main] parser.DevicesStAXBuilder (DevicesStAXBuilder.java:84) - Parsing by DOM parser was successfully done!
+2019-04-09 21:08:02,173 INFO  [main] parser.DevicesDOMBuilder (DevicesDOMBuilder.java:92) - Parsing by DOM parser was successfully done!

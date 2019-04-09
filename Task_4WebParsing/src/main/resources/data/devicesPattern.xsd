@@ -74,7 +74,7 @@
             <element name="powerUsage" default="1">
                 <simpleType>
                     <restriction base="int">
-                        <minInclusive value="1"/>
+                        <minInclusive value="0"/>
                     </restriction>
                 </simpleType>
             </element>

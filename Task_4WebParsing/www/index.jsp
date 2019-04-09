@@ -16,7 +16,8 @@
 </c:if>
 
 <c:if test="${lang == null}">
-    <c:redirect url="http://localhost:8080/webParsingApp/timeaction?lang=en_US"/>
+    <c:redirect
+            url="http://localhost:8080/webParsingApp/timeaction?lang=en_US"/>
 </c:if>
 
 <form name="Simple" action="timeaction" method="GET">

@@ -20,11 +20,11 @@
         <origin>Russia</origin>
         <price>150</price>
         <type cooler="false" critical="true" ports="COM">
-            <powerUsage>400</powerUsage>
+            <powerUsage>321</powerUsage>
             <groupOfComplects>video card</groupOfComplects>
         </type>
         <dateOfDelivery>2014-09-11</dateOfDelivery>
-        <version>version-1.4</version>
+        <version>version-2.6</version>
     </innerDevice>
 
     <peripheralDevice>
@@ -35,8 +35,163 @@
             <powerUsage>50</powerUsage>
             <groupOfComplects>web-camera</groupOfComplects>
         </type>
-        <dateOfDelivery>2013-05-25</dateOfDelivery>
+        <dateOfDelivery>2006-05-25</dateOfDelivery>
         <connection>Wire</connection>
     </peripheralDevice>
 
+    <peripheralDevice>
+        <name> SVEN AP-U988MV</name>
+        <origin>Belarus</origin>
+        <price>146</price>
+        <type cooler="false" critical="false" ports="USB">
+            <powerUsage>35</powerUsage>
+            <groupOfComplects>input-output device</groupOfComplects>
+        </type>
+        <dateOfDelivery>2007-11-02</dateOfDelivery>
+        <connection>Bluetooth</connection>
+    </peripheralDevice>
+
+    <innerDevice>
+        <name>Zalman I3 Edge</name>
+        <origin>Albania</origin>
+        <price>60</price>
+        <type cooler="true" critical="false" ports="USB">
+            <powerUsage>0</powerUsage>
+            <groupOfComplects>computer block</groupOfComplects>
+        </type>
+        <dateOfDelivery>2008-09-11</dateOfDelivery>
+        <version>version-0.0</version>
+    </innerDevice>
+
+    <peripheralDevice>
+        <name>SVEN AP-U980MV</name>
+        <origin>China</origin>
+        <price>227</price>
+        <type cooler="false" ports="USB">
+            <powerUsage>25</powerUsage>
+            <groupOfComplects>input-output device</groupOfComplects>
+        </type>
+        <dateOfDelivery>2009-05-25</dateOfDelivery>
+        <connection>Wire</connection>
+    </peripheralDevice>
+
+    <peripheralDevice>
+        <name>Doom Keeper GK-1123DL</name>
+        <origin>Belarus</origin>
+        <price>36</price>
+        <type cooler="true" critical="false" ports="USB">
+            <powerUsage>423</powerUsage>
+            <groupOfComplects>input-output device</groupOfComplects>
+        </type>
+        <dateOfDelivery>2014-11-02</dateOfDelivery>
+        <connection>Bluetooth</connection>
+    </peripheralDevice>
+
+    <innerDevice>
+        <name>ASUS Mining Radeon 2000 8GB GDDR5</name>
+        <origin>Russia</origin>
+        <price>150</price>
+        <type cooler="false" critical="true" ports="COM">
+            <powerUsage>367</powerUsage>
+            <groupOfComplects>video card</groupOfComplects>
+        </type>
+        <dateOfDelivery>2019-02-25</dateOfDelivery>
+        <version>version-1.1</version>
+    </innerDevice>
+
+    <peripheralDevice>
+        <name>Logitech C922 (960-001088)</name>
+        <origin>China</origin>
+        <price>265</price>
+        <type cooler="false" ports="USB">
+            <powerUsage>69</powerUsage>
+            <groupOfComplects>web-camera</groupOfComplects>
+        </type>
+        <dateOfDelivery>2015-08-18</dateOfDelivery>
+        <connection>Wire</connection>
+    </peripheralDevice>
+
+    <peripheralDevice>
+        <name>Keeper GK-100DL</name>
+        <origin>Belarus</origin>
+        <price>178</price>
+        <type cooler="true" critical="false" ports="USB">
+            <powerUsage>563</powerUsage>
+            <groupOfComplects>input-output device</groupOfComplects>
+        </type>
+        <dateOfDelivery>2013-04-14</dateOfDelivery>
+        <connection>Bluetooth</connection>
+    </peripheralDevice>
+
+    <innerDevice>
+        <name>Radeon RX 899 8GB GDDR5</name>
+        <origin>Russia</origin>
+        <price>150</price>
+        <type cooler="false" critical="true" ports="COM">
+            <powerUsage>444</powerUsage>
+            <groupOfComplects>video card</groupOfComplects>
+        </type>
+        <dateOfDelivery>2010-11-13</dateOfDelivery>
+        <version>version-0.9</version>
+    </innerDevice>
+
+    <peripheralDevice>
+        <name>C222 (960-001088)</name>
+        <origin>China</origin>
+        <price>227</price>
+        <type cooler="false" ports="USB">
+            <powerUsage>67</powerUsage>
+            <groupOfComplects>web-camera</groupOfComplects>
+        </type>
+        <dateOfDelivery>2015-01-29</dateOfDelivery>
+        <connection>Wire</connection>
+    </peripheralDevice>
+
+    <peripheralDevice>
+        <name>Defender Keeper GK-50DL</name>
+        <origin>Belarus</origin>
+        <price>333</price>
+        <type cooler="true" critical="false" ports="USB">
+            <powerUsage>499</powerUsage>
+            <groupOfComplects>input-output device</groupOfComplects>
+        </type>
+        <dateOfDelivery>2017-12-23</dateOfDelivery>
+        <connection>Bluetooth</connection>
+    </peripheralDevice>
+
+    <innerDevice>
+        <name>ASUS Mining Radeon RX 580 8GB GDDR5</name>
+        <origin>Russia</origin>
+        <price>458</price>
+        <type cooler="false" critical="true" ports="COM">
+            <powerUsage>167</powerUsage>
+            <groupOfComplects>video card</groupOfComplects>
+        </type>
+        <dateOfDelivery>2018-02-06</dateOfDelivery>
+        <version>version-0.5</version>
+    </innerDevice>
+
+    <peripheralDevice>
+        <name>Logitech C922 (960-001088)</name>
+        <origin>China</origin>
+        <price>227</price>
+        <type cooler="false" ports="USB">
+            <powerUsage>50</powerUsage>
+            <groupOfComplects>web-camera</groupOfComplects>
+        </type>
+        <dateOfDelivery>2013-06-15</dateOfDelivery>
+        <connection>WiFi</connection>
+    </peripheralDevice>
+
+    <innerDevice>
+        <name>C-Media 8738-SX 4</name>
+        <origin>Russia</origin>
+        <price>50</price>
+        <type cooler="false" critical="true" ports="USB">
+            <powerUsage>45</powerUsage>
+            <groupOfComplects>sound card</groupOfComplects>
+        </type>
+        <dateOfDelivery>2013-07-10</dateOfDelivery>
+        <version>version-2.5</version>
+    </innerDevice>
 </devices>

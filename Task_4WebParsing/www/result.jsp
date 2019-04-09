@@ -19,30 +19,32 @@
 <br><a href=${"timeaction?button2=DOM+Parser&lang=ru_RU"}>russian</a>
 
 <c:if test="${lang == null}">
-    <c:redirect url="http://localhost:8080/webParsingApp/timeaction?button2=DOM+Parser&lang=en_US"/>
-</c:if>--%>
+    <c:redirect url="http://localhost:8080/webParsingApp/
+    timeaction?button2=DOM+Parser&lang=en_US"/>
+</c:if>
 
 <c:if test="${lang == null}">
-    <c:redirect url="http://localhost:8080/webParsingApp/timeaction?button2=DOM+Parser&lang=en_US"/>
-</c:if>
+    <c:redirect url="http://localhost:8080/webParsingApp/
+    timeaction?button2=DOM+Parser&lang=en_US"/>
+</c:if>--%>
 
 <table align="center">
     <tr>
         <td colspan="12"><h1>Computer elements</h1></td>
     </tr>
     <tr>
-        <th>${nameOfElemProp}</th>
-        <th>${originProp}</th>
-        <th>${priceProp}</th>
-        <th>${typeProp}</th>
-        <th>${powerUsageProp}</th>
-        <th>${coolerProp}</th>
-        <th>${componentGroupProp}</th>
-        <th>${portProp}</th>
-        <th>${criticalProp}</th>
-        <th>${connectionProp}</th>
-        <th>${versionProp}</th>
-        <th>${dateOfDeliveryProp}</th>
+        <th>Name of element</th>
+        <th>Origin</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Power usage</th>
+        <th>Cooler</th>
+        <th>Component group</th>
+        <th>Port</th>
+        <th>Critical</th>
+        <th>Connection</th>
+        <th>Version</th>
+        <th>Date of delivery</th>
     </tr>
 
     <c:set var="peripheralDevice" scope="page" value="PeripheralDevice"/>
@@ -54,10 +56,12 @@
             <td><c:out value="${ elem.getName()}" /></td>
             <td><c:out value="${ elem.getOrigin()}" /></td>
             <td><c:out value="${ elem.getPrice()}" /></td>
-            <c:if test="${ elem.getClass().getSimpleName().equals(peripheralDevice)}">
+            <c:if test="${ elem.getClass().getSimpleName()
+            .equals(peripheralDevice)}">
                 <td><c:out value="${ peripheralDevice}" /></td>
             </c:if>
-            <c:if test="${ elem.getClass().getSimpleName().equals(innerDevice)}">
+            <c:if test="${ elem.getClass().getSimpleName()
+            .equals(innerDevice)}">
                 <td><c:out value="${ innerDevice}" /></td>
             </c:if>
             <td><c:out value="${ elem.getType().isCooler()}" /></td>
@@ -65,15 +69,18 @@
             <td><c:out value="${ elem.getType().getPowerUsage()}" /></td>
             <td><c:out value="${ elem.getType().getGroupOfComplects()}" /></td>
             <td><c:out value="${ elem.getType().getPort().toString()}" /></td>
-            <c:if test="${elem.getClass().getSimpleName().equals(peripheralDevice)}">
+            <c:if test="${elem.getClass().getSimpleName()
+            .equals(peripheralDevice)}">
                 <td><c:out value="${ elem.getConnection().getValue()}"/></td>
                 <td><c:out value=""/></td>
             </c:if>
-            <c:if test="${ elem.getClass().getSimpleName().equals(innerDevice)}">
+            <c:if test="${ elem.getClass().getSimpleName()
+            .equals(innerDevice)}">
                 <td><c:out value="" /></td>
                 <td><c:out value="${ elem.getVersion()}" /></td>
             </c:if>
-            <td><c:out value="${ df.format(elem.getDateOfDelivery().getTime())}" /></td>
+            <td><c:out value="${ df.format(elem.getDateOfDelivery()
+            .getTime())}" /></td>
         </tr>
     </c:forEach>
 </table>

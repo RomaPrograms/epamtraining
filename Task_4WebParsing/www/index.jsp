@@ -21,9 +21,9 @@
 </c:if>
 
 <form name="Simple" action="timeaction" method="GET">
-    <input type="submit" name="button1" value="SAX Parser"/>
-    <input type="submit" name="button2" value="DOM Parser"/>
-    <input type="submit" name="button3" value="StAX Parser"/>
+    <input type="submit" name="button1" value="sax"/>
+    <input type="submit" name="button1" value="dom"/>
+    <input type="submit" name="button1" value="stax"/>
 </form>
 </body>
 </html>

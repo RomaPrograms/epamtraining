@@ -19,7 +19,7 @@
 
     <servlet>
         <servlet-name>ParsingName</servlet-name>
-        <servlet-class>by.training.webparsing.webmain.TimeServlet</servlet-class>
+        <servlet-class>by.training.webparsing.webmain.ParsingServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

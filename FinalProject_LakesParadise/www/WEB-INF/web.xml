@@ -10,7 +10,7 @@
         Parsing files app.
     </description>
 
-    <display-name>HelloWorld app</display-name>
+    <display-name>LakesParadise app</display-name>
 
     <request-character-encoding>UTF-8</request-character-encoding>
 
@@ -18,15 +18,15 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <!--<servlet>
+    <servlet>
         <servlet-name>FirstServlet</servlet-name>
-        <servlet-class>by.training.lakesParadise.servlet</servlet-class>
+        <servlet-class>by.training.lakesParadise.servlet.LakesParadise</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>FirstServlet</servlet-name>
-        <url-pattern>/timeaction</url-pattern>
-    </servlet-mapping>-->
+        <url-pattern>/firstAction</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>

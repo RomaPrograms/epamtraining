@@ -5,7 +5,7 @@
 <html>
 <body>
 
-<form name="Simple" action="timeaction" method="GET">
+<form name="Simple" action="firstAction" method="GET">
     <input type="submit" name="button1" value="sax"/>
     <input type="submit" name="button1" value="dom"/>
     <input type="submit" name="button1" value="stax"/>

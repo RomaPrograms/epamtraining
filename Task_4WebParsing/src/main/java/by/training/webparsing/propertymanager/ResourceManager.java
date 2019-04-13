@@ -1,6 +1,5 @@
 package by.training.webparsing.propertymanager;
 
-import java.sql.Driver;
 import java.util.Locale;
 import java.util.ResourceBundle;
 

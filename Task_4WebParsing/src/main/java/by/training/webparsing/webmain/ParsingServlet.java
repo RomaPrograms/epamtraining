@@ -73,8 +73,10 @@ public class ParsingServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Type of parser which we chose.
+     */
     private static String typeOfParser;
-    private static String langSelectBox;
 
     /**
      * Method that we will call in {@code doPost} and {@code doGet} methods for
@@ -94,11 +96,8 @@ public class ParsingServlet extends HttpServlet {
             ResourceManager resourceManager
                     = ResourceManager.INSTANCE;
 
-            if (request.getParameter("button1") != null) {
-                typeOfParser = request.getParameter("button1");
-            }
-
-            if (request.getParameter("lang")!=null) {
+            setTypeOfParser(request);
+            if (request.getParameter("lang") != null) {
                 String[] currentLang = request
                         .getParameter("lang").split("_");
                 String language = currentLang[0];
@@ -119,7 +118,7 @@ public class ParsingServlet extends HttpServlet {
                     + "\\devices.xml");
 
             String typeOfLanguage;
-            if (request.getParameter("chooser")!=null) {
+            if (request.getParameter("chooser") != null) {
                typeOfLanguage = request.getParameter("chooser");
             } else {
                 typeOfLanguage = "en_EN";
@@ -137,6 +136,16 @@ public class ParsingServlet extends HttpServlet {
 
         } catch (ParsingException e) {
             LOGGER.error(e.getMessage());
+        }
+    }
+
+    /**
+     * method sets type of parser when we change it.
+     * @param request - request to servlet
+     */
+    public static void setTypeOfParser(final HttpServletRequest request) {
+        if (request.getParameter("button1") != null) {
+            typeOfParser = request.getParameter("button1");
         }
     }
 }

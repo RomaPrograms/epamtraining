@@ -16,7 +16,14 @@ import java.util.List;
 public class ProfileDaoRealization implements ProfileDao {
 
     private static final Logger LOGGER
-            = LogManager.getLogger(HomesteadDaoRealization.class);
+            = LogManager.getLogger(ProfileDaoRealization.class);
+
+    private static final String CLOSE_RESULT_SET_EXCEPTION
+            = "Impossible to close ResultSet.";
+    private static final String CLOSE_STATEMENT_EXCEPTION
+            = "Impossible to close Statement.";
+    private static final String SQL_EXCEPTION
+            = "Some exception connected with SQL.";
 
     @Override
     public Profile read(String login, String password) {
@@ -43,17 +50,21 @@ public class ProfileDaoRealization implements ProfileDao {
 
             return profile;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -84,17 +95,21 @@ public class ProfileDaoRealization implements ProfileDao {
 
             return profiles;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -120,21 +135,25 @@ public class ProfileDaoRealization implements ProfileDao {
             if(resultSet.next()) {
                 return resultSet.getInt(1);
             } else {
-                //logger.error("There is no autoincremented index after trying to add record into table `users`");
+                LOGGER.error("There is no autoincremented index after trying to add record into table `users`");
                 //throw new PersistentException();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -163,17 +182,21 @@ public class ProfileDaoRealization implements ProfileDao {
 
             return profile;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -195,12 +218,14 @@ public class ProfileDaoRealization implements ProfileDao {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
     }
@@ -217,12 +242,14 @@ public class ProfileDaoRealization implements ProfileDao {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
     }

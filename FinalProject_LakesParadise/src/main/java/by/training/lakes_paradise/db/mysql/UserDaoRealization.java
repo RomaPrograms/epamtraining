@@ -3,12 +3,25 @@ package by.training.lakes_paradise.db.mysql;
 import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.UserDao;
 import by.training.lakes_paradise.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoRealization implements UserDao {
+
+    private static final Logger LOGGER
+            = LogManager.getLogger(UserDaoRealization.class);
+
+    private static final String CLOSE_RESULT_SET_EXCEPTION
+            = "Impossible to close ResultSet.";
+    private static final String CLOSE_STATEMENT_EXCEPTION
+            = "Impossible to close Statement.";
+    private static final String SQL_EXCEPTION
+            = "Some exception connected with SQL.";
+
     @Override
     public List<User> read() {
         String sql = "select id, name, surname, phone, town from users";
@@ -35,17 +48,21 @@ public class UserDaoRealization implements UserDao {
 
             return users;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -73,21 +90,25 @@ public class UserDaoRealization implements UserDao {
             if (resultSet.next()) {
                 return resultSet.getInt(1);
             } else {
-                //logger.error("There is no autoincremented index after trying to add record into table `readers`");
+                LOGGER.error("There is no autoincremented index after trying to add record into table `readers`");
                 //throw new PersistentException();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -116,17 +137,21 @@ public class UserDaoRealization implements UserDao {
 
             return user;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -149,12 +174,14 @@ public class UserDaoRealization implements UserDao {
             statement.setInt(5, entity.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
     }
@@ -171,12 +198,14 @@ public class UserDaoRealization implements UserDao {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
     }

@@ -20,6 +20,13 @@ public class HomesteadDaoRealization implements HomesteadDao {
     private static final Logger LOGGER
             = LogManager.getLogger(HomesteadDaoRealization.class);
 
+    private static final String CLOSE_RESULT_SET_EXCEPTION
+            = "Impossible to close ResultSet.";
+    private static final String CLOSE_STATEMENT_EXCEPTION
+            = "Impossible to close Statement.";
+    private static final String SQL_EXCEPTION
+            = "Some exception connected with SQL.";
+
     @Override
     public List<Homestead> findByTitle(String title) {
         String sql = "SELECT id, title, status, price, description, rating,"
@@ -58,17 +65,21 @@ public class HomesteadDaoRealization implements HomesteadDao {
 
             return homesteads;
         } catch (SQLException e) {
-            e.printStackTrace();
+           LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
         return null;
@@ -112,17 +123,21 @@ public class HomesteadDaoRealization implements HomesteadDao {
 
             return homesteads;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
         return null;
@@ -158,17 +173,21 @@ public class HomesteadDaoRealization implements HomesteadDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
         return null;
@@ -207,17 +226,21 @@ public class HomesteadDaoRealization implements HomesteadDao {
             return homestead;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
         } finally {
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
         return null;
@@ -255,17 +278,21 @@ public class HomesteadDaoRealization implements HomesteadDao {
             }
             return list;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException | NullPointerException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException | NullPointerException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
         return null;
@@ -291,12 +318,14 @@ public class HomesteadDaoRealization implements HomesteadDao {
             statement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException | NullPointerException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
     }
@@ -312,12 +341,14 @@ public class HomesteadDaoRealization implements HomesteadDao {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException | NullPointerException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
     }

@@ -18,7 +18,14 @@ import java.util.List;
 public class OrderDaoRealization implements OrderDao {
 
     private static final Logger LOGGER
-            = LogManager.getLogger(HomesteadDaoRealization.class);
+            = LogManager.getLogger(OrderDaoRealization.class);
+
+    private static final String CLOSE_RESULT_SET_EXCEPTION
+            = "Impossible to close ResultSet.";
+    private static final String CLOSE_STATEMENT_EXCEPTION
+            = "Impossible to close Statement.";
+    private static final String SQL_EXCEPTION
+            = "Some exception connected with SQL.";
 
     @Override
     public List<Order> readByProfile(Integer profileId) {
@@ -58,17 +65,21 @@ public class OrderDaoRealization implements OrderDao {
 
             return orders;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -112,17 +123,21 @@ public class OrderDaoRealization implements OrderDao {
 
             return orders;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -165,17 +180,21 @@ public class OrderDaoRealization implements OrderDao {
 
             return orders;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -209,17 +228,21 @@ public class OrderDaoRealization implements OrderDao {
                 //here I should throw an exception.
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -259,17 +282,21 @@ public class OrderDaoRealization implements OrderDao {
 
             return order;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             }
         }
         return null;
@@ -296,12 +323,14 @@ public class OrderDaoRealization implements OrderDao {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
     }
@@ -318,12 +347,14 @@ public class OrderDaoRealization implements OrderDao {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(SQL_EXCEPTION);
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
     }

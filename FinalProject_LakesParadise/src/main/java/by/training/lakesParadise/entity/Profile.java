@@ -1,6 +1,6 @@
 package by.training.lakesParadise.entity;
 
-public class Profiles extends User{
+public class Profile extends User{
     private String login;
     private String password;
     private Integer orders;

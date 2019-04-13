@@ -1,8 +1,6 @@
-package by.training.lakesParadise.db.dao;
+package by.training.lakes_paradise.db.dao;
 
-import by.training.lakesParadise.entity.Entity;
-
-import java.util.List;
+import by.training.lakes_paradise.entity.Entity;
 
 public interface Dao<Type extends Entity> {
     Integer create(Type entity);

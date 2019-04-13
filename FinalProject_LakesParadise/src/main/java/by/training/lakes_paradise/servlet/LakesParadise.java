@@ -1,13 +1,11 @@
-package by.training.lakesParadise.servlet;
+package by.training.lakes_paradise.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
-import java.util.Locale;
 
 @WebServlet("/firstAction")
 public class LakesParadise extends HttpServlet{

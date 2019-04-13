@@ -1,6 +1,6 @@
-package by.training.lakesParadise.db.dao;
+package by.training.lakes_paradise.db.dao;
 
-import by.training.lakesParadise.entity.User;
+import by.training.lakes_paradise.entity.User;
 
 import java.util.List;
 

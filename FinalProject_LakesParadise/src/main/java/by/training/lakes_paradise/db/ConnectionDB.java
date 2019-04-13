@@ -1,4 +1,4 @@
-package by.training.lakesParadise.db;
+package by.training.lakes_paradise.db;
 
 import java.util.ResourceBundle;
 import java.sql.*;

@@ -1,4 +1,4 @@
-package by.training.lakesParadise.entity;
+package by.training.lakes_paradise.entity;
 
 import java.io.Serializable;
 

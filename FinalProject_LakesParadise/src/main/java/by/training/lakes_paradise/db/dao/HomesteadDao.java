@@ -1,6 +1,6 @@
-package by.training.lakesParadise.db.dao;
+package by.training.lakes_paradise.db.dao;
 
-import by.training.lakesParadise.entity.Homestead;
+import by.training.lakes_paradise.entity.Homestead;
 
 import java.math.BigDecimal;
 import java.util.List;

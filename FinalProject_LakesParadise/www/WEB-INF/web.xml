@@ -20,7 +20,7 @@
 
     <servlet>
         <servlet-name>FirstServlet</servlet-name>
-        <servlet-class>by.training.lakesParadise.servlet.LakesParadise</servlet-class>
+        <servlet-class>by.training.lakes_paradise.servlet.LakesParadise</servlet-class>
     </servlet>
 
     <servlet-mapping>

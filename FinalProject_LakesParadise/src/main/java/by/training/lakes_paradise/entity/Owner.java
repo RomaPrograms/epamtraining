@@ -1,4 +1,4 @@
-package by.training.lakesParadise.entity;
+package by.training.lakes_paradise.entity;
 
 public class Owner extends Entity{
     private String name;

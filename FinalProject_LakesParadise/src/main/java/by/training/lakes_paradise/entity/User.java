@@ -1,6 +1,6 @@
-package by.training.lakesParadise.entity;
+package by.training.lakes_paradise.entity;
 
-public class User extends Entity {
+public class User extends Entity{
     private String name;
     private String surname;
     private String phone;
@@ -36,5 +36,15 @@ public class User extends Entity {
 
     public void setTown(String town) {
         this.town = town;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "\nname='" + name + '\'' +
+                ", \nsurname='" + surname + '\'' +
+                ", \nphone='" + phone + '\'' +
+                ", \ntown='" + town + '\'' +
+                "\n}";
     }
 }

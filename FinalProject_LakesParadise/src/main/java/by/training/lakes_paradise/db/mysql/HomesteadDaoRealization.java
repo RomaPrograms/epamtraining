@@ -1,9 +1,9 @@
-package by.training.lakesParadise.db.mysql;
+package by.training.lakes_paradise.db.mysql;
 
-import by.training.lakesParadise.db.ConnectionDB;
-import by.training.lakesParadise.db.dao.HomesteadDao;
-import by.training.lakesParadise.entity.Homestead;
-import by.training.lakesParadise.entity.Owner;
+import by.training.lakes_paradise.db.ConnectionDB;
+import by.training.lakes_paradise.db.dao.HomesteadDao;
+import by.training.lakes_paradise.entity.Homestead;
+import by.training.lakes_paradise.entity.Owner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +22,7 @@ public class HomesteadDaoRealization implements HomesteadDao {
 
     @Override
     public List<Homestead> findByTitle(String title) {
-        String sql = "SELECT title, status, price, description, rating,"
+        String sql = "SELECT id, title, status, price, description, rating,"
                 + " id_owner FROM homestead WHERE title = (?)";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -40,6 +40,7 @@ public class HomesteadDaoRealization implements HomesteadDao {
 
             while(resultSet.next()) {
                 homestead = new Homestead();
+                homestead.setId(resultSet.getInt("id"));
                 homestead.setTitle(resultSet.getString("title"));
                 homestead.setStatus(resultSet.getBoolean("status"));
                 homestead.setPrice(resultSet.getBigDecimal("price"));
@@ -76,7 +77,7 @@ public class HomesteadDaoRealization implements HomesteadDao {
 
     @Override
     public List<Homestead> findByPrice(BigDecimal minPrice, BigDecimal maxPrice) {
-        String sql = "SELECT title, status, price, description, rating,"
+        String sql = "SELECT id, title, status, price, description, rating,"
                 + " id_owner FROM homestead WHERE price >= (?) AND price <= (?)";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -93,6 +94,7 @@ public class HomesteadDaoRealization implements HomesteadDao {
 
             while(resultSet.next()) {
                 homestead = new Homestead();
+                homestead.setId(resultSet.getInt("id"));
                 homestead.setTitle(resultSet.getString("title"));
                 homestead.setStatus(resultSet.getBoolean("status"));
                 homestead.setPrice(resultSet.getBigDecimal("price"));
@@ -132,11 +134,12 @@ public class HomesteadDaoRealization implements HomesteadDao {
                 + " rating, id_owner) values (?, ?, ?,"
                 + " ?, ?, ?)";
         PreparedStatement statement = null;
-        //ResultSet resultSet = null;
+        ResultSet resultSet = null;
         Connection connection = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql,
+                    Statement.RETURN_GENERATED_KEYS);
 
             statement.setString(1,homestead.getTitle());
             statement.setBoolean(2, homestead.getStatus());
@@ -146,22 +149,22 @@ public class HomesteadDaoRealization implements HomesteadDao {
             statement.setInt(6, homestead.getOwner().getId());
 
             statement.executeUpdate();
-            /*resultSet = statement.getGeneratedKeys();
+            resultSet = statement.getGeneratedKeys();
             if(resultSet.next()) {
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after trying to add record into table `books`");
                 //here I should throw an exception.
-            }*/
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            /*try {
+            try {
                 resultSet.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }*/
+            }
             try {
                 statement.close();
             } catch (SQLException e) {
@@ -173,7 +176,8 @@ public class HomesteadDaoRealization implements HomesteadDao {
 
     @Override
     public Homestead read(Integer id) {
-        String sql = "SELECT title, status, price, description, rating, id_owner FROM homestead WHERE id = (?)";
+        String sql = "SELECT title, status, price, description, rating,"
+                + " id_owner FROM homestead WHERE id = (?)";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
@@ -221,7 +225,7 @@ public class HomesteadDaoRealization implements HomesteadDao {
 
     @Override
     public List<Homestead> read() {
-        String sql = "SELECT title, status, price, description, rating,"
+        String sql = "SELECT id, title, status, price, description, rating,"
                 + " id_owner FROM homestead";
         List<Homestead> list;
         PreparedStatement statement = null;
@@ -236,6 +240,7 @@ public class HomesteadDaoRealization implements HomesteadDao {
             Homestead homestead;
             while(resultSet.next()){
                 homestead = new Homestead();
+                homestead.setId(resultSet.getInt("id"));
                 homestead.setTitle(resultSet.getString("title"));
                 homestead.setStatus(resultSet.getBoolean("status"));
                 homestead.setPrice(resultSet.getBigDecimal("price"));

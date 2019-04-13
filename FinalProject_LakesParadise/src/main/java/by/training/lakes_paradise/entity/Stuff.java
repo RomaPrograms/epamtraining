@@ -1,9 +1,9 @@
-package by.training.lakesParadise.entity;
+package by.training.lakes_paradise.entity;
 
-public class Profile extends User{
+public class Stuff {
     private String login;
     private String password;
-    private Integer orders;
+    private Role role;
 
     public String getLogin() {
         return login;
@@ -21,11 +21,11 @@ public class Profile extends User{
         this.password = password;
     }
 
-    public Integer getOrders() {
-        return orders;
+    public Role getRole() {
+        return role;
     }
 
-    public void setOrders(Integer orders) {
-        this.orders = orders;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

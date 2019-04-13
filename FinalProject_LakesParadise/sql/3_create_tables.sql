@@ -75,4 +75,18 @@ CREATE TABLE `stuff` (
 	 */
   `role` TINYINT NOT NULL CHECK (`role` IN (0, 1, 2)),
   PRIMARY KEY (`id`),
-UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE);
+UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `owner` (
+  `id` INT(11) NOT NULL,
+  `name` VARCHAR(15) NOT NULL,
+  `surname` VARCHAR(30) NOT NULL,
+  `phone` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `id_homestead`
+  FOREIGN KEY (`id`)
+  REFERENCES `lakes_paradise_db`.`homestead` (`id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

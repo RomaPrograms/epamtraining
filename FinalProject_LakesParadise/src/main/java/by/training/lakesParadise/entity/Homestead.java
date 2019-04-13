@@ -10,7 +10,8 @@ public class Homestead extends Entity{
     private BigDecimal price;
     private String description;
     private Double rating;
-    private User currentUser;
+    private Order currentOrder;
+    private Owner owner;
     private List<Order> orders = new ArrayList<>();
 
     public String getTitle() {
@@ -53,12 +54,20 @@ public class Homestead extends Entity{
         this.rating = rating;
     }
 
-    public User getCurrentUser() {
-        return currentUser;
+    public Order getCurrentOrder() {
+        return currentOrder;
     }
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public List<Order> getOrders() {
@@ -67,5 +76,19 @@ public class Homestead extends Entity{
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return "Homestead{" +
+                "\ntitle='" + title + '\'' +
+                ", \nstatus=" + status +
+                ", \nprice=" + price +
+                ", \ndescription='" + description + '\'' +
+                ", \nrating=" + rating +
+                ", \ncurrentOrder=" + currentOrder +
+                ", \nowner=" + owner +
+                ", \norders=" + orders +
+                "\n}";
     }
 }

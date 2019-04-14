@@ -1,59 +1,53 @@
-package by.training.lakes_paradise.entity;
+package by.training.lakes_paradise.db.entity;
 
+/**
+ * Class which describes orders.
+ */
 public class Order extends Entity {
     private Homestead homestead;
     private Profile profile;
     private Long startRenting;
     private Long endRenting;
     private Boolean isPaid;
-    private Integer numberOfPeople;
 
     public Homestead getHomestead() {
         return homestead;
     }
 
-    public void setHomestead(Homestead homestead) {
-        this.homestead = homestead;
+    public void setHomestead(final Homestead orderHomestead) {
+        this.homestead = orderHomestead;
     }
 
     public Profile getProfile() {
         return profile;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setProfile(final Profile orderProfile) {
+        this.profile = orderProfile;
     }
 
     public Long getStartRenting() {
         return startRenting;
     }
 
-    public void setStartRenting(Long startRenting) {
-        this.startRenting = startRenting;
+    public void setStartRenting(final Long orderStartRenting) {
+        this.startRenting = orderStartRenting;
     }
 
     public Long getEndRenting() {
         return endRenting;
     }
 
-    public void setEndRenting(Long endRenting) {
-        this.endRenting = endRenting;
+    public void setEndRenting(final Long orderEndRenting) {
+        this.endRenting = orderEndRenting;
     }
 
     public Boolean getPaid() {
         return isPaid;
     }
 
-    public void setPaid(Boolean paid) {
+    public void setPaid(final Boolean paid) {
         isPaid = paid;
-    }
-
-    public Integer getNumberOfPeople() {
-        return numberOfPeople;
-    }
-
-    public void setNumberOfPeople(Integer numberOfPeople) {
-        this.numberOfPeople = numberOfPeople;
     }
 
     @Override
@@ -64,7 +58,6 @@ public class Order extends Entity {
                 ", \nstartRenting=" + startRenting +
                 ", \nendRenting=" + endRenting +
                 ", \nisPaid=" + isPaid +
-                ", \nnumberOfPeople=" + numberOfPeople +
                 "\n}";
     }
 }

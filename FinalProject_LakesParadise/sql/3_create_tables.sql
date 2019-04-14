@@ -50,7 +50,7 @@ CREATE TABLE `lakes_paradise_db`.`orders` (
   ON DELETE CASCADE
   ON UPDATE CASCADE,
   FOREIGN KEY (`id_home`)
-  REFERENCES `lakes_paradise_db`.`homestead` (`id`)
+  REFERENCES `lakes_paradise_db`.homesteads (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -61,7 +61,7 @@ CREATE TABLE `images` (
    `id_home` int(11) NOT NULL,
     PRIMARY KEY (`id`),
     KEY `id_home_idx` (`id_home`),
-    CONSTRAINT `home_id` FOREIGN KEY (`id_home`) REFERENCES `homestead` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `home_id` FOREIGN KEY (`id_home`) REFERENCES homesteads (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `stuff` (
@@ -86,7 +86,7 @@ CREATE TABLE `owner` (
   PRIMARY KEY (`id`),
   CONSTRAINT `id_homestead`
   FOREIGN KEY (`id`)
-  REFERENCES `lakes_paradise_db`.`homestead` (`id`)
+  REFERENCES `lakes_paradise_db`.homesteads (`id`)
 ON DELETE CASCADE
 ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

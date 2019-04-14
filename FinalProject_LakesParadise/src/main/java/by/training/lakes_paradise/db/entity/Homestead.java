@@ -1,14 +1,17 @@
-package by.training.lakes_paradise.entity;
+package by.training.lakes_paradise.db.entity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Homestead extends Entity{
+/**
+ * Class which describes homestead.
+ */
+public class Homestead extends Entity {
     private String title;
-    private Boolean status;
     private BigDecimal price;
     private String description;
+    private Integer peopleNumber;
     private Double rating;
     private Order currentOrder;
     private Owner owner;
@@ -18,73 +21,57 @@ public class Homestead extends Entity{
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setTitle(final String homeTitle) {
+        this.title = homeTitle;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPrice(final BigDecimal homePrice) {
+        this.price = homePrice;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(final String homeDescription) {
+        this.description = homeDescription;
+    }
+
+    public Integer getPeopleNumber() {
+        return peopleNumber;
+    }
+
+    public void setPeopleNumber(Integer peopleNumber) {
+        this.peopleNumber = peopleNumber;
     }
 
     public Double getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
-        this.rating = rating;
-    }
-
-    public Order getCurrentOrder() {
-        return currentOrder;
-    }
-
-    public void setCurrentOrder(Order currentOrder) {
-        this.currentOrder = currentOrder;
+    public void setRating(final Double homeRating) {
+        this.rating = homeRating;
     }
 
     public Owner getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setOwner(final Owner homeOwner) {
+        this.owner = homeOwner;
     }
 
     @Override
     public String toString() {
         return "Homestead{" +
                 "\ntitle='" + title + '\'' +
-                ", \nstatus=" + status +
                 ", \nprice=" + price +
                 ", \ndescription='" + description + '\'' +
+                ", \npeopleNumber=" + peopleNumber +
                 ", \nrating=" + rating +
                 ", \ncurrentOrder=" + currentOrder +
                 ", \nowner=" + owner +

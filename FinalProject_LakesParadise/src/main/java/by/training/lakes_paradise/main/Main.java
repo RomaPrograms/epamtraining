@@ -4,9 +4,10 @@ import by.training.lakes_paradise.db.mysql.HomesteadDaoRealization;
 import by.training.lakes_paradise.db.mysql.OrderDaoRealization;
 import by.training.lakes_paradise.db.mysql.ProfileDaoRealization;
 import by.training.lakes_paradise.db.mysql.UserDaoRealization;
+import by.training.lakes_paradise.exception.PersistentException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(final String[] args) throws PersistentException {
         HomesteadDaoRealization home = new HomesteadDaoRealization();
         /*Homestead homestead = home.read(2);
         System.out.println(homestead.toString());

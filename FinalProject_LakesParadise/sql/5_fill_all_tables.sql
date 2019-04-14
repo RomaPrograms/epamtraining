@@ -1,4 +1,4 @@
-insert into owner (id, name, surname, phone) values
+insert into owners (id, name, surname, phone) values
 (1, "Nikita", "Vushev", "+375291234354"),
 (2, "Sergey", "Kovaleuski", "+375295674321"),
 (3, "Luba", "Agarova", "+375298987656"),
@@ -12,7 +12,7 @@ insert into users (id, name, surname, phone, town) values
 (5, "Pasha", "Struk", "+375293434567", "Pinsk"),
 (6, "Slava", "Kalinin", "+375292345655", "Brest");
 
-insert into homestead (id, title, status, price, description, rating, id_owner) values
+insert into homesteads (id, title, status, price, description, rating, id_owner) values
 (1, "Dacha_1", false, 300, "description_1", 5, 1),
 (2, "Dacha_2", false, 400, "description_2", 6, 2),
 (3, "Dacha_3", false, 500, "description_3", 7, 3),

@@ -1,5 +1,8 @@
-package by.training.lakes_paradise.entity;
+package by.training.lakes_paradise.db.entity;
 
+/**
+ * Class which describes profile.
+ */
 public class Profile extends Entity{
     private String login;
     private String password;
@@ -9,24 +12,24 @@ public class Profile extends Entity{
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setLogin(final String profileLogin) {
+        this.login = profileLogin;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(final String profilePassword) {
+        this.password = profilePassword;
     }
 
     public Integer getOrders() {
         return orders;
     }
 
-    public void setOrders(Integer orders) {
-        this.orders = orders;
+    public void setOrders(final Integer profileOrders) {
+        this.orders = profileOrders;
     }
 
     @Override

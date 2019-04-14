@@ -1,5 +1,8 @@
-package by.training.lakes_paradise.entity;
+package by.training.lakes_paradise.db.entity;
 
+/**
+ * Class which describes user.
+ */
 public class User extends Entity{
     private String name;
     private String surname;
@@ -10,32 +13,32 @@ public class User extends Entity{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String userName) {
+        this.name = userName;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSurname(final String userSurname) {
+        this.surname = userSurname;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(final String userPhone) {
+        this.phone = userPhone;
     }
 
     public String getTown() {
         return town;
     }
 
-    public void setTown(String town) {
-        this.town = town;
+    public void setTown(final String userTown) {
+        this.town = userTown;
     }
 
     @Override

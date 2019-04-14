@@ -1,5 +1,8 @@
-package by.training.lakes_paradise.entity;
+package by.training.lakes_paradise.db.entity;
 
+/**
+ * Enum class which describes role.
+ */
 public enum Role {
     ADMINISTRATOR("admin"),
     REGISTRAR("archivist"),
@@ -7,8 +10,8 @@ public enum Role {
 
     private String name;
 
-    private Role(String name) {
-        this.name = name;
+    private Role(final String roleName) {
+        this.name = roleName;
     }
 
     public String getName() {
@@ -19,7 +22,7 @@ public enum Role {
         return ordinal();
     }
 
-    public static Role getByIdentity(Integer identity) {
+    public static Role getByIdentity(final Integer identity) {
         return Role.values()[identity];
     }
 }

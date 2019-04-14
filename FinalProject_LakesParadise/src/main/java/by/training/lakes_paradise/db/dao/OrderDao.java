@@ -1,12 +1,36 @@
 package by.training.lakes_paradise.db.dao;
 
-import by.training.lakes_paradise.entity.Order;
+import by.training.lakes_paradise.db.entity.Order;
+import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
 
-public interface OrderDao extends Dao<Order>{
-    List<Order> readByProfile(Integer profileId);
-    List<Order> readByHomestead(Integer homesteadId);
+/**
+ * Interface for working with "orders" table.
+ */
+public interface OrderDao extends Dao<Order> {
+    /**
+     * Method that search all orders by id of profile.
+     *
+     * @param profileId - id of profile
+     * @return list with orders which were done by expected profile
+     */
+    List<Order> readByProfile(Integer profileId) throws PersistentException;
 
-    List<Order> read();
+    /**
+     * Method that search all orders by id of homestead.
+     *
+     * @param homesteadId - id of homestead
+     * @return list with orders which were done with expected homestead
+     * @throws PersistentException - exception with searching in orders table
+     */
+    List<Order> readByHomestead(Integer homesteadId) throws PersistentException;
+
+    /**
+     * Method that reads all objects from "orders" table.
+     *
+     * @return list with objects from "orders" table
+     * @throws PersistentException - exception with searching in orders table
+     */
+    List<Order> read() throws PersistentException;
 }

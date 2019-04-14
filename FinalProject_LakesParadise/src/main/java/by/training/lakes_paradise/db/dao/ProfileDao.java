@@ -13,6 +13,7 @@ public interface ProfileDao extends Dao<Profile> {
      * Method reads all objects from "profiles" table.
      *
      * @return objects from "profiles" table
+     * @throws PersistentException - exception with searching in profile table
      */
     List<Profile> read() throws PersistentException;
 
@@ -22,6 +23,7 @@ public interface ProfileDao extends Dao<Profile> {
      * @param login - login of user
      * @param password - profile of user
      * @return profile of user
+     * @throws PersistentException - exception with searching in profile table
      */
     Profile read(String login, String password) throws PersistentException;
 }

@@ -13,6 +13,7 @@ public interface UserDao extends Dao<User> {
      * Method that reads all objects from "users" table.
      *
      * @return list with objects from "users" table
+     * @throws PersistentException - exception with searching in users table
      */
     List<User> read() throws PersistentException;
 }

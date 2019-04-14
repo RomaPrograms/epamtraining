@@ -14,6 +14,7 @@ public interface OrderDao extends Dao<Order> {
      *
      * @param profileId - id of profile
      * @return list with orders which were done by expected profile
+     * @throws PersistentException - exception with searching in orders table
      */
     List<Order> readByProfile(Integer profileId) throws PersistentException;
 

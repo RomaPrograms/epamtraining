@@ -3,7 +3,7 @@ package by.training.lakes_paradise.db.entity;
 /**
  * Class which describes stuff.
  */
-public class Stuff {
+public class Stuff extends Entity{
     private String login;
     private String password;
     private Role role;

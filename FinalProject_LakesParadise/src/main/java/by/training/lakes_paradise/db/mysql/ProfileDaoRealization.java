@@ -184,7 +184,7 @@ public class ProfileDaoRealization implements ProfileDao {
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after trying"
-                        + " to add record into table `users`");
+                        + " to add record into table `profiles`");
                 throw new PersistentException();
             }
         } catch (SQLException e) {

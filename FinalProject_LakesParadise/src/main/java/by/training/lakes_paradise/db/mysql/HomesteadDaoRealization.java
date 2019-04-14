@@ -210,7 +210,7 @@ public class HomesteadDaoRealization implements HomesteadDao {
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after"
-                        + " trying to add record into table `books`");
+                        + " trying to add record into table `homesteads`");
                 throw new PersistentException();
             }
 

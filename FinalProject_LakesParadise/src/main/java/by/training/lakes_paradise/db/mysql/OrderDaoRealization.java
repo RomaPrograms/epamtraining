@@ -19,7 +19,8 @@ import java.util.List;
 /**
  * Class for realization working with "orders" table.
  */
-public class OrderDaoRealization implements OrderDao {
+public class OrderDaoRealization extends BaseDaoRealization
+        implements OrderDao {
 
     /**
      * Logger for creation notes to some appender.
@@ -304,15 +305,10 @@ public class OrderDaoRealization implements OrderDao {
      */
     @Override
     public void delete(final Integer id) {
-        String sql = "delete from orders where id = ?";
-        Connection connection = null;
         PreparedStatement statement = null;
-        try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
 
-            statement.executeUpdate();
+        try {
+            statement = delete("orders", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
         } finally {

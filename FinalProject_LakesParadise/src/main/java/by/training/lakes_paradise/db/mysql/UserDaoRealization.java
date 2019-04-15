@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Class for realization working with "users" table.
  */
-public class UserDaoRealization implements UserDao {
+public class UserDaoRealization extends BaseDaoRealization implements UserDao {
 
     /**
      * Logger for creation notes to some appender.
@@ -250,15 +250,10 @@ public class UserDaoRealization implements UserDao {
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
-        String sql = "delete from users where id = ?";
-        Connection connection = null;
         PreparedStatement statement = null;
-        try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, id);
-            statement.executeUpdate();
+        try {
+            statement = delete("users", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

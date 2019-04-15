@@ -15,7 +15,8 @@ import java.util.List;
 /**
  * Class for realization working with "stuffs" table.
  */
-public class StuffDaoRealization implements StuffDao {
+public class StuffDaoRealization extends BaseDaoRealization
+        implements StuffDao {
 
     /**
      * Logger for creation notes to some appender.
@@ -264,15 +265,10 @@ public class StuffDaoRealization implements StuffDao {
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
-        String sql = "delete from stuff where id = ?";
-        Connection connection = null;
         PreparedStatement statement = null;
-        try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.executeUpdate();
 
+        try {
+            statement = delete("stuff", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

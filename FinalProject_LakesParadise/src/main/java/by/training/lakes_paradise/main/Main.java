@@ -20,7 +20,7 @@ public class Main {
         try {
             Connection connection = ConnectionDB.getConnection();
             Statement statement = connection.createStatement();
-            BufferedImage image = ImageIO.read(new File("www/img/1.1_farmstead.png"));
+            BufferedImage image = ImageIO.read(new File("www/img/1.2_farmstead.jpg"));
             Blob blob = connection.createBlob();
             try(OutputStream outputStream = blob.setBinaryStream(1)) {
                 ImageIO.write(image, "jpg", outputStream);
@@ -166,8 +166,8 @@ public class Main {
         order.setPaid(true);
         orderDaoRealization.update(order);*/
 
-        /*for(var order : orderDaoRealization.readByProfile(6)) {
+        for(var order : orderDaoRealization.readByProfile(6)) {
             System.out.println(order);
-        }*/
+        }
     }
 }

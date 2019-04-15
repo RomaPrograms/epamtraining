@@ -14,7 +14,8 @@ import java.util.List;
 /**
  * Class for realization working with "homesteads" table.
  */
-public class ImageDaoRealization implements ImageDao {
+public class ImageDaoRealization extends BaseDaoRealization
+        implements ImageDao {
 
     /**
      * Logger for creation notes to some appender.
@@ -240,15 +241,10 @@ public class ImageDaoRealization implements ImageDao {
      */
     @Override
     public void delete(Integer id) throws PersistentException {
-        String sql = "delete from images where id = (?)";
-        Connection connection = null;
         PreparedStatement statement = null;
-        try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
 
-            statement.executeUpdate();
+        try {
+            statement = delete("images", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

@@ -9,6 +9,11 @@ public class ConnectionDB {
         String url = resource.getString("db.url");
         String user = resource.getString("db.user");
         String pass = resource.getString("db.password");
+        try {
+            Class.forName(resource.getString("db.driver"));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         return DriverManager.getConnection(url, user, pass);
     }
 }

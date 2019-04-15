@@ -17,7 +17,8 @@ import java.util.List;
 /**
  * Class for realization working with "profiles" table.
  */
-public class ProfileDaoRealization implements ProfileDao {
+public class ProfileDaoRealization extends BaseDaoRealization
+        implements ProfileDao {
 
     /**
      * Logger for creation notes to some appender.
@@ -299,15 +300,10 @@ public class ProfileDaoRealization implements ProfileDao {
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
-        String sql = "delete from profiles where id = (?)";
-        Connection connection = null;
         PreparedStatement statement = null;
-        try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
 
-            statement.executeUpdate();
+        try {
+            statement = delete("profiles", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

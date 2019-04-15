@@ -10,7 +10,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 
-public class OwnerDaoRalization implements Dao<Owner> {
+public class OwnerDaoRalization extends BaseDaoRealization
+        implements Dao<Owner> {
     /**
      * Logger for creation notes to some appender.
      */
@@ -187,15 +188,10 @@ public class OwnerDaoRalization implements Dao<Owner> {
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
-        String sql = "delete from owners where id = ?";
-        Connection connection = null;
         PreparedStatement statement = null;
-        try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, id);
-            statement.executeUpdate();
+        try {
+            statement = delete("owners", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

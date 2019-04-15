@@ -19,7 +19,8 @@ import java.sql.*;
 /**
  * Class for realization working with "homesteads" table.
  */
-public class HomesteadDaoRealization implements HomesteadDao {
+public class HomesteadDaoRealization extends BaseDaoRealization
+        implements HomesteadDao {
 
     /**
      * Logger for creation notes to some appender.
@@ -388,15 +389,10 @@ public class HomesteadDaoRealization implements HomesteadDao {
      */
     @Override
     public void delete(final Integer id) {
-        String sql = "DELETE from homesteads where id = ?";
-        Connection connection = null;
         PreparedStatement statement = null;
-        try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, id);
-            statement.executeUpdate();
+        try {
+            statement = delete("homesteads", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
         } finally {

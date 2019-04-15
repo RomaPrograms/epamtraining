@@ -37,7 +37,7 @@ CREATE TABLE `homestead` ( `id` int(11) NOT NULL AUTO_INCREMENT,
 CREATE TABLE `lakes_paradise_db`.`orders` (
  `id` INT NOT NULL AUTO_INCREMENT,
  `id_user` INT NOT NULL,
- `id_home` INT NOT NULL,
+ `idHome` INT NOT NULL,
  `date_start` DATE NOT NULL,
  `date_end` DATE NOT NULL,
  `status_pay` TINYINT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE `lakes_paradise_db`.`orders` (
   REFERENCES `lakes_paradise_db`.`users` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE,
-  FOREIGN KEY (`id_home`)
+  FOREIGN KEY (`idHome`)
   REFERENCES `lakes_paradise_db`.homesteads (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION
@@ -58,10 +58,10 @@ CREATE TABLE `lakes_paradise_db`.`orders` (
 CREATE TABLE `images` (
    `id` int(11) NOT NULL AUTO_INCREMENT,
    `image` blob NOT NULL,
-   `id_home` int(11) NOT NULL,
+   `idHome` int(11) NOT NULL,
     PRIMARY KEY (`id`),
-    KEY `id_home_idx` (`id_home`),
-    CONSTRAINT `home_id` FOREIGN KEY (`id_home`) REFERENCES homesteads (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    KEY `id_home_idx` (`idHome`),
+    CONSTRAINT `home_id` FOREIGN KEY (`idHome`) REFERENCES homesteads (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `stuff` (

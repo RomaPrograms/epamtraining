@@ -26,7 +26,7 @@ insert into profiles (id, login, password, orders) values
 (5, "pasha@gmail.com", "1", 1),
 (6, "slava@gmail.com", "4", 1);
 
-insert into orders (id_profile, id_home, date_start, date_end, status_pay, number_people) values
+insert into orders (id_profile, idHome, date_start, date_end, status_pay, number_people) values
 (2, 2, "2019-06-15", "2019-06-25", true, 2),
 (3, 1, "2019-06-15", "2013-07-01", true, 8),
 (6, 4, "2019-07-15", "2019-07-12", true, 6);

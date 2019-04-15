@@ -1,13 +1,24 @@
 package by.training.lakes_paradise.db.entity;
 
-public class Image extends Entity{
-    private Image image;
+import java.sql.Blob;
 
-    public Image getImage() {
+public class Image extends Entity{
+    private Blob image;
+    private Integer idHome;
+
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(Blob image) {
         this.image = image;
+    }
+
+    public Integer getIdHome() {
+        return idHome;
+    }
+
+    public void setIdHome(Integer idHome) {
+        this.idHome = idHome;
     }
 }

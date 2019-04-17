@@ -53,19 +53,47 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
     private static final int FIFTH_ELEMENT_IN_SQL_QUERY = 5;
 
     /**
+     * Script gets all objects from table users.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
+            = "select id, name, surname, phone, town from users";
+
+    /**
+     * Script insert new object into the table users.
+     */
+    private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
+            = "insert into users (id, name, surname, phone, town) values"
+            + " (?, ?, ?, ?, ?)";
+
+    /**
+     * Script gets all objects from table users by id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
+            = "select name, surname, phone, town from users where"
+            + " id = (?)";
+
+
+    /**
+     * Script updates object in table users.
+     */
+    private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
+            = "update users set name = ?, surname = ?, phone = ?,"
+            + " town = ? where id = ?";
+
+    /**
      * Method that reads all objects from "users" table.
      *
      * @return list with objects from "users" table
      */
     @Override
     public List<User> read() throws PersistentException {
-        String sql = "select id, name, surname, phone, town from users";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE);
             resultSet = statement.executeQuery();
             List<User> users = new ArrayList<>();
             User user;
@@ -112,14 +140,13 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      */
     @Override
     public Integer create(final User user) throws PersistentException {
-        String sql = "insert into users (id, name, surname, phone, town) values"
-                + " (?, ?, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, user.getId());
             statement.setString(2, user.getName());
@@ -166,14 +193,13 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      */
     @Override
     public User read(final Integer id) throws PersistentException {
-        String sql = "select name, surname, phone, town from users where"
-                + " id = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             User user = null;
@@ -215,13 +241,12 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      */
     @Override
     public void update(final User entity) throws PersistentException {
-        String sql = "update users set name = ?, surname = ?, phone = ?,"
-                + " town = ? where id = ?";
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
 
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getSurname());

@@ -20,7 +20,7 @@ public interface ProfileDao extends Dao<Profile> {
     /**
      * Method returns profile of user by login and password.
      *
-     * @param login - login of user
+     * @param login    - login of user
      * @param password - profile of user
      * @return profile of user
      * @throws PersistentException - exception with searching in profile table

@@ -5,12 +5,12 @@ package by.training.lakes_paradise.db.entity;
  */
 public enum Role {
     ADMINISTRATOR("admin"),
-    REGISTRAR("archivist"),
-    LIBRARIAN("librarian");
+    OWNER("owner"),
+    USER("user");
 
     private String name;
 
-    private Role(final String roleName) {
+    Role(final String roleName) {
         this.name = roleName;
     }
 

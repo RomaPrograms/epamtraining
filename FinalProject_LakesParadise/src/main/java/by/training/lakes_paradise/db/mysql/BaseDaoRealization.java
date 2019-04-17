@@ -7,10 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public abstract class BaseDaoRealization {
-    protected Connection connection;
+    private Connection connection;
 
     public void setConnection(Connection connection) {
         this.connection = connection;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
     /**
@@ -20,7 +24,7 @@ public abstract class BaseDaoRealization {
      */
     public PreparedStatement delete(final String nameOfTable, final Integer id)
             throws SQLException {
-        String sql = "delete from" + nameOfTable + " where id = (?)";
+        String sql = "delete from " + nameOfTable + " where id = (?)";
         java.sql.Connection connection = null;
         PreparedStatement statement = null;
         connection = ConnectionDB.getConnection();

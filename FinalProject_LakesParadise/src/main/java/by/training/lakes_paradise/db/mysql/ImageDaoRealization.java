@@ -46,16 +46,39 @@ public class ImageDaoRealization extends BaseDaoRealization
     private static final int THIRD_ELEMENT_IN_SQL_QUERY = 3;
 
     /**
+     * Script insert new object into the table images.
+     */
+    private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
+            = "insert into images (image, home_id) values (?, ?)";
+
+    /**
+     * Script gets all objects from table images by homestead id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
+            = "select id, image from images where home_id = (?)";
+
+    /**
+     * Script gets all objects from table images by id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
+            = "select image, home_id from images where id = (?)";
+
+    /**
+     * Script updates object in table images.
+     */
+    private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
+            = "update images set image = ?, home_id = ? where id = (?)";
+
+    /**
      *
      *
-     * @param id - id of image
+     * @param homeId - id of homestead
      * @return
      * @throws PersistentException
      */
     @Override
-    public List<Image> readImagesById(Integer id) throws PersistentException {
-        String sql = "select image, id_home from images"
-                + " where id = (?)";
+    public List<Image> readImagesByHomeId(Integer homeId)
+            throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -63,15 +86,16 @@ public class ImageDaoRealization extends BaseDaoRealization
 
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID);
+            statement.setInt(1, homeId);
             resultSet = statement.executeQuery();
             Image image = null;
 
             while (resultSet.next()) {
                 image = new Image();
-                image.setImage(resultSet.getBlob(1));
-                image.setIdHome(resultSet.getInt(2));
+                image.setId(resultSet.getInt(1));
+                image.setImage(resultSet.getBlob(2));
 
                 images.add(image);
             }
@@ -107,18 +131,17 @@ public class ImageDaoRealization extends BaseDaoRealization
      */
     @Override
     public Integer create(Image entity) throws PersistentException {
-        String sql = "insert into images (image, id_home) values"
-                + " (?, ?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
             statement.setBlob(1, entity.getImage());
-            statement.setInt(2, entity.getIdHome());
+            statement.setInt(2, entity.getHomeId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -159,14 +182,13 @@ public class ImageDaoRealization extends BaseDaoRealization
      */
     @Override
     public Image read(Integer id) throws PersistentException {
-        String sql = "select image, id_home from images"
-                + " where id = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             Image image = null;
@@ -174,7 +196,7 @@ public class ImageDaoRealization extends BaseDaoRealization
             while (resultSet.next()) {
                 image = new Image();
                 image.setImage(resultSet.getBlob(1));
-                image.setIdHome(resultSet.getInt(2));
+                image.setHomeId(resultSet.getInt(2));
             }
 
             return image;
@@ -207,15 +229,14 @@ public class ImageDaoRealization extends BaseDaoRealization
      */
     @Override
     public void update(Image entity) throws PersistentException {
-        String sql = "update images set image = ?, id_home = ?"
-                + " where id = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
             statement.setBlob(1, entity.getImage());
-            statement.setInt(2, entity.getIdHome());
+            statement.setInt(2, entity.getHomeId());
             statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY, entity.getId());
 
             statement.executeUpdate();
@@ -262,19 +283,19 @@ public class ImageDaoRealization extends BaseDaoRealization
     /**
      *
      *
-     * @param idHome
+     * @param homeId
      * @throws PersistentException
      */
     @Override
-    public void deleteImagesByIdHome(Integer idHome)
+    public void deleteImagesByHomeId(Integer homeId)
             throws PersistentException {
-        String sql = "delete from images where id_home = (?)";
+        String sql = "delete from images where home_id = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionDB.getConnection();
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, idHome);
+            statement.setInt(1, homeId);
 
             statement.executeUpdate();
         } catch (SQLException e) {

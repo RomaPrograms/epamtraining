@@ -14,7 +14,7 @@ public class Homestead extends Entity {
     private Integer peopleNumber;
     private Double rating;
     private Order currentOrder;
-    private Owner owner;
+    private Profile owner;
     private List<Order> orders = new ArrayList<>();
 
     public String getTitle() {
@@ -57,12 +57,12 @@ public class Homestead extends Entity {
         this.rating = homeRating;
     }
 
-    public Owner getOwner() {
+    public Profile getOwner() {
         return owner;
     }
 
-    public void setOwner(final Owner homeOwner) {
-        this.owner = homeOwner;
+    public void setOwner(Profile owner) {
+        this.owner = owner;
     }
 
     @Override

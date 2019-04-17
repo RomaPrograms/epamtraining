@@ -48,7 +48,7 @@ public class OrderDaoRealization extends BaseDaoRealization
     /**
      * String first part of SQL query for reading from database.
      */
-    private static final String SQL_QUERY
+    private static final String SQL_SCRIPT_SELECT
             = "select id, id_profile, id_home, date_start, date_end, "
             + "status_pay from";
 
@@ -70,6 +70,46 @@ public class OrderDaoRealization extends BaseDaoRealization
     private static final int SIXTH_ELEMENT_IN_SQL_QUERY = 6;
 
     /**
+     * Script gets all objects from table orders.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
+            = SQL_SCRIPT_SELECT + " orders";
+
+    /**
+     * Script insert new object into the table orders.
+     */
+    private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
+            = "insert into orders (profile_id, home_id, date_start,"
+            + " date_end, status_pay) values (?, ?, ?, ?, ?)";
+
+    /**
+     * Script gets all objects from table orders by id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
+            = "select profile_id, home_id, date_start, date_end, "
+            + "status_pay from orders where id = (?)";
+
+    /**
+     * Script gets all objects from table orders by profile id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PROFILE_ID
+            = SQL_SCRIPT_SELECT + " orders where id_profile = ?";
+
+    /**
+     * Script gets all objects from table orders by home id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
+            = SQL_SCRIPT_SELECT + " orders where id_home = ?";
+
+    /**
+     * Script updates object in table orders.
+     */
+    private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
+            = "update orders set profile_id = ?, home_id = ?,"
+            + " date_start = ?, date_end = ?, status_pay = ?,"
+            + " where id = ?";
+
+    /**
      * Method that search all orders by id of profile.
      *
      * @param profileId - id of profile
@@ -79,8 +119,8 @@ public class OrderDaoRealization extends BaseDaoRealization
     @Override
     public List<Order> readByProfile(final Integer profileId)
             throws PersistentException {
-        String sql = SQL_QUERY + " orders where id_profile = ?";
-        return readByCategory(sql, profileId);
+        return readByCategory(
+                SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PROFILE_ID, profileId);
     }
 
     /**
@@ -93,8 +133,8 @@ public class OrderDaoRealization extends BaseDaoRealization
     @Override
     public List<Order> readByHomestead(final Integer homesteadId)
             throws PersistentException {
-        String sql = SQL_QUERY + " orders where id_home = ?";
-        return readByCategory(sql, homesteadId);
+        return readByCategory(
+                SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID, homesteadId);
     }
 
     /**
@@ -105,13 +145,13 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     @Override
     public List<Order> read() throws PersistentException {
-        String sql = SQL_QUERY + " orders";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
             resultSet = statement.executeQuery();
             List<Order> orders = new ArrayList<>();
@@ -151,15 +191,13 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     @Override
     public Integer create(final Order order) throws PersistentException {
-        String sql = "insert into orders (id_profile, id_home, date_start,"
-                + " date_end, status_pay)"
-                + " values (?, ?, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, order.getProfile().getId());
             statement.setInt(2, order.getHomestead().getId());
@@ -208,14 +246,13 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     @Override
     public Order read(final Integer id) throws PersistentException {
-        String sql = "select id_profile, id_home, date_start, date_end, "
-                + "status_pay from orders where id = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
@@ -224,10 +261,10 @@ public class OrderDaoRealization extends BaseDaoRealization
             while (resultSet.next()) {
                 order = new Order();
                 Profile profile = new Profile();
-                profile.setId(resultSet.getInt("id_profile"));
+                profile.setId(resultSet.getInt("profile_id"));
                 order.setProfile(profile);
                 Homestead homestead = new Homestead();
-                homestead.setId(resultSet.getInt("id_home"));
+                homestead.setId(resultSet.getInt("home_id"));
                 order.setHomestead(homestead);
                 order.setStartRenting(resultSet
                         .getDate("date_start").getTime());
@@ -265,9 +302,7 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     @Override
     public void update(final Order entity) {
-        String sql = "update orders set id_profile = ?, id_home = ?,"
-                + " date_start = ?, date_end = ?, status_pay = ?,"
-                + " where id = ?";
+        String sql = SQL_SCRIPT_UPDATE_DATA_IN_TABLE;
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -304,13 +339,14 @@ public class OrderDaoRealization extends BaseDaoRealization
      * @param id - id of object for deletion
      */
     @Override
-    public void delete(final Integer id) {
+    public void delete(final Integer id) throws PersistentException {
         PreparedStatement statement = null;
 
         try {
             statement = delete("orders", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
+            throw new PersistentException(e);
         } finally {
             try {
                 if (statement != null) {
@@ -381,10 +417,10 @@ public class OrderDaoRealization extends BaseDaoRealization
         Order order = new Order();
         order.setId(resultSet.getInt("id"));
         Profile profile = new Profile();
-        profile.setId(resultSet.getInt("id_profile"));
+        profile.setId(resultSet.getInt("profile_id"));
         order.setProfile(profile);
         Homestead homestead = new Homestead();
-        homestead.setId(resultSet.getInt("id_home"));
+        homestead.setId(resultSet.getInt("home_id"));
         order.setHomestead(homestead);
         order.setStartRenting(resultSet
                 .getDate("date_start").getTime());

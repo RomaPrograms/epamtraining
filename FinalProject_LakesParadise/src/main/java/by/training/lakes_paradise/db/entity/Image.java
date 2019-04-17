@@ -4,7 +4,7 @@ import java.sql.Blob;
 
 public class Image extends Entity{
     private Blob image;
-    private Integer idHome;
+    private Integer homeId;
 
     public Blob getImage() {
         return image;
@@ -14,11 +14,19 @@ public class Image extends Entity{
         this.image = image;
     }
 
-    public Integer getIdHome() {
-        return idHome;
+    public Integer getHomeId() {
+        return homeId;
     }
 
-    public void setIdHome(Integer idHome) {
-        this.idHome = idHome;
+    public void setHomeId(Integer homeId) {
+        this.homeId = homeId;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "\nimage=" + image +
+                ", \nhomeId=" + homeId +
+                "\n}";
     }
 }

@@ -3,6 +3,7 @@ package by.training.lakes_paradise.db.mysql;
 import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.ProfileDao;
 import by.training.lakes_paradise.db.entity.Profile;
+import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,6 +54,41 @@ public class ProfileDaoRealization extends BaseDaoRealization
     private static final int FORTH_ELEMENT_IN_SQL_QUERY = 4;
 
     /**
+     * Script gets all objects from table profiles.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
+            = "select id, login, password, role from profiles";
+
+    /**
+     * Script insert new object into the table profiles.
+     */
+    private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
+            = "insert into profiles (id, login, password, role) values"
+            + " (?, ?, ?, ?)";
+
+    /**
+     * Script gets all objects from table profiles by id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
+            = "select login, password, role from profiles"
+            + " where id = (?)";
+
+    /**
+     * Script gets all objects from table profiles by login and password.
+     */
+    private static final String
+            SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD
+            = "select id, login, password, role from profiles"
+            + " where login = (?) and password = (?)";
+
+    /**
+     * Script updates object in table profiles.
+     */
+    private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
+            = "update profiles set login = ?, password = ?, role = ?"
+            + " where id = (?)";
+
+    /**
      * Method returns profile of user by login and password.
      *
      * @param login    - login of user
@@ -62,14 +98,13 @@ public class ProfileDaoRealization extends BaseDaoRealization
     @Override
     public Profile read(final String login, final String password)
             throws PersistentException {
-        String sql = "select id, login, password, orders from profiles"
-                + " where login = (?) and password = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD);
             statement.setString(1, login);
             statement.setString(2, password);
             resultSet = statement.executeQuery();
@@ -80,7 +115,8 @@ public class ProfileDaoRealization extends BaseDaoRealization
                 profile.setId(resultSet.getInt("id"));
                 profile.setLogin(resultSet.getString("login"));
                 profile.setPassword(resultSet.getString("password"));
-                profile.setOrders(resultSet.getInt("orders"));
+                profile.setRole(Role.getByIdentity(
+                        resultSet.getInt("role")));
             }
 
             return profile;
@@ -112,13 +148,13 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     @Override
     public List<Profile> read() throws PersistentException {
-        String sql = "select id, login, password, orders from profiles";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE);
             resultSet = statement.executeQuery();
             List<Profile> profiles = new ArrayList<>();
             Profile profile = null;
@@ -128,7 +164,8 @@ public class ProfileDaoRealization extends BaseDaoRealization
                 profile.setId(resultSet.getInt("id"));
                 profile.setLogin(resultSet.getString("login"));
                 profile.setPassword(resultSet.getString("password"));
-                profile.setOrders(resultSet.getInt("orders"));
+                profile.setRole(Role.getByIdentity(
+                        resultSet.getInt("role")));
 
                 profiles.add(profile);
             }
@@ -164,20 +201,20 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     @Override
     public Integer create(final Profile profile) throws PersistentException {
-        String sql = "insert into profiles (id, login, password, orders) values"
-                + " (?, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, profile.getId());
             statement.setString(2, profile.getLogin());
             statement.setString(THIRD_ELEMENT_IN_SQL_QUERY,
                     profile.getPassword());
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, profile.getOrders());
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY,
+                    profile.getRole().getIdentity());
             statement.executeUpdate();
 
             resultSet = statement.getGeneratedKeys();
@@ -218,14 +255,13 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     @Override
     public Profile read(final Integer id) throws PersistentException {
-        String sql = "select login, password, orders from profiles"
-                + " where id = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             Profile profile = null;
@@ -234,7 +270,8 @@ public class ProfileDaoRealization extends BaseDaoRealization
                 profile = new Profile();
                 profile.setLogin(resultSet.getString("login"));
                 profile.setPassword(resultSet.getString("password"));
-                profile.setOrders(resultSet.getInt("orders"));
+                profile.setRole(Role.getByIdentity(
+                        resultSet.getInt("role")));
             }
 
             return profile;
@@ -266,16 +303,16 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     @Override
     public void update(final Profile entity) throws PersistentException {
-        String sql = "update profiles set login = ?, password = ?, orders = ?"
-                + " where id = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
             statement.setString(1, entity.getLogin());
             statement.setString(2, entity.getPassword());
-            statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY, entity.getOrders());
+            statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY,
+                    entity.getRole().getIdentity());
             statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, entity.getId());
 
             statement.executeUpdate();

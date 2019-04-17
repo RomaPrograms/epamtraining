@@ -1,9 +1,8 @@
 package by.training.lakes_paradise.db.mysql;
 
 import by.training.lakes_paradise.db.ConnectionDB;
-import by.training.lakes_paradise.db.dao.StuffDao;
-import by.training.lakes_paradise.db.entity.Role;
-import by.training.lakes_paradise.db.entity.Stuff;
+import by.training.lakes_paradise.db.dao.ReviewDao;
+import by.training.lakes_paradise.db.entity.Review;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,12 +11,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Class for realization working with "stuffs" table.
- */
-public class StuffDaoRealization extends BaseDaoRealization
-        implements StuffDao {
-
+public class ReviewDaoRealization extends BaseDaoRealization
+        implements ReviewDao {
     /**
      * Logger for creation notes to some appender.
      */
@@ -42,32 +37,75 @@ public class StuffDaoRealization extends BaseDaoRealization
             = "Some exception connected with SQL.";
 
     /**
-     * @param login    - login of stuff
-     * @param password - password of stuff
-     * @return
-     * @throws PersistentException
+     * Point to the third element in SQL query.
      */
+    private static final int THIRD_ELEMENT_IN_SQL_QUERY = 3;
+
+    /**
+     * Point to the forth element in SQL query.
+     */
+    private static final int FORTH_ELEMENT_IN_SQL_QUERY = 4;
+    /**
+     * Point to the fifth element in SQL query.
+     */
+    private static final int FIFTH_ELEMENT_IN_SQL_QUERY = 5;
+
+    /**
+     * Script insert new object into the table reviews.
+     */
+    private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
+            = "insert into reviews (text, user_name, dateOfComment, home_id)"
+            + " values (?, ?, ?, ?)";
+
+    /**
+     * Script gets all objects from table reviews by homestead id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
+            = "select id, text, user_name, dateOfComment from reviews"
+            + " where id = (?)";
+
+    /**
+     * Script gets all objects from table reviews by id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
+            = "select text, user_name, dateOfComment, home_id from reviews"
+            + " where id = (?)";
+
+    /**
+     * Script updates object in table reviews.
+     */
+    private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
+            = "update reviews set text = ?, user_name = ?, dateOfComment = ?,"
+            + " home_id = ? where id = ?";
+
     @Override
-    public Stuff read(final String login, final String password)
+    public List<Review> readReviewsByHomeId(Integer homeId)
             throws PersistentException {
-        String sql = "select id, login, password, role from stuff"
-                + " where login = ? and password = ?";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+        List<Review> reviews = new ArrayList<>();
+
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, login);
-            statement.setString(2, password);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID);
+            statement.setInt(1, homeId);
             resultSet = statement.executeQuery();
-            Stuff stuff = null;
+            Review review = null;
 
             while (resultSet.next()) {
-                stuff = createStuff(resultSet);
+                review = new Review();
+                review.setId(resultSet.getInt("id"));
+                review.setText(resultSet.getString("text"));
+                review.setUserName(resultSet.getString("user_name"));
+                review.setDateOfComment(resultSet
+                        .getDate("dateOfComment").getTime());
+
+                reviews.add(review);
             }
 
-            return stuff;
+            return reviews;
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);
@@ -89,77 +127,56 @@ public class StuffDaoRealization extends BaseDaoRealization
         }
     }
 
-    /**
-     * @return
-     * @throws PersistentException
-     */
     @Override
-    public List<Stuff> read() throws PersistentException {
-        String sql = "select id, login, password, role from stuff";
+    public void deleteReviewsByHomeId(Integer homeId)
+            throws PersistentException {
+        String sql = "delete from reviews where home_id = (?)";
         Connection connection = null;
         PreparedStatement statement = null;
-        ResultSet resultSet = null;
         try {
             connection = ConnectionDB.getConnection();
             statement = connection.prepareStatement(sql);
-            resultSet = statement.executeQuery();
-            List<Stuff> stuffs = new ArrayList<>();
-            Stuff stuff = null;
+            statement.setInt(1, homeId);
 
-            while (resultSet.next()) {
-                stuff = createStuff(resultSet);
-                stuffs.add(stuff);
-            }
-
-            return stuffs;
-        } catch (SQLException e) {
-            LOGGER.error(SQL_EXCEPTION);
-            throw new PersistentException(e);
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
-            }
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
-            }
-        }
-    }
-
-    /**
-     * @param entity - new object
-     * @return
-     * @throws PersistentException
-     */
-    @Override
-    public Integer create(final Stuff entity) throws PersistentException {
-        String sql = "insert into stuff (login, password, role) values "
-                + "(?, ?, ?)";
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
-                    Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, entity.getLogin());
-            statement.setString(2, entity.getPassword());
-            statement.setInt(3, entity.getRole().getIdentity());
             statement.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.error(SQL_EXCEPTION);
+            throw new PersistentException(e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
+            }
+        }
+    }
+
+    @Override
+    public Integer create(Review entity) throws PersistentException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionDB.getConnection();
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
+                    Statement.RETURN_GENERATED_KEYS);
+
+            statement.setString(1, entity.getText());
+            statement.setString(2, entity.getUserName());
+            statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
+                    new Date(entity.getDateOfComment()));
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, entity.getHomeId());
+            statement.execute();
 
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after trying"
-                        + " to add record into table `stuff`");
+                        + " to add record into table `profiles`");
                 throw new PersistentException();
             }
         } catch (SQLException e) {
@@ -183,28 +200,30 @@ public class StuffDaoRealization extends BaseDaoRealization
         }
     }
 
-    /**
-     * @param id - id of object
-     * @return
-     * @throws PersistentException
-     */
     @Override
-    public Stuff read(final Integer id) throws PersistentException {
-        String sql = "select id, login, password, role from stuff";
+    public Review read(Integer id) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
+            statement.setInt(1, id);
             resultSet = statement.executeQuery();
-            Stuff stuff = null;
+            Review review = null;
 
             while (resultSet.next()) {
-                stuff = createStuff(resultSet);
+                review = new Review();
+                review.setText(resultSet.getString("text"));
+                review.setUserName(resultSet.getString("user_name"));
+                review.setDateOfComment(resultSet
+                        .getDate("dateOfComment").getTime());
+                review.setHomeId(resultSet.getInt("home_id"));
             }
 
-            return stuff;
+            return review;
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);
@@ -226,23 +245,21 @@ public class StuffDaoRealization extends BaseDaoRealization
         }
     }
 
-    /**
-     * @param entity - updated object
-     * @throws PersistentException
-     */
     @Override
-    public void update(final Stuff entity) throws PersistentException {
-        String sql = "update stuff set login = ?, password = ?, role = ? where "
-                + "id = ?";
+    public void update(Review entity) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
+
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, entity.getLogin());
-            statement.setString(2, entity.getPassword());
-            statement.setInt(3, entity.getRole().getIdentity());
-            statement.setInt(4, entity.getId());
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
+            statement.setString(1, entity.getText());
+            statement.setString(2, entity.getUserName());
+            statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
+                    new Date(entity.getDateOfComment()));
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, entity.getHomeId());
+            statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, entity.getId());
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -259,16 +276,12 @@ public class StuffDaoRealization extends BaseDaoRealization
         }
     }
 
-    /**
-     * @param id - id of object for deletion
-     * @throws PersistentException
-     */
     @Override
-    public void delete(final Integer id) throws PersistentException {
+    public void delete(Integer id) throws PersistentException {
         PreparedStatement statement = null;
 
         try {
-            statement = delete("stuff", id);
+            statement = delete("reviews", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);
@@ -281,16 +294,5 @@ public class StuffDaoRealization extends BaseDaoRealization
                 LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
-    }
-
-    public Stuff createStuff(final ResultSet resultSet) throws SQLException {
-        Stuff stuff = new Stuff();
-        stuff.setId(resultSet.getInt("id"));
-        stuff.setLogin(resultSet.getString("login"));
-        stuff.setPassword(resultSet.getString("password"));
-        stuff.setRole(Role.getByIdentity(
-                resultSet.getInt("orders")));
-
-        return stuff;
     }
 }

@@ -3,10 +3,10 @@ package by.training.lakes_paradise.db.entity;
 /**
  * Class which describes profile.
  */
-public class Profile extends Entity{
+public class Profile extends Entity {
     private String login;
     private String password;
-    private Integer orders;
+    private Role role;
 
     public String getLogin() {
         return login;
@@ -24,12 +24,12 @@ public class Profile extends Entity{
         this.password = profilePassword;
     }
 
-    public Integer getOrders() {
-        return orders;
+    public Role getRole() {
+        return role;
     }
 
-    public void setOrders(final Integer profileOrders) {
-        this.orders = profileOrders;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Profile extends Entity{
         return "Profile{" +
                 "\nlogin='" + login + '\'' +
                 ", \npassword='" + password + '\'' +
-                ", \norders=" + orders +
+                ", \nrole=" + role +
                 "\n}";
     }
 }

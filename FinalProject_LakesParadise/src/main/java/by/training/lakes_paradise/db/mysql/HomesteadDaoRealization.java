@@ -3,7 +3,7 @@ package by.training.lakes_paradise.db.mysql;
 import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.HomesteadDao;
 import by.training.lakes_paradise.db.entity.Homestead;
-import by.training.lakes_paradise.db.entity.Owner;
+import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,8 +48,51 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     /**
      * First part of query for getting data from table.
      */
-    private static final String SQL_QUERY = "SELECT id, title, people_number,"
-            + " price, description, rating, id_owner ";
+    private static final String SQL_SCRIPT_SELECT
+            = "SELECT id, title, people_number,"
+            + " price, description, rating, profile_id ";
+
+    /**
+     * Script gets all objects from table homesteads by title.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_TITLE
+            = SQL_SCRIPT_SELECT
+            + "FROM homesteads WHERE title = (?)";
+
+    /**
+     * Script gets all objects from table homesteads by price.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PRICE
+            = SQL_SCRIPT_SELECT
+            + "FROM homesteads WHERE price BETWEEN (?) AND (?)";
+
+    /**
+     * Script insert new object into the table homesteads.
+     */
+    private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
+            = "INSERT INTO homesteads (title, price, description,"
+            + " people_number, rating, profile_id) values (?, ?, ?, ?, ?, ?)";
+
+    /**
+     * Script gets all objects from table homesteads by id.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
+            = "SELECT title, people_number, price, description, rating,"
+            + " profile_id FROM homesteads WHERE id = (?)";
+
+    /**
+     * Script gets all objects from table homesteads.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
+            = SQL_SCRIPT_SELECT + "FROM homesteads";
+
+    /**
+     * Script updates object in table homesteads.
+     */
+    private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
+            = "UPDATE homesteads SET title = ?, people_number = ?,"
+            + " price = ?, description = ?, rating = ?, profile_id = ?"
+            + " where id = ?";
 
     /**
      * Point to the third element in SQL query.
@@ -82,13 +125,13 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     @Override
     public List<Homestead> findByTitle(final String title)
             throws PersistentException {
-        String sql = SQL_QUERY + "FROM homesteads WHERE title = (?)";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_TITLE);
             if (title != null) {
                 statement.setString(1, title);
             }
@@ -134,14 +177,13 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     public List<Homestead> findByPrice(final BigDecimal minPrice,
                                        final BigDecimal maxPrice)
             throws PersistentException {
-        String sql = SQL_QUERY
-                + "FROM homesteads WHERE price >= (?) AND price <= (?)";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PRICE);
 
             statement.setBigDecimal(1, minPrice);
             statement.setBigDecimal(2, maxPrice);
@@ -184,26 +226,28 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     @Override
     public Integer create(final Homestead homestead)
             throws PersistentException {
-        String sql = "INSERT INTO homesteads (title, people_number, price,"
-                + " description, rating, id_owner) values (?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
+            //"INSERT INTO homesteads (title, price, description,"
+            //            + " people_number, rating, profile_id) values (?, ?, ?, ?, ?, ?)";
+
             statement.setString(1, homestead.getTitle());
-            statement.setInt(2, homestead.getPeopleNumber());
-            statement.setBigDecimal(
-                    THIRD_ELEMENT_IN_SQL_QUERY, homestead.getPrice());
+            statement.setBigDecimal(2, homestead.getPrice());
             statement.setString(
-                    FORTH_ELEMENT_IN_SQL_QUERY, homestead.getDescription());
+                    THIRD_ELEMENT_IN_SQL_QUERY, homestead.getDescription());
+            statement.setInt(
+                    FORTH_ELEMENT_IN_SQL_QUERY, homestead.getPeopleNumber());
             statement.setDouble(
                     FIFTH_ELEMENT_IN_SQL_QUERY, homestead.getRating());
             statement.setInt(
-                    SEVENTH_ELEMENT_IN_SQL_QUERY, homestead.getOwner().getId());
+                    SIXTH_ELEMENT_IN_SQL_QUERY, homestead.getOwner().getId());
 
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
@@ -245,14 +289,13 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      */
     @Override
     public Homestead read(final Integer id) throws PersistentException {
-        String sql = "SELECT title, people_number, price, description, rating,"
-                + " id_owner FROM homesteads WHERE id = (?)";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
 
             if (id != null) {
                 statement.setInt(1, id);
@@ -263,14 +306,15 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             while (resultSet.next()) {
                 homestead = new Homestead();
                 homestead.setTitle(resultSet.getString("title"));
-                homestead.setPeopleNumber(resultSet.getInt("status"));
+                homestead.setPeopleNumber(resultSet
+                        .getInt("people_number"));
                 homestead.setPrice(resultSet.getBigDecimal("price"));
                 homestead.setDescription(resultSet
                         .getString("description"));
                 homestead.setRating(resultSet.getDouble("rating"));
-                Owner owner = new Owner();
-                owner.setId(resultSet.getInt("id_owner"));
-                homestead.setOwner(owner);
+                Profile profile = new Profile();
+                profile.setId(resultSet.getInt("profile_id"));
+                homestead.setOwner(profile);
             }
             return homestead;
 
@@ -303,7 +347,6 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      */
     @Override
     public List<Homestead> read() throws PersistentException {
-        String sql = SQL_QUERY + "FROM homesteads";
         List<Homestead> list;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -311,7 +354,8 @@ public class HomesteadDaoRealization extends BaseDaoRealization
         try {
             list = new ArrayList<>();
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE);
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -346,14 +390,12 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      */
     @Override
     public void update(final Homestead entity) {
-        String sql = "UPDATE homesteads SET title = ?, people_number = ?,"
-                + " price = ?, description = ?, rating = ?, id_owner = ?"
-                + " where id = ?";
         PreparedStatement statement = null;
         Connection connection;
         try {
             connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
 
             statement.setString(1, entity.getTitle());
             statement.setInt(2, entity.getPeopleNumber());
@@ -388,13 +430,14 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * @param id - id of object for deletion
      */
     @Override
-    public void delete(final Integer id) {
+    public void delete(final Integer id) throws PersistentException {
         PreparedStatement statement = null;
 
         try {
             statement = delete("homesteads", id);
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
+            throw new PersistentException(e);
         } finally {
             try {
                 if (statement != null) {
@@ -418,14 +461,14 @@ public class HomesteadDaoRealization extends BaseDaoRealization
         Homestead homestead = new Homestead();
         homestead.setId(resultSet.getInt("id"));
         homestead.setTitle(resultSet.getString("title"));
-        homestead.setPeopleNumber(resultSet.getInt("peopleNumber"));
+        homestead.setPeopleNumber(resultSet.getInt("people_number"));
         homestead.setPrice(resultSet.getBigDecimal("price"));
         homestead.setDescription(resultSet
                 .getString("description"));
         homestead.setRating(resultSet.getDouble("rating"));
-        Owner owner = new Owner();
-        owner.setId(resultSet.getInt("id_owner"));
-        homestead.setOwner(owner);
+        Profile profile = new Profile();
+        profile.setId(resultSet.getInt("profile_id"));
+        homestead.setOwner(profile);
         return homestead;
     }
 }

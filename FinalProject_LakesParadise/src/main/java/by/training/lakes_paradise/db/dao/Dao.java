@@ -32,7 +32,7 @@ public interface Dao<Type extends Entity> {
      *
      * @param entity - updated object
      * @throws PersistentException - exception with updating object in
-     * database
+     *                             database
      */
     void update(Type entity) throws PersistentException;
 
@@ -41,7 +41,7 @@ public interface Dao<Type extends Entity> {
      *
      * @param id - id of object for deletion
      * @throws PersistentException - exception with deleting object from
-     * database
+     *                             database
      */
     void delete(Integer id) throws PersistentException;
 }

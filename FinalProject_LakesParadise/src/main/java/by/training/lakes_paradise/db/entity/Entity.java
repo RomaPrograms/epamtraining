@@ -1,18 +1,19 @@
 package by.training.lakes_paradise.db.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Entity class with "id" that used by all other entity classes.
  */
 public abstract class Entity implements Serializable {
-    private Integer id;
+    private int id;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(final Integer id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -20,8 +21,8 @@ public abstract class Entity implements Serializable {
     public boolean equals(final Object object) {
         if (object != null) {
             if (object != this) {
-                if (object.getClass() == getClass() && id != null) {
-                    return id.equals(((Entity) object).id);
+                if (object.getClass() == getClass() && id != 0) {
+                    return id == ((Entity) object).id;
                 }
                 return false;
             }
@@ -32,7 +33,7 @@ public abstract class Entity implements Serializable {
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return Objects.hash(getId());
     }
 
     @Override

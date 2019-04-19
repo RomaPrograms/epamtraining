@@ -4,7 +4,7 @@ import java.sql.Blob;
 
 public class Image extends Entity{
     private Blob image;
-    private Integer homeId;
+    private int homeId;
 
     public Blob getImage() {
         return image;

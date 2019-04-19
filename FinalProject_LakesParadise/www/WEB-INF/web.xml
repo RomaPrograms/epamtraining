@@ -28,5 +28,11 @@
         <url-pattern>/firstAction</url-pattern>
     </servlet-mapping>
 
+    <jsp-config>
+        <taglib>
+            <taglib-uri>customtags</taglib-uri>
+            <taglib-location>www/WEB-INF/tld/custom.tld</taglib-location>
+        </taglib>
+    </jsp-config>
 
 </web-app>

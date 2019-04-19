@@ -3,18 +3,18 @@ package by.training.lakes_paradise.db.mysql;
 import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.HomesteadDao;
 import by.training.lakes_paradise.db.entity.Homestead;
-import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.*;
 
 /**
  * Class for realization working with "homesteads" table.
@@ -235,9 +235,6 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
-            //"INSERT INTO homesteads (title, price, description,"
-            //            + " people_number, rating, profile_id) values (?, ?, ?, ?, ?, ?)";
-
             statement.setString(1, homestead.getTitle());
             statement.setBigDecimal(2, homestead.getPrice());
             statement.setString(
@@ -247,7 +244,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             statement.setDouble(
                     FIFTH_ELEMENT_IN_SQL_QUERY, homestead.getRating());
             statement.setInt(
-                    SIXTH_ELEMENT_IN_SQL_QUERY, homestead.getOwner().getId());
+                    SIXTH_ELEMENT_IN_SQL_QUERY, homestead.getOwnerId());
 
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
@@ -312,9 +309,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                 homestead.setDescription(resultSet
                         .getString("description"));
                 homestead.setRating(resultSet.getDouble("rating"));
-                Profile profile = new Profile();
-                profile.setId(resultSet.getInt("profile_id"));
-                homestead.setOwner(profile);
+                homestead.setOwnerId(resultSet.getInt("profile_id"));
             }
             return homestead;
 
@@ -406,7 +401,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             statement.setDouble(
                     FIFTH_ELEMENT_IN_SQL_QUERY, entity.getRating());
             statement.setInt(
-                    SIXTH_ELEMENT_IN_SQL_QUERY, entity.getOwner().getId());
+                    SIXTH_ELEMENT_IN_SQL_QUERY, entity.getOwnerId());
             statement.setInt(
                     SEVENTH_ELEMENT_IN_SQL_QUERY, entity.getId());
             statement.executeUpdate();
@@ -466,9 +461,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
         homestead.setDescription(resultSet
                 .getString("description"));
         homestead.setRating(resultSet.getDouble("rating"));
-        Profile profile = new Profile();
-        profile.setId(resultSet.getInt("profile_id"));
-        homestead.setOwner(profile);
+        homestead.setOwnerId(resultSet.getInt("profile_id"));
         return homestead;
     }
 }

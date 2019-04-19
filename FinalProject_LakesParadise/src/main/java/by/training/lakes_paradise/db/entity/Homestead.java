@@ -11,10 +11,10 @@ public class Homestead extends Entity {
     private String title;
     private BigDecimal price;
     private String description;
-    private Integer peopleNumber;
-    private Double rating;
+    private int peopleNumber;
+    private double rating;
     private Order currentOrder;
-    private Profile owner;
+    private int ownerId;
     private List<Order> orders = new ArrayList<>();
 
     public String getTitle() {
@@ -57,12 +57,12 @@ public class Homestead extends Entity {
         this.rating = homeRating;
     }
 
-    public Profile getOwner() {
-        return owner;
+    public int getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(Profile owner) {
-        this.owner = owner;
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Homestead extends Entity {
                 ", \npeopleNumber=" + peopleNumber +
                 ", \nrating=" + rating +
                 ", \ncurrentOrder=" + currentOrder +
-                ", \nowner=" + owner +
+                ", \nownerId=" + ownerId +
                 ", \norders=" + orders +
                 "\n}";
     }

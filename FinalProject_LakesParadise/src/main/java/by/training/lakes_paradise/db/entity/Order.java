@@ -4,26 +4,26 @@ package by.training.lakes_paradise.db.entity;
  * Class which describes orders.
  */
 public class Order extends Entity {
-    private Homestead homestead;
-    private Profile profile;
-    private Long startRenting;
-    private Long endRenting;
-    private Boolean isPaid;
+    private int homesteadId;
+    private int profileId;
+    private long startRenting;
+    private long endRenting;
+    private boolean isPaid;
 
-    public Homestead getHomestead() {
-        return homestead;
+    public int getHomesteadId() {
+        return homesteadId;
     }
 
-    public void setHomestead(final Homestead orderHomestead) {
-        this.homestead = orderHomestead;
+    public void setHomesteadId(int homesteadId) {
+        this.homesteadId = homesteadId;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public int getProfileId() {
+        return profileId;
     }
 
-    public void setProfile(final Profile orderProfile) {
-        this.profile = orderProfile;
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
     }
 
     public Long getStartRenting() {
@@ -53,8 +53,8 @@ public class Order extends Entity {
     @Override
     public String toString() {
         return "Order{" +
-                "\nhomestead=" + homestead +
-                ", \nprofile=" + profile +
+                "\nhomesteadId=" + homesteadId +
+                ", \nprofileId=" + profileId +
                 ", \nstartRenting=" + startRenting +
                 ", \nendRenting=" + endRenting +
                 ", \nisPaid=" + isPaid +

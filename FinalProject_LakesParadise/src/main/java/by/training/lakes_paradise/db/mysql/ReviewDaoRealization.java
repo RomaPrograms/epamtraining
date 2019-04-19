@@ -7,7 +7,12 @@ import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,28 +59,28 @@ public class ReviewDaoRealization extends BaseDaoRealization
      * Script insert new object into the table reviews.
      */
     private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
-            = "insert into reviews (text, user_name, dateOfComment, home_id)"
+            = "insert into reviews (text, user_name, date_of_comment, home_id)"
             + " values (?, ?, ?, ?)";
 
     /**
      * Script gets all objects from table reviews by homestead id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
-            = "select id, text, user_name, dateOfComment from reviews"
-            + " where id = (?)";
+            = "select id, text, user_name, date_of_comment from reviews"
+            + " where home_id = (?)";
 
     /**
      * Script gets all objects from table reviews by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
-            = "select text, user_name, dateOfComment, home_id from reviews"
+            = "select text, user_name, date_of_comment, home_id from reviews"
             + " where id = (?)";
 
     /**
      * Script updates object in table reviews.
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
-            = "update reviews set text = ?, user_name = ?, dateOfComment = ?,"
+            = "update reviews set text = ?, user_name = ?, date_of_comment = ?,"
             + " home_id = ? where id = ?";
 
     @Override
@@ -100,7 +105,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
                 review.setText(resultSet.getString("text"));
                 review.setUserName(resultSet.getString("user_name"));
                 review.setDateOfComment(resultSet
-                        .getDate("dateOfComment").getTime());
+                        .getDate("date_of_comment").getTime());
 
                 reviews.add(review);
             }
@@ -219,7 +224,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
                 review.setText(resultSet.getString("text"));
                 review.setUserName(resultSet.getString("user_name"));
                 review.setDateOfComment(resultSet
-                        .getDate("dateOfComment").getTime());
+                        .getDate("date_of_comment").getTime());
                 review.setHomeId(resultSet.getInt("home_id"));
             }
 

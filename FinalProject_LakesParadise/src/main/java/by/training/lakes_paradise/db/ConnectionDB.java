@@ -1,7 +1,9 @@
 package by.training.lakes_paradise.db;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.sql.*;
+import java.sql.Connection;
 
 public class ConnectionDB {
     public static Connection getConnection() throws SQLException {

@@ -28,7 +28,7 @@ insert into orders (id, profile_id, home_id, date_start, date_end,
 (2, 7, 1, "2019-06-15", "2013-07-01", true),
 (3, 6, 4, "2019-07-15", "2019-07-12", true);
 
-insert into reviews (text, user_name, dateOfComment, home_id) values
+insert into reviews (text, user_name, date_of_comment, home_id) values
 ("review1", "Pasha", "2000-11-11", 1),
 ("review2", "Masha", "2001-11-11", 2),
 ("review3", "Slava", "2002-11-11", 3),

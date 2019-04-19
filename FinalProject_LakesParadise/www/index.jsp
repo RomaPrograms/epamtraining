@@ -1,14 +1,9 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page info="This jsp page was written by Roman Semizhon." %>
-<%@ page isELIgnored="false" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <html>
+<head>Time & Locale info</head>
 <body>
-
-<form name="Simple" action="firstAction" method="GET">
-    <input type="submit" name="button1" value="sax"/>
-    <input type="submit" name="button1" value="dom"/>
-    <input type="submit" name="button1" value="stax"/>
-</form>
+<ctg:info-time/>
 </body>
 </html>

@@ -3,8 +3,8 @@ package by.training.lakes_paradise.db.entity;
 public class Review extends Entity {
     private String text;
     private String userName;
-    private Long dateOfComment;
-    private Integer homeId;
+    private long dateOfComment;
+    private int homeId;
 
     public String getText() {
         return text;

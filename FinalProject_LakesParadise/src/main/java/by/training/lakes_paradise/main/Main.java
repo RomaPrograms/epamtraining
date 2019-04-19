@@ -1,10 +1,9 @@
 package by.training.lakes_paradise.main;
 
 import by.training.lakes_paradise.db.ConnectionDB;
-import by.training.lakes_paradise.db.entity.Homestead;
-import by.training.lakes_paradise.db.entity.Image;
-import by.training.lakes_paradise.db.entity.Profile;
-import by.training.lakes_paradise.db.entity.Role;
+import by.training.lakes_paradise.db.dao.OrderDao;
+import by.training.lakes_paradise.db.dao.ProfileDao;
+import by.training.lakes_paradise.db.entity.*;
 import by.training.lakes_paradise.db.mysql.*;
 import by.training.lakes_paradise.exception.PersistentException;
 
@@ -13,18 +12,19 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.Connection;
 
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Main {
-    public static void main(final String[] args) throws PersistentException {
+    public static void main(final String[] args) throws PersistentException, ParseException {
 
-        /*try {
+        try {
             Connection connection = ConnectionDB.getConnection();
             Statement statement = connection.createStatement();
             BufferedImage image = ImageIO.read(new File("www/img/1.2_farmstead.jpg"));
@@ -43,8 +43,35 @@ public class Main {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
+        //OrderDaoRealization orderDaoRealization = new OrderDaoRealization();
+//        List<Order> orders = orderDaoRealization.read();
+//        for(var order : orders) {
+//            System.out.println(order);
+//        }
 
+//        System.out.println(orderDaoRealization.read(2));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        orderDaoRealization.delete(4);
+        UserDaoRealization userDao = new UserDaoRealization();
+//        for(var user : userDao.read()) {
+//            System.out.println(user);
+//        }
+        ProfileDaoRealization profileDao = new ProfileDaoRealization();
+//        for(var profile : profileDao.read()) {
+//            System.out.println(profile);
+//        }
+//        System.out.println(profileDao.read("luda@gmail.com", "333"));
+//        Profile profile = new Profile();
+//        profile.setId(8);
+//        profile.setLogin("login1");
+//        profile.setPassword("password1");
+//        profile.setRole(Role.ADMINISTRATOR);
+//        profileDao.create(profile);
+//        ReviewDaoRealization reviewDaoRealization = new ReviewDaoRealization();
+//        for(var review : reviewDaoRealization.readReviewsByHomeId(1)) {
+//            System.out.println(review);
+//        }
     }
 }

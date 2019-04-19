@@ -16,6 +16,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for realization working with "reviews" table.
+ */
 public class ReviewDaoRealization extends BaseDaoRealization
         implements ReviewDao {
     /**
@@ -83,8 +86,16 @@ public class ReviewDaoRealization extends BaseDaoRealization
             = "update reviews set text = ?, user_name = ?, date_of_comment = ?,"
             + " home_id = ? where id = ?";
 
+    /**
+     * Method that searches all reviews by id of homestead.
+     *
+     * @param homeId - id of homestead
+     * @return list with images
+     * @throws PersistentException - exception with searching in review table by
+     *                             homestead id
+     */
     @Override
-    public List<Review> readReviewsByHomeId(Integer homeId)
+    public List<Review> readReviewsByHomeId(final Integer homeId)
             throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -132,8 +143,14 @@ public class ReviewDaoRealization extends BaseDaoRealization
         }
     }
 
+    /**
+     * Method deletes reviews by id of homestead.
+     *
+     * @param homeId - id of homestead
+     * @throws PersistentException - exception with deleting in review table
+     */
     @Override
-    public void deleteReviewsByHomeId(Integer homeId)
+    public void deleteReviewsByHomeId(final Integer homeId)
             throws PersistentException {
         String sql = "delete from reviews where home_id = (?)";
         Connection connection = null;
@@ -158,8 +175,15 @@ public class ReviewDaoRealization extends BaseDaoRealization
         }
     }
 
+    /**
+     * Method adds new object to database.
+     *
+     * @param review - new object
+     * @return - id of new object in database
+     * @throws PersistentException - exception with adding object to database
+     */
     @Override
-    public Integer create(Review entity) throws PersistentException {
+    public Integer create(final Review review) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -169,11 +193,11 @@ public class ReviewDaoRealization extends BaseDaoRealization
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
-            statement.setString(1, entity.getText());
-            statement.setString(2, entity.getUserName());
+            statement.setString(1, review.getText());
+            statement.setString(2, review.getUserName());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
-                    new Date(entity.getDateOfComment()));
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, entity.getHomeId());
+                    new Date(review.getDateOfComment()));
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomeId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -205,8 +229,15 @@ public class ReviewDaoRealization extends BaseDaoRealization
         }
     }
 
+    /**
+     * Method reads object from database by id.
+     *
+     * @param id - id of object
+     * @return object which was read
+     * @throws PersistentException - exception with reading object from database
+     */
     @Override
-    public Review read(Integer id) throws PersistentException {
+    public Review read(final Integer id) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -250,8 +281,14 @@ public class ReviewDaoRealization extends BaseDaoRealization
         }
     }
 
+    /**
+     * Method that updates reviews.
+     *
+     * @param review - updated reviews
+     * @throws PersistentException - exception with updating in review table
+     */
     @Override
-    public void update(Review entity) throws PersistentException {
+    public void update(final Review review) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -259,12 +296,12 @@ public class ReviewDaoRealization extends BaseDaoRealization
             connection = ConnectionDB.getConnection();
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
-            statement.setString(1, entity.getText());
-            statement.setString(2, entity.getUserName());
+            statement.setString(1, review.getText());
+            statement.setString(2, review.getUserName());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
-                    new Date(entity.getDateOfComment()));
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, entity.getHomeId());
-            statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, entity.getId());
+                    new Date(review.getDateOfComment()));
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomeId());
+            statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, review.getId());
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -281,8 +318,13 @@ public class ReviewDaoRealization extends BaseDaoRealization
         }
     }
 
+    /**
+     * Method deletes object in database by id.
+     *
+     * @param id - id of object for deletion
+     */
     @Override
-    public void delete(Integer id) throws PersistentException {
+    public void delete(final Integer id) throws PersistentException {
         PreparedStatement statement = null;
 
         try {

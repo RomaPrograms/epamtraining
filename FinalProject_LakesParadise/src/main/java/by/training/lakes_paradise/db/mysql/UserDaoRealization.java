@@ -241,10 +241,10 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
     /**
      * Method updates object in database by id.
      *
-     * @param entity - updated object
+     * @param user - updated object
      */
     @Override
-    public void update(final User entity) throws PersistentException {
+    public void update(final User user) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -252,11 +252,11 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
 
-            statement.setString(1, entity.getName());
-            statement.setString(2, entity.getSurname());
-            statement.setString(THIRD_ELEMENT_IN_SQL_QUERY, entity.getPhone());
-            statement.setString(FORTH_ELEMENT_IN_SQL_QUERY, entity.getTown());
-            statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, entity.getId());
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getSurname());
+            statement.setString(THIRD_ELEMENT_IN_SQL_QUERY, user.getPhone());
+            statement.setString(FORTH_ELEMENT_IN_SQL_QUERY, user.getTown());
+            statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);

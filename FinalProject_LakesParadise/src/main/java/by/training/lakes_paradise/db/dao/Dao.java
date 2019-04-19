@@ -19,7 +19,7 @@ public interface Dao<Type extends Entity> {
     Integer create(Type entity) throws PersistentException;
 
     /**
-     * Method reads object from database by id.
+     * Method searches object from database by id.
      *
      * @param id - id of object
      * @return object which was read

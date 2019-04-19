@@ -1,6 +1,7 @@
 package by.training.lakes_paradise.db.mysql;
 
 import by.training.lakes_paradise.db.ConnectionDB;
+
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
@@ -18,11 +19,13 @@ public abstract class BaseDaoRealization {
     }
 
     /**
-     * Method deletes object in database by id.
+     * Method deletes object in database by id and name of table.
      *
      * @param id - id of object for deletion
+     * @param nameOfTable - name of table
      */
-    protected PreparedStatement delete(final String nameOfTable, final Integer id)
+    protected PreparedStatement delete(final String nameOfTable,
+                                       final Integer id)
             throws SQLException {
         String sql = "delete from " + nameOfTable + " where id = (?)";
         Connection connection = null;

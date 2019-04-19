@@ -10,16 +10,19 @@ import java.util.List;
  */
 public interface ImageDao extends Dao<Image> {
     /**
-     * Method that finds all images by id of homestead.
+     * Method that searches all images by id of homestead.
      *
      * @param homeId - id of homestead
      * @return list with images
+     * @throws PersistentException - exception with searching in database
      */
     List<Image> readImagesByHomeId(Integer homeId) throws PersistentException;
 
     /**
-     * @param homeId
-     * @throws PersistentException
+     * Methods that deletes images by id of homestead.
+     *
+     * @param homeId - id of homestead
+     * @throws PersistentException - exception with deleting in database
      */
     void deleteImagesByHomeId(Integer homeId) throws PersistentException;
 }

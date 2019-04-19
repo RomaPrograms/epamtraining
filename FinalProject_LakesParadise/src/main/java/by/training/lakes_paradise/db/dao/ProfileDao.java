@@ -18,7 +18,7 @@ public interface ProfileDao extends Dao<Profile> {
     List<Profile> read() throws PersistentException;
 
     /**
-     * Method returns profile of user by login and password.
+     * Method searches profile of user by login and password.
      *
      * @param login    - login of user
      * @param password - profile of user

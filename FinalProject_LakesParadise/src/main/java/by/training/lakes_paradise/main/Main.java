@@ -16,34 +16,56 @@ import java.sql.Blob;
 import java.sql.Connection;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
-    public static void main(final String[] args) throws PersistentException, ParseException {
+    public static void main(final String[] args) throws PersistentException,
+            ParseException {
 
-        try {
+        ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
+        for (var image : imageDaoRealization.readImagesByHomeId(2)) {
+            System.out.println(image);
+        }
+        /*try {
             Connection connection = ConnectionDB.getConnection();
-            Statement statement = connection.createStatement();
-            BufferedImage image = ImageIO.read(new File("www/img/1.2_farmstead.jpg"));
-            Blob blob = connection.createBlob();
-            try(OutputStream outputStream = blob.setBinaryStream(1)) {
-                ImageIO.write(image, "jpg", outputStream);
+            imageDaoRealization.delete(3);
+            List<String> list = new ArrayList<>();
+            list.add("www/img/1.1_farmstead.jpg");
+            list.add("www/img/1.2_farmstead.jpg");
+            list.add("www/img/1.3_farmstead.jpg");
+            list.add("www/img/2.0_farmstead.jpg");
+            list.add("www/img/2.1_farmstead.jpg");
+            list.add("www/img/2.2_farmstead.jpg");
+            list.add("www/img/2.3_farmstead.jpg");
+            list.add("www/img/3.0_farmstead.jpg");
+            list.add("www/img/3.1_farmstead.jpg");
+            list.add("www/img/3.2_farmstead.jpg");
+            list.add("www/img/4.0_farmstead.jpg");
+            list.add("www/img/4.1_farmstead.jpg");
+            list.add("www/img/4.2_farmstead.jpg");
+            for(int i = 10; i < 13; i++) {
+                BufferedImage image = ImageIO
+                        .read(new File(list.get(i)));
+                Blob blob = connection.createBlob();
+                try (OutputStream outputStream = blob.setBinaryStream(1)) {
+                    ImageIO.write(image, "jpg", outputStream);
+                }
+
+                Image image1 = new Image();
+                image1.setImage(blob);
+                image1.setHomeId(4);
+
+                imageDaoRealization.create(image1);
             }
-
-            ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
-            Image image1 = new Image();
-            image1.setImage(blob);
-            //image1.setIdHome(2);
-
-            imageDaoRealization.create(image1);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         //OrderDaoRealization orderDaoRealization = new OrderDaoRealization();
 //        List<Order> orders = orderDaoRealization.read();
@@ -69,7 +91,8 @@ public class Main {
 //        profile.setPassword("password1");
 //        profile.setRole(Role.ADMINISTRATOR);
 //        profileDao.create(profile);
-//        ReviewDaoRealization reviewDaoRealization = new ReviewDaoRealization();
+//        ReviewDaoRealization reviewDaoRealization
+// = new ReviewDaoRealization();
 //        for(var review : reviewDaoRealization.readReviewsByHomeId(1)) {
 //            System.out.println(review);
 //        }

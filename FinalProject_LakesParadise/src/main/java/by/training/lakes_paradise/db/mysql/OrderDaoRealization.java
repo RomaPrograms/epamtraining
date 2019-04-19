@@ -294,26 +294,26 @@ public class OrderDaoRealization extends BaseDaoRealization
     /**
      * Method updates object in database by id.
      *
-     * @param entity - updated object
+     * @param order - updated object
      */
     @Override
-    public void update(final Order entity) throws PersistentException {
+    public void update(final Order order) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionDB.getConnection();
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
-            statement.setInt(1, entity.getProfileId());
-            statement.setInt(2, entity.getHomesteadId());
+            statement.setInt(1, order.getProfileId());
+            statement.setInt(2, order.getHomesteadId());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
-                    new Date(entity.getStartRenting()));
+                    new Date(order.getStartRenting()));
             statement.setDate(FORTH_ELEMENT_IN_SQL_QUERY,
-                    new Date(entity.getEndRenting()));
+                    new Date(order.getEndRenting()));
             statement.setBoolean(FIFTH_ELEMENT_IN_SQL_QUERY,
-                    entity.getPaid());
+                    order.getPaid());
             statement.setInt(SIXTH_ELEMENT_IN_SQL_QUERY,
-                    entity.getId());
+                    order.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface OrderDao extends Dao<Order> {
     /**
-     * Method that search all orders by id of profile.
+     * Method that searches all orders by id of profile.
      *
      * @param profileId - id of profile
      * @return list with orders which were done by expected profile
@@ -19,7 +19,7 @@ public interface OrderDao extends Dao<Order> {
     List<Order> readByProfile(Integer profileId) throws PersistentException;
 
     /**
-     * Method that search all orders by id of homestead.
+     * Method that searches all orders by id of homestead.
      *
      * @param homesteadId - id of homestead
      * @return list with orders which were done with expected homestead

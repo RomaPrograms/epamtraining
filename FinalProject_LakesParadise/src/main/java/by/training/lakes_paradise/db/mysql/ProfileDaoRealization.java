@@ -300,21 +300,21 @@ public class ProfileDaoRealization extends BaseDaoRealization
     /**
      * Method updates object in database by id.
      *
-     * @param entity - updated object
+     * @param profile - updated object
      */
     @Override
-    public void update(final Profile entity) throws PersistentException {
+    public void update(final Profile profile) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionDB.getConnection();
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
-            statement.setString(1, entity.getLogin());
-            statement.setString(2, entity.getPassword());
+            statement.setString(1, profile.getLogin());
+            statement.setString(2, profile.getPassword());
             statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY,
-                    entity.getRole().getIdentity());
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, entity.getId());
+                    profile.getRole().getIdentity());
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, profile.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {

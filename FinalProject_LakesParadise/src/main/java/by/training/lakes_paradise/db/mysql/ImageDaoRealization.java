@@ -74,14 +74,14 @@ public class ImageDaoRealization extends BaseDaoRealization
             = "update images set image = ?, home_id = ? where id = (?)";
 
     /**
-     *
+     * Method that searches all images by id of homestead.
      *
      * @param homeId - id of homestead
-     * @return
-     * @throws PersistentException
+     * @return list with images
+     * @throws PersistentException - exception with searching in database
      */
     @Override
-    public List<Image> readImagesByHomeId(Integer homeId)
+    public List<Image> readImagesByHomeId(final Integer homeId)
             throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -127,14 +127,14 @@ public class ImageDaoRealization extends BaseDaoRealization
     }
 
     /**
+     * Method adds images to database.
      *
-     *
-     * @param entity - new object
-     * @return
-     * @throws PersistentException
+     * @param image - new image
+     * @return number if methods ended successfully
+     * @throws PersistentException - exception with creating images
      */
     @Override
-    public Integer create(Image entity) throws PersistentException {
+    public Integer create(final Image image) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -144,8 +144,8 @@ public class ImageDaoRealization extends BaseDaoRealization
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
-            statement.setBlob(1, entity.getImage());
-            statement.setInt(2, entity.getHomeId());
+            statement.setBlob(1, image.getImage());
+            statement.setInt(2, image.getHomeId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -178,14 +178,15 @@ public class ImageDaoRealization extends BaseDaoRealization
     }
 
     /**
+     * Method searches imagesby id.
      *
-     *
-     * @param id - id of object
-     * @return
-     * @throws PersistentException
+     * @param id - id of image
+     * @return image
+     * @throws PersistentException - exception with reading object from images
+     *                             table
      */
     @Override
-    public Image read(Integer id) throws PersistentException {
+    public Image read(final Integer id) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -226,22 +227,22 @@ public class ImageDaoRealization extends BaseDaoRealization
     }
 
     /**
+     * Method that updates images.
      *
-     *
-     * @param entity - updated object
-     * @throws PersistentException
+     * @param image - updated image
+     * @throws PersistentException - exception with updating in image table
      */
     @Override
-    public void update(Image entity) throws PersistentException {
+    public void update(final Image image) throws PersistentException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionDB.getConnection();
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
-            statement.setBlob(1, entity.getImage());
-            statement.setInt(2, entity.getHomeId());
-            statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY, entity.getId());
+            statement.setBlob(1, image.getImage());
+            statement.setInt(2, image.getHomeId());
+            statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY, image.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -259,13 +260,14 @@ public class ImageDaoRealization extends BaseDaoRealization
     }
 
     /**
+     * Methods that deletes images by id.
      *
-     *
-     * @param id - id of object for deletion
-     * @throws PersistentException
+     * @param id - id of image for deletion
+     * @throws PersistentException - exception with deleting in image table
+     *                             by id
      */
     @Override
-    public void delete(Integer id) throws PersistentException {
+    public void delete(final Integer id) throws PersistentException {
         PreparedStatement statement = null;
 
         try {
@@ -285,13 +287,14 @@ public class ImageDaoRealization extends BaseDaoRealization
     }
 
     /**
+     * Methods that deletes images by id of homestead.
      *
-     *
-     * @param homeId
-     * @throws PersistentException
+     * @param homeId - id of homestead
+     * @throws PersistentException - exception with deleting in image table
+     *                             by home id
      */
     @Override
-    public void deleteImagesByHomeId(Integer homeId)
+    public void deleteImagesByHomeId(final Integer homeId)
             throws PersistentException {
         String sql = "delete from images where home_id = (?)";
         Connection connection = null;

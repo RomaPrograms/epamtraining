@@ -25,7 +25,7 @@ public class ImageDaoRealization extends BaseDaoRealization
      * Logger for creation notes to some appender.
      */
     private static final Logger LOGGER
-            = LogManager.getLogger(ProfileDaoRealization.class);
+            = LogManager.getLogger(ImageDaoRealization.class);
 
     /**
      * String for notification about problems with ResultSet.

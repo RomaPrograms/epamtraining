@@ -1,6 +1,7 @@
 package by.training.lakes_paradise.main;
 
 import by.training.lakes_paradise.db.ConnectionDB;
+import by.training.lakes_paradise.db.dao.HomesteadDao;
 import by.training.lakes_paradise.db.dao.OrderDao;
 import by.training.lakes_paradise.db.dao.ProfileDao;
 import by.training.lakes_paradise.db.entity.*;
@@ -26,10 +27,10 @@ public class Main {
     public static void main(final String[] args) throws PersistentException,
             ParseException {
 
-        ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
+        /*ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
         for (var image : imageDaoRealization.readImagesByHomeId(2)) {
             System.out.println(image);
-        }
+        }*/
         /*try {
             Connection connection = ConnectionDB.getConnection();
             imageDaoRealization.delete(3);

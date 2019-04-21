@@ -10,7 +10,6 @@ public interface ConnectionPool {
     void releaseConnection(Connection connection);
     void init(String driverClass, String url, String user, String password,
               int startSize, int maxSize, int checkConnectionTimeout) throws PersistentException;
-    static ConnectionPoolRealization getInstance();
     Connection createConnection() throws SQLException;
     void destroy();
 }

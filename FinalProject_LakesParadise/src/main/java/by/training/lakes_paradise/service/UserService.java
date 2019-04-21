@@ -1,4 +1,4 @@
 package by.training.lakes_paradise.service;
 
-public interface UserService {
+public interface UserService extends Service {
 }

@@ -1,4 +1,4 @@
 package by.training.lakes_paradise.service;
 
-public interface ReviewService {
+public interface ReviewService extends Service {
 }

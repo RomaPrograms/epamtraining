@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html>
@@ -21,6 +22,45 @@
 
         #navbar_background {
             background-color: white;
+        }
+
+        #dddd {
+            background-color: white;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+
+        footer {
+            background-color: white;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        #findData {
+            background-color: white;
+            padding-top: 10px;
+            padding-bottom: 60px;
+            border: none;
+            border-bottom: 1px solid deepskyblue;
+            outline: none;
+            height: 40px;
+            font-size: 16px;
+        }
+        #search_button
+        {
+            border: none;
+            ouline: none;
+            height: 40px;
+            background: #1c8adb;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 20px;
+        }
+
+        #search_button:hover
+        {
+            cursor: pointer;
+            background: #39dc79;
+            color: #000;
         }
     </style>
 </head>
@@ -56,20 +96,105 @@
         </div>
     </div>
 </nav>
+<div id="findData" class="container">
+    <div class="row">
+        <div class="col-md-5">
+            Имя:
+            <input type="text" name="username"
+                   placeholder="Введите имя">
+        </div>
 
-<div id="rigth_bar">
-    <div class="list_product main_flex">
-        <div class="img_product">
-            <img width=25% height=25% src="../img/myImages/1.1_farmstead.jpg" alt="">
-            <h2>Ourdsfadsfsadfasdf</h2>
-            <p>dffffffffffffffffffff</p>
-            <p>fddddddddddddddddddddddddd</p>
+        <div class="col-md-5">
+            Цена:
+            <input type="text" name="username"
+                   placeholder="Введите цену">
+        </div>
+
+        <div class="col-md-2">
+            <input id="search_button" type="submit" name="submit" value="Поиск">
+        </div>
+
+        </div>
+    </div>
+</div>
+<div id="dddd" class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img width="300px" height="200px" class="img-rounded"
+                 src="../img/myImages/1.1_farmstead.jpg"/>
+        </div>
+        <div class="col-md-8">
+            <h2>Дом №1</h2>
+            <p>Этот домик невероятно классный, мы уверены, что он вам понравится.</p>
+            <dl>
+                <dt>Цена</dt>
+                <dd>- 2000</dd>
+                <dt>Колличество человек</dt>
+                <dd>- 8</dd>
+            </dl>
+            <p><a href="Contacts.jsp" class="btn btn-default">Узнать больше
+                &raquo;</a></p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <img width="300px" height="200px" class="img-rounded"
+                 src="../img/myImages/2.0_farmstead.jpg"/>
+        </div>
+        <div class="col-md-8">
+            <h2>Просмотреть дома</h2>
+            <p>На нашем сайте собрано огромное колличество агроусадьб. По поводу
+                каждой
+                агроусадьбы вы сможете написать хозяину лично. Более того, вы
+                можете выбирать
+                агроусадьбы по предложенным критериям. Мы не сомневаемся, что вы
+                сможете найти агроусадьбу подходящую всем вашим категориям.</p>
+            <p><a href="Contacts.jsp" class="btn btn-default">Узнать больше
+                &raquo;</a></p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <img width="300px" height="200px" class="img-rounded"
+                 src="../img/myImages/3.0_farmstead.jpg"/>
+        </div>
+        <div class="col-md-8">
+            <h2>Просмотреть дома</h2>
+            <p>На нашем сайте собрано огромное колличество агроусадьб. По поводу
+                каждой
+                агроусадьбы вы сможете написать хозяину лично. Более того, вы
+                можете выбирать
+                агроусадьбы по предложенным критериям. Мы не сомневаемся, что вы
+                сможете найти агроусадьбу подходящую всем вашим категориям.</p>
+            <p><a href="Contacts.jsp" class="btn btn-default">Узнать больше
+                &raquo;</a></p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <img width="300px" height="200px" class="img-rounded"
+                 src="../img/myImages/4.0_farmstead.jpg"/>
+        </div>
+        <div class="col-md-8">
+            <h2>Просмотреть дома</h2>
+            <p>На нашем сайте собрано огромное колличество агроусадьб. По поводу
+                каждой
+                агроусадьбы вы сможете написать хозяину лично. Более того, вы
+                можете выбирать
+                агроусадьбы по предложенным критериям. Мы не сомневаемся, что вы
+                сможете найти агроусадьбу подходящую всем вашим категориям.</p>
+            <p><a href="Contacts.jsp" class="btn btn-default">Узнать больше
+                &raquo;</a></p>
         </div>
     </div>
 
-    <button id="load_more" type="button">
-        LoadMore
-    </button>
+    <hr>
+    <footer>
+        <p>&copy; Все права защищены 2019</p>
+    </footer>
 </div>
 
 </body>

@@ -1,16 +1,19 @@
 package by.training.lakes_paradise.controller;
 
 import by.training.lakes_paradise.db.pool.ConnectionPool;
+import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebServlet("/firstAction")
 public class DispatcherServlet extends HttpServlet {
 
     /**
@@ -31,7 +34,7 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            ConnectionPool.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER,
+            ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER,
                     DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE,
                     DB_POOL_CHECK_CONNECTION_TIMEOUT);
         } catch (PersistentException e) {

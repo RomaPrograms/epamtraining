@@ -19,13 +19,13 @@
     </welcome-file-list>
 
     <servlet>
-        <servlet-name>FirstServlet</servlet-name>
-        <servlet-class>by.training.lakes_paradise.servlet.LakesParadise</servlet-class>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>by.training.lakes_paradise</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>FirstServlet</servlet-name>
-        <url-pattern>/firstAction</url-pattern>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>*.jsp</url-pattern>
     </servlet-mapping>
 
     <jsp-config>

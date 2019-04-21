@@ -60,7 +60,6 @@ public class ConnectionPoolRealization implements ConnectionPool {
             = new LinkedBlockingQueue<>();
     private Set<Connection> usedConnection = new ConcurrentSkipListSet<>();
 
-    @Override
     public ConnectionPoolRealization getInstance() {
         return INSTANCE;
     }

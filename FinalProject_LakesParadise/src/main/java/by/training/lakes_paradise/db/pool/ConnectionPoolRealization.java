@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.db.pool;
 
-import by.training.lakes_paradise.db.mysql.OrderDaoRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,7 +40,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
             = "Connection was received from pool. Current pool size: %d used"
             + " connections; %d free connection";
 
-    private static Lock lock = new ReentrantLock();
+    //private static Lock lock = new ReentrantLock();
 
     private static int CHECK_CONNECTION_TIMEOUT;
 
@@ -56,9 +55,10 @@ public class ConnectionPoolRealization implements ConnectionPool {
     private static ConnectionPoolRealization INSTANCE
             = new ConnectionPoolRealization();
 
-    private BlockingQueue<Connection> freeConnection
+    private BlockingQueue<PooledConnection> freeConnection
             = new LinkedBlockingQueue<>();
-    private Set<Connection> usedConnection = new ConcurrentSkipListSet<>();
+    private Set<PooledConnection> usedConnection
+            = new ConcurrentSkipListSet<>();
 
     public static ConnectionPoolRealization getInstance() {
         return INSTANCE;
@@ -88,7 +88,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
 
     @Override
     public Connection getConnection() throws PersistentException {
-        Connection connection = null;
+        PooledConnection connection = null;
         while (connection == null) {
             try {
                 if (!freeConnection.isEmpty()) {
@@ -107,7 +107,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
                 }
             } catch (InterruptedException | SQLException e) {
                 LOGGER.error(CONNECTION_RECEIVED_EXCEPTION, e);
-                lock.unlock();
+                //lock.unlock();
                 throw new PersistentException(e);
             }
         }
@@ -118,7 +118,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
     }
 
     @Override
-    public void releaseConnection(Connection connection) {
+    public void releaseConnection(PooledConnection connection) {
         try {
             if (connection.isValid(CHECK_CONNECTION_TIMEOUT)) {
                 connection.clearWarnings();
@@ -139,15 +139,16 @@ public class ConnectionPoolRealization implements ConnectionPool {
     }
 
     @Override
-    public Connection createConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    public PooledConnection createConnection() throws SQLException {
+        return new PooledConnection(DriverManager
+                .getConnection(URL, USER, PASSWORD));
     }
 
     @Override
     public void destroy() {
         usedConnection.addAll(freeConnection);
         freeConnection.clear();
-        for (Connection connection : usedConnection) {
+        for (PooledConnection connection : usedConnection) {
             try {
                 connection.close();
             } catch (SQLException e) {

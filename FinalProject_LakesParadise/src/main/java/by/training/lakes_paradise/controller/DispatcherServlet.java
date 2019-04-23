@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.controller;
 
-import by.training.lakes_paradise.db.pool.ConnectionPool;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;

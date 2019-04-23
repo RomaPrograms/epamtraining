@@ -4,9 +4,14 @@ import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.HomesteadDao;
 import by.training.lakes_paradise.db.dao.OrderDao;
 import by.training.lakes_paradise.db.dao.ProfileDao;
+import by.training.lakes_paradise.db.dao.TransactionFactory;
 import by.training.lakes_paradise.db.entity.*;
 import by.training.lakes_paradise.db.mysql.*;
+import by.training.lakes_paradise.db.pool.ConnectionPool;
+import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
+import by.training.lakes_paradise.service.HomesteadService;
+import by.training.lakes_paradise.service.ServiceFactoryRealization;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -24,6 +29,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
+    private static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/lakes_paradise_db?useUnicode=true&characterEncoding=UTF-8";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "9512684Roma";
+    private static final int DB_POOL_START_SIZE = 10;
+    private static final int DB_POOL_MAX_SIZE = 1000;
+    private static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
+
     public static void main(final String[] args) throws PersistentException,
             ParseException {
 
@@ -97,5 +111,26 @@ public class Main {
 //        for(var review : reviewDaoRealization.readReviewsByHomeId(1)) {
 //            System.out.println(review);
 //        }
+
+//        ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER,
+//                DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE,
+//                DB_POOL_CHECK_CONNECTION_TIMEOUT);
+
+        //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
+        /*TransactionFactoryRealization transactionFactoryRealization = new TransactionFactoryRealization();
+        List<Homestead> list = null;
+        try {
+            list = transactionFactoryRealization.createTransaction().createDao(HomesteadDao.class).read();
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }*/
+        //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
+
+        //System.out.println(factoryRealization.getService(HomesteadService.class).findAll());
+        System.out.println(new HomesteadDaoRealization().read(2));
     }
 }

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public interface ConnectionPool {
     Connection getConnection() throws InterruptedException, SQLException, PersistentException;
-    void releaseConnection(Connection connection);
+    void releaseConnection(PooledConnection connection);
     void init(String driverClass, String url, String user, String password,
               int startSize, int maxSize, int checkConnectionTimeout) throws PersistentException;
-    Connection createConnection() throws SQLException;
+    PooledConnection createConnection() throws SQLException;
     void destroy();
 }

@@ -2,7 +2,6 @@ package by.training.lakes_paradise.db.mysql;
 
 import by.training.lakes_paradise.db.dao.Transaction;
 import by.training.lakes_paradise.db.dao.TransactionFactory;
-import by.training.lakes_paradise.db.pool.ConnectionPool;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 import java.sql.Connection;

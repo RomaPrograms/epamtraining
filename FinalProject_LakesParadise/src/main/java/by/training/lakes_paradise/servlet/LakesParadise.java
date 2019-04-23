@@ -1,10 +1,14 @@
 package by.training.lakes_paradise.servlet;
 
-import by.training.lakes_paradise.db.dao.HomesteadDao;
-import by.training.lakes_paradise.db.pool.ConnectionPool;
+import by.training.lakes_paradise.db.entity.Homestead;
+import by.training.lakes_paradise.db.entity.Page;
+import by.training.lakes_paradise.db.mysql.HomesteadDaoRealization;
+import by.training.lakes_paradise.db.mysql.TransactionFactoryRealization;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
+import by.training.lakes_paradise.service.HomesteadService;
 import by.training.lakes_paradise.service.HomesteadServiceRealization;
+import by.training.lakes_paradise.service.ServiceFactoryRealization;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Servlet class which handles WEB-requests.
@@ -55,26 +60,44 @@ public class LakesParadise extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws ServletException, IOException {
-        action(request, response);
+        try {
+            action(request, response);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
-        action(request, response);
+        try {
+            action(request, response);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
     }
 
     private void action(HttpServletRequest request,
                         HttpServletResponse response)
-            throws ServletException, IOException {
-        HomesteadServiceRealization homesteadServiceRealization = new HomesteadServiceRealization();
-        try {
-            request.setAttribute("res", homesteadServiceRealization.findAll());
-        } catch (PersistentException e) {
-            e.printStackTrace();
-        }
-        request.getRequestDispatcher("/jsp/homesteads.jsp").forward(
-                request, response);
+            throws ServletException, IOException, PersistentException {
+        ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
+        //try {
+
+//            switch(Page.valueOf(request.getAttribute("page").toString().toUpperCase())) {
+//                case HOME:
+//                    break;
+//                case SIGNUP:
+//                    break;
+//                case HOMESTEAD:
+//                    break;
+//            }
+            request.setAttribute("pushButton", request.getAttribute("page"));
+            request.setAttribute("res", factoryRealization.getService(HomesteadService.class).findAll());
+            request.getRequestDispatcher("jsp/homesteads.jsp").forward(
+                    request, response);
+//        } catch (PersistentException e) {
+//            e.printStackTrace();
+//        }
     }
 }

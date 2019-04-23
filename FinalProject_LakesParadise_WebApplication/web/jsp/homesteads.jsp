@@ -88,7 +88,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
                 <li><a href="../index.jsp">Меню</a></li>
-                <li><a href="RegistrationForm.jsp">Регистрация</a></li>
+                <li><a href="registrationForm.jsp">Регистрация</a></li>
                 <li><a href="firstAction?page=homestead">Агроусадьбы</a></li>
             </ul>
 
@@ -145,7 +145,7 @@
                         <dt>Колличество человек</dt>
                         <dd>- <c:out value="${elem.getPeopleNumber()}"/></dd>
                     </dl>
-                    <p><a href="Contacts.jsp" class="btn btn-default">Узнать
+                    <p><a href="contacts.jsp" class="btn btn-default">Узнать
                         больше
                         &raquo;</a></p>
                 </div>

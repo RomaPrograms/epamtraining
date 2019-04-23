@@ -42,9 +42,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul id="list" class="nav navbar-nav">
-        <li><a href="index.jsp?page=home">Меню</a></li>
-        <li><a href="jsp/RegistrationForm.jsp?page=signUp">Регистрация</a></li>
-        <li><a href="/firstAction?page=homestead&page1=homestead">Агроусадьбы</a></li>
+        <li><a href="/home.html">Меню</a></li>
+        <li><a href="/signUp.html">Регистрация</a></li>
+        <li><a href="/homesteads.html">Агроусадьбы</a></li>
       </ul>
 
       <form class="navbar-form navbar-right" action="firstAction" method="get">

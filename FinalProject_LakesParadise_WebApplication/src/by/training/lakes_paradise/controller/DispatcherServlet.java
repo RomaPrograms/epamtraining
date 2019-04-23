@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.controller;
 
-import by.training.lakes_paradise.db.entity.Page;
 import by.training.lakes_paradise.db.mysql.TransactionFactoryRealization;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
@@ -78,23 +77,24 @@ public class DispatcherServlet extends HttpServlet {
                         HttpServletResponse response)
             throws ServletException, IOException, PersistentException {
         ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
-        try {
+//        try {
+//
+//            switch(Page.valueOf(request.getParameter("page").toUpperCase())) {
+//                case HOME:
+//                    break;
+//                case SIGNUP:
+//                    break;
+//                case HOMESTEAD:
+//                    request.setAttribute("res", factoryRealization.getService(HomesteadService.class).findAll());
+//                    request.getRequestDispatcher("jsp/homesteads.jsp").forward(
+//                            request, response);
+//            }
+            request.setAttribute("res", factoryRealization.getService(HomesteadService.class).findAll());
+            request.getRequestDispatcher("jsp/homesteads.jsp").forward(
+                    request, response);
 
-            switch(Page.valueOf(request.getParameter("page").toUpperCase())) {
-                case HOME:
-                    break;
-                case SIGNUP:
-                    break;
-                case HOMESTEAD:
-                    request.setAttribute("res", factoryRealization.getService(HomesteadService.class).findAll());
-                    request.getRequestDispatcher("jsp/homesteads.jsp").forward(
-                            request, response);
-            }
-            /*Object string = request.getParameter("page");
-            request.setAttribute("pushButton", string.toString());*/
-
-        } catch (PersistentException e) {
-            e.printStackTrace();
-        }
+//        } catch (PersistentException e) {
+//            e.printStackTrace();
+//        }
     }
 }

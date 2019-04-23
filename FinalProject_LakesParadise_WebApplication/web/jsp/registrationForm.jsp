@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
                 <li><a href="../index.jsp">Меню</a></li>
-                <li><a href="RegistrationForm.jsp">Регистрация</a></li>
+                <li><a href="registrationForm.jsp">Регистрация</a></li>
                 <li><a href="homesteads.jsp">Агроусадьбы</a></li>
             </ul>
 

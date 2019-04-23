@@ -14,7 +14,7 @@ package by.training.lakes_paradise.custom;
 //                <dt>Колличество человек</dt>
 //                <dd>- 8</dd>
 //            </dl>
-//            <p><a href="Contacts.jsp" class="btn btn-default">Узнать больше
+//            <p><a href="contacts.jsp" class="btn btn-default">Узнать больше
 //                &raquo;</a></p>
 //        </div>
 //    </div>

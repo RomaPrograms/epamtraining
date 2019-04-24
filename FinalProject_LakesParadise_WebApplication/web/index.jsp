@@ -42,7 +42,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul id="list" class="nav navbar-nav">
-        <li><a href="/home.html">Меню</a></li>
+        <li><a href="/menu.html">Меню</a></li>
         <li><a href="/signUp.html">Регистрация</a></li>
         <li><a href="/homesteads.html">Агроусадьбы</a></li>
       </ul>

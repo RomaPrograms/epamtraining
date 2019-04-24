@@ -1,4 +1,4 @@
 package by.training.lakes_paradise.action;
 
-abstract class AuthorizedUserAction {
+abstract class AuthorizedUserAction extends Action{
 }

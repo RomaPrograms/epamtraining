@@ -1,19 +1,22 @@
 package by.training.lakes_paradise.controller;
 
+import by.training.lakes_paradise.action.Action;
+import by.training.lakes_paradise.action.ActionManager;
+import by.training.lakes_paradise.action.ActionManagerFactory;
 import by.training.lakes_paradise.db.mysql.TransactionFactoryRealization;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.HomesteadService;
+import by.training.lakes_paradise.service.ServiceFactory;
 import by.training.lakes_paradise.service.ServiceFactoryRealization;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Servlet class which handles WEB-requests.
@@ -47,9 +50,9 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
-    /*public ServiceFactory getFactory() throws PersistentException {
-        return new ServiceFactoryImpl(new TransactionFactoryImpl());
-    }*/
+    public ServiceFactory getFactory() throws PersistentException {
+        return new ServiceFactoryRealization(new TransactionFactoryRealization());
+    }
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -76,25 +79,45 @@ public class DispatcherServlet extends HttpServlet {
     private void action(HttpServletRequest request,
                         HttpServletResponse response)
             throws ServletException, IOException, PersistentException {
-        ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
-//        try {
-//
-//            switch(Page.valueOf(request.getParameter("page").toUpperCase())) {
-//                case HOME:
-//                    break;
-//                case SIGNUP:
-//                    break;
-//                case HOMESTEAD:
-//                    request.setAttribute("res", factoryRealization.getService(HomesteadService.class).findAll());
-//                    request.getRequestDispatcher("jsp/homesteads.jsp").forward(
-//                            request, response);
-//            }
-            request.setAttribute("res", factoryRealization.getService(HomesteadService.class).findAll());
-            request.getRequestDispatcher("jsp/homesteads.jsp").forward(
-                    request, response);
-
-//        } catch (PersistentException e) {
-//            e.printStackTrace();
-//        }
+        Action action = (Action)request.getAttribute("action");
+        try {
+            HttpSession session = request.getSession(false);
+            if(session != null) {
+                @SuppressWarnings("unchecked")
+                Map<String, Object> attributes = (Map<String, Object>)session.getAttribute("redirectedData");
+                if(attributes != null) {
+                    for(String key : attributes.keySet()) {
+                        request.setAttribute(key, attributes.get(key));
+                    }
+                    session.removeAttribute("redirectedData");
+                }
+            }
+            ActionManager actionManager = ActionManagerFactory.getManager(getFactory());
+            Action.Forward forward = actionManager.execute(action, request, response);
+            actionManager.close();
+            if(session != null && forward != null && !forward.getAttributes().isEmpty()) {
+                session.setAttribute("redirectedData", forward.getAttributes());
+            }
+            String requestedUri = request.getRequestURI();
+            if(forward != null && forward.isRedirect()) {
+                String redirectedUri = request.getContextPath() + forward.getForward();
+                LOGGER.debug(String.format("Request for URI \"%s\" id redirected to URI \"%s\"", requestedUri, redirectedUri));
+                response.sendRedirect(redirectedUri);
+            } else {
+                String jspPage;
+                if(forward != null) {
+                    jspPage = forward.getForward();
+                } else {
+                    jspPage = action.getName() + ".jsp";
+                }
+                jspPage = "/jsp" + jspPage;
+                LOGGER.debug(String.format("Request for URI \"%s\" is forwarded to JSP \"%s\"", requestedUri, jspPage));
+                getServletContext().getRequestDispatcher(jspPage).forward(request, response);
+            }
+        } catch(PersistentException e) {
+            LOGGER.error("It is impossible to process request", e);
+            request.setAttribute("error", "Ошибка обработки данных");
+            getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
+        }
     }
 }

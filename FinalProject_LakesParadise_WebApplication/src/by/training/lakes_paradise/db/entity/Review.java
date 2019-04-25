@@ -19,7 +19,7 @@ public class Review extends Entity {
     /**
      * Id of home which belongs the comment.
      */
-    private int homeId;
+    private Homestead homestead;
 
     /**
      * Gets the value of text property.
@@ -62,7 +62,7 @@ public class Review extends Entity {
      *
      * @return value of dateOfComment property
      */
-    public Long getDateOfComment() {
+    public long getDateOfComment() {
         return dateOfComment;
     }
 
@@ -71,26 +71,26 @@ public class Review extends Entity {
      *
      * @param reviewDateOfComment - value of dateOfComment property
      */
-    public void setDateOfComment(final Long reviewDateOfComment) {
+    public void setDateOfComment(final long reviewDateOfComment) {
         this.dateOfComment = reviewDateOfComment;
     }
 
     /**
-     * Gets the value of homeId property.
+     * Gets the value of homestead property.
      *
-     * @return value of homeId property
+     * @return value of homestead property
      */
-    public Integer getHomeId() {
-        return homeId;
+    public Homestead getHomestead() {
+        return homestead;
     }
 
     /**
-     * Sets the value of homeId property.
+     * Sets the value of homestead property.
      *
-     * @param reviewHomeId - value of homeId property
+     * @param reviewHomeId - value of homestead property
      */
-    public void setHomeId(final Integer reviewHomeId) {
-        this.homeId = reviewHomeId;
+    public void setHomestead(final Homestead reviewHomeId) {
+        this.homestead = reviewHomeId;
     }
 
     /**
@@ -104,7 +104,7 @@ public class Review extends Entity {
                 + "\ntext='" + text + '\''
                 + ", \nuserName='" + userName + '\''
                 + ", \ndateOfComment=" + dateOfComment
-                + ", \nhomeId=" + homeId
+                + ", \nhomestead=" + homestead
                 + "\n}";
     }
 }

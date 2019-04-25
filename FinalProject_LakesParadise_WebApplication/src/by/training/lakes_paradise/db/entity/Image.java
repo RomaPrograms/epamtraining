@@ -14,7 +14,7 @@ public class Image extends Entity {
     /**
      * Id of homestead which belongs image.
      */
-    private int homeId;
+    private Homestead homestead;
 
     /**
      * Gets the value of image property.
@@ -35,21 +35,21 @@ public class Image extends Entity {
     }
 
     /**
-     * Gets the value of homeId property.
+     * Gets the value of homestead property.
      *
-     * @return value of homeId property
+     * @return value of homestead property
      */
-    public Integer getHomeId() {
-        return homeId;
+    public Homestead getHomestead() {
+        return homestead;
     }
 
     /**
-     * Sets the value of homeId property.
+     * Sets the value of homestead property.
      *
-     * @param imageHomeId - value of homeId property
+     * @param imageHomeId - value of homestead property
      */
-    public void setHomeId(final Integer imageHomeId) {
-        this.homeId = imageHomeId;
+    public void setHomestead(final Homestead imageHomeId) {
+        this.homestead = imageHomeId;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Image extends Entity {
     public String toString() {
         return "Image{"
                 + "\nimage=" + image
-                + ", \nhomeId=" + homeId
+                + ", \nhomestead=" + homestead
                 + "\n}";
     }
 }

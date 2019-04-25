@@ -7,11 +7,11 @@ public class Order extends Entity {
     /**
      * Id of homestead which is ordered.
      */
-    private int homesteadId;
+    private Homestead homestead;
     /**
      * Id of profile which ordered homestead.
      */
-    private int profileId;
+    private User user;
     /**
      * Date of start renting.
      */
@@ -26,39 +26,39 @@ public class Order extends Entity {
     private boolean isPaid;
 
     /**
-     * Gets the value of homesteadId property.
+     * Gets the value of homestead property.
      *
-     * @return value of homesteadId property.
+     * @return value of homestead property.
      */
-    public int getHomesteadId() {
-        return homesteadId;
+    public Homestead getHomestead() {
+        return homestead;
     }
 
     /**
-     * Sets the value of homesteadId property.
+     * Sets the value of homestead property.
      *
-     * @param orderedHomesteadId - value of homesteadId property.
+     * @param orderedHomesteadId - value of homestead property.
      */
-    public void setHomesteadId(final int orderedHomesteadId) {
-        this.homesteadId = orderedHomesteadId;
+    public void setHomestead(final Homestead orderedHomesteadId) {
+        this.homestead = orderedHomesteadId;
     }
 
     /**
-     * Gets the value of profileId property.
+     * Gets the value of user property.
      *
-     * @return value of profileId property.
+     * @return value of user property.
      */
-    public int getProfileId() {
-        return profileId;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * Sets the value of profileId property.
+     * Sets the value of user property.
      *
-     * @param clientId - value of profileId property.
+     * @param clientId - value of user property.
      */
-    public void setProfileId(final int clientId) {
-        this.profileId = clientId;
+    public void setUser(final User clientId) {
+        this.user = clientId;
     }
 
     /**
@@ -66,7 +66,7 @@ public class Order extends Entity {
      *
      * @return value of startRenting property.
      */
-    public Long getStartRenting() {
+    public long getStartRenting() {
         return startRenting;
     }
 
@@ -75,7 +75,7 @@ public class Order extends Entity {
      *
      * @param orderStartRenting - value of startRenting property.
      */
-    public void setStartRenting(final Long orderStartRenting) {
+    public void setStartRenting(final long orderStartRenting) {
         this.startRenting = orderStartRenting;
     }
 
@@ -84,7 +84,7 @@ public class Order extends Entity {
      *
      * @return value of endRenting property.
      */
-    public Long getEndRenting() {
+    public long getEndRenting() {
         return endRenting;
     }
 
@@ -93,7 +93,7 @@ public class Order extends Entity {
      *
      * @param orderEndRenting - value of endRenting property.
      */
-    public void setEndRenting(final Long orderEndRenting) {
+    public void setEndRenting(final long orderEndRenting) {
         this.endRenting = orderEndRenting;
     }
 
@@ -102,7 +102,7 @@ public class Order extends Entity {
      *
      * @return value of isPaid property.
      */
-    public Boolean getPaid() {
+    public boolean getPaid() {
         return isPaid;
     }
 
@@ -111,15 +111,15 @@ public class Order extends Entity {
      *
      * @param paid - value of isPaid property.
      */
-    public void setPaid(final Boolean paid) {
+    public void setPaid(final boolean paid) {
         isPaid = paid;
     }
 
     @Override
     public String toString() {
         return "Order{"
-                + "\nhomesteadId=" + homesteadId
-                + ", \nprofileId=" + profileId
+                + "\nhomestead=" + homestead
+                + ", \nuser=" + user
                 + ", \nstartRenting=" + startRenting
                 + ", \nendRenting=" + endRenting
                 + ", \nisPaid=" + isPaid

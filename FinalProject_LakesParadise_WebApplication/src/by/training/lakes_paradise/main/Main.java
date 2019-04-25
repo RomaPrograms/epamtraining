@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -41,10 +42,10 @@ public class Main {
     public static void main(final String[] args) throws PersistentException,
             ParseException {
 
-        /*ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
-        for (var image : imageDaoRealization.readImagesByHomeId(2)) {
-            System.out.println(image);
-        }*/
+        ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
+//        for (var image : imageDaoRealization.readImagesByHomeId(2)) {
+//            System.out.println(image);
+//        }
         /*try {
             Connection connection = ConnectionDB.getConnection();
             imageDaoRealization.delete(3);
@@ -72,7 +73,7 @@ public class Main {
 
                 Image image1 = new Image();
                 image1.setImage(blob);
-                image1.setHomeId(4);
+                image1.setHomestead(4);
 
                 imageDaoRealization.create(image1);
             }
@@ -111,10 +112,17 @@ public class Main {
 //        for(var review : reviewDaoRealization.readReviewsByHomeId(1)) {
 //            System.out.println(review);
 //        }
+//        System.out.println(profileDao.read("pasha@gmail.com", "111"));
+        ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER,
+                DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE,
+                DB_POOL_CHECK_CONNECTION_TIMEOUT);
 
-//        ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER,
-//                DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE,
-//                DB_POOL_CHECK_CONNECTION_TIMEOUT);
+        try {
+            Image image = imageDaoRealization.readImagesByHomeId(2).get(1);
+            InputStream binaryStream = image.getImage().getBinaryStream(1, image.getImage().length());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
         /*TransactionFactoryRealization transactionFactoryRealization = new TransactionFactoryRealization();
@@ -131,6 +139,6 @@ public class Main {
         //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
 
         //System.out.println(factoryRealization.getService(HomesteadService.class).findAll());
-        System.out.println(new HomesteadDaoRealization().read(2));
+        //System.out.println(new HomesteadDaoRealization().read(2));
     }
 }

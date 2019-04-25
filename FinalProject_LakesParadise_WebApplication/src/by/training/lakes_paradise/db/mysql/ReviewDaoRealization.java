@@ -2,6 +2,7 @@ package by.training.lakes_paradise.db.mysql;
 
 import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.ReviewDao;
+import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Review;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
@@ -197,7 +198,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
             statement.setString(2, review.getUserName());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
                     new Date(review.getDateOfComment()));
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomeId());
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomestead().getId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -256,7 +257,9 @@ public class ReviewDaoRealization extends BaseDaoRealization
                 review.setUserName(resultSet.getString("user_name"));
                 review.setDateOfComment(resultSet
                         .getDate("date_of_comment").getTime());
-                review.setHomeId(resultSet.getInt("home_id"));
+                Homestead homestead = new Homestead();
+                homestead.setId(resultSet.getInt("home_id"));
+                review.setHomestead(homestead);
             }
 
             return review;
@@ -300,7 +303,8 @@ public class ReviewDaoRealization extends BaseDaoRealization
             statement.setString(2, review.getUserName());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
                     new Date(review.getDateOfComment()));
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomeId());
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY,
+                    review.getHomestead().getId());
             statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, review.getId());
             statement.executeUpdate();
 

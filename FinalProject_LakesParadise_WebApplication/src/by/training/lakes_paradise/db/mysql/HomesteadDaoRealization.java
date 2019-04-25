@@ -3,6 +3,7 @@ package by.training.lakes_paradise.db.mysql;
 import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.HomesteadDao;
 import by.training.lakes_paradise.db.entity.Homestead;
+import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,7 +51,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      */
     private static final String SQL_SCRIPT_SELECT
             = "SELECT id, title, people_number,"
-            + " price, description, rating, profile_id ";
+            + " price, description, rating, number_of_voted_users, owner_id ";
 
     /**
      * Script gets all objects from table homesteads by title.
@@ -71,14 +72,16 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      */
     private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
             = "INSERT INTO homesteads (title, price, description,"
-            + " people_number, rating, profile_id) values (?, ?, ?, ?, ?, ?)";
+            + " people_number, rating, number_of_voted_users, owner_id)"
+            + " values (?, ?, ?, ?, ?, ?, ?)";
 
     /**
      * Script gets all objects from table homesteads by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
             = "SELECT title, people_number, price, description, rating,"
-            + " profile_id FROM homesteads WHERE id = (?)";
+            + " number_of_voted_users,"
+            + " owner_id FROM homesteads WHERE id = (?)";
 
     /**
      * Script gets all objects from table homesteads.
@@ -91,8 +94,8 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
             = "UPDATE homesteads SET title = ?, people_number = ?,"
-            + " price = ?, description = ?, rating = ?, profile_id = ?"
-            + " where id = ?";
+            + " price = ?, description = ?, rating = ?,"
+            + " number_of_voted_users = ?, owner_id = ? where id = ?";
 
     /**
      * Point to the third element in SQL query.
@@ -114,6 +117,10 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * Point to the seventh element in SQL query.
      */
     private static final int SEVENTH_ELEMENT_IN_SQL_QUERY = 7;
+    /**
+     * Point to the seventh element in SQL query.
+     */
+    private static final int EIGHTH_ELEMENT_IN_SQL_QUERY = 8;
 
     /**
      * Method searches all homesteads in database by title.
@@ -243,8 +250,11 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                     FORTH_ELEMENT_IN_SQL_QUERY, homestead.getPeopleNumber());
             statement.setDouble(
                     FIFTH_ELEMENT_IN_SQL_QUERY, homestead.getRating());
+            statement.setLong(
+                    SIXTH_ELEMENT_IN_SQL_QUERY,
+                    homestead.getNumberOfVotedUsers());
             statement.setInt(
-                    SIXTH_ELEMENT_IN_SQL_QUERY, homestead.getOwnerId());
+                    EIGHTH_ELEMENT_IN_SQL_QUERY, homestead.getOwner().getId());
 
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
@@ -309,7 +319,11 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                 homestead.setDescription(resultSet
                         .getString("description"));
                 homestead.setRating(resultSet.getDouble("rating"));
-                homestead.setOwnerId(resultSet.getInt("profile_id"));
+                homestead.setNumberOfVotedUsers(resultSet
+                        .getLong("number_of_voted_users"));
+                User owner = new User();
+                owner.setId(resultSet.getInt("owner_id"));
+                homestead.setOwner(owner);
             }
             return homestead;
 
@@ -400,10 +414,12 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                     FORTH_ELEMENT_IN_SQL_QUERY, entity.getDescription());
             statement.setDouble(
                     FIFTH_ELEMENT_IN_SQL_QUERY, entity.getRating());
+            statement.setLong(
+                    SIXTH_ELEMENT_IN_SQL_QUERY, entity.getNumberOfVotedUsers());
             statement.setInt(
-                    SIXTH_ELEMENT_IN_SQL_QUERY, entity.getOwnerId());
+                    SEVENTH_ELEMENT_IN_SQL_QUERY, entity.getOwner().getId());
             statement.setInt(
-                    SEVENTH_ELEMENT_IN_SQL_QUERY, entity.getId());
+                    EIGHTH_ELEMENT_IN_SQL_QUERY, entity.getId());
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -461,7 +477,11 @@ public class HomesteadDaoRealization extends BaseDaoRealization
         homestead.setDescription(resultSet
                 .getString("description"));
         homestead.setRating(resultSet.getDouble("rating"));
-        homestead.setOwnerId(resultSet.getInt("profile_id"));
+        homestead.setNumberOfVotedUsers(resultSet
+                .getLong("number_of_voted_users"));
+        User owner = new User();
+        owner.setId(resultSet.getInt("owner_id"));
+        homestead.setOwner(owner);
         return homestead;
     }
 }

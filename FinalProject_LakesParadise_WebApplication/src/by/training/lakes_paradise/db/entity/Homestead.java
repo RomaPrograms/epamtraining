@@ -28,12 +28,17 @@ public class Homestead extends Entity {
      * Rating of homestead.
      */
     private double rating;
-    private Order currentOrder;
+
+    private long numberOfVotedUsers;
+
     /**
      * Id of owner who belongs homestead.
      */
-    private int ownerId;
-    private List<Order> orders = new ArrayList<>();
+    private User owner;
+
+    private List<Image> images = new ArrayList<>();
+
+    private List<Review> reviews = new ArrayList<>();
 
     /**
      * Gets the value of title property.
@@ -71,6 +76,30 @@ public class Homestead extends Entity {
         this.price = homePrice;
     }
 
+    public long getNumberOfVotedUsers() {
+        return numberOfVotedUsers;
+    }
+
+    public void setNumberOfVotedUsers(long numberOfVotedUsers) {
+        this.numberOfVotedUsers = numberOfVotedUsers;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     /**
      * Gets the value of description property.
      *
@@ -94,7 +123,7 @@ public class Homestead extends Entity {
      *
      * @return value of peopleNumber property.
      */
-    public Integer getPeopleNumber() {
+    public int getPeopleNumber() {
         return peopleNumber;
     }
 
@@ -103,7 +132,7 @@ public class Homestead extends Entity {
      *
      * @param maxPeopleNumber - value of peopleNumber property.
      */
-    public void setPeopleNumber(Integer maxPeopleNumber) {
+    public void setPeopleNumber(int maxPeopleNumber) {
         this.peopleNumber = maxPeopleNumber;
     }
 
@@ -112,7 +141,7 @@ public class Homestead extends Entity {
      *
      * @return value of rating property.
      */
-    public Double getRating() {
+    public double getRating() {
         return rating;
     }
 
@@ -121,26 +150,26 @@ public class Homestead extends Entity {
      *
      * @param homeRating - value of rating property.
      */
-    public void setRating(final Double homeRating) {
+    public void setRating(final double homeRating) {
         this.rating = homeRating;
     }
 
     /**
-     * Gets the value of ownerId property.
+     * Gets the value of owner property.
      *
-     * @return value of ownerId property.
+     * @return value of owner property.
      */
-    public int getOwnerId() {
-        return ownerId;
+    public User getOwner() {
+        return owner;
     }
 
     /**
-     * Sets the value of ownerId property.
+     * Sets the value of owner property.
      *
-     * @param homesteadOwnerId - value of ownerId property.
+     * @param homesteadOwnerId - value of owner property.
      */
-    public void setOwnerId(final int homesteadOwnerId) {
-        this.ownerId = homesteadOwnerId;
+    public void setOwner(final User homesteadOwnerId) {
+        this.owner = homesteadOwnerId;
     }
 
     /**
@@ -156,9 +185,7 @@ public class Homestead extends Entity {
                 + ", \ndescription='" + description + '\''
                 + ", \npeopleNumber=" + peopleNumber
                 + ", \nrating=" + rating
-                + ", \ncurrentOrder=" + currentOrder
-                + ", \nownerId=" + ownerId
-                + ", \norders=" + orders
+                + ", \nowner=" + owner
                 + "\n}";
     }
 }

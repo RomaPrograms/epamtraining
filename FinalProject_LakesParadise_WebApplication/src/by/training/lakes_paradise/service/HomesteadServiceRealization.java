@@ -1,6 +1,8 @@
 package by.training.lakes_paradise.service;
 
 import by.training.lakes_paradise.db.dao.HomesteadDao;
+import by.training.lakes_paradise.db.dao.ImageDao;
+import by.training.lakes_paradise.db.dao.ReviewDao;
 import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.exception.PersistentException;
 
@@ -8,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class HomesteadServiceRealization extends ServiceRealization
-        implements HomesteadService{
+        implements HomesteadService {
     @Override
     public List<Homestead> findAllByTitle(String search) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
@@ -36,7 +38,16 @@ public class HomesteadServiceRealization extends ServiceRealization
     @Override
     public Homestead findById(Integer id) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.read(id);
+        ImageDao imageDao = transaction.createDao(ImageDao.class);
+        ReviewDao reviewDao = transaction.createDao(ReviewDao.class);
+        Homestead homestead = homesteadDao.read(id);
+        for (var image : imageDao.readImagesByHomeId(id)) {
+            homestead.getImages().add(image);
+        }
+        for (var review : reviewDao.readReviewsByHomeId(id)) {
+            homestead.getReviews().add(review);
+        }
+        return homestead;
     }
 
     @Override

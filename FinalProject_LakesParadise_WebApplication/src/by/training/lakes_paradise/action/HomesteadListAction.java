@@ -12,6 +12,6 @@ public class HomesteadListAction extends Action {
                         HttpServletResponse response) throws PersistentException {
         request.setAttribute("res", factory.getService(HomesteadService.class).findAll());
 
-        return new Action.Forward("/homesteads.jsp", false);
+        return new Forward("/homesteads.jsp", false);
     }
 }

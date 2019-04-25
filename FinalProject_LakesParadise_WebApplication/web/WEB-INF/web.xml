@@ -45,4 +45,24 @@
         <url-pattern>*.html</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>action-filter</filter-name>
+        <filter-class>by.training.lakes_paradise.controller.ActionFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>action-filter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>security-filter</filter-name>
+        <filter-class>by.training.lakes_paradise.controller.SecurityFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>security-filter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
 </web-app>

@@ -15,7 +15,7 @@ public class User extends Entity {
     /**
      * Phone of user.
      */
-    private String phone;
+    private long phone;
     /**
      * Town of user.
      */
@@ -62,7 +62,7 @@ public class User extends Entity {
      *
      * @return value of property phone.
      */
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 
@@ -71,7 +71,7 @@ public class User extends Entity {
      *
      * @param userPhone - value of property phone
      */
-    public void setPhone(final String userPhone) {
+    public void setPhone(final long userPhone) {
         this.phone = userPhone;
     }
 

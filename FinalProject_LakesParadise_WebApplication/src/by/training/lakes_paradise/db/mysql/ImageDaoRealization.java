@@ -2,6 +2,7 @@ package by.training.lakes_paradise.db.mysql;
 
 import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.ImageDao;
+import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Image;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
@@ -100,7 +101,6 @@ public class ImageDaoRealization extends BaseDaoRealization
                 image = new Image();
                 image.setId(resultSet.getInt(1));
                 image.setImage(resultSet.getBlob(2));
-
                 images.add(image);
             }
 
@@ -145,7 +145,7 @@ public class ImageDaoRealization extends BaseDaoRealization
                     Statement.RETURN_GENERATED_KEYS);
 
             statement.setBlob(1, image.getImage());
-            statement.setInt(2, image.getHomeId());
+            statement.setInt(2, image.getHomestead().getId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -201,7 +201,9 @@ public class ImageDaoRealization extends BaseDaoRealization
             while (resultSet.next()) {
                 image = new Image();
                 image.setImage(resultSet.getBlob(1));
-                image.setHomeId(resultSet.getInt(2));
+                Homestead homestead = new Homestead();
+                homestead.setId(resultSet.getInt(2));
+                image.setHomestead(homestead);
             }
 
             return image;
@@ -241,7 +243,7 @@ public class ImageDaoRealization extends BaseDaoRealization
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
             statement.setBlob(1, image.getImage());
-            statement.setInt(2, image.getHomeId());
+            statement.setInt(2, image.getHomestead().getId());
             statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY, image.getId());
 
             statement.executeUpdate();

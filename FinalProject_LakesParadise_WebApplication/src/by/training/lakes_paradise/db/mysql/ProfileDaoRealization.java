@@ -7,6 +7,7 @@ import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,7 +81,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
     private static final String
             SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD
             = "select id, login, password, role from profiles"
-            + " where login = (?) and password = (?)";
+            + " where login = (?)";
 
     /**
      * Script updates object in table profiles.
@@ -107,11 +108,11 @@ public class ProfileDaoRealization extends BaseDaoRealization
             statement = connection.prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD);
             statement.setString(1, login);
-            statement.setString(2, password);
             resultSet = statement.executeQuery();
             Profile profile = null;
 
-            while (resultSet.next()) {
+            while (resultSet.next() && BCrypt.checkpw(password,
+                    resultSet.getString("password"))) {
                 profile = new Profile();
                 profile.setId(resultSet.getInt("id"));
                 profile.setLogin(resultSet.getString("login"));
@@ -212,6 +213,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, profile.getId());
             statement.setString(2, profile.getLogin());
+            statement.setString(3, BCrypt.hashpw(profile.getPassword(), BCrypt.gensalt()));
             statement.setString(THIRD_ELEMENT_IN_SQL_QUERY,
                     profile.getPassword());
             statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY,

@@ -51,29 +51,25 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      * Point to the forth element in SQL query.
      */
     private static final int FORTH_ELEMENT_IN_SQL_QUERY = 4;
-    /**
-     * Point to the fifth element in SQL query.
-     */
-    private static final int FIFTH_ELEMENT_IN_SQL_QUERY = 5;
 
     /**
      * Script gets all objects from table users.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
-            = "select id, name, surname, phone, town from users";
+            = "select id, name, surname, phone from users";
 
     /**
      * Script insert new object into the table users.
      */
     private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
-            = "insert into users (id, name, surname, phone, town) values"
-            + " (?, ?, ?, ?, ?)";
+            = "insert into users (id, name, surname, phone) values"
+            + " (?, ?, ?, ?)";
 
     /**
      * Script gets all objects from table users by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
-            = "select name, surname, phone, town from users where"
+            = "select name, surname, phone from users where"
             + " id = (?)";
 
 
@@ -82,7 +78,7 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
             = "update users set name = ?, surname = ?, phone = ?,"
-            + " town = ? where id = ?";
+            + " where id = ?";
 
     /**
      * Method that reads all objects from "users" table.
@@ -107,8 +103,8 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
                 user.setId(resultSet.getInt("id"));
                 user.setName(resultSet.getString("name"));
                 user.setSurname(resultSet.getString("surname"));
-                user.setPhone(resultSet.getString("phone"));
-                user.setTown(resultSet.getString("town"));
+                user.setPhone(Long.parseLong(resultSet
+                        .getString("phone")));
 
                 users.add(user);
             }
@@ -155,8 +151,7 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
             statement.setInt(1, user.getId());
             statement.setString(2, user.getName());
             statement.setString(THIRD_ELEMENT_IN_SQL_QUERY, user.getSurname());
-            statement.setString(FORTH_ELEMENT_IN_SQL_QUERY, user.getPhone());
-            statement.setString(FIFTH_ELEMENT_IN_SQL_QUERY, user.getTown());
+            statement.setLong(FORTH_ELEMENT_IN_SQL_QUERY, user.getPhone());
             statement.executeUpdate();
 
             resultSet = statement.getGeneratedKeys();
@@ -212,8 +207,8 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
                 user = new User();
                 user.setName(resultSet.getString("name"));
                 user.setSurname(resultSet.getString("surname"));
-                user.setPhone(resultSet.getString("phone"));
-                user.setTown(resultSet.getString("town"));
+                user.setPhone(Long.parseLong(resultSet
+                        .getString("phone")));
             }
 
             return user;
@@ -254,9 +249,8 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
 
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
-            statement.setString(THIRD_ELEMENT_IN_SQL_QUERY, user.getPhone());
-            statement.setString(FORTH_ELEMENT_IN_SQL_QUERY, user.getTown());
-            statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, user.getId());
+            statement.setLong(THIRD_ELEMENT_IN_SQL_QUERY, user.getPhone());
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);

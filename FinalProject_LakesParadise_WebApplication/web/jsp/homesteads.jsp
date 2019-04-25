@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page errorPage="error.jsp" %>
 <html>
 <head>
@@ -21,6 +21,7 @@
             background-size: cover;
             background-attachment: fixed;
         }
+
         #navbar_button {
             background-color: deepskyblue;
         }
@@ -132,31 +133,37 @@
     <div id="homestead_catalog" class="container">
         <c:forEach var="elem" items="${res}" varStatus="status">
             <div class="row">
-                <div class="col-md-4">
-                    <img width="300px" height="200px" class="img-rounded"
-                         src="../img/myImages/1.1_farmstead.jpg"/>
-                </div>
-                <div class="col-md-8">
-                    <h2><c:out value="${elem.getTitle()}"/></h2>
-                    <p><c:out value="${elem.getDescription()}"/></p>
-                    <dl>
-                        <dt>Цена</dt>
-                        <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                        <dt>Колличество человек</dt>
-                        <dd>- <c:out value="${elem.getPeopleNumber()}"/></dd>
-                    </dl>
-                    <p><a href="contacts.jsp" class="btn btn-default">Узнать
-                        больше
-                        &raquo;</a></p>
-                </div>
+                <form method="post" action="/home.html">
+                    <input type="hidden" name="homesteadIdentity"
+                           value="${elem.getId()}"/>
+                    <div class="col-md-4">
+                        <img width="300px" height="200px" class="img-rounded"
+                             src="../img/myImages/1.1_farmstead.jpg"/>
+                    </div>
+                    <div class="col-md-8">
+                        <h2><c:out value="${elem.getId()}"/></h2>
+                        <h2><c:out value="${elem.getTitle()}"/></h2>
+                        <p><c:out value="${elem.getDescription()}"/></p>
+                        <dl>
+                            <dt>Цена</dt>
+                            <dd>- <c:out value="${elem.getPrice()}"/></dd>
+                            <dt>Колличество человек</dt>
+                            <dd>- <c:out
+                                    value="${elem.getPeopleNumber()}"/></dd>
+                        </dl>
+                        <input type="submit" class="btn btn-default" name="Узнать
+                больше&raquo;"/>
+                    </div>
+                </form>
             </div>
             <hr>
         </c:forEach>
     </div>
-    <hr>
-    <footer>
-        <p>&copy; Все права защищены 2019</p>
-    </footer>
+</div>
+<hr>
+<footer>
+    <p>&copy; Все права защищены 2019</p>
+</footer>
 </div>
 
 </body>

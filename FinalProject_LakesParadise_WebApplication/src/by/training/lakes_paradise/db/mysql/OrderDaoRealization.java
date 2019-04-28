@@ -201,8 +201,10 @@ public class OrderDaoRealization extends BaseDaoRealization
             statement = connection.prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, order.getUser().getId());
-            statement.setInt(2, order.getHomestead().getId());
+            statement.setInt(
+                    1, order.getUser().getId());
+            statement.setInt(
+                    2, order.getHomestead().getId());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
                     new Date(order.getStartRenting()));
             statement.setDate(FORTH_ELEMENT_IN_SQL_QUERY,
@@ -263,16 +265,19 @@ public class OrderDaoRealization extends BaseDaoRealization
             while (resultSet.next()) {
                 order = new Order();
                 User user = new User();
-                user.setId(resultSet.getInt("user_id"));
+                user.setId(
+                        resultSet.getInt("user_id"));
                 order.setUser(user);
                 Homestead homestead = new Homestead();
-                homestead.setId(resultSet.getInt("home_id"));
+                homestead.setId(
+                        resultSet.getInt("home_id"));
                 order.setHomestead(homestead);
-                order.setStartRenting(resultSet
-                        .getDate("date_start").getTime());
-                order.setEndRenting(resultSet
-                        .getDate("date_end").getTime());
-                order.setPaid(resultSet.getBoolean("status_pay"));
+                order.setStartRenting(
+                        resultSet.getDate("date_start").getTime());
+                order.setEndRenting(
+                        resultSet.getDate("date_end").getTime());
+                order.setPaid(
+                        resultSet.getBoolean("status_pay"));
             }
 
             return order;
@@ -310,8 +315,10 @@ public class OrderDaoRealization extends BaseDaoRealization
             connection = ConnectionDB.getConnection();
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
-            statement.setInt(1, order.getUser().getId());
-            statement.setInt(2, order.getHomestead().getId());
+            statement.setInt(
+                    1, order.getUser().getId());
+            statement.setInt(
+                    2, order.getHomestead().getId());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
                     new Date(order.getStartRenting()));
             statement.setDate(FORTH_ELEMENT_IN_SQL_QUERY,
@@ -423,13 +430,17 @@ public class OrderDaoRealization extends BaseDaoRealization
         user.setId(resultSet.getInt("user_id"));
         order.setUser(user);
         Homestead homestead = new Homestead();
-        homestead.setId(resultSet.getInt("home_id"));
+        homestead.setId(
+                resultSet.getInt("home_id"));
         order.setHomestead(homestead);
-        order.setStartRenting(resultSet
-                .getDate("date_start").getTime());
-        order.setEndRenting(resultSet
-                .getDate("date_end").getTime());
-        order.setPaid(resultSet.getBoolean("status_pay"));
+        Date date = resultSet.getDate("date_start");
+        order.setStartRenting(
+                date.getTime());
+        date = resultSet.getDate("date_end");
+        order.setEndRenting(
+                date.getTime());
+        order.setPaid(resultSet
+                .getBoolean("status_pay"));
         return order;
     }
 }

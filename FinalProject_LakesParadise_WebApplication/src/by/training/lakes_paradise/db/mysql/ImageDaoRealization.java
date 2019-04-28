@@ -99,8 +99,10 @@ public class ImageDaoRealization extends BaseDaoRealization
 
             while (resultSet.next()) {
                 image = new Image();
-                image.setId(resultSet.getInt(1));
-                image.setImage(resultSet.getBlob(2));
+                image.setId(
+                        resultSet.getInt(1));
+                image.setImage(
+                        resultSet.getBlob(2));
                 images.add(image);
             }
 
@@ -144,8 +146,10 @@ public class ImageDaoRealization extends BaseDaoRealization
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
-            statement.setBlob(1, image.getImage());
-            statement.setInt(2, image.getHomestead().getId());
+            statement.setBlob(
+                    1, image.getImage());
+            statement.setInt(
+                    2, image.getHomestead().getId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -200,9 +204,11 @@ public class ImageDaoRealization extends BaseDaoRealization
 
             while (resultSet.next()) {
                 image = new Image();
-                image.setImage(resultSet.getBlob(1));
+                image.setImage(
+                        resultSet.getBlob(1));
                 Homestead homestead = new Homestead();
-                homestead.setId(resultSet.getInt(2));
+                homestead.setId(
+                        resultSet.getInt(2));
                 image.setHomestead(homestead);
             }
 
@@ -242,9 +248,12 @@ public class ImageDaoRealization extends BaseDaoRealization
             connection = ConnectionDB.getConnection();
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
-            statement.setBlob(1, image.getImage());
-            statement.setInt(2, image.getHomestead().getId());
-            statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY, image.getId());
+            statement.setBlob(
+                    1, image.getImage());
+            statement.setInt(
+                    2, image.getHomestead().getId());
+            statement.setInt(
+                    THIRD_ELEMENT_IN_SQL_QUERY, image.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {

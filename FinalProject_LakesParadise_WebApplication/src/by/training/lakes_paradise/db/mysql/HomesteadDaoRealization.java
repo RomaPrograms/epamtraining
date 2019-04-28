@@ -242,8 +242,10 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
-            statement.setString(1, homestead.getTitle());
-            statement.setBigDecimal(2, homestead.getPrice());
+            statement.setString(
+                    1, homestead.getTitle());
+            statement.setBigDecimal(
+                    2, homestead.getPrice());
             statement.setString(
                     THIRD_ELEMENT_IN_SQL_QUERY, homestead.getDescription());
             statement.setInt(
@@ -312,17 +314,21 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             Homestead homestead = null;
             while (resultSet.next()) {
                 homestead = new Homestead();
-                homestead.setTitle(resultSet.getString("title"));
+                homestead.setTitle(resultSet
+                        .getString("title"));
                 homestead.setPeopleNumber(resultSet
                         .getInt("people_number"));
-                homestead.setPrice(resultSet.getBigDecimal("price"));
+                homestead.setPrice(resultSet
+                        .getBigDecimal("price"));
                 homestead.setDescription(resultSet
                         .getString("description"));
-                homestead.setRating(resultSet.getDouble("rating"));
+                homestead.setRating(resultSet
+                        .getDouble("rating"));
                 homestead.setNumberOfVotedUsers(resultSet
                         .getLong("number_of_voted_users"));
                 User owner = new User();
-                owner.setId(resultSet.getInt("owner_id"));
+                owner.setId(resultSet
+                        .getInt("owner_id"));
                 homestead.setOwner(owner);
             }
             return homestead;
@@ -406,8 +412,10 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             statement = connection.prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
 
-            statement.setString(1, entity.getTitle());
-            statement.setInt(2, entity.getPeopleNumber());
+            statement.setString(
+                    1, entity.getTitle());
+            statement.setInt(
+                    2, entity.getPeopleNumber());
             statement.setBigDecimal(
                     THIRD_ELEMENT_IN_SQL_QUERY, entity.getPrice());
             statement.setString(
@@ -470,17 +478,23 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     private Homestead createHomestead(final ResultSet resultSet)
             throws SQLException {
         Homestead homestead = new Homestead();
-        homestead.setId(resultSet.getInt("id"));
-        homestead.setTitle(resultSet.getString("title"));
-        homestead.setPeopleNumber(resultSet.getInt("people_number"));
-        homestead.setPrice(resultSet.getBigDecimal("price"));
-        homestead.setDescription(resultSet
-                .getString("description"));
-        homestead.setRating(resultSet.getDouble("rating"));
-        homestead.setNumberOfVotedUsers(resultSet
-                .getLong("number_of_voted_users"));
+        homestead.setId(
+                resultSet.getInt("id"));
+        homestead.setTitle(
+                resultSet.getString("title"));
+        homestead.setPeopleNumber(
+                resultSet.getInt("people_number"));
+        homestead.setPrice(
+                resultSet.getBigDecimal("price"));
+        homestead.setDescription(
+                resultSet.getString("description"));
+        homestead.setRating(
+                resultSet.getDouble("rating"));
+        homestead.setNumberOfVotedUsers(
+                resultSet.getLong("number_of_voted_users"));
         User owner = new User();
-        owner.setId(resultSet.getInt("owner_id"));
+        owner.setId(
+                resultSet.getInt("owner_id"));
         homestead.setOwner(owner);
         return homestead;
     }

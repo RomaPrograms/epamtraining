@@ -114,9 +114,12 @@ public class ProfileDaoRealization extends BaseDaoRealization
             while (resultSet.next() && BCrypt.checkpw(password,
                     resultSet.getString("password"))) {
                 profile = new Profile();
-                profile.setId(resultSet.getInt("id"));
-                profile.setLogin(resultSet.getString("login"));
-                profile.setPassword(resultSet.getString("password"));
+                profile.setId(
+                        resultSet.getInt("id"));
+                profile.setLogin(
+                        resultSet.getString("login"));
+                profile.setPassword(
+                        resultSet.getString("password"));
                 profile.setRole(Role.getByIdentity(
                         resultSet.getInt("role")));
             }

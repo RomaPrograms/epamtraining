@@ -1,4 +1,4 @@
-package by.training.lakes_paradise.controller;
+package by.training.lakes_paradise.filter;
 
 import javax.servlet.*;
 import java.io.IOException;

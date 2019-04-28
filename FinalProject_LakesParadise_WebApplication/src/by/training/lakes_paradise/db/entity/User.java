@@ -3,7 +3,7 @@ package by.training.lakes_paradise.db.entity;
 /**
  * Class which describes user.
  */
-public class User extends Entity {
+public class User extends Profile {
     /**
      * Name of user.
      */
@@ -16,10 +16,6 @@ public class User extends Entity {
      * Phone of user.
      */
     private long phone;
-    /**
-     * Town of user.
-     */
-    private String town;
 
     /**
      * Gets the value of property name.
@@ -76,24 +72,6 @@ public class User extends Entity {
     }
 
     /**
-     * Gets the value of property town.
-     *
-     * @return value of property town.
-     */
-    public String getTown() {
-        return town;
-    }
-
-    /**
-     * Sets the value of property town.
-     *
-     * @param userTown - value of property town
-     */
-    public void setTown(final String userTown) {
-        this.town = userTown;
-    }
-
-    /**
      * Sets the description of user in String.
      *
      * @return description of user in String
@@ -104,7 +82,6 @@ public class User extends Entity {
                 + "\nname='" + name + '\''
                 + ", \nsurname='" + surname + '\''
                 + ", \nphone='" + phone + '\''
-                + ", \ntown='" + town + '\''
                 + "\n}";
     }
 }

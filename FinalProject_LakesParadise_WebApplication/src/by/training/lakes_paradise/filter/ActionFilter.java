@@ -1,7 +1,6 @@
-package by.training.lakes_paradise.controller;
+package by.training.lakes_paradise.filter;
 
 import by.training.lakes_paradise.action.*;
-import by.training.lakes_paradise.db.entity.Review;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +25,7 @@ public class ActionFilter implements Filter {
         actions.put("/homesteads", HomesteadListAction.class);
         actions.put("/signUp", SignUpAction.class);
         actions.put("/main", MenuAction.class);
-        actions.put("/home", HomeAction.class);
+        actions.put("/home", HomesteadAction.class);
         actions.put("/review", ReviewAction.class);
     }
 

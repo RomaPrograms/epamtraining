@@ -45,33 +45,6 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
-
-        #search_row {
-            background-color: white;
-            padding-top: 10px;
-            padding-bottom: 60px;
-            border: none;
-            border-bottom: 1px solid deepskyblue;
-            outline: none;
-            height: 40px;
-            font-size: 16px;
-        }
-
-        #search_button {
-            border: none;
-            ouline: none;
-            height: 40px;
-            background: #1c8adb;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 20px;
-        }
-
-        #search_button:hover {
-            cursor: pointer;
-            background: #39dc79;
-            color: #000;
-        }
     </style>
 </head>
 <body id="body">
@@ -164,10 +137,14 @@
     </div>
 
     <hr>
+    <
 
     <div class="form-group container">
         <label for="comment">Оставьте комментарий:</label>
-        <form action="firstAction">
+        <form action="/review.html">
+            <input type="hidden" name="homesteadIdentity"
+            value="${homestead.getId()}"/>
+            ID: ${homestead.getId()}
             <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
             <br>
             <p>

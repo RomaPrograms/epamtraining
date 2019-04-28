@@ -1,13 +1,10 @@
 package by.training.lakes_paradise.exception;
 
-/**
- * Class exception.
- */
-public class PersistentException extends Exception {
+public class IncorrectDataException extends Exception {
     /**
      * No-argument constructor.
      */
-    public PersistentException() {
+    public IncorrectDataException() {
     }
 
     /**
@@ -16,8 +13,12 @@ public class PersistentException extends Exception {
      * @param message - message which we want to use after throwing an exception
      * @param cause   - exception that called this exception
      */
-    public PersistentException(final String message, final Throwable cause) {
+    public IncorrectDataException(final String message, final Throwable cause) {
         super(message, cause);
+    }
+
+    public IncorrectDataException(final String parameter, final String value) {
+        super("Parameter '" + parameter + "' got empty or incorrect value '" + "'");
     }
 
     /**
@@ -25,7 +26,7 @@ public class PersistentException extends Exception {
      *
      * @param message - message which we want to use after throwing an exception
      */
-    public PersistentException(final String message) {
+    public IncorrectDataException(final String message) {
         super(message);
     }
 
@@ -34,8 +35,7 @@ public class PersistentException extends Exception {
      *
      * @param cause - exception that called this exception
      */
-    public PersistentException(final Throwable cause) {
+    public IncorrectDataException(final Throwable cause) {
         super(cause);
     }
 }
-

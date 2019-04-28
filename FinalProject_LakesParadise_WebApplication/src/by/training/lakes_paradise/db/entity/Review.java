@@ -19,7 +19,7 @@ public class Review extends Entity {
     /**
      * Id of home which belongs the comment.
      */
-    private Homestead homestead;
+    private int homesteadId;
 
     /**
      * Gets the value of text property.
@@ -76,21 +76,21 @@ public class Review extends Entity {
     }
 
     /**
-     * Gets the value of homestead property.
+     * Gets the value of homesteadId property.
      *
-     * @return value of homestead property
+     * @return value of homesteadId property
      */
-    public Homestead getHomestead() {
-        return homestead;
+    public int getHomesteadId() {
+        return homesteadId;
     }
 
     /**
-     * Sets the value of homestead property.
+     * Sets the value of homesteadId property.
      *
-     * @param reviewHomeId - value of homestead property
+     * @param reviewHomeId - value of homesteadId property
      */
-    public void setHomestead(final Homestead reviewHomeId) {
-        this.homestead = reviewHomeId;
+    public void setHomesteadId(final int reviewHomeId) {
+        this.homesteadId = reviewHomeId;
     }
 
     /**
@@ -104,7 +104,7 @@ public class Review extends Entity {
                 + "\ntext='" + text + '\''
                 + ", \nuserName='" + userName + '\''
                 + ", \ndateOfComment=" + dateOfComment
-                + ", \nhomestead=" + homestead
+                + ", \nhomesteadId=" + homesteadId
                 + "\n}";
     }
 }

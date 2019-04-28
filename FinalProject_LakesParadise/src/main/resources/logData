@@ -1,1 +1,1 @@
-2019-04-22 19:54:05,542 ERROR [main] mysql.HomesteadDaoRealization (HomesteadDaoRealization.java:317) - Impossible to close ResultSet.
+2019-04-27 12:20:34,010 ERROR [main] mysql.HomesteadDaoRealization (HomesteadDaoRealization.java:317) - Impossible to close ResultSet.

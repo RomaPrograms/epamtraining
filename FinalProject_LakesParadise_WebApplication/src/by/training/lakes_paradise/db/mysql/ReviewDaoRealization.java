@@ -198,7 +198,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
             statement.setString(2, review.getUserName());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
                     new Date(review.getDateOfComment()));
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomestead().getId());
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomesteadId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -257,9 +257,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
                 review.setUserName(resultSet.getString("user_name"));
                 review.setDateOfComment(resultSet
                         .getDate("date_of_comment").getTime());
-                Homestead homestead = new Homestead();
-                homestead.setId(resultSet.getInt("home_id"));
-                review.setHomestead(homestead);
+                review.setHomesteadId(resultSet.getInt("home_id"));
             }
 
             return review;
@@ -304,7 +302,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
                     new Date(review.getDateOfComment()));
             statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY,
-                    review.getHomestead().getId());
+                    review.getHomesteadId());
             statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, review.getId());
             statement.executeUpdate();
 

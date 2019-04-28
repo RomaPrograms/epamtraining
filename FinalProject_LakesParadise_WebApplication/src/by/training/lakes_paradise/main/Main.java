@@ -73,7 +73,7 @@ public class Main {
 
                 Image image1 = new Image();
                 image1.setImage(blob);
-                image1.setHomestead(4);
+                image1.setHomesteadId(4);
 
                 imageDaoRealization.create(image1);
             }

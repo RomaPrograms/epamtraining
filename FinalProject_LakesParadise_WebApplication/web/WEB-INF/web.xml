@@ -37,7 +37,7 @@
 
     <filter>
         <filter-name>encoding-filter</filter-name>
-        <filter-class>by.training.lakes_paradise.controller.EncodingFilter</filter-class>
+        <filter-class>by.training.lakes_paradise.filter.EncodingFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -47,7 +47,7 @@
 
     <filter>
         <filter-name>action-filter</filter-name>
-        <filter-class>by.training.lakes_paradise.controller.ActionFilter</filter-class>
+        <filter-class>by.training.lakes_paradise.filter.ActionFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -57,7 +57,7 @@
 
     <filter>
         <filter-name>security-filter</filter-name>
-        <filter-class>by.training.lakes_paradise.controller.SecurityFilter</filter-class>
+        <filter-class>by.training.lakes_paradise.filter.SecurityFilter</filter-class>
     </filter>
 
     <filter-mapping>

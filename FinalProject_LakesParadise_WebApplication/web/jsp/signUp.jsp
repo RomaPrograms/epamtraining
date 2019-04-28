@@ -106,11 +106,6 @@
                    placeholder="Введите мобильный номер"
                    class="form-control">
         </div>
-        <div class="form-group">
-            <label>Город</label>
-            <input id="sign_up_city" type="text" name="password"
-                   placeholder="Введите город" class="form-control">
-        </div>
         <input type="submit" name="submit" value="Зарегистрироваться"
                class="btn btn-primary">
         <a href="#">Забыл пароль</a>

@@ -15,7 +15,7 @@
     <request-character-encoding>UTF-8</request-character-encoding>
 
     <welcome-file-list>
-        <welcome-file>/index.jsp</welcome-file>
+        <welcome-file>/menu.html</welcome-file>
     </welcome-file-list>
 
     <servlet>

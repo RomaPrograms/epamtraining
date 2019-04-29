@@ -216,7 +216,6 @@ public class ProfileDaoRealization extends BaseDaoRealization
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, profile.getId());
             statement.setString(2, profile.getLogin());
-            statement.setString(3, BCrypt.hashpw(profile.getPassword(), BCrypt.gensalt()));
             statement.setString(THIRD_ELEMENT_IN_SQL_QUERY,
                     profile.getPassword());
             statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY,

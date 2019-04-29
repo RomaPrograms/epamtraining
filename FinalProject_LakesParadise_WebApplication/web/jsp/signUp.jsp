@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html>
@@ -24,31 +25,13 @@
         #navbar_background {
             background-color: white;
         }
-        /*body {
-            margin: 0;
-            padding: 0;
-            background: url(../img/myImages/mainPicture.jpg);
-            background-size: cover;
-            background-position: center;
-            font-family: sans-serif;
-            background-attachment:fixed;
-            !*color: #0b51c5;*!
-        }*/
-        /*#main_body {
-            background-color: white;
-        }*/
+
     </style>
 </head>
 <body>
-<nav id="navbar_background" class="navbar fixed-top scrolling-navbar">
+<nav class="navbar fixed-top scrolling-navbar">
     <div class="container">
         <div class="navbar-header">
-            <button id="navbar_button" type="button" class="btn navbar-toggle"
-                    data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand blue-text">Озёрный рай</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -58,15 +41,24 @@
                 <li><a href="/homesteads.html">Агроусадьбы</a></li>
             </ul>
 
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" placeholder="Логин" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Пароль"
-                           class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Вход</button>
+            <form class="navbar-form navbar-right" action="/changeStatus.html"
+                  method="get">
+                <c:if test="${isLogIn == false}">
+                    <div class="form-group">
+                        <input type="text" placeholder="Логин"
+                               class="form-control" name="login">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Пароль"
+                               class="form-control" name="password">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Вход"/>
+                </c:if>
+                <c:if test="${isLogIn == true}">
+                    <div class="form-group">
+                        <label class="text-primary">Welcome, <c:out value="${profileLogin}"/></label>
+                    </div>
+                </c:if>
             </form>
         </div>
     </div>
@@ -82,7 +74,7 @@
     <form class="form-horizontal" role="form">
         <div class="form-group">
             <label>Логин:</label>
-            <input id="sign_up_login" type="text" name="username"
+            <input id="sign_up_login" type="text" name="login"
                    placeholder="Введите логин" class="form-control">
         </div>
         <div class="form-group">
@@ -92,23 +84,28 @@
         </div>
         <div class="form-group">
             <p>Имя</p>
-            <input id="sign_up_name" type="text" name="password"
+            <input id="sign_up_name" type="text" name="name"
                    placeholder="Введите имя" class="form-control">
         </div>
         <div class="form-group">
             <label>Фамилия</label>
-            <input id="sign_up_surname" type="text" name="password"
+            <input id="sign_up_surname" type="text" name="surname"
                    placeholder="Введите фамилию" class="form-control">
         </div>
         <div class="form-group">
             <label>Телефон</label>
-            <input id="sign_up_phoneNumber" type="text" name="password"
+            <input id="sign_up_phoneNumber" type="text" name="phoneNumber"
                    placeholder="Введите мобильный номер"
                    class="form-control">
         </div>
+        <div class="form-group">
         <input type="submit" name="submit" value="Зарегистрироваться"
                class="btn btn-primary">
         <a href="#">Забыл пароль</a>
+        </div>
+        <div clas="form-group">
+            <label>${message}</label>
+        </div>
     </form>
 </div>
 </body>

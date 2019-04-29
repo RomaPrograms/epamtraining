@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,9 +25,10 @@ public class ActionFilter implements Filter {
         actions.put("/", MenuAction.class);
         actions.put("/homesteads", HomesteadListAction.class);
         actions.put("/signUp", SignUpAction.class);
-        actions.put("/main", MenuAction.class);
+        actions.put("/menu", MenuAction.class);
         actions.put("/home", HomesteadAction.class);
         actions.put("/review", ReviewAction.class);
+        actions.put("/changeStatus", LogInAction.class);
     }
 
     @Override
@@ -39,6 +41,11 @@ public class ActionFilter implements Filter {
             int beginAction = contextPath.length();
             int endAction = uri.lastIndexOf('.');
             String actionName;
+            HttpSession session = httpServletRequest.getSession(false);
+            if(session == null) {
+                session = httpServletRequest.getSession(true);
+                session.setAttribute("isLogIn", "false");
+            }
             if (endAction >= 0) {
                 actionName = uri.substring(beginAction, endAction);
             } else {

@@ -152,16 +152,8 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
             statement.setString(2, user.getName());
             statement.setString(THIRD_ELEMENT_IN_SQL_QUERY, user.getSurname());
             statement.setLong(FORTH_ELEMENT_IN_SQL_QUERY, user.getPhone());
-            statement.executeUpdate();
+            return statement.executeUpdate();
 
-            resultSet = statement.getGeneratedKeys();
-            if (resultSet.next()) {
-                return resultSet.getInt(1);
-            } else {
-                LOGGER.error("There is no autoincremented index after trying"
-                        + " to add record into table `users`");
-                throw new PersistentException();
-            }
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

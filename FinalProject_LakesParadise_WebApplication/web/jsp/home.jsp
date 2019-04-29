@@ -48,15 +48,9 @@
     </style>
 </head>
 <body id="body">
-<nav id="navbar_background" class="navbar fixed-top scrolling-navbar">
+<nav class="navbar fixed-top scrolling-navbar">
     <div class="container">
         <div class="navbar-header">
-            <button id="navbar_button" type="button" class="btn navbar-toggle"
-                    data-toggle="collapse" data-target="#myNavbar">
-                <span id="navbar_button_span" class="icon-bar"></span>
-                <span id="navbar_button_span1" class="icon-bar"></span>
-                <span id="navbar_button_span2" class="icon-bar"></span>
-            </button>
             <a class="navbar-brand blue-text">Озёрный рай</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -66,15 +60,24 @@
                 <li><a href="/homesteads.html">Агроусадьбы</a></li>
             </ul>
 
-            <form class="navbar-form navbar-right" action="firstAction">
-                <div class="form-group">
-                    <input type="text" placeholder="Логин" class="form-control">
-                </div>
-                <div class="form-group"> <%--Для того, чтобы при сжатии файлов мы могли увидеть пробелы между полями--%>
-                    <input type="password" placeholder="Пароль"
-                           class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Вход</button>
+            <form class="navbar-form navbar-right" action="/changeStatus.html"
+                  method="get">
+                <c:if test="${isLogIn == false}">
+                    <div class="form-group">
+                        <input type="text" placeholder="Логин"
+                               class="form-control" name="login">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Пароль"
+                               class="form-control" name="password">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Вход"/>
+                </c:if>
+                <c:if test="${isLogIn == true}">
+                    <div class="form-group">
+                        <label class="text-primary">Welcome, <c:out value="${profileLogin}"/></label>
+                    </div>
+                </c:if>
             </form>
         </div>
     </div>

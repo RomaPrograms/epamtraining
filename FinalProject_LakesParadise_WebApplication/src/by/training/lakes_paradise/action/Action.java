@@ -13,18 +13,18 @@ import java.util.Map;
 import java.util.Set;
 
 abstract public class Action {
-    private User authorizedUser;
+//    private User authorizedUser;
     private String name;
 
     protected ServiceFactory factory;
 
-    public User getAuthorizedUser() {
-        return authorizedUser;
-    }
-
-    public void setAuthorizedUser(User authorizedUser) {
-        this.authorizedUser = authorizedUser;
-    }
+//    public User getAuthorizedUser() {
+//        return authorizedUser;
+//    }
+//
+//    public void setAuthorizedUser(User authorizedUser) {
+//        this.authorizedUser = authorizedUser;
+//    }
 
     public String getName() {
         return name;

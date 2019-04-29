@@ -5,7 +5,7 @@ import by.training.lakes_paradise.exception.IncorrectDataException;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class SignUpValidator implements Validator<User> {
+public class UserValidator implements Validator<User> {
     @Override
     public User validate(HttpServletRequest request) throws IncorrectDataException {
         User user = new User();
@@ -38,11 +38,11 @@ public class SignUpValidator implements Validator<User> {
             throw new IncorrectDataException("surname", surname);
         }
 
-        String phone = request.getParameter("phone");
+        String phone = request.getParameter("phoneNumber");
         try {
             user.setPhone(Long.parseLong(phone));
         } catch(NumberFormatException e) {
-            throw new IncorrectDataException("phone", phone);
+            throw new IncorrectDataException("phoneNumber", phone);
         }
 
         return user;

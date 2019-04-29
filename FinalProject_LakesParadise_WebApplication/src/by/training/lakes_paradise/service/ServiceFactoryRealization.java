@@ -22,6 +22,7 @@ public class ServiceFactoryRealization implements ServiceFactory{
         SERVICES.put(OrderService.class, OrderServiceRealization.class);
         SERVICES.put(ProfileService.class, ProfileServiceRealization.class);
         SERVICES.put(ReviewService.class, ReviewServiceRealization.class);
+        SERVICES.put(UserService.class, UserServiceRealization.class);
     }
 
     private TransactionFactory factory;

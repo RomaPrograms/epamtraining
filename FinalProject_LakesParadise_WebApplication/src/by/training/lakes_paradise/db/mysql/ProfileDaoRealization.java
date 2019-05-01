@@ -7,7 +7,6 @@ import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -111,8 +110,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
             resultSet = statement.executeQuery();
             Profile profile = null;
 
-            while (resultSet.next() && BCrypt.checkpw(password,
-                    resultSet.getString("password"))) {
+            while (resultSet.next()) {
                 profile = new Profile();
                 profile.setId(
                         resultSet.getInt("id"));

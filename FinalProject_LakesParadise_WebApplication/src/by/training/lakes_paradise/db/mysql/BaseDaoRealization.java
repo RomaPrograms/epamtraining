@@ -21,15 +21,15 @@ public abstract class BaseDaoRealization {
     /**
      * Method deletes object in database by id and name of table.
      *
-     * @param id - id of object for deletion
+     * @param id          - id of object for deletion
      * @param nameOfTable - name of table
      */
     protected PreparedStatement delete(final String nameOfTable,
                                        final Integer id)
             throws SQLException {
         String sql = "delete from " + nameOfTable + " where id = (?)";
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection connection;
+        PreparedStatement statement;
         connection = ConnectionDB.getConnection();
         statement = connection.prepareStatement(sql);
         statement.setInt(1, id);

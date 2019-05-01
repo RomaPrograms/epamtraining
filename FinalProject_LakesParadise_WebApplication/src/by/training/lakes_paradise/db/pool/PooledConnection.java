@@ -19,10 +19,11 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-public class PooledConnection implements Connection, Comparable<PooledConnection> {
+public class PooledConnection
+        implements Connection, Comparable<PooledConnection> {
     private Connection connection;
 
-    public PooledConnection(Connection connection) {
+    public PooledConnection(final Connection connection) {
         this.connection = connection;
     }
 
@@ -31,17 +32,17 @@ public class PooledConnection implements Connection, Comparable<PooledConnection
     }
 
     @Override
-    public boolean isWrapperFor(Class<?> arg0) throws SQLException {
+    public boolean isWrapperFor(final Class<?> arg0) throws SQLException {
         return connection.isWrapperFor(arg0);
     }
 
     @Override
-    public <T> T unwrap(Class<T> arg0) throws SQLException {
+    public <T> T unwrap(final Class<T> arg0) throws SQLException {
         return connection.unwrap(arg0);
     }
 
     @Override
-    public void abort(Executor arg0) throws SQLException {
+    public void abort(final Executor arg0) throws SQLException {
         connection.abort(arg0);
     }
 
@@ -61,7 +62,8 @@ public class PooledConnection implements Connection, Comparable<PooledConnection
     }
 
     @Override
-    public Array createArrayOf(String arg0, Object[] arg1) throws SQLException {
+    public Array createArrayOf(final String arg0,
+                               final Object[] arg1) throws SQLException {
         return connection.createArrayOf(arg0, arg1);
     }
 
@@ -91,17 +93,20 @@ public class PooledConnection implements Connection, Comparable<PooledConnection
     }
 
     @Override
-    public Statement createStatement(int arg0, int arg1) throws SQLException {
+    public Statement createStatement(final int arg0,
+                                     final int arg1) throws SQLException {
         return connection.createStatement(arg0, arg1);
     }
 
     @Override
-    public Statement createStatement(int arg0, int arg1, int arg2) throws SQLException {
+    public Statement createStatement(final int arg0, final int arg1,
+                                     final int arg2) throws SQLException {
         return connection.createStatement(arg0, arg1, arg2);
     }
 
     @Override
-    public Struct createStruct(String arg0, Object[] arg1) throws SQLException {
+    public Struct createStruct(final String arg0,
+                               final Object[] arg1) throws SQLException {
         return connection.createStruct(arg0, arg1);
     }
 
@@ -121,7 +126,7 @@ public class PooledConnection implements Connection, Comparable<PooledConnection
     }
 
     @Override
-    public String getClientInfo(String arg0) throws SQLException {
+    public String getClientInfo(final String arg0) throws SQLException {
         return connection.getClientInfo(arg0);
     }
 
@@ -171,62 +176,75 @@ public class PooledConnection implements Connection, Comparable<PooledConnection
     }
 
     @Override
-    public boolean isValid(int arg0) throws SQLException {
+    public boolean isValid(final int arg0) throws SQLException {
         return connection.isValid(arg0);
     }
 
     @Override
-    public String nativeSQL(String arg0) throws SQLException {
+    public String nativeSQL(final String arg0) throws SQLException {
         return connection.nativeSQL(arg0);
     }
 
     @Override
-    public CallableStatement prepareCall(String arg0) throws SQLException {
+    public CallableStatement prepareCall(
+            final String arg0) throws SQLException {
         return connection.prepareCall(arg0);
     }
 
     @Override
-    public CallableStatement prepareCall(String arg0, int arg1, int arg2) throws SQLException {
+    public CallableStatement prepareCall(
+            final String arg0, final int arg1,
+            final int arg2) throws SQLException {
         return connection.prepareCall(arg0, arg1, arg2);
     }
 
     @Override
-    public CallableStatement prepareCall(String arg0, int arg1, int arg2, int arg3) throws SQLException {
+    public CallableStatement prepareCall(
+            final String arg0, final int arg1,
+            final int arg2, final int arg3) throws SQLException {
         return connection.prepareCall(arg0, arg1, arg2, arg3);
     }
 
     @Override
-    public PreparedStatement prepareStatement(String arg0) throws SQLException {
+    public PreparedStatement prepareStatement(
+            final String arg0) throws SQLException {
         return connection.prepareStatement(arg0);
     }
 
     @Override
-    public PreparedStatement prepareStatement(String arg0, int arg1) throws SQLException {
+    public PreparedStatement prepareStatement(
+            String arg0, int arg1) throws SQLException {
         return connection.prepareStatement(arg0, arg1);
     }
 
     @Override
-    public PreparedStatement prepareStatement(String arg0, int[] arg1) throws SQLException {
+    public PreparedStatement prepareStatement(
+            final String arg0, final int[] arg1) throws SQLException {
         return connection.prepareStatement(arg0, arg1);
     }
 
     @Override
-    public PreparedStatement prepareStatement(String arg0, String[] arg1) throws SQLException {
+    public PreparedStatement prepareStatement(
+            final String arg0, final String[] arg1) throws SQLException {
         return connection.prepareStatement(arg0, arg1);
     }
 
     @Override
-    public PreparedStatement prepareStatement(String arg0, int arg1, int arg2) throws SQLException {
+    public PreparedStatement prepareStatement(
+            final String arg0, final int arg1,
+            final int arg2) throws SQLException {
         return connection.prepareStatement(arg0, arg1, arg2);
     }
 
     @Override
-    public PreparedStatement prepareStatement(String arg0, int arg1, int arg2, int arg3) throws SQLException {
+    public PreparedStatement prepareStatement(
+            final String arg0, final int arg1,
+            final int arg2, final int arg3) throws SQLException {
         return connection.prepareStatement(arg0, arg1, arg2, arg3);
     }
 
     @Override
-    public void releaseSavepoint(Savepoint arg0) throws SQLException {
+    public void releaseSavepoint(final Savepoint arg0) throws SQLException {
         connection.releaseSavepoint(arg0);
     }
 
@@ -236,42 +254,45 @@ public class PooledConnection implements Connection, Comparable<PooledConnection
     }
 
     @Override
-    public void rollback(Savepoint arg0) throws SQLException {
+    public void rollback(final Savepoint arg0) throws SQLException {
         connection.rollback(arg0);
     }
 
     @Override
-    public void setAutoCommit(boolean arg0) throws SQLException {
+    public void setAutoCommit(final boolean arg0) throws SQLException {
         connection.setAutoCommit(arg0);
     }
 
     @Override
-    public void setCatalog(String arg0) throws SQLException {
+    public void setCatalog(final String arg0) throws SQLException {
         connection.setCatalog(arg0);
     }
 
     @Override
-    public void setClientInfo(Properties arg0) throws SQLClientInfoException {
+    public void setClientInfo(
+            final Properties arg0) throws SQLClientInfoException {
         connection.setClientInfo(arg0);
     }
 
     @Override
-    public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException {
+    public void setClientInfo(final String arg0,
+                              final String arg1) throws SQLClientInfoException {
         connection.setClientInfo(arg0, arg1);
     }
 
     @Override
-    public void setHoldability(int arg0) throws SQLException {
+    public void setHoldability(final int arg0) throws SQLException {
         connection.setHoldability(arg0);
     }
 
     @Override
-    public void setNetworkTimeout(Executor arg0, int arg1) throws SQLException {
+    public void setNetworkTimeout(final Executor arg0,
+                                  final int arg1) throws SQLException {
         connection.setNetworkTimeout(arg0, arg1);
     }
 
     @Override
-    public void setReadOnly(boolean arg0) throws SQLException {
+    public void setReadOnly(final boolean arg0) throws SQLException {
         connection.setReadOnly(arg0);
     }
 
@@ -281,27 +302,28 @@ public class PooledConnection implements Connection, Comparable<PooledConnection
     }
 
     @Override
-    public Savepoint setSavepoint(String arg0) throws SQLException {
+    public Savepoint setSavepoint(final String arg0) throws SQLException {
         return connection.setSavepoint(arg0);
     }
 
     @Override
-    public void setSchema(String arg0) throws SQLException {
+    public void setSchema(final String arg0) throws SQLException {
         connection.setSchema(arg0);
     }
 
     @Override
-    public void setTransactionIsolation(int arg0) throws SQLException {
+    public void setTransactionIsolation(final int arg0) throws SQLException {
         connection.setTransactionIsolation(arg0);
     }
 
     @Override
-    public void setTypeMap(Map<String, Class<?>> arg0) throws SQLException {
+    public void setTypeMap(
+            final Map<String, Class<?>> arg0) throws SQLException {
         connection.setTypeMap(arg0);
     }
 
     @Override
-    public int compareTo(PooledConnection connection) {
+    public int compareTo(final PooledConnection connection) {
         return hashCode() - connection.hashCode();
     }
 }

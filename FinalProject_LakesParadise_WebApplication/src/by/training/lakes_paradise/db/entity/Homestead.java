@@ -88,7 +88,7 @@ public class Homestead extends Entity {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(final List<Image> images) {
         this.images = images;
     }
 
@@ -96,7 +96,7 @@ public class Homestead extends Entity {
         return reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
+    public void setReviews(final List<Review> reviews) {
         this.reviews = reviews;
     }
 

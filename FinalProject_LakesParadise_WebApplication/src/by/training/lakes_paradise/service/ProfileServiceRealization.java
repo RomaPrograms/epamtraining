@@ -7,10 +7,11 @@ import by.training.lakes_paradise.exception.PersistentException;
 import java.util.List;
 
 public class ProfileServiceRealization extends ServiceRealization
-        implements ProfileService{
+        implements ProfileService {
 
     @Override
-    public Profile read(String login, String password) throws PersistentException {
+    public Profile read(final String login,
+                        final String password) throws PersistentException {
         return null;
     }
 
@@ -20,24 +21,24 @@ public class ProfileServiceRealization extends ServiceRealization
     }
 
     @Override
-    public Integer create(Profile profile) throws PersistentException {
+    public Integer create(final Profile profile) throws PersistentException {
         ProfileDaoRealization profileDaoRealization
                 = new ProfileDaoRealization();
         return profileDaoRealization.create(profile);
     }
 
     @Override
-    public Profile read(Integer id) throws PersistentException {
+    public Profile read(final Integer id) throws PersistentException {
         return null;
     }
 
     @Override
-    public void update(Profile profile) throws PersistentException {
+    public void update(final Profile profile) throws PersistentException {
 
     }
 
     @Override
-    public void delete(Integer id) throws PersistentException {
+    public void delete(final Integer id) throws PersistentException {
 
     }
 }

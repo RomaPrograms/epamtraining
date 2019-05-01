@@ -18,7 +18,8 @@ public class IncorrectDataException extends Exception {
     }
 
     public IncorrectDataException(final String parameter, final String value) {
-        super("Parameter '" + parameter + "' got empty or incorrect value '" + "'");
+        super("Parameter '" + parameter + "' got empty or incorrect value '"
+                + "'");
     }
 
     /**

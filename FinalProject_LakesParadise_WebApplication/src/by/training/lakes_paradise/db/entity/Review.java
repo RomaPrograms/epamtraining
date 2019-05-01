@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.db.entity;
 
+import java.util.Date;
+
 /**
  * Class which describes review.
  */
@@ -15,7 +17,7 @@ public class Review extends Entity {
     /**
      * Date when the comment was written.
      */
-    private long dateOfComment;
+    private Date dateOfComment;
     /**
      * Id of home which belongs the comment.
      */
@@ -62,7 +64,7 @@ public class Review extends Entity {
      *
      * @return value of dateOfComment property
      */
-    public long getDateOfComment() {
+    public Date getDateOfComment() {
         return dateOfComment;
     }
 
@@ -71,7 +73,7 @@ public class Review extends Entity {
      *
      * @param reviewDateOfComment - value of dateOfComment property
      */
-    public void setDateOfComment(final long reviewDateOfComment) {
+    public void setDateOfComment(final Date reviewDateOfComment) {
         this.dateOfComment = reviewDateOfComment;
     }
 

@@ -11,8 +11,6 @@ import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPoolRealization implements ConnectionPool {
 
@@ -42,15 +40,15 @@ public class ConnectionPoolRealization implements ConnectionPool {
 
     //private static Lock lock = new ReentrantLock();
 
-    private static int CHECK_CONNECTION_TIMEOUT;
+    private static int checkConnectionTimeout;
 
-    private static int MAX_POOL_SIZE;
+    private static int maxPoolSize;
 
-    private static String URL;
+    private static String url;
 
-    private static String USER;
+    private static String user;
 
-    private static String PASSWORD;
+    private static String password;
 
     private static ConnectionPoolRealization INSTANCE
             = new ConnectionPoolRealization();
@@ -65,18 +63,19 @@ public class ConnectionPoolRealization implements ConnectionPool {
     }
 
     @Override
-    public void init(String driverClass, String url, String user,
-                     String password, int startSize, int maxSize,
-                     int checkConnectionTimeout) throws PersistentException {
+    public void init(final String driverClass, final String url,
+                     final String user, final String password,
+                     final int startSize, final int maxSize,
+                     final int checkConnectionTimeout) throws PersistentException {
         try {
             destroy();
             Class.forName(driverClass);
-            this.URL = url;
-            this.USER = user;
-            this.PASSWORD = password;
-            this.MAX_POOL_SIZE = maxSize;
-            this.CHECK_CONNECTION_TIMEOUT = checkConnectionTimeout;
-            for(int i = 0; i < startSize; i++) {
+            this.url = url;
+            this.user = user;
+            this.password = password;
+            this.maxPoolSize = maxSize;
+            this.checkConnectionTimeout = checkConnectionTimeout;
+            for (int i = 0; i < startSize; i++) {
                 freeConnection.put(createConnection());
             }
         } catch (ClassNotFoundException | SQLException
@@ -93,13 +92,13 @@ public class ConnectionPoolRealization implements ConnectionPool {
             try {
                 if (!freeConnection.isEmpty()) {
                     connection = freeConnection.take();
-                    if (!connection.isValid(CHECK_CONNECTION_TIMEOUT)) { //возвращает true если соединение ещё не было закрыто и можно работать.
+                    if (!connection.isValid(checkConnectionTimeout)) { //возвращает true если соединение ещё не было закрыто и можно работать.
                         connection.close();
                         connection = null;
                     }
                 } else {
-                    if (usedConnection.size() < MAX_POOL_SIZE) {
-                        usedConnection.add(createConnection());
+                    if (usedConnection.size() < maxPoolSize) {
+                        connection = createConnection();
                     } else {
                         LOGGER.error(CONNECTION_LIMIT_NUMBER_EXCEPTION);
                         throw new PersistentException();
@@ -120,7 +119,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
     @Override
     public void releaseConnection(PooledConnection connection) {
         try {
-            if (connection.isValid(CHECK_CONNECTION_TIMEOUT)) {
+            if (connection.isValid(checkConnectionTimeout)) {
                 connection.clearWarnings();
                 connection.setAutoCommit(true);
                 usedConnection.remove(connection);
@@ -141,7 +140,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
     @Override
     public PooledConnection createConnection() throws SQLException {
         return new PooledConnection(DriverManager
-                .getConnection(URL, USER, PASSWORD));
+                .getConnection(url, user, password));
     }
 
     @Override

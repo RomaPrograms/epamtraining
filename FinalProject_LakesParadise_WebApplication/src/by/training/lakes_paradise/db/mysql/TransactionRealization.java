@@ -1,8 +1,17 @@
 package by.training.lakes_paradise.db.mysql;
 
-import by.training.lakes_paradise.db.dao.*;
+import by.training.lakes_paradise.db.dao.Transaction;
+import by.training.lakes_paradise.db.dao.HomesteadDao;
+import by.training.lakes_paradise.db.dao.ImageDao;
+import by.training.lakes_paradise.db.dao.ReviewDao;
+import by.training.lakes_paradise.db.dao.ProfileDao;
+import by.training.lakes_paradise.db.dao.OrderDao;
+import by.training.lakes_paradise.db.dao.UserDao;
+import by.training.lakes_paradise.db.dao.Dao;
 import by.training.lakes_paradise.exception.PersistentException;
+
 import java.sql.Connection;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,12 +40,13 @@ public class TransactionRealization implements Transaction {
         classes.put(ReviewDao.class, ReviewDaoRealization.class);
     }
 
-    public TransactionRealization(Connection connection) {
+    public TransactionRealization(final Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public <Type extends Dao<?>> Type createDao(Class<Type> key) throws PersistentException {
+    public <Type extends Dao<?>> Type createDao(
+            final Class<Type> key) throws PersistentException {
         Class<? extends BaseDaoRealization> value = classes.get(key);
         if (value != null) {
             try {
@@ -50,7 +60,8 @@ public class TransactionRealization implements Transaction {
                 dao.setConnection(connection);
                 return (Type) dao;
             } catch (InstantiationException | IllegalAccessException e) {
-                LOGGER.error("It is impossible to create data access object", e);
+                LOGGER.error(
+                        "It is impossible to create data access object", e);
                 throw new PersistentException(e);
             }
         }

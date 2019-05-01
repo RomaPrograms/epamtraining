@@ -8,11 +8,11 @@ import java.util.List;
 public interface UserService extends Service {
     List<User> read() throws PersistentException;
 
-    Integer create(final User user) throws PersistentException;
+    Integer create(User user) throws PersistentException;
 
-    User read(final Integer id) throws PersistentException;
+    User read(Integer id) throws PersistentException;
 
-    void update(final User user) throws PersistentException;
+    void update(User user) throws PersistentException;
 
-    void delete(final Integer id) throws PersistentException;
+    void delete(Integer id) throws PersistentException;
 }

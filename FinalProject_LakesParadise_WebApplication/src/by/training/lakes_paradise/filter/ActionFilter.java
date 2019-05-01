@@ -1,12 +1,22 @@
 package by.training.lakes_paradise.filter;
 
-import by.training.lakes_paradise.action.*;
+import by.training.lakes_paradise.action.HomesteadListAction;
+import by.training.lakes_paradise.action.Action;
+import by.training.lakes_paradise.action.HomesteadAction;
+import by.training.lakes_paradise.action.LogInAction;
+import by.training.lakes_paradise.action.ReviewAction;
+import by.training.lakes_paradise.action.MenuAction;
+import by.training.lakes_paradise.action.SignUpAction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -32,20 +42,21 @@ public class ActionFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(
+            final ServletRequest servletRequest,
+            final ServletResponse servletResponse, final FilterChain
+                    filterChain) throws IOException, ServletException {
+
         if (servletRequest instanceof HttpServletRequest) {
-            HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+            HttpServletRequest httpServletRequest
+                    = (HttpServletRequest) servletRequest;
             String contextPath = httpServletRequest.getContextPath();//TODO что эта хрень вообще возвращает.
             String uri = httpServletRequest.getRequestURI();
-            LOGGER.debug(String.format("Starting of processing of request for URI \"%s\"", uri));
+            LOGGER.debug(String.format(
+                    "Starting of processing of request for URI \"%s\"", uri));
             int beginAction = contextPath.length();
             int endAction = uri.lastIndexOf('.');
             String actionName;
-            HttpSession session = httpServletRequest.getSession(false);
-            if(session == null) {
-                session = httpServletRequest.getSession(true);
-                session.setAttribute("isLogIn", "false");
-            }
             if (endAction >= 0) {
                 actionName = uri.substring(beginAction, endAction);
             } else {
@@ -58,18 +69,24 @@ public class ActionFilter implements Filter {
                 httpServletRequest.setAttribute("action", action);
                 filterChain.doFilter(servletRequest, servletResponse);
             } catch (IllegalAccessException | InstantiationException e) {
-                httpServletRequest.setAttribute("error",
-                        String.format("Запрошенный адрес %s не может быть обработан сервером", uri));
-                httpServletRequest.getServletContext().getRequestDispatcher("/jsp/error.jsp").forward(servletRequest, servletResponse);
+                httpServletRequest.setAttribute("error", String.format(
+                        "Запрошенный адрес %s не может быть обработан сервером",
+                        uri));
+                httpServletRequest.getServletContext().getRequestDispatcher(
+                        "/jsp/error.jsp").forward(servletRequest,
+                        servletResponse);
             }
         } else {
             LOGGER.error("It is impossible to use HTTP filter");
-            servletRequest.getServletContext().getRequestDispatcher("/jsp/error.jsp").forward(servletRequest, servletResponse);
+            System.out.println("error action filter");
+            servletRequest.getServletContext().getRequestDispatcher(
+                    "/jsp/error.jsp").forward(servletRequest,
+                    servletResponse);
         }
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(final FilterConfig filterConfig) throws ServletException {
 
     }
 

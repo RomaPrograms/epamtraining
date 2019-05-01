@@ -206,9 +206,9 @@ public class OrderDaoRealization extends BaseDaoRealization
             statement.setInt(
                     2, order.getHomestead().getId());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
-                    new Date(order.getStartRenting()));
+                    new Date(order.getStartRenting().getTime()));
             statement.setDate(FORTH_ELEMENT_IN_SQL_QUERY,
-                    new Date(order.getEndRenting()));
+                    new Date(order.getEndRenting().getTime()));
             statement.setBoolean(FIFTH_ELEMENT_IN_SQL_QUERY,
                     order.getPaid());
             statement.executeUpdate();
@@ -272,10 +272,10 @@ public class OrderDaoRealization extends BaseDaoRealization
                 homestead.setId(
                         resultSet.getInt("home_id"));
                 order.setHomestead(homestead);
-                order.setStartRenting(
-                        resultSet.getDate("date_start").getTime());
-                order.setEndRenting(
-                        resultSet.getDate("date_end").getTime());
+                Date date = resultSet.getDate("date_start");
+                order.setStartRenting(new java.util.Date(date.getTime()));
+                date = resultSet.getDate("date_end");
+                order.setEndRenting(new java.util.Date(date.getTime()));
                 order.setPaid(
                         resultSet.getBoolean("status_pay"));
             }
@@ -320,9 +320,9 @@ public class OrderDaoRealization extends BaseDaoRealization
             statement.setInt(
                     2, order.getHomestead().getId());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
-                    new Date(order.getStartRenting()));
+                    new Date(order.getStartRenting().getTime()));
             statement.setDate(FORTH_ELEMENT_IN_SQL_QUERY,
-                    new Date(order.getEndRenting()));
+                    new Date(order.getEndRenting().getTime()));
             statement.setBoolean(FIFTH_ELEMENT_IN_SQL_QUERY,
                     order.getPaid());
             statement.setInt(SIXTH_ELEMENT_IN_SQL_QUERY,
@@ -434,11 +434,9 @@ public class OrderDaoRealization extends BaseDaoRealization
                 resultSet.getInt("home_id"));
         order.setHomestead(homestead);
         Date date = resultSet.getDate("date_start");
-        order.setStartRenting(
-                date.getTime());
+        order.setStartRenting(new java.util.Date(date.getTime()));
         date = resultSet.getDate("date_end");
-        order.setEndRenting(
-                date.getTime());
+        order.setEndRenting(new java.util.Date(date.getTime()));
         order.setPaid(resultSet
                 .getBoolean("status_pay"));
         return order;

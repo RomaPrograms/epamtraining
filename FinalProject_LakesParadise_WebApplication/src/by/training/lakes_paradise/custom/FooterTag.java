@@ -16,7 +16,8 @@ public class FooterTag extends TagSupport {
     public int doStartTag() throws JspException {
         try {
             pageContext.getOut().write("<hr/>");
-            pageContext.getOut().write("<footer><p>" + text + "</p></footer>");
+            pageContext.getOut().write("<footer><p>"
+                    + text + "</p></footer>");
         } catch (IOException e) {
             e.printStackTrace();
         }

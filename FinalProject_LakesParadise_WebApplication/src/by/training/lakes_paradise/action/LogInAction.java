@@ -11,18 +11,20 @@ import javax.servlet.http.HttpSession;
 
 public class LogInAction extends Action {
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
+    public Forward exec(
+            final HttpServletRequest request,
+            final HttpServletResponse response) throws PersistentException {
         Forward forward = null;
         try {
             HttpSession session = request.getSession(true);
-            String string = (String) session.getAttribute("action");
+            String string = (String) session.getAttribute("lastAction");
             forward = new Forward(string, true);
             ProfileValidator profileValidator = new ProfileValidator();
             Profile profile = profileValidator.validate(request);
             session.setAttribute("profile", profile);
-            session.setAttribute("isLogIn", "true");
         } catch (IncorrectDataException e) {
-
+            request.setAttribute("logInMessage",
+                    "Incorrect data were entered!");
         }
         return forward;
     }

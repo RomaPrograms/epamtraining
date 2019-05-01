@@ -10,21 +10,30 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class HomesteadAction extends Action {
-    @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 
-        Forward forward = new Forward("/home.jsp", false);
-        int homeId = Integer.parseInt(request.getParameter("homesteadIdentity"));
+    @Override
+    public Forward exec(
+            HttpServletRequest request,
+            HttpServletResponse response) throws PersistentException {
+
         HttpSession session = request.getSession(true);
-        session.setAttribute("action", "/home.html");
-        String isLogIn = (String) session.getAttribute("isLogIn");
-        if (isLogIn.equals("true")) {
-            Profile profile = (Profile) session.getAttribute("profile");
-            request.setAttribute("profileLogin", profile.getLogin());
+        session.setAttribute("lastAction", "/home.html");
+        Forward forward = new Forward("/home.jsp", false);
+        String stringHomesteadId = request.getParameter("homesteadIdentity");
+        Homestead homestead;
+        int homesteadId;
+        if (stringHomesteadId == null) {
+            homestead = (Homestead) session.getAttribute("homestead");
+        } else {
+            homesteadId = Integer.parseInt(stringHomesteadId);
+            homestead = factory.getService(
+                    HomesteadService.class).findById(homesteadId);
+            homestead.setId(homesteadId);
+            session.setAttribute("homestead", homestead);
         }
-        Homestead homestead = factory.getService(HomesteadService.class).findById(homeId);
-        homestead.setId(homeId);
-        session.setAttribute("homestead", homestead);
+
+        Profile profile = (Profile) session.getAttribute("profile");
+        request.setAttribute("profile", profile);
         request.setAttribute("homestead", homestead);
 
         return forward;

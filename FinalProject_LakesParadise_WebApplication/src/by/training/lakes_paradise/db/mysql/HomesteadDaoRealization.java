@@ -300,10 +300,9 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     public Homestead read(final Integer id) throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        Connection connection = null;
+
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
 
             if (id != null) {
@@ -365,11 +364,11 @@ public class HomesteadDaoRealization extends BaseDaoRealization
         List<Homestead> list;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        Connection connection;
+        //Connection connection;
         try {
             list = new ArrayList<>();
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            //connection = ConnectionDB.getConnection();
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE);
 
             resultSet = statement.executeQuery();

@@ -8,19 +8,16 @@ import javax.servlet.http.HttpSession;
 
 public class MenuAction extends Action {
 
-    static int i = 0;
-
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response) {
 
-        Action.Forward forward = new Action.Forward("/index.jsp", false);
+        Action.Forward forward
+                = new Action.Forward("/index.jsp", false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("action", "/menu.html");
-        String isLogIn = (String) session.getAttribute("isLogIn");
-        if (isLogIn.equals("true")) {
-            Profile profile = (Profile) session.getAttribute("profile");
-            request.setAttribute("profileLogin", profile.getLogin());
-        }
+        session.setAttribute("lastAction", "/menu.html");
+        Profile profile = (Profile) session.getAttribute("profile");
+        request.setAttribute("profile", profile);
 
         return forward;
     }

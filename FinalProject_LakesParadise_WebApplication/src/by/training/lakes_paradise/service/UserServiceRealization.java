@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.service;
 
-import by.training.lakes_paradise.db.dao.ProfileDao;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.db.mysql.ProfileDaoRealization;
@@ -10,15 +9,16 @@ import by.training.lakes_paradise.exception.PersistentException;
 import java.util.List;
 
 public class UserServiceRealization extends ServiceRealization
-        implements UserService{
+        implements UserService {
     @Override
     public List<User> read() throws PersistentException {
         return null;
     }
 
     @Override
-    public Integer create(User user) throws PersistentException {
-        ProfileDaoRealization profileDaoRealization = new ProfileDaoRealization();
+    public Integer create(final User user) throws PersistentException {
+        ProfileDaoRealization profileDaoRealization
+                = new ProfileDaoRealization();
         UserDaoRealization userDaoRealization = new UserDaoRealization();
         Profile profile = new Profile();
         profile.setLogin(user.getLogin());
@@ -30,17 +30,17 @@ public class UserServiceRealization extends ServiceRealization
     }
 
     @Override
-    public User read(Integer id) throws PersistentException {
+    public User read(final Integer id) throws PersistentException {
         return null;
     }
 
     @Override
-    public void update(User user) throws PersistentException {
+    public void update(final User user) throws PersistentException {
 
     }
 
     @Override
-    public void delete(Integer id) throws PersistentException {
+    public void delete(final Integer id) throws PersistentException {
 
     }
 }

@@ -16,16 +16,16 @@ import javax.servlet.http.HttpSession;
 
 public class SignUpAction extends Action {
 
-    static int i = 0;
-
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
+    public Forward exec(
+            final HttpServletRequest request,
+            final HttpServletResponse response) throws PersistentException {
         try {
 
             UserValidator userValidator = new UserValidator();
             User user = userValidator.validate(request);
             HttpSession session = request.getSession(true);
-            Integer roleId = (Integer)session.getAttribute("userRole");
+            Integer roleId = (Integer) session.getAttribute("userRole");
             if (roleId == null) {
                 user.setRole(Role.USER);
                 factory.getService(UserService.class).create(user);
@@ -36,9 +36,11 @@ public class SignUpAction extends Action {
                 }
             }
 
-            request.setAttribute("message", "Данные были успешно сохранены");
-        } catch(IncorrectDataException e) {
-            request.setAttribute("message", "Были обнаружены некорректно введённый данные");
+            request.setAttribute("message",
+                    "Данные были успешно сохранены");
+        } catch (IncorrectDataException e) {
+            request.setAttribute("message",
+                    "Были обнаружены некорректно введённый данные");
         }
 
         return new Forward("/signUp.jsp", false);

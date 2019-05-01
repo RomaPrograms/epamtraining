@@ -11,10 +11,13 @@ import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ServiceFactoryRealization implements ServiceFactory{
-    private static final Logger logger = LogManager.getLogger(ServiceFactoryRealization.class);
+public class ServiceFactoryRealization implements ServiceFactory {
+    private static final Logger logger
+            = LogManager.getLogger(ServiceFactoryRealization.class);
 
-    private static final Map<Class<? extends Service>, Class<? extends ServiceRealization>> SERVICES = new ConcurrentHashMap<>();
+    private static final Map<Class<? extends Service>,
+            Class<? extends ServiceRealization>> SERVICES
+            = new ConcurrentHashMap<>();
 
     static {
         SERVICES.put(HomesteadService.class, HomesteadServiceRealization.class);
@@ -27,26 +30,30 @@ public class ServiceFactoryRealization implements ServiceFactory{
 
     private TransactionFactory factory;
 
-    public ServiceFactoryRealization(TransactionFactory factory) throws PersistentException {
+    public ServiceFactoryRealization(
+            final TransactionFactory factory) throws PersistentException {
         this.factory = factory;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public <Type extends Service> Type getService(Class<Type> key) throws PersistentException {
+    public <Type extends Service> Type getService(
+            final Class<Type> key) throws PersistentException {
         Class<? extends ServiceRealization> value = SERVICES.get(key);
-        if(value != null) {
+        if (value != null) {
             try {
                 ClassLoader classLoader = value.getClassLoader();
                 Class<?>[] interfaces = {key};
                 Transaction transaction = factory.createTransaction();
                 ServiceRealization service = value.newInstance();
                 service.setTransaction(transaction);
-                InvocationHandler handler = new ServiceInvocationHandlerRealization(service);
-                return (Type) Proxy.newProxyInstance(classLoader, interfaces, handler);
-            } catch(PersistentException e) {
+                InvocationHandler handler
+                        = new ServiceInvocationHandlerRealization(service);
+                return (Type) Proxy.newProxyInstance(classLoader,
+                        interfaces, handler);
+            } catch (PersistentException e) {
                 throw e;
-            } catch(InstantiationException | IllegalAccessException e) {
+            } catch (InstantiationException | IllegalAccessException e) {
                 logger.error("It is impossible to instance service class", e);
                 throw new PersistentException(e);
             }

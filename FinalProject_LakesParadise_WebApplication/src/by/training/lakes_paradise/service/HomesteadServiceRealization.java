@@ -12,13 +12,16 @@ import java.util.List;
 public class HomesteadServiceRealization extends ServiceRealization
         implements HomesteadService {
     @Override
-    public List<Homestead> findAllByTitle(String search) throws PersistentException {
+    public List<Homestead> findAllByTitle(
+            final String search) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.findByTitle(search);
     }
 
     @Override
-    public List<Homestead> findAllByPrice(BigDecimal minPrice, BigDecimal maxPrice) throws PersistentException {
+    public List<Homestead> findAllByPrice(
+            final BigDecimal minPrice,
+            final BigDecimal maxPrice) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.findByPrice(minPrice, maxPrice);
     }
@@ -30,13 +33,13 @@ public class HomesteadServiceRealization extends ServiceRealization
     }
 
     @Override
-    public Integer add(Homestead homestead) throws PersistentException {
+    public Integer add(final Homestead homestead) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.create(homestead);
     }
 
     @Override
-    public Homestead findById(Integer id) throws PersistentException {
+    public Homestead findById(final Integer id) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         ImageDao imageDao = transaction.createDao(ImageDao.class);
         ReviewDao reviewDao = transaction.createDao(ReviewDao.class);
@@ -51,13 +54,13 @@ public class HomesteadServiceRealization extends ServiceRealization
     }
 
     @Override
-    public void update(Homestead homestead) throws PersistentException {
+    public void update(final Homestead homestead) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         homesteadDao.update(homestead);
     }
 
     @Override
-    public void delete(Integer id) throws PersistentException {
+    public void delete(final Integer id) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         homesteadDao.delete(id);
     }

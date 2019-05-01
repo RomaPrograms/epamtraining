@@ -50,7 +50,7 @@
 
             <form class="navbar-form navbar-right" action="/changeStatus.html"
                   method="get">
-                <c:if test="${isLogIn == false}">
+                <c:if test="${profile == null}">
                     <div class="form-group">
                         <input type="text" placeholder="Логин"
                                class="form-control" name="login">
@@ -60,10 +60,11 @@
                                class="form-control" name="password">
                     </div>
                     <input type="submit" class="btn btn-primary" value="Вход"/>
+                    <label><c:out value="${logInMessage}"/></label>
                 </c:if>
-                <c:if test="${isLogIn == true}">
+                <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary">Welcome, <c:out value="${profileLogin}"/></label>
+                        <label class="text-primary">Welcome, <c:out value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
             </form>

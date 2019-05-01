@@ -10,18 +10,17 @@ import javax.servlet.http.HttpSession;
 
 public class HomesteadListAction extends Action {
     @Override
-    public Forward exec(HttpServletRequest request,
-                        HttpServletResponse response) throws PersistentException {
+    public Forward exec(
+            final HttpServletRequest request,
+            final HttpServletResponse response) throws PersistentException {
 
         Forward forward = new Forward("/homesteads.jsp", false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("action", "/homesteads.html");
-        String isLogIn = (String) session.getAttribute("isLogIn");
-        if (isLogIn.equals("true")) {
-            Profile profile = (Profile) session.getAttribute("profile");
-            request.setAttribute("profileLogin", profile.getLogin());
-        }
-        request.setAttribute("res", factory.getService(HomesteadService.class).findAll());
+        session.setAttribute("lastAction", "/homesteads.html");
+        Profile profile = (Profile) session.getAttribute("profile");
+        request.setAttribute("profile", profile);
+        request.setAttribute("res", factory.getService(
+                HomesteadService.class).findAll());
 
         return forward;
     }

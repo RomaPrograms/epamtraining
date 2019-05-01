@@ -41,9 +41,9 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER,
-                    DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE,
-                    DB_POOL_CHECK_CONNECTION_TIMEOUT);
+            ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS,
+                    DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE,
+                    DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT);
         } catch (PersistentException e) {
             LOGGER.error("It is impossible to initialize application", e);
             destroy();
@@ -81,49 +81,59 @@ public class DispatcherServlet extends HttpServlet {
     private void action(HttpServletRequest request,
                         HttpServletResponse response)
             throws ServletException, IOException, PersistentException {
-        Action action = (Action)request.getAttribute("action");
+        Action action = (Action) request.getAttribute("action");
         try {
             HttpSession session = request.getSession(false);
-            if(session != null) {
+            if (session != null) {
                 @SuppressWarnings("unchecked")
-                Map<String, Object> attributes = (Map<String, Object>)session.getAttribute("redirectedData");
-                if(attributes != null) {
-                    for(String key : attributes.keySet()) {
+                Map<String, Object> attributes = (Map<String, Object>)
+                        session.getAttribute("redirectedData");
+                if (attributes != null) {
+                    for (String key : attributes.keySet()) {
                         request.setAttribute(key, attributes.get(key));
                     }
                     session.removeAttribute("redirectedData");
                 }
             }
-            ActionManager actionManager = ActionManagerFactory.getManager(getFactory());
-            if (i == 2) {
-                System.out.println();
-            }
-            i++;
-            Action.Forward forward = actionManager.execute(action, request, response);
+
+            ActionManager actionManager
+                    = ActionManagerFactory.getManager(getFactory());
+
+            Action.Forward forward
+                    = actionManager.execute(action, request, response);
             actionManager.close();
-            if(session != null && forward != null && !forward.getAttributes().isEmpty()) {
-                session.setAttribute("redirectedData", forward.getAttributes());
+            if (session != null && forward != null
+                    && !forward.getAttributes().isEmpty()) {
+                session.setAttribute("redirectedData",
+                        forward.getAttributes());
             }
             String requestedUri = request.getRequestURI();
-            if(forward != null && forward.isRedirect()) {
-                String redirectedUri = request.getContextPath() + forward.getForward();
-                LOGGER.debug(String.format("Request for URI \"%s\" id redirected to URI \"%s\"", requestedUri, redirectedUri));
+            if (forward != null && forward.isRedirect()) {
+                String redirectedUri
+                        = request.getContextPath() + forward.getForward();
+                LOGGER.debug(String.format("Request for URI \"%s\" id"
+                                + " redirected to URI \"%s\"", requestedUri,
+                        redirectedUri));
+                System.out.println("redirection");
                 response.sendRedirect(redirectedUri);
             } else {
                 String jspPage;
-                if(forward != null) {
+                if (forward != null) {
                     jspPage = forward.getForward();
                 } else {
                     jspPage = action.getName() + ".jsp";
                 }
                 jspPage = "/jsp" + jspPage;
-                LOGGER.debug(String.format("Request for URI \"%s\" is forwarded to JSP \"%s\"", requestedUri, jspPage));
-                getServletContext().getRequestDispatcher(jspPage).forward(request, response);
+                LOGGER.debug(String.format("Request for URI \"%s\" is forwarded"
+                        + " to JSP \"%s\"", requestedUri, jspPage));
+                getServletContext().getRequestDispatcher(jspPage)
+                        .forward(request, response);
             }
-        } catch(PersistentException e) {
+        } catch (PersistentException e) {
             LOGGER.error("It is impossible to process request", e);
             request.setAttribute("error", "Ошибка обработки данных");
-            getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher(
+                    "/WEB-INF/jsp/error.jsp").forward(request, response);
         }
     }
 }

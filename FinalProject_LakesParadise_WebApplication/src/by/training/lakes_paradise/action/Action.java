@@ -1,45 +1,32 @@
 package by.training.lakes_paradise.action;
 
-import by.training.lakes_paradise.db.entity.Role;
-import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.ServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 abstract public class Action {
-//    private User authorizedUser;
     private String name;
 
     protected ServiceFactory factory;
-
-//    public User getAuthorizedUser() {
-//        return authorizedUser;
-//    }
-//
-//    public void setAuthorizedUser(User authorizedUser) {
-//        this.authorizedUser = authorizedUser;
-//    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String actionName) {
+        this.name = actionName;
     }
 
-    public void setFactory(ServiceFactory factory) {
-        this.factory = factory;
+    public void setFactory(final ServiceFactory serviceFactory) {
+        this.factory = serviceFactory;
     }
 
-    abstract public Action.Forward exec(HttpServletRequest request,
-                                        HttpServletResponse response) throws PersistentException;
+    abstract public Action.Forward exec( HttpServletRequest request,
+            HttpServletResponse response) throws PersistentException;
 
     public static class Forward {
         private String forward;
@@ -51,7 +38,7 @@ abstract public class Action {
             this.redirect = redirect;
         }
 
-        public Forward(String forward) {
+        public Forward(final String forward) {
             this(forward, true);
         }
 
@@ -59,7 +46,7 @@ abstract public class Action {
             return forward;
         }
 
-        public void setForward(String forward) {
+        public void setForward(final String forward) {
             this.forward = forward;
         }
 
@@ -67,7 +54,7 @@ abstract public class Action {
             return redirect;
         }
 
-        public void setRedirect(boolean redirect) {
+        public void setRedirect(final boolean redirect) {
             this.redirect = redirect;
         }
 

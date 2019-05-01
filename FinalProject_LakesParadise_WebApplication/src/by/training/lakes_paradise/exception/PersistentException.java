@@ -38,4 +38,3 @@ public class PersistentException extends Exception {
         super(cause);
     }
 }
-

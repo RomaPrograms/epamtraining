@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.db.entity;
 
+import java.util.Date;
+
 /**
  * Class which describes order.
  */
@@ -15,11 +17,11 @@ public class Order extends Entity {
     /**
      * Date of start renting.
      */
-    private long startRenting;
+    private Date startRenting;
     /**
      * Date of end renting.
      */
-    private long endRenting;
+    private Date endRenting;
     /**
      * Payment state.
      */
@@ -66,7 +68,7 @@ public class Order extends Entity {
      *
      * @return value of startRenting property.
      */
-    public long getStartRenting() {
+    public Date getStartRenting() {
         return startRenting;
     }
 
@@ -75,7 +77,7 @@ public class Order extends Entity {
      *
      * @param orderStartRenting - value of startRenting property.
      */
-    public void setStartRenting(final long orderStartRenting) {
+    public void setStartRenting(final Date orderStartRenting) {
         this.startRenting = orderStartRenting;
     }
 
@@ -84,7 +86,7 @@ public class Order extends Entity {
      *
      * @return value of endRenting property.
      */
-    public long getEndRenting() {
+    public Date getEndRenting() {
         return endRenting;
     }
 
@@ -93,7 +95,7 @@ public class Order extends Entity {
      *
      * @param orderEndRenting - value of endRenting property.
      */
-    public void setEndRenting(final long orderEndRenting) {
+    public void setEndRenting(final Date orderEndRenting) {
         this.endRenting = orderEndRenting;
     }
 

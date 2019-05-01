@@ -7,32 +7,33 @@ import javax.servlet.http.HttpServletRequest;
 
 public class UserValidator implements Validator<User> {
     @Override
-    public User validate(HttpServletRequest request) throws IncorrectDataException {
+    public User validate(
+            final HttpServletRequest request) throws IncorrectDataException {
         User user = new User();
 
         String login = request.getParameter("login");
-        if(login != null && !login.isEmpty()) {
+        if (login != null && !login.isEmpty()) {
             user.setLogin(login);
         } else {
             throw new IncorrectDataException("login", login);
         }
 
         String password = request.getParameter("password");
-        if(password != null && !password.isEmpty()) {
+        if (password != null && !password.isEmpty()) {
             user.setPassword(password);
         } else {
             throw new IncorrectDataException("password", password);
         }
 
         String name = request.getParameter("name");
-        if(name != null && !name.isEmpty()) {
+        if (name != null && !name.isEmpty()) {
             user.setName(name);
         } else {
             throw new IncorrectDataException("name", name);
         }
 
         String surname = request.getParameter("surname");
-        if(surname != null && !surname.isEmpty()) {
+        if (surname != null && !surname.isEmpty()) {
             user.setSurname(surname);
         } else {
             throw new IncorrectDataException("surname", surname);
@@ -41,7 +42,7 @@ public class UserValidator implements Validator<User> {
         String phone = request.getParameter("phoneNumber");
         try {
             user.setPhone(Long.parseLong(phone));
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IncorrectDataException("phoneNumber", phone);
         }
 

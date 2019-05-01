@@ -2,8 +2,8 @@ package by.training.lakes_paradise.db.mysql;
 
 import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.ReviewDao;
-import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Review;
+import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -93,19 +93,19 @@ public class ReviewDaoRealization extends BaseDaoRealization
      * @param homeId - id of homestead
      * @return list with images
      * @throws PersistentException - exception with searching in review table by
-     *                             homestead id
+     * homestead id
      */
     @Override
     public List<Review> readReviewsByHomeId(final Integer homeId)
             throws PersistentException {
-        Connection connection = null;
+        //Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<Review> reviews = new ArrayList<>();
 
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            //connection = ConnectionDB.getConnection();
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID);
             statement.setInt(1, homeId);
             resultSet = statement.executeQuery();
@@ -116,8 +116,8 @@ public class ReviewDaoRealization extends BaseDaoRealization
                 review.setId(resultSet.getInt("id"));
                 review.setText(resultSet.getString("text"));
                 review.setUserName(resultSet.getString("user_name"));
-                review.setDateOfComment(resultSet
-                        .getDate("date_of_comment").getTime());
+                Date date = resultSet.getDate("date_of_comment");
+                review.setDateOfComment(new java.util.Date(date.getTime()));
 
                 reviews.add(review);
             }
@@ -185,11 +185,12 @@ public class ReviewDaoRealization extends BaseDaoRealization
      */
     @Override
     public Integer create(final Review review) throws PersistentException {
-        Connection connection = null;
+        //Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
+            //connection = ConnectionDB.getConnection();
+            Connection connection = ConnectionPoolRealization.getInstance().getConnection();
             statement = connection.prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
@@ -197,7 +198,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
             statement.setString(1, review.getText());
             statement.setString(2, review.getUserName());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
-                    new Date(review.getDateOfComment()));
+                    new Date(review.getDateOfComment().getTime()));
             statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomesteadId());
             statement.execute();
 
@@ -255,8 +256,8 @@ public class ReviewDaoRealization extends BaseDaoRealization
                 review = new Review();
                 review.setText(resultSet.getString("text"));
                 review.setUserName(resultSet.getString("user_name"));
-                review.setDateOfComment(resultSet
-                        .getDate("date_of_comment").getTime());
+                Date date = resultSet.getDate("date_of_comment");
+                review.setDateOfComment(new java.util.Date(date.getTime()));
                 review.setHomesteadId(resultSet.getInt("home_id"));
             }
 
@@ -300,7 +301,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
             statement.setString(1, review.getText());
             statement.setString(2, review.getUserName());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
-                    new Date(review.getDateOfComment()));
+                    new Date(review.getDateOfComment().getTime()));
             statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY,
                     review.getHomesteadId());
             statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY, review.getId());

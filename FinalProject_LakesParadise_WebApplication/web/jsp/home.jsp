@@ -62,7 +62,7 @@
 
             <form class="navbar-form navbar-right" action="/changeStatus.html"
                   method="get">
-                <c:if test="${isLogIn == false}">
+                <c:if test="${profile == null}">
                     <div class="form-group">
                         <input type="text" placeholder="Логин"
                                class="form-control" name="login">
@@ -73,9 +73,9 @@
                     </div>
                     <input type="submit" class="btn btn-primary" value="Вход"/>
                 </c:if>
-                <c:if test="${isLogIn == true}">
+                <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary">Welcome, <c:out value="${profileLogin}"/></label>
+                        <label class="text-primary">Welcome, <c:out value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
             </form>
@@ -90,17 +90,17 @@
         </h1>
     </div>
     <div class="container" style="width:90%; height:80%;">
-        <div id="carouselIndicators" class="carousel slide"
+        <div id="myCarousel" class="carousel slide"
              data-ride="carousel">
             <ol class="carousel-indicators">
-                <li class="active" data-target="#carouselIndicators"
+                <li class="active" data-target="#myCarousel"
                     data-slide-to="0"></li>
-                <li data-target="#carouselIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselIndicators" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <c:forEach var="image" items="${homestead.getImages()}"
-                           varStatus="status">
+                <%--<c:forEach var="image" items="${homestead.getImages()}"
+                           varStatus="status">--%>
 
                     <div class="item active">
                         <img src="../img/myImages/3.1_farmstead.jpg"<%--image.getImage().getBinaryStream(1, image.getImage().length())--%>
@@ -114,14 +114,14 @@
                         <img src="../img/myImages/3.2_farmstead.jpg"
                              alt="" style="width:100%; height:100%;"/>
                     </div>
-                </c:forEach>
+                <%--</c:forEach>--%>
             </div>
-            <a class="left carousel-control" href="#carouselIndicators"
+            <a class="left carousel-control" href="#myCarousel"
                data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#carouselIndicators"
+            <a class="right carousel-control" href="#myCarousel"
                data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span class="sr-only">Next</span>

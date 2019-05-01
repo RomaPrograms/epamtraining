@@ -10,11 +10,11 @@ public interface ReviewService extends Service {
 
     void deleteReviewsByHomeId(Integer homeId) throws PersistentException;
 
-    public Integer create(final Review review) throws PersistentException;
+    Integer create(Review review) throws PersistentException;
 
-    public Review read(final Integer id) throws PersistentException;
+    Review read(Integer id) throws PersistentException;
 
-    public void update(final Review review) throws PersistentException;
+    void update(Review review) throws PersistentException;
 
-    public void delete(final Integer id) throws PersistentException;
+    void delete(Integer id) throws PersistentException;
 }

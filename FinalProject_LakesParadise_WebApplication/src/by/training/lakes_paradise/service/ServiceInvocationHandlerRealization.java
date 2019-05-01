@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.service;
 
-import by.training.lakes_paradise.db.mysql.TransactionRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,26 +18,28 @@ public class ServiceInvocationHandlerRealization implements InvocationHandler {
 
     private ServiceRealization service;
 
-    public ServiceInvocationHandlerRealization(ServiceRealization service) {
+    public ServiceInvocationHandlerRealization(
+            final ServiceRealization service) {
         this.service = service;
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    public Object invoke(final Object proxy, final Method method,
+                         final Object[] args) throws Throwable {
         try {
             Object result = method.invoke(service, args);
             service.transaction.commit();
             return result;
-        } catch(PersistentException e) {
+        } catch (PersistentException e) {
             rollback(method);
             throw e;
-        } catch(InvocationTargetException e) {
+        } catch (InvocationTargetException e) {
             rollback(method);
             throw e.getCause();//dfadsfadsf
         }
     }
 
-    private void rollback(Method method) {
+    private void rollback(final Method method) {
         try {
             service.transaction.rollback();
         } catch (PersistentException e) {

@@ -4,6 +4,7 @@ import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.IncorrectDataException;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.validator.ProfileValidator;
+import by.training.lakes_paradise.validator.ValidatorFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,8 @@ public class LogInAction extends Action {
             HttpSession session = request.getSession(true);
             String string = (String) session.getAttribute("lastAction");
             forward = new Forward(string, true);
-            ProfileValidator profileValidator = new ProfileValidator();
+            ProfileValidator profileValidator = (ProfileValidator)
+                    ValidatorFactory.createValidator(Profile.class);
             Profile profile = profileValidator.validate(request);
             session.setAttribute("profile", profile);
         } catch (IncorrectDataException e) {

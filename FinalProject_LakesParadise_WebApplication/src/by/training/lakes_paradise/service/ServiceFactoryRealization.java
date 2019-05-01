@@ -7,12 +7,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ServiceFactoryRealization implements ServiceFactory {
-    private static final Logger logger
+    private static final Logger LOGGER
             = LogManager.getLogger(ServiceFactoryRealization.class);
 
     private static final Map<Class<? extends Service>,
@@ -45,7 +46,7 @@ public class ServiceFactoryRealization implements ServiceFactory {
                 ClassLoader classLoader = value.getClassLoader();
                 Class<?>[] interfaces = {key};
                 Transaction transaction = factory.createTransaction();
-                ServiceRealization service = value.newInstance();
+                ServiceRealization service = value.getConstructor().newInstance();
                 service.setTransaction(transaction);
                 InvocationHandler handler
                         = new ServiceInvocationHandlerRealization(service);
@@ -53,12 +54,20 @@ public class ServiceFactoryRealization implements ServiceFactory {
                         interfaces, handler);
             } catch (PersistentException e) {
                 throw e;
-            } catch (InstantiationException | IllegalAccessException e) {
-                logger.error("It is impossible to instance service class", e);
+            } catch (IllegalAccessException | InstantiationException e) {
+                LOGGER.error("It is impossible to instance service class", e);
+                throw new PersistentException(e);
+            } catch (InvocationTargetException e) {
+                LOGGER.error("Constructor of " + value.getSimpleName()
+                        + " throws an exception", e);
+                throw new PersistentException(e);
+            } catch (NoSuchMethodException e) {
+                LOGGER.error("Matching method is not found", e);
                 throw new PersistentException(e);
             }
         }
-        return null;
+        throw new PersistentException("Service class named "
+                + key.getSimpleName() + " wasn't founded");
     }
 
     @Override

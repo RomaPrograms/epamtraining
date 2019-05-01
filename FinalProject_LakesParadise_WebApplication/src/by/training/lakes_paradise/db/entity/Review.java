@@ -1,5 +1,6 @@
 package by.training.lakes_paradise.db.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -77,6 +78,12 @@ public class Review extends Entity {
         this.dateOfComment = reviewDateOfComment;
     }
 
+    public String getDateOfCommentByPattern() {
+        SimpleDateFormat formatForDateNow
+                = new SimpleDateFormat("E yyyy.MM.dd");
+
+        return formatForDateNow.format(dateOfComment);
+    }
     /**
      * Gets the value of homesteadId property.
      *

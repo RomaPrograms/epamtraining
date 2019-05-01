@@ -1,33 +1,16 @@
 package by.training.lakes_paradise.main;
 
-import by.training.lakes_paradise.db.ConnectionDB;
-import by.training.lakes_paradise.db.dao.HomesteadDao;
-import by.training.lakes_paradise.db.dao.OrderDao;
-import by.training.lakes_paradise.db.dao.ProfileDao;
-import by.training.lakes_paradise.db.dao.TransactionFactory;
 import by.training.lakes_paradise.db.entity.*;
 import by.training.lakes_paradise.db.mysql.*;
-import by.training.lakes_paradise.db.pool.ConnectionPool;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
-import by.training.lakes_paradise.service.HomesteadService;
-import by.training.lakes_paradise.service.ServiceFactoryRealization;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.Blob;
-import java.sql.Connection;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 

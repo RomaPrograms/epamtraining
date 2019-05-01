@@ -10,6 +10,7 @@ import by.training.lakes_paradise.db.dao.UserDao;
 import by.training.lakes_paradise.db.dao.Dao;
 import by.training.lakes_paradise.exception.PersistentException;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 
 import org.apache.logging.log4j.LogManager;
@@ -50,22 +51,25 @@ public class TransactionRealization implements Transaction {
         Class<? extends BaseDaoRealization> value = classes.get(key);
         if (value != null) {
             try {
-                BaseDaoRealization dao = null;
-                dao = value.newInstance();
-
-                /*System.out.println(dao);
-                dao = value.cast(dao);
-                System.out.println(dao);*/
-
+                BaseDaoRealization dao;
+                dao = value.getConstructor().newInstance();
                 dao.setConnection(connection);
                 return (Type) dao;
             } catch (InstantiationException | IllegalAccessException e) {
                 LOGGER.error(
                         "It is impossible to create data access object", e);
                 throw new PersistentException(e);
+            } catch (InvocationTargetException e) {
+                LOGGER.error("Constructor of " + value.getSimpleName()
+                        + " throws an exception", e);
+                throw new PersistentException(e);
+            } catch (NoSuchMethodException e) {
+                LOGGER.error("Matching method is not found", e);
+                throw new PersistentException(e);
             }
         }
-        return null;
+        throw new PersistentException("Dao class named " + key.getSimpleName()
+                + " wasn't founded");
     }
 
     @Override

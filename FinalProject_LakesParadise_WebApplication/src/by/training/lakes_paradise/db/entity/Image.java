@@ -1,6 +1,11 @@
 package by.training.lakes_paradise.db.entity;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Blob;
+import java.sql.SQLException;
 
 /**
  * Class which describes image.
@@ -25,7 +30,24 @@ public class Image extends Entity {
         return image;
     }
 
-    /**
+    public File getFileImage() {
+        BufferedImage image1;
+        File outputFile = null;
+
+        try {
+            image1 = ImageIO.read(image.getBinaryStream());
+            outputFile = new File(this.getId() + ".png");
+            ImageIO.write(image1, "png", outputFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return outputFile;
+    }
+
+    /*
      * Sets the value of image property.
      *
      * @param homesteadImage - value of image property

@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -64,7 +65,7 @@ public class ActionFilter implements Filter {
             }
             Class<? extends Action> actionClass = actions.get(actionName);
             try {
-                Action action = actionClass.newInstance();
+                Action action = actionClass.getConstructor().newInstance();
                 action.setName(actionName);
                 httpServletRequest.setAttribute("action", action);
                 filterChain.doFilter(servletRequest, servletResponse);
@@ -75,10 +76,14 @@ public class ActionFilter implements Filter {
                 httpServletRequest.getServletContext().getRequestDispatcher(
                         "/jsp/error.jsp").forward(servletRequest,
                         servletResponse);
+            } catch (InvocationTargetException e) {
+                LOGGER.error("Constructor of " + actionClass.getSimpleName()
+                        + " throws an exception", e);
+            } catch (NoSuchMethodException e) {
+                LOGGER.error("Matching method is not found", e);
             }
         } else {
             LOGGER.error("It is impossible to use HTTP filter");
-            System.out.println("error action filter");
             servletRequest.getServletContext().getRequestDispatcher(
                     "/jsp/error.jsp").forward(servletRequest,
                     servletResponse);

@@ -5,7 +5,6 @@
 <html>
 <head>
     <title>Transparent Login form Design</title>
-    <link rel="stylesheet" type="text/css" href="../css/style1.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet"
@@ -13,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
-        #body {
+        body {
             font-family: sans-serif;
             font-size: 11pt;
             background-image: url(../img/myImages/mainPicture.jpg);
@@ -22,34 +21,21 @@
             background-attachment: fixed;
         }
 
-        #navbar_button {
-            background-color: deepskyblue;
-        }
-
-        #navbar_button_span, #navbar_button_span1, #navbar_button_span2 {
-            background-color: white;
-        }
-
-        #navbar_background {
-            background-color: white;
-        }
-
-        #homestead_catalog {
-            background-color: white;
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
         footer {
             background-color: white;
             padding-top: 5px;
             padding-bottom: 5px;
         }
+
+        #container, #homestead_catalog {
+            background-color: white;
+        }
+
     </style>
 </head>
-<body id="body">
+<body>
 <nav class="navbar fixed-top scrolling-navbar">
-    <div class="container">
+    <div class="container" id = "container">
         <div class="navbar-header">
             <a class="navbar-brand blue-text">Озёрный рай</a>
         </div>
@@ -83,10 +69,10 @@
     </div>
 </nav>
 
-<div id="homestead_catalog" class="container">
+<div id="homestead_catalog" class="container" id="body">
     <div class="page-header">
-        <h1>Дом
-            <small>Сюда мы запишем новую информацию о доме</small>
+        <h1 class="text-center">
+            Мы рады, что вы выбрали эту агроусадьбу, надеемся она вам понравится!
         </h1>
     </div>
     <div class="container" style="width:90%; height:80%;">
@@ -103,7 +89,7 @@
                            varStatus="status">--%>
 
                     <div class="item active">
-                        <img src="../img/myImages/3.1_farmstead.jpg"<%--image.getImage().getBinaryStream(1, image.getImage().length())--%>
+                        <img src="../img/myImages/3.0_farmstead.jpg"
                              alt="" style="width:100%; height:100%;"/>
                     </div>
                     <div class="item">
@@ -128,6 +114,7 @@
             </a>
         </div>
     </div>
+
     <div class="container text-center">
         <h2><c:out value="${homestead.getTitle()}"/></h2>
         <p><c:out value="${homestead.getDescription()}"/></p>
@@ -140,14 +127,12 @@
     </div>
 
     <hr>
-    <
 
     <div class="form-group container">
         <label for="comment">Оставьте комментарий:</label>
         <form action="/review.html">
             <input type="hidden" name="homesteadIdentity"
             value="${homestead.getId()}"/>
-            ID: ${homestead.getId()}
             <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
             <br>
             <p>
@@ -184,7 +169,7 @@
                                     Дата оставленного комментария:
                                 </div>
                                 <div class="column-md-4">
-                                        ${review.getDateOfComment()}
+                                        ${review.getDateOfCommentByPattern()}
                                 </div>
                             </div>
                             <div class="row container text-center">

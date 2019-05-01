@@ -5,7 +5,6 @@
 <html>
 <head>
     <title>Transparent Login form Design</title>
-    <link rel="stylesheet" type="text/css" href="../css/style1.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet"
@@ -22,19 +21,7 @@
             background-attachment: fixed;
         }
 
-        #navbar_button {
-            background-color: deepskyblue;
-        }
-
-        #navbar_button_span, #navbar_button_span1, #navbar_button_span2 {
-            background-color: white;
-        }
-
-        #navbar_background {
-            background-color: white;
-        }
-
-        #homestead_catalog {
+        #homestead_catalog, #container{
             background-color: white;
             padding-top: 25px;
             padding-bottom: 25px;
@@ -76,7 +63,7 @@
 </head>
 <body id="body">
 <nav class="navbar fixed-top scrolling-navbar">
-    <div class="container">
+    <div class="container" id="container">
         <div class="navbar-header">
             <a class="navbar-brand blue-text">Озёрный рай</a>
         </div>
@@ -102,7 +89,8 @@
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary">Welcome, <c:out value="${profile.getLogin()}"/></label>
+                        <label class="text-primary">Welcome, <c:out
+                                value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
             </form>
@@ -132,36 +120,34 @@
 </div>
 
 </div>
-<div id="">
-    <div id="homestead_catalog" class="container">
-        <c:forEach var="elem" items="${res}" varStatus="status">
-            <div class="row">
-                <form method="post" action="/home.html">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <div class="col-md-4">
-                        <img width="300px" height="200px" class="img-rounded"
-                             src="../img/myImages/1.1_farmstead.jpg"/>
-                    </div>
-                    <div class="col-md-8">
-                        <h2><c:out value="${elem.getId()}"/></h2>
-                        <h2><c:out value="${elem.getTitle()}"/></h2>
-                        <p><c:out value="${elem.getDescription()}"/></p>
-                        <dl>
-                            <dt>Цена</dt>
-                            <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                            <dt>Колличество человек</dt>
-                            <dd>- <c:out
-                                    value="${elem.getPeopleNumber()}"/></dd>
-                        </dl>
-                        <input type="submit" class="btn btn-default" name="Узнать
+
+<div id="homestead_catalog" class="container">
+    <c:forEach var="elem" items="${res}" varStatus="status">
+        <div class="row">
+            <form method="post" action="/home.html">
+                <input type="hidden" name="homesteadIdentity"
+                       value="${elem.getId()}"/>
+                <div class="col-md-4">
+                    <img width="300px" height="200px" class="img-rounded"
+                         src="../img/myImages/1.1_farmstead.jpg"/>
+                </div>
+                <div class="col-md-8">
+                    <h2><c:out value="${elem.getTitle()}"/></h2>
+                    <p><c:out value="${elem.getDescription()}"/></p>
+                    <dl>
+                        <dt>Цена</dt>
+                        <dd>- <c:out value="${elem.getPrice()}"/></dd>
+                        <dt>Колличество человек</dt>
+                        <dd>- <c:out
+                                value="${elem.getPeopleNumber()}"/></dd>
+                    </dl>
+                    <input type="submit" class="btn btn-default" name="Узнать
                 больше&raquo;"/>
-                    </div>
-                </form>
-            </div>
-            <hr>
-        </c:forEach>
-    </div>
+                </div>
+            </form>
+        </div>
+        <hr>
+    </c:forEach>
 </div>
 <hr>
 <footer>

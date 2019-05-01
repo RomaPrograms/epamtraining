@@ -12,8 +12,8 @@ public class MenuAction extends Action {
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response) {
 
-        Action.Forward forward
-                = new Action.Forward("/index.jsp", false);
+        Forward forward
+                = new Forward("/index.jsp", false);
         HttpSession session = request.getSession(true);
         session.setAttribute("lastAction", "/menu.html");
         Profile profile = (Profile) session.getAttribute("profile");

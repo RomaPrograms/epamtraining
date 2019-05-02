@@ -58,6 +58,11 @@
                                class="form-control" name="password">
                     </div>
                     <input type="submit" class="btn btn-primary" value="Вход"/>
+                    <c:if test="${logInMessage != null}">
+                        <div class="alert alert-danger">
+                            <strong>Issue!</strong> <c:out value="${logInMessage}"/>
+                        </div>
+                    </c:if>
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
@@ -161,7 +166,7 @@
                                     <h5>Логин: </h5>
                                 </div>
                                 <div class="column-md-4">
-                                    Логин: ${review.getUserName()}
+                                    ${review.getUserName()}
                                 </div>
                             </div>
                             <div class="row container text-center">

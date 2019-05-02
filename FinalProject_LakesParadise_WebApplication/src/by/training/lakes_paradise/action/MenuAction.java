@@ -1,12 +1,18 @@
 package by.training.lakes_paradise.action;
 
 import by.training.lakes_paradise.db.entity.Profile;
+import by.training.lakes_paradise.db.mysql.ImageDaoRealization;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class MenuAction extends Action {
+
+    private static final Logger LOGGER
+            = LogManager.getLogger(ImageDaoRealization.class);
 
     @Override
     public Forward exec(final HttpServletRequest request,

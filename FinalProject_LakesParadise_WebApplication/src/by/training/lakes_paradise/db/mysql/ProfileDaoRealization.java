@@ -80,7 +80,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
     private static final String
             SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD
             = "select id, login, password, role from profiles"
-            + " where login = (?)";
+            + " where login = (?) and password = (?)";
 
     /**
      * Script updates object in table profiles.
@@ -99,14 +99,15 @@ public class ProfileDaoRealization extends BaseDaoRealization
     @Override
     public Profile read(final String login, final String password)
             throws PersistentException {
-        Connection connection = null;
+        //Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            //connection = ConnectionDB.getConnection();
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD);
             statement.setString(1, login);
+            statement.setString(2, password);
             resultSet = statement.executeQuery();
             Profile profile = null;
 

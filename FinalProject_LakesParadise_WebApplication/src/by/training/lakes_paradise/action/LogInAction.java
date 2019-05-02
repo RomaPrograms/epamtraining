@@ -3,6 +3,7 @@ package by.training.lakes_paradise.action;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.IncorrectDataException;
 import by.training.lakes_paradise.exception.PersistentException;
+import by.training.lakes_paradise.service.ProfileService;
 import by.training.lakes_paradise.validator.ProfileValidator;
 import by.training.lakes_paradise.validator.ValidatorFactory;
 
@@ -16,16 +17,23 @@ public class LogInAction extends Action {
             final HttpServletRequest request,
             final HttpServletResponse response) throws PersistentException {
         Forward forward = null;
+        HttpSession session = request.getSession(true);
         try {
-            HttpSession session = request.getSession(true);
             String string = (String) session.getAttribute("lastAction");
             forward = new Forward(string, true);
             ProfileValidator profileValidator = (ProfileValidator)
                     ValidatorFactory.createValidator(Profile.class);
             Profile profile = profileValidator.validate(request);
-            session.setAttribute("profile", profile);
+            profile = factory.getService(ProfileService.class)
+                    .read(profile.getLogin(), profile.getPassword());
+            if (profile == null) {
+                forward.getAttributes().put("logInMessage",
+                        "Such profile doesn't exist!");
+            } else {
+                session.setAttribute("profile", profile);
+            }
         } catch (IncorrectDataException e) {
-            request.setAttribute("logInMessage",
+            forward.getAttributes().put("logInMessage",
                     "Incorrect data were entered!");
         }
         return forward;

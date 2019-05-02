@@ -12,7 +12,9 @@ public class ProfileServiceRealization extends ServiceRealization
     @Override
     public Profile read(final String login,
                         final String password) throws PersistentException {
-        return null;
+        ProfileDaoRealization profileDaoRealization
+                = new ProfileDaoRealization();
+        return profileDaoRealization.read(login, password);
     }
 
     @Override

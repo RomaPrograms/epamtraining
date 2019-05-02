@@ -60,11 +60,16 @@
                                class="form-control" name="password">
                     </div>
                     <input type="submit" class="btn btn-primary" value="Вход"/>
-                    <label><c:out value="${logInMessage}"/></label>
+                    <c:if test="${logInMessage != null}">
+                        <div class="alert alert-danger">
+                            <strong>Issue!</strong> <c:out value="${logInMessage}"/>
+                        </div>
+                    </c:if>
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary">Welcome, <c:out value="${profile.getLogin()}"/></label>
+                        <label class="text-primary">Welcome, <c:out
+                                value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
             </form>

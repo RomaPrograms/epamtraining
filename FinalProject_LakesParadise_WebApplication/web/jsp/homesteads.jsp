@@ -61,6 +61,7 @@
         }
     </style>
 </head>
+
 <body id="body">
 <nav class="navbar fixed-top scrolling-navbar">
     <div class="container" id="container">
@@ -86,6 +87,11 @@
                                class="form-control" name="password">
                     </div>
                     <input type="submit" class="btn btn-primary" value="Вход"/>
+                    <c:if test="${logInMessage != null}">
+                        <div class="alert alert-danger">
+                            <strong>Issue!</strong> <c:out value="${logInMessage}"/>
+                        </div>
+                    </c:if>
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
@@ -117,8 +123,6 @@
         </div>
 
     </div>
-</div>
-
 </div>
 
 <div id="homestead_catalog" class="container">

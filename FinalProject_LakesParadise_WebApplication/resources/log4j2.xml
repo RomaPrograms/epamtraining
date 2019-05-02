@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
+<Configuration status="DEBUG">
     <Appenders>
-        <File name="FILE" fileName="src\\main\\resources\\logData" append="false">
+        <File name="FILE" fileName="D:\инфа\EPAM\05_JavaST_2019\FinalProject_LakesParadise_WebApplication\resources\logData" append="false">
             <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
         </File>
         <Console name="CONSOLE" target="SYSTEM_OUT">
@@ -9,7 +9,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="info">
+        <Root level="DEBUG">
             <AppenderRef ref="FILE"/>
         </Root>
     </Loggers>

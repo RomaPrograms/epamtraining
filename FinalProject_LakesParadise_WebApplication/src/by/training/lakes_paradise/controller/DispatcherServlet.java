@@ -3,6 +3,7 @@ package by.training.lakes_paradise.controller;
 import by.training.lakes_paradise.action.Action;
 import by.training.lakes_paradise.action.ActionManager;
 import by.training.lakes_paradise.action.ActionManagerFactory;
+import by.training.lakes_paradise.action.Forward;
 import by.training.lakes_paradise.db.mysql.TransactionFactoryRealization;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
@@ -96,10 +97,13 @@ public class DispatcherServlet extends HttpServlet {
                 }
             }
 
+            if (i == 7) {
+                System.out.println();
+            }
+            i++;
             ActionManager actionManager
                     = ActionManagerFactory.getManager(getFactory());
-
-            Action.Forward forward
+            Forward forward
                     = actionManager.execute(action, request, response);
             actionManager.close();
             if (session != null && forward != null
@@ -107,6 +111,7 @@ public class DispatcherServlet extends HttpServlet {
                 session.setAttribute("redirectedData",
                         forward.getAttributes());
             }
+
             String requestedUri = request.getRequestURI();
             if (forward != null && forward.isRedirect()) {
                 String redirectedUri
@@ -114,7 +119,6 @@ public class DispatcherServlet extends HttpServlet {
                 LOGGER.debug(String.format("Request for URI \"%s\" id"
                                 + " redirected to URI \"%s\"", requestedUri,
                         redirectedUri));
-                System.out.println("redirection");
                 response.sendRedirect(redirectedUri);
             } else {
                 String jspPage;

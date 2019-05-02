@@ -15,7 +15,7 @@ public class ActionManagerRealization implements ActionManager {
     }
 
     @Override
-    public Action.Forward execute(
+    public Forward execute(
             final Action action, final HttpServletRequest request,
             final HttpServletResponse response) throws PersistentException {
         action.setFactory(factory);
@@ -24,6 +24,6 @@ public class ActionManagerRealization implements ActionManager {
 
     @Override
     public void close() {
-
+        factory.close();
     }
 }

@@ -22,10 +22,10 @@ public class SignUpAction extends Action {
     public Forward exec(
             final HttpServletRequest request,
             final HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/signUp.jsp");
+        Forward forward = new Forward("/signUp.jsp", false);
+        HttpSession session = request.getSession(true);
 
         try {
-            HttpSession session = request.getSession(true);
             session.setAttribute("lastAction", "/signUp.html");
             Profile profile = (Profile) session.getAttribute("profile");
             request.setAttribute("profile", profile);
@@ -41,7 +41,6 @@ public class SignUpAction extends Action {
             request.setAttribute("message",
                     "Были обнаружены некорректно введённый данные");
         }
-
         return forward;
     }
 }

@@ -4,29 +4,12 @@
 <html>
 <head>
     <title>Transparent Login form Design</title>
-    <%--
-        <link rel="stylesheet" type="text/css" href="../css/style1.css">
-    --%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <style>
-        #navbar_button {
-            background-color: deepskyblue;
-        }
-
-        span {
-            background-color: white;
-        }
-
-        #navbar_background {
-            background-color: white;
-        }
-
-    </style>
 </head>
 <body>
 <nav class="navbar fixed-top scrolling-navbar">
@@ -43,7 +26,7 @@
 
             <form class="navbar-form navbar-right" action="/changeStatus.html"
                   method="get">
-                <c:if test="${isLogIn == false}">
+                <c:if test="${profile == null}">
                     <div class="form-group">
                         <input type="text" placeholder="Логин"
                                class="form-control" name="login">
@@ -53,10 +36,15 @@
                                class="form-control" name="password">
                     </div>
                     <input type="submit" class="btn btn-primary" value="Вход"/>
+                    <c:if test="${logInMessage != null}">
+                        <div class="alert alert-danger">
+                            <strong>Issue!</strong> <c:out value="${logInMessage}"/>
+                        </div>
+                    </c:if>
                 </c:if>
-                <c:if test="${isLogIn == true}">
+                <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary">Welcome, <c:out value="${profileLogin}"/></label>
+                        <label class="text-primary">Welcome, <c:out value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
             </form>

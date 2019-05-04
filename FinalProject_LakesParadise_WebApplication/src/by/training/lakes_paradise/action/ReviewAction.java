@@ -30,6 +30,7 @@ public class ReviewAction extends Action {
             review.setUserName(profile.getLogin());
             factory.getService(ReviewService.class).create(review);
             homestead.getReviews().add(review);
+            session.setAttribute("homestead", homestead);
         }
 
         return forward;

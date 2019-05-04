@@ -110,27 +110,6 @@
     </div>
 </nav>
 
-<div id="search_row" class="container">
-    <div class="row">
-        <div class="col-md-5">
-            Имя:
-            <input type="text" name="username"
-                   placeholder="Введите имя">
-        </div>
-
-        <div class="col-md-5">
-            Цена:
-            <input type="text" name="username"
-                   placeholder="Введите цену">
-        </div>
-
-        <div class="col-md-2">
-            <input id="search_button" type="submit" name="submit" value="Поиск">
-        </div>
-
-    </div>
-</div>
-
 <div id="homestead_catalog" class="container">
     <c:forEach var="elem" items="${res}" varStatus="status">
         <div class="row">

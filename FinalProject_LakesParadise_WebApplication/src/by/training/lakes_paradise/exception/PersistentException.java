@@ -5,7 +5,7 @@ package by.training.lakes_paradise.exception;
  */
 public class PersistentException extends Exception {
     /**
-     * No-argument constructor.
+     * Zero-argument constructor.
      */
     public PersistentException() {
     }

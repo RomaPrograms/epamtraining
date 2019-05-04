@@ -1,5 +1,6 @@
 package by.training.lakes_paradise.service;
 
+import by.training.lakes_paradise.db.dao.ProfileDao;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.mysql.ProfileDaoRealization;
 import by.training.lakes_paradise.exception.PersistentException;
@@ -12,9 +13,8 @@ public class ProfileServiceRealization extends ServiceRealization
     @Override
     public Profile read(final String login,
                         final String password) throws PersistentException {
-        ProfileDaoRealization profileDaoRealization
-                = new ProfileDaoRealization();
-        return profileDaoRealization.read(login, password);
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        return profileDao.read(login, password);
     }
 
     @Override
@@ -24,9 +24,8 @@ public class ProfileServiceRealization extends ServiceRealization
 
     @Override
     public Integer create(final Profile profile) throws PersistentException {
-        ProfileDaoRealization profileDaoRealization
-                = new ProfileDaoRealization();
-        return profileDaoRealization.create(profile);
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        return profileDao.create(profile);
     }
 
     @Override

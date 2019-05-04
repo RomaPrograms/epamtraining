@@ -44,6 +44,12 @@
                 <li><a href="/menu.html">Меню</a></li>
                 <li><a href="/signUp.html">Регистрация</a></li>
                 <li><a href="/homesteads.html">Агроусадьбы</a></li>
+                <c:if test="${profile != null}">
+                    <li><a href="/personalCabinet.html">Личный кабинет</a></li>
+                </c:if>
+                <c:if test="${profile.getId() == 1}">
+                    <li><a href="/ownerHomesteads.html">Ваши дома</a></li>
+                </c:if>
             </ul>
 
             <form class="navbar-form navbar-right" action="/changeStatus.html"
@@ -136,17 +142,29 @@
     <div class="form-group container">
         <label for="comment">Оставьте комментарий:</label>
         <form action="/review.html">
-            <input type="hidden" name="homesteadIdentity"
-            value="${homestead.getId()}"/>
-            <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+            <textarea class="form-control" rows="5" id="comment" name="comment"<%-- onkeyup="saveValue(this.value)"--%>></textarea>
             <br>
             <p>
-                <button type="submit" class="btn btn-primary">Отправить
+                <button type="submit" class="btn btn-primary" <%--onclick="loadComment()"--%>>Отправить
                     комментарий
                 </button>
             </p>
         </form>
     </div>
+
+    <%--<script>
+        var value;
+
+        function loadComment() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/review.html?comment=" + value, true);
+            xhttp.send();
+        }
+
+        function saveValue(str) {
+            value = str;
+        }
+    </script>--%>
 
     <div class="container">
         <div class="panel-group">

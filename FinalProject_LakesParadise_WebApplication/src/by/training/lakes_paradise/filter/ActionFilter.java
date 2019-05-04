@@ -1,12 +1,6 @@
 package by.training.lakes_paradise.filter;
 
-import by.training.lakes_paradise.action.HomesteadListAction;
-import by.training.lakes_paradise.action.Action;
-import by.training.lakes_paradise.action.HomesteadAction;
-import by.training.lakes_paradise.action.LogInAction;
-import by.training.lakes_paradise.action.ReviewAction;
-import by.training.lakes_paradise.action.MenuAction;
-import by.training.lakes_paradise.action.SignUpAction;
+import by.training.lakes_paradise.action.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,6 +34,10 @@ public class ActionFilter implements Filter {
         actions.put("/home", HomesteadAction.class);
         actions.put("/review", ReviewAction.class);
         actions.put("/changeStatus", LogInAction.class);
+        actions.put("/ownerCabinet", OwnerHomesteadListAction.class);
+        actions.put("/addHomestead", AddHomesteadAction.class);
+        actions.put("/deleteHomestead", DeleteHomesteadAction.class);
+        actions.put("/updateHomestead", UpdateHomesteadAction.class);
     }
 
     @Override

@@ -90,6 +90,12 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             = SQL_SCRIPT_SELECT + "FROM homesteads";
 
     /**
+     * Script gets all objects from table homesteads.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID
+            = SQL_SCRIPT_SELECT + "FROM homesteads where owner_id=(?)";
+
+    /**
      * Script updates object in table homesteads.
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
@@ -153,6 +159,66 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             return homesteads;
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
+            throw new PersistentException(e);
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
+            }
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
+            }
+        }
+    }
+
+    @Override
+    public List<Homestead> findByOwner(int ownerId) throws PersistentException {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = getConnection().prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
+
+            if (ownerId != 0) {
+                statement.setInt(1, ownerId);
+            }
+
+            resultSet = statement.executeQuery();
+            List<Homestead> homesteads = new ArrayList<>();
+            Homestead homestead = null;
+            while (resultSet.next()) {
+                homestead = new Homestead();
+                homestead.setTitle(resultSet
+                        .getString("title"));
+                homestead.setPeopleNumber(resultSet
+                        .getInt("people_number"));
+                homestead.setPrice(resultSet
+                        .getBigDecimal("price"));
+                homestead.setDescription(resultSet
+                        .getString("description"));
+                homestead.setRating(resultSet
+                        .getDouble("rating"));
+                homestead.setNumberOfVotedUsers(resultSet
+                        .getLong("number_of_voted_users"));
+                User owner = new User();
+                owner.setId(resultSet
+                        .getInt("owner_id"));
+                homestead.setOwner(owner);
+                homesteads.add(homestead);
+            }
+
+            return homesteads;
+
+        } catch (SQLException e) {
+            LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
             throw new PersistentException(e);
         } finally {
             try {

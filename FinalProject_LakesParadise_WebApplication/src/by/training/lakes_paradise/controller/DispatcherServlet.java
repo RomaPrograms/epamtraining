@@ -77,8 +77,6 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
-    static int i = 0;
-
     private void action(HttpServletRequest request,
                         HttpServletResponse response)
             throws ServletException, IOException, PersistentException {
@@ -97,10 +95,6 @@ public class DispatcherServlet extends HttpServlet {
                 }
             }
 
-            if (i == 7) {
-                System.out.println();
-            }
-            i++;
             ActionManager actionManager
                     = ActionManagerFactory.getManager(getFactory());
             Forward forward

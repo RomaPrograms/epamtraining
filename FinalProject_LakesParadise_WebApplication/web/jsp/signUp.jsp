@@ -22,6 +22,12 @@
                 <li><a href="/menu.html">Меню</a></li>
                 <li><a href="/signUp.html">Регистрация</a></li>
                 <li><a href="/homesteads.html">Агроусадьбы</a></li>
+                <c:if test="${profile != null}">
+                    <li><a href="/personalCabinet.html">Личный кабинет</a></li>
+                </c:if>
+                <c:if test="${profile.getId() == 1}">
+                    <li><a href="/ownerHomesteads.html">Ваши дома</a></li>
+                </c:if>
             </ul>
 
             <form class="navbar-form navbar-right" action="/changeStatus.html"

@@ -2,7 +2,7 @@ package by.training.lakes_paradise.exception;
 
 public class IncorrectDataException extends Exception {
     /**
-     * No-argument constructor.
+     * Zero-argument constructor.
      */
     public IncorrectDataException() {
     }

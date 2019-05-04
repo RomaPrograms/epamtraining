@@ -19,8 +19,8 @@ public class LogInAction extends Action {
         Forward forward = null;
         HttpSession session = request.getSession(true);
         try {
-            String string = (String) session.getAttribute("lastAction");
-            forward = new Forward(string, true);
+            String lastAction = (String) session.getAttribute("lastAction");
+            forward = new Forward(lastAction, true);
             ProfileValidator profileValidator = (ProfileValidator)
                     ValidatorFactory.createValidator(Profile.class);
             Profile profile = profileValidator.validate(request);

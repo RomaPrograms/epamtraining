@@ -1,12 +1,48 @@
-2019-05-04 07:51:36,696 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:54) - Starting of processing of request for URI "/"
-2019-05-04 07:51:36,803 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-04 07:51:36,832 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-04 07:51:36,834 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
-2019-05-04 07:51:39,526 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:54) - Starting of processing of request for URI "/"
-2019-05-04 07:51:39,531 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-04 07:51:39,536 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-04 07:51:39,537 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
-2019-05-04 07:51:42,486 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:54) - Starting of processing of request for URI "/"
-2019-05-04 07:51:42,494 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-04 07:51:42,499 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-04 07:51:42,500 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
+2019-05-04 10:49:58,237 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/"
+2019-05-04 10:49:58,329 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:49:58,360 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:49:58,362 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
+2019-05-04 10:50:01,649 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/"
+2019-05-04 10:50:01,656 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:01,665 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:01,666 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
+2019-05-04 10:50:02,947 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/"
+2019-05-04 10:50:02,951 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:02,958 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:02,959 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
+2019-05-04 10:50:20,657 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/ru_RU.html"
+2019-05-04 10:50:20,662 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:20,667 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:20,668 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:113) - Request for URI "/ru_RU.html" id redirected to URI "/menu.html"
+2019-05-04 10:50:20,681 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/menu.html"
+2019-05-04 10:50:20,685 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:20,689 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:20,690 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-04 10:50:22,098 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/en_US.html"
+2019-05-04 10:50:22,103 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:22,108 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:22,108 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:113) - Request for URI "/en_US.html" id redirected to URI "/menu.html"
+2019-05-04 10:50:22,120 DEBUG [http-nio-8080-exec-7] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/menu.html"
+2019-05-04 10:50:22,125 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:22,130 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:22,131 DEBUG [http-nio-8080-exec-7] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-04 10:50:23,511 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/en_US.html"
+2019-05-04 10:50:23,515 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:23,518 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:23,519 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:113) - Request for URI "/en_US.html" id redirected to URI "/menu.html"
+2019-05-04 10:50:23,534 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/menu.html"
+2019-05-04 10:50:23,538 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:23,542 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:23,543 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-04 10:50:25,749 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/ru_RU.html"
+2019-05-04 10:50:25,754 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:25,757 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:25,758 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:113) - Request for URI "/ru_RU.html" id redirected to URI "/menu.html"
+2019-05-04 10:50:25,771 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/menu.html"
+2019-05-04 10:50:25,773 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:25,777 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:25,777 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-04 10:50:30,990 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:59) - Starting of processing of request for URI "/homesteads.html"
+2019-05-04 10:50:30,993 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:114) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-04 10:50:31,205 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:127) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-04 10:50:31,206 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:125) - Request for URI "/homesteads.html" is forwarded to JSP "/jsp/homesteads.jsp"

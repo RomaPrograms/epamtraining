@@ -11,8 +11,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -38,6 +40,9 @@ public class ActionFilter implements Filter {
         actions.put("/addHomestead", AddHomesteadAction.class);
         actions.put("/deleteHomestead", DeleteHomesteadAction.class);
         actions.put("/updateHomestead", UpdateHomesteadAction.class);
+        actions.put("/en_US", ChangeLanguageAction.class);
+        actions.put("/be_BY", ChangeLanguageAction.class);
+        actions.put("/ru_RU", ChangeLanguageAction.class);
     }
 
     @Override

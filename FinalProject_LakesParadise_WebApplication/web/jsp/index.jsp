@@ -3,7 +3,10 @@
 <%@ taglib prefix="ctg" uri="customtags" %>
 <%@ taglib prefix="cng" uri="customtags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page errorPage="error.jsp" %>
+<fmt:setBundle basename="property.text"/>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -33,57 +36,70 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
 </head>
+
 <body>
 <nav class="navbar fixed-top scrolling-navbar">
+
+    <c:set var="login" scope="page">
+        <fmt:message key="navbarLogin"/>
+    </c:set>
+
+    <c:set var="password" scope="page">
+        <fmt:message key="navbarPassword"/>
+    </c:set>
+
+    <c:set var="enter" scope="page">
+        <fmt:message key="navbarEnter"/>
+    </c:set>
+
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand blue-text">Озёрный рай</a>
+            <a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
-                <li><a href="/menu.html">Меню</a></li>
-                <li><a href="/signUp.html">Регистрация</a></li>
-                <li><a href="/homesteads.html">Агроусадьбы</a></li>
+                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a></li>
+                <li><a href="/signUp.html"><fmt:message key="navbarRegistration"/></a></li>
+                <li><a href="/homesteads.html"><fmt:message key="navbarHomesteads"/></a></li>
                 <c:if test="${profile != null}">
-                <li><a href="/personalCabinet.html">Личный кабинет</a></li>
+                <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
                 </c:if>
                 <c:if test="${profile.getId() == 1}">
-                <li><a href="/ownerHomesteads.html">Ваши дома</a></li>
+                <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Язык
+                    <a class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="navbarLanguage"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/changeLanguage">Русский</a></li>
-                        <li><a href="/changeLanguage">Англиийский</a></li>
-                        <li><a href="/changeLanguage">Белорусский</a></li>
+                        <li><a href="/en_US.html">Англиийский</a></li>
+                        <li><a href="/be_BY.html">Белорусский</a></li>
+                        <li><a href="/ru_RU.html">Русский</a></li>
                     </ul>
                 </li>
             </ul>
-
+            
             <form class="navbar-form navbar-right" action="/changeStatus.html"
-                  method="get">
+                  method="post">
                 <c:if test="${profile == null}">
                     <div class="form-group">
-                        <input type="text" placeholder="Логин"
+                        <input type="text" placeholder="${login}"
                                class="form-control" name="login">
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Пароль"
+                        <input type="password" placeholder="${password}"
                                class="form-control" name="password">
                     </div>
-                    <input type="submit" class="btn btn-primary" value="Вход"/>
+                    <input type="submit" class="btn btn-primary" value="${enter}">
                     <c:if test="${logInMessage != null}">
                         <div class="alert alert-danger">
-                            <strong>Issue!</strong> <c:out value="${logInMessage}"/>
+                            <strong><fmt:message key="navbarIssue"/>!</strong> <c:out value="${logInMessage}"/>
                         </div>
                     </c:if>
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary">Welcome, <c:out
+                        <label class="text-primary"><fmt:message key="navbarWelcome"/> , <c:out
                                 value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>

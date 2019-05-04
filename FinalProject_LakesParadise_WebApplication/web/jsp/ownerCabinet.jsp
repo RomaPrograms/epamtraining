@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page errorPage="error.jsp" %>
+<fmt:setBundle basename="property.text"/>
+
 <html>
 <head>
     <title>Transparent Login form Design</title>
@@ -21,7 +24,7 @@
             background-attachment: fixed;
         }
 
-        #homestead_catalog, #container{
+        #homestead_catalog{
             background-color: white;
             padding-top: 25px;
             padding-bottom: 25px;
@@ -31,33 +34,6 @@
             background-color: white;
             padding-top: 5px;
             padding-bottom: 5px;
-        }
-
-        #search_row {
-            background-color: white;
-            padding-top: 10px;
-            padding-bottom: 60px;
-            border: none;
-            border-bottom: 1px solid deepskyblue;
-            outline: none;
-            height: 40px;
-            font-size: 16px;
-        }
-
-        #search_button {
-            border: none;
-            ouline: none;
-            height: 40px;
-            background: #1c8adb;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 20px;
-        }
-
-        #search_button:hover {
-            cursor: pointer;
-            background: #39dc79;
-            color: #000;
         }
     </style>
 </head>
@@ -89,7 +65,7 @@
                 <c:if test="${profile != null}">
                     <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
                 </c:if>
-                <c:if test="${profile.getId() == 1}">
+                <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
                     <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">

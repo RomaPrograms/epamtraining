@@ -11,13 +11,14 @@ import javax.servlet.http.HttpSession;
 public class OwnerHomesteadListAction extends Action{
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/ownerCabinet.jsp", false);
+
+        Forward forward = new Forward("/ownerHomesteads.jsp", false);
         HttpSession session = request.getSession(true);
         session.setAttribute("lastAction", "/ownerCabinet.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         request.setAttribute("res", factory.getService(
-                HomesteadService.class).findAll());
+                HomesteadService.class).findByOwner(profile.getId()));
 
         return forward;
     }

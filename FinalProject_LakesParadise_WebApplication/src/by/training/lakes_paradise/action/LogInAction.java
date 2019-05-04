@@ -1,6 +1,7 @@
 package by.training.lakes_paradise.action;
 
 import by.training.lakes_paradise.db.entity.Profile;
+import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.exception.IncorrectDataException;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.ProfileService;
@@ -26,6 +27,7 @@ public class LogInAction extends Action {
             Profile profile = profileValidator.validate(request);
             profile = factory.getService(ProfileService.class)
                     .read(profile.getLogin(), profile.getPassword());
+
             if (profile == null) {
                 forward.getAttributes().put("logInMessage",
                         "Such profile doesn't exist!");

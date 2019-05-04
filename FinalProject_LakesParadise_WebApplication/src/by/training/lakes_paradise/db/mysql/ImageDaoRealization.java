@@ -84,18 +84,18 @@ public class ImageDaoRealization extends BaseDaoRealization
     @Override
     public List<Image> readImagesByHomeId(final Integer homeId)
             throws PersistentException {
-        Connection connection = null;
+        //Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<Image> images = new ArrayList<>();
 
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            //connection = ConnectionDB.getConnection();
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID);
             statement.setInt(1, homeId);
             resultSet = statement.executeQuery();
-            Image image = null;
+            Image image;
 
             while (resultSet.next()) {
                 image = new Image();

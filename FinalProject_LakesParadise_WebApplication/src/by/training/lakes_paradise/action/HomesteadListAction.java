@@ -7,6 +7,7 @@ import by.training.lakes_paradise.service.HomesteadService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.jstl.core.Config;
 
 public class HomesteadListAction extends Action {
     @Override
@@ -21,6 +22,7 @@ public class HomesteadListAction extends Action {
         request.setAttribute("profile", profile);
         request.setAttribute("res", factory.getService(
                 HomesteadService.class).findAll());
+        Config.set(request, Config.FMT_LOCALE, session.getAttribute("language"));
 
         return forward;
     }

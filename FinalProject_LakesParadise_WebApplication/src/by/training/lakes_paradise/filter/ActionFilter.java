@@ -43,6 +43,7 @@ public class ActionFilter implements Filter {
         actions.put("/en_US", ChangeLanguageAction.class);
         actions.put("/be_BY", ChangeLanguageAction.class);
         actions.put("/ru_RU", ChangeLanguageAction.class);
+        actions.put("/ownerHomesteads", OwnerHomesteadListAction.class);
     }
 
     @Override

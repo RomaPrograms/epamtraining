@@ -65,7 +65,7 @@
                 <c:if test="${profile != null}">
                 <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
                 </c:if>
-                <c:if test="${profile.getId() == 1}">
+                <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
                 <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">

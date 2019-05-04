@@ -39,31 +39,6 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
-
-        #search_row {
-            background-color: white;
-            padding-top: 10px;
-            padding-bottom: 100px;
-            border: none;
-            border-bottom: 1px solid deepskyblue;
-            outline: none;
-            height: 40px;
-            font-size: 16px;
-        }
-
-        #search_button {
-            height: 40px;
-            background: #1c8adb;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 13px;
-        }
-
-        #search_button:hover {
-            cursor: pointer;
-            background: #39dc79;
-            color: #000;
-        }
     </style>
 </head>
 
@@ -137,42 +112,6 @@
     </div>
 </nav>
 
-<div id="search_row" class="container">
-
-    <c:set var="enteredName" scope="page">
-        <fmt:message key="homesteadEnterName"/>
-    </c:set>
-
-    <c:set var="enteredPrice" scope="page">
-        <fmt:message key="homesteadEnterPrice"/>
-    </c:set>
-
-    <c:set var="search" scope="page">
-        <fmt:message key="homesteadSearch"/>
-    </c:set>
-
-    <c:set var="additionalInformation" scope="page">
-        <fmt:message key="homesteadKnowMore"/>
-    </c:set>
-
-    <div class="row">
-        <div class="col-md-5 form-group">
-            <label for="homestead_name"><fmt:message key="homesteadName"/>:</label>
-            <input type="text" placeholder="${enteredName}" id="homestead_name" class="form-control">
-        </div>
-
-        <div class="col-md-5 form-group">
-            <label for="price"><fmt:message key="homesteadPrice"/>:</label>
-            <input type="text" placeholder="${enteredPrice}" id="price" class="form-control">
-        </div>
-
-        <div class="col-md-2 form-group" >
-            <input id="search_button" type="submit" name="submit" value="${search}">
-        </div>
-
-    </div>
-</div>
-
 <div id="homestead_catalog" class="container">
     <c:forEach var="elem" items="${res}" varStatus="status">
         <div class="row">
@@ -187,13 +126,16 @@
                     <h2><c:out value="${elem.getTitle()}"/></h2>
                     <p><c:out value="${elem.getDescription()}"/></p>
                     <dl>
-                        <dt><fmt:message key="homesteadPrice"/></dt>
+                        <dt>Цена</dt>
                         <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                        <dt><fmt:message key="homesteadPeopleNumber"/></dt>
+                        <dt>Колличество человек</dt>
                         <dd>- <c:out
                                 value="${elem.getPeopleNumber()}"/></dd>
                     </dl>
-                    <input type="submit" class="btn btn-default" value="${additionalInformation}&raquo;"/>
+                    <input type="submit" class="btn btn-default" name="show" value="Узнать
+                больше&raquo;"/>
+                    <input type="submit" class="btn btn-default" name="delete" value="Удалить"/>
+                    <input type="submit" class="btn btn-default" name="update" value="Обновить информацию"/>
                 </div>
             </form>
         </div>

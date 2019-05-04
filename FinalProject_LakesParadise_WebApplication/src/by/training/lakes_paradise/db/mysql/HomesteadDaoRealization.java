@@ -185,15 +185,12 @@ public class HomesteadDaoRealization extends BaseDaoRealization
 
         try {
             statement = getConnection().prepareStatement(
-                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID);
 
-            if (ownerId != 0) {
-                statement.setInt(1, ownerId);
-            }
-
+            statement.setInt(1, ownerId);
             resultSet = statement.executeQuery();
             List<Homestead> homesteads = new ArrayList<>();
-            Homestead homestead = null;
+            Homestead homestead;
             while (resultSet.next()) {
                 homestead = new Homestead();
                 homestead.setTitle(resultSet

@@ -2,6 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<fmt:setBundle basename="property.text"/>
+
 <html>
 <head>
     <title>Transparent Login form Design</title>
@@ -39,7 +41,7 @@
                 <c:if test="${profile != null}">
                     <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
                 </c:if>
-                <c:if test="${profile.getId() == 1}">
+                <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
                     <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">

@@ -12,6 +12,7 @@ import by.training.lakes_paradise.validator.ValidatorFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.jstl.core.Config;
 
 // мне ещё здесь нужно добавить логгеры и обработку этих логеров
 
@@ -24,6 +25,7 @@ public class SignUpAction extends Action {
             final HttpServletResponse response) throws PersistentException {
         Forward forward = new Forward("/signUp.jsp", false);
         HttpSession session = request.getSession(true);
+        Config.set(request, Config.FMT_LOCALE, session.getAttribute("language"));
 
         try {
             session.setAttribute("lastAction", "/signUp.html");

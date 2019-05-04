@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page errorPage="error.jsp" %>
+<fmt:setBundle basename="property.text"/>
+
 <html>
 <head>
     <title>Transparent Login form Design</title>
@@ -22,14 +24,14 @@
             background-attachment: fixed;
         }
 
+        #homestead_catalog, #navbar {
+            background-color: white;
+        }
+
         footer {
             background-color: white;
             padding-top: 5px;
             padding-bottom: 5px;
-        }
-
-        #container, #homestead_catalog {
-            background-color: white;
         }
 
     </style>
@@ -49,7 +51,7 @@
         <fmt:message key="navbarEnter"/>
     </c:set>
 
-    <div class="container">
+    <div class="container" id="navbar">
         <div class="navbar-header">
             <a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>
         </div>
@@ -61,7 +63,7 @@
                 <c:if test="${profile != null}">
                     <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
                 </c:if>
-                <c:if test="${profile.getId() == 1}">
+                <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
                     <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">
@@ -104,7 +106,7 @@
     </div>
 </nav>
 
-<div id="homestead_catalog" class="container" id="body">
+<div id="homestead_catalog" class="container">
     <div class="page-header">
         <h1 class="text-center">
             Мы рады, что вы выбрали эту агроусадьбу, надеемся она вам понравится!
@@ -166,29 +168,31 @@
     <div class="form-group container">
         <label for="comment">Оставьте комментарий:</label>
         <form action="/review.html">
-            <textarea class="form-control" rows="5" id="comment" name="comment"<%-- onkeyup="saveValue(this.value)"--%>></textarea>
+            <textarea class="form-control" rows="5" id="comment" name="comment" onkeyup="saveValue(this.value)"></textarea>
             <br>
             <p>
-                <button type="submit" class="btn btn-primary" <%--onclick="loadComment()"--%>>Отправить
+                <button type="submit" class="btn btn-primary" onclick="loadComment()">Отправить
                     комментарий
                 </button>
             </p>
         </form>
     </div>
 
-    <%--<script>
+    <script>
         var value;
 
         function loadComment() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "/review.html?comment=" + value, true);
-            xhttp.send();
+            var request = new XMLHttpRequest();
+            request.open("POST", "/review.html", true);
+            request.setRequestHeader("Content-Type",
+                "application/x-www-form-urlencoded");
+            request.send("comment=" + value);
         }
 
         function saveValue(str) {
             value = str;
         }
-    </script>--%>
+    </script>
 
     <div class="container">
         <div class="panel-group">

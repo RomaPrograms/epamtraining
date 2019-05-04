@@ -11,6 +11,13 @@ import java.util.List;
 
 public class HomesteadServiceRealization extends ServiceRealization
         implements HomesteadService {
+
+    @Override
+    public List<Homestead> findByOwner(int ownerId) throws PersistentException {
+        HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
+        return homesteadDao.findByOwner(ownerId);
+    }
+
     @Override
     public List<Homestead> findAllByTitle(
             final String search) throws PersistentException {

@@ -12,6 +12,8 @@ public interface HomesteadService extends Service {
     List<Homestead> findAllByPrice(BigDecimal minPrice, BigDecimal maxPrice)
             throws PersistentException;
 
+    List<Homestead> findByOwner(int ownerId) throws PersistentException;
+
     List<Homestead> findAll() throws PersistentException;
 
     Integer add(Homestead homestead) throws PersistentException;

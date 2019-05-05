@@ -71,7 +71,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
             = "select id, text, user_name, date_of_comment from reviews"
-            + " where home_id = (?)";
+            + " where home_id = (?) order by date_of_comment DESC";
 
     /**
      * Script gets all objects from table reviews by id.

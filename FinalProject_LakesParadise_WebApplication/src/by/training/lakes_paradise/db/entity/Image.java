@@ -16,6 +16,10 @@ public class Image extends Entity {
      */
     private Blob image;
 
+    private String pathToImage;
+
+    private String imageName;
+
     /**
      * Id of homestead which belongs image.
      */
@@ -30,23 +34,6 @@ public class Image extends Entity {
         return image;
     }
 
-    public File getFileImage() {
-        BufferedImage image1;
-        File outputFile = null;
-
-        try {
-            image1 = ImageIO.read(image.getBinaryStream());
-            outputFile = new File(this.getId() + ".png");
-            ImageIO.write(image1, "png", outputFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return outputFile;
-    }
-
     /*
      * Sets the value of image property.
      *
@@ -54,6 +41,22 @@ public class Image extends Entity {
      */
     public void setImage(final Blob homesteadImage) {
         this.image = homesteadImage;
+    }
+
+    public String getPathToImage() {
+        return pathToImage;
+    }
+
+    public void setPathToImage(String pathToImage) {
+        this.pathToImage = pathToImage;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     /**

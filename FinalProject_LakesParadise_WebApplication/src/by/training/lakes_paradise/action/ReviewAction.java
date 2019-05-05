@@ -29,7 +29,7 @@ public class ReviewAction extends Action {
             review.setDateOfComment(new Date());
             review.setUserName(profile.getLogin());
             factory.getService(ReviewService.class).create(review);
-            homestead.getReviews().add(review);
+            homestead.getReviews().add(0, review);
             session.setAttribute("homestead", homestead);
         }
 

@@ -18,6 +18,8 @@ public interface ImageDao extends Dao<Image> {
      */
     List<Image> readImagesByHomeId(Integer homeId) throws PersistentException;
 
+    Integer createNewVersion(Image entity) throws PersistentException;
+
     /**
      * Methods that deletes images by id of homestead.
      *

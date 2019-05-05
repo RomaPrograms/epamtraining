@@ -44,6 +44,7 @@ public class ActionFilter implements Filter {
         actions.put("/be_BY", ChangeLanguageAction.class);
         actions.put("/ru_RU", ChangeLanguageAction.class);
         actions.put("/ownerHomesteads", OwnerHomesteadListAction.class);
+        actions.put("/addPhoto", AddPhotoAction.class);
     }
 
     @Override

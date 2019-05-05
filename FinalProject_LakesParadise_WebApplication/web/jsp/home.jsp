@@ -40,11 +40,11 @@
 <nav class="navbar fixed-top scrolling-navbar">
 
     <c:set var="login" scope="page">
-        <fmt:message key="navbarLogin"/>
+        <fmt:message key="login"/>
     </c:set>
 
     <c:set var="password" scope="page">
-        <fmt:message key="navbarPassword"/>
+        <fmt:message key="password"/>
     </c:set>
 
     <c:set var="enter" scope="page">
@@ -57,28 +57,38 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
-                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a></li>
-                <li><a href="/signUp.html"><fmt:message key="navbarRegistration"/></a></li>
-                <li><a href="/homesteads.html"><fmt:message key="navbarHomesteads"/></a></li>
+                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a>
+                </li>
+                <li><a href="/signUp.html"><fmt:message key="registration"/></a>
+                </li>
+                <li><a href="/homesteads.html"><fmt:message
+                        key="navbarHomesteads"/></a></li>
                 <c:if test="${profile != null}">
-                    <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
+                    <li><a href="/personalCabinet.html"><fmt:message
+                            key="navbarPersonalCabinet"/></a></li>
                 </c:if>
                 <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
-                    <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
+                    <li><a href="/ownerHomesteads.html"><fmt:message
+                            key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="navbarLanguage"/>
+                    <a class="dropdown-toggle"
+                       data-toggle="dropdown"><fmt:message
+                            key="navbarLanguage"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/en_US.html">Англиийский</a></li>
-                        <li><a href="/be_BY.html">Белорусский</a></li>
-                        <li><a href="/ru_RU.html">Русский</a></li>
+                        <li><a href="/en_US.html"><fmt:message
+                                key="englishLanguage"/></a></li>
+                        <li><a href="/be_BY.html"><fmt:message
+                                key="belarusianLanguage"/></a></li>
+                        <li><a href="/ru_RU.html"><fmt:message
+                                key="russianLanguage"/></a></li>
                     </ul>
                 </li>
             </ul>
 
             <form class="navbar-form navbar-right" action="/changeStatus.html"
-                  method="post">
+                  method="post" id="log_in_form">
                 <c:if test="${profile == null}">
                     <div class="form-group">
                         <input type="text" placeholder="${login}"
@@ -88,16 +98,23 @@
                         <input type="password" placeholder="${password}"
                                class="form-control" name="password">
                     </div>
-                    <input type="submit" class="btn btn-primary" value="${enter}">
+                    <br/>
+                    <div class="form-group">
+                        <div id="navbarMessage"></div>
+                    </div>
+                    <input type="submit" class="btn btn-primary"
+                           value="${enter}">
                     <c:if test="${logInMessage != null}">
                         <div class="alert alert-danger">
-                            <strong><fmt:message key="navbarIssue"/>!</strong> <c:out value="${logInMessage}"/>
+                            <strong><fmt:message key="navbarIssue"/>!</strong>
+                            <c:out value="${logInMessage}"/>
                         </div>
                     </c:if>
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary"><fmt:message key="navbarWelcome"/> , <c:out
+                        <label class="text-primary"><fmt:message
+                                key="navbarWelcome"/> , <c:out
                                 value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
@@ -109,7 +126,7 @@
 <div id="homestead_catalog" class="container">
     <div class="page-header">
         <h1 class="text-center">
-            Мы рады, что вы выбрали эту агроусадьбу, надеемся она вам понравится!
+            <fmt:message key="welcomeInfo"/>
         </h1>
     </div>
     <div class="container" style="width:90%; height:80%;">
@@ -125,18 +142,18 @@
                 <%--<c:forEach var="image" items="${homestead.getImages()}"
                            varStatus="status">--%>
 
-                    <div class="item active">
-                        <img src="../img/myImages/3.0_farmstead.jpg"
-                             alt="" style="width:100%; height:100%;"/>
-                    </div>
-                    <div class="item">
-                        <img src="../img/myImages/3.1_farmstead.jpg"
-                             alt="" style="width:100%; height:100%;"/>
-                    </div>
-                    <div class="item">
-                        <img src="../img/myImages/3.2_farmstead.jpg"
-                             alt="" style="width:100%; height:100%;"/>
-                    </div>
+                <div class="item active">
+                    <img src="../img/3.0_farmstead.jpg"
+                         alt="" style="width:100%; height:100%;"/>
+                </div>
+                <div class="item">
+                    <img src="../img/3.1_farmstead.jpg"
+                         alt="" style="width:100%; height:100%;"/>
+                </div>
+                <div class="item">
+                    <img src="../img/3.2_farmstead.jpg"
+                         alt="" style="width:100%; height:100%;"/>
+                </div>
                 <%--</c:forEach>--%>
             </div>
             <a class="left carousel-control" href="#myCarousel"
@@ -153,12 +170,13 @@
     </div>
 
     <div class="container text-center">
+        <input type="hidden" name="homestead" value="${homestead}">
         <h2><c:out value="${homestead.getTitle()}"/></h2>
         <p><c:out value="${homestead.getDescription()}"/></p>
         <dl>
-            <dt>Цена</dt>
+            <dt><fmt:message key="homesteadPrice"/></dt>
             <dd>- <c:out value="${homestead.getPrice()}"/></dd>
-            <dt>Колличество человек</dt>
+            <dt><fmt:message key="homesteadPeopleNumber"/></dt>
             <dd>- <c:out value="${homestead.getPeopleNumber()}"/></dd>
         </dl>
     </div>
@@ -166,19 +184,21 @@
     <hr>
 
     <div class="form-group container">
-        <label for="comment">Оставьте комментарий:</label>
+        <label for="comment"><fmt:message key="enterComment"/>:</label>
         <form action="/review.html">
-            <textarea class="form-control" rows="5" id="comment" name="comment" onkeyup="saveValue(this.value)"></textarea>
+            <textarea class="form-control" rows="5" id="comment"
+                      name="comment" <%--onkeyup="saveValue(this.value)"--%>></textarea>
             <br>
             <p>
-                <button type="submit" class="btn btn-primary" onclick="loadComment()">Отправить
-                    комментарий
+                <button type="submit"
+                        class="btn btn-primary" <%--onclick="loadComment()"--%>>
+                    <fmt:message key="sentComment"/>
                 </button>
             </p>
         </form>
     </div>
 
-    <script>
+    <%--<script>
         var value;
 
         function loadComment() {
@@ -192,15 +212,15 @@
         function saveValue(str) {
             value = str;
         }
-    </script>
+    </script>--%>
 
     <div class="container">
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse1">Посмотреть
-                            все комментарии.</a>
+                        <a data-toggle="collapse" href="#collapse1">
+                            <fmt:message key="showComments"/></a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
@@ -208,20 +228,19 @@
                                varStatus="status">
                         <div class="panel-body">
                             <div class="row container text-center">
-                                <div class="column-md-3">
-                                    <h5>Логин: </h5>
-                                </div>
-                                <div class="column-md-4">
-                                    ${review.getUserName()}
+                                <label><fmt:message key="login"/>: </label>
+                                <div>
+                                        ${review.getUserName()}
                                 </div>
                             </div>
                             <div class="row container text-center">
-                                <div class="column-md-3">
-                                    Дата оставленного комментария:
-                                </div>
-                                <div class="column-md-4">
+                                <label>
+                                    <fmt:message key="dateOfComment"/>:
+                                </label>
+                                <div>
                                         ${review.getDateOfCommentByPattern()}
                                 </div>
+                                <hr>
                             </div>
                             <div class="row container text-center">
                                     ${review.getText()}
@@ -240,6 +259,10 @@
     <p>&copy; Все права защищены 2019</p>
 </footer>
 </div>
+
+<script type="text/javascript">
+    <jsp:include page="../js/log_in_validation.js"/>
+</script>
 
 </body>
 </html>

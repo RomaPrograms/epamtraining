@@ -24,7 +24,7 @@
             background-attachment: fixed;
         }
 
-        #homestead_catalog{
+        #homestead_catalog {
             background-color: white;
             padding-top: 25px;
             padding-bottom: 25px;
@@ -42,11 +42,11 @@
 <nav class="navbar fixed-top scrolling-navbar">
 
     <c:set var="login" scope="page">
-        <fmt:message key="navbarLogin"/>
+        <fmt:message key="login"/>
     </c:set>
 
     <c:set var="password" scope="page">
-        <fmt:message key="navbarPassword"/>
+        <fmt:message key="password"/>
     </c:set>
 
     <c:set var="enter" scope="page">
@@ -59,28 +59,38 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
-                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a></li>
-                <li><a href="/signUp.html"><fmt:message key="navbarRegistration"/></a></li>
-                <li><a href="/homesteads.html"><fmt:message key="navbarHomesteads"/></a></li>
+                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a>
+                </li>
+                <li><a href="/signUp.html"><fmt:message key="registration"/></a>
+                </li>
+                <li><a href="/homesteads.html"><fmt:message
+                        key="navbarHomesteads"/></a></li>
                 <c:if test="${profile != null}">
-                    <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
+                    <li><a href="/personalCabinet.html"><fmt:message
+                            key="navbarPersonalCabinet"/></a></li>
                 </c:if>
                 <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
-                    <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
+                    <li><a href="/ownerHomesteads.html"><fmt:message
+                            key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="navbarLanguage"/>
+                    <a class="dropdown-toggle"
+                       data-toggle="dropdown"><fmt:message
+                            key="navbarLanguage"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/en_US.html">Англиийский</a></li>
-                        <li><a href="/be_BY.html">Белорусский</a></li>
-                        <li><a href="/ru_RU.html">Русский</a></li>
+                        <li><a href="/en_US.html"><fmt:message
+                                key="englishLanguage"/></a></li>
+                        <li><a href="/be_BY.html"><fmt:message
+                                key="belarusianLanguage"/></a></li>
+                        <li><a href="/ru_RU.html"><fmt:message
+                                key="russianLanguage"/></a></li>
                     </ul>
                 </li>
             </ul>
 
             <form class="navbar-form navbar-right" action="/changeStatus.html"
-                  method="post">
+                  method="post" id="log_in_form">
                 <c:if test="${profile == null}">
                     <div class="form-group">
                         <input type="text" placeholder="${login}"
@@ -90,16 +100,23 @@
                         <input type="password" placeholder="${password}"
                                class="form-control" name="password">
                     </div>
-                    <input type="submit" class="btn btn-primary" value="${enter}">
+                    <input type="submit" class="btn btn-primary"
+                           value="${enter}">
+                    <br/>
+                    <div class="form-group">
+                        <div id="navbarMessage"></div>
+                    </div>
                     <c:if test="${logInMessage != null}">
                         <div class="alert alert-danger">
-                            <strong><fmt:message key="navbarIssue"/>!</strong> <c:out value="${logInMessage}"/>
+                            <strong><fmt:message key="navbarIssue"/>!</strong>
+                            <c:out value="${logInMessage}"/>
                         </div>
                     </c:if>
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary"><fmt:message key="navbarWelcome"/> , <c:out
+                        <label class="text-primary"><fmt:message
+                                key="navbarWelcome"/> , <c:out
                                 value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
@@ -141,6 +158,10 @@
     <p>&copy; Все права защищены 2019</p>
 </footer>
 </div>
+
+<script type="text/javascript">
+    <jsp:include page="../js/log_in_validation.js"/>
+</script>
 
 </body>
 </html>

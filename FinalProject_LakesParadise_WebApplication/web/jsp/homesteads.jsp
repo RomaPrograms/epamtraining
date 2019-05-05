@@ -24,7 +24,7 @@
             background-attachment: fixed;
         }
 
-        #homestead_catalog{
+        #homestead_catalog {
             background-color: white;
             padding-top: 25px;
             padding-bottom: 25px;
@@ -51,19 +51,6 @@
             font-size: 16px;
         }
 
-        #search_button {
-            height: 40px;
-            background: #1c8adb;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 13px;
-        }
-
-        #search_button:hover {
-            cursor: pointer;
-            background: #39dc79;
-            color: #000;
-        }
     </style>
 </head>
 
@@ -71,45 +58,55 @@
 <nav class="navbar fixed-top scrolling-navbar">
 
     <c:set var="login" scope="page">
-        <fmt:message key="navbarLogin"/>
+        <fmt:message key="login"/>
     </c:set>
 
     <c:set var="password" scope="page">
-        <fmt:message key="navbarPassword"/>
+        <fmt:message key="password"/>
     </c:set>
 
     <c:set var="enter" scope="page">
         <fmt:message key="navbarEnter"/>
     </c:set>
 
-    <div class="container" id = "navbar">
+    <div class="container" id="navbar">
         <div class="navbar-header">
             <a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
-                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a></li>
-                <li><a href="/signUp.html"><fmt:message key="navbarRegistration"/></a></li>
-                <li><a href="/homesteads.html"><fmt:message key="navbarHomesteads"/></a></li>
+                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a>
+                </li>
+                <li><a href="/signUp.html"><fmt:message key="registration"/></a>
+                </li>
+                <li><a href="/homesteads.html"><fmt:message
+                        key="navbarHomesteads"/></a></li>
                 <c:if test="${profile != null}">
-                    <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
+                    <li><a href="/personalCabinet.html"><fmt:message
+                            key="navbarPersonalCabinet"/></a></li>
                 </c:if>
                 <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
-                    <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
+                    <li><a href="/ownerHomesteads.html"><fmt:message
+                            key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="navbarLanguage"/>
+                    <a class="dropdown-toggle"
+                       data-toggle="dropdown"><fmt:message
+                            key="navbarLanguage"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/en_US.html">Англиийский</a></li>
-                        <li><a href="/be_BY.html">Белорусский</a></li>
-                        <li><a href="/ru_RU.html">Русский</a></li>
+                        <li><a href="/en_US.html"><fmt:message
+                                key="englishLanguage"/></a></li>
+                        <li><a href="/be_BY.html"><fmt:message
+                                key="belarusianLanguage"/></a></li>
+                        <li><a href="/ru_RU.html"><fmt:message
+                                key="russianLanguage"/></a></li>
                     </ul>
                 </li>
             </ul>
 
             <form class="navbar-form navbar-right" action="/changeStatus.html"
-                  method="post">
+                  method="post" id="log_in_form">
                 <c:if test="${profile == null}">
                     <div class="form-group">
                         <input type="text" placeholder="${login}"
@@ -119,16 +116,23 @@
                         <input type="password" placeholder="${password}"
                                class="form-control" name="password">
                     </div>
-                    <input type="submit" class="btn btn-primary" value="${enter}">
+                    <input type="submit" class="btn btn-primary"
+                           value="${enter}">
+                    <br/>
+                    <div class="form-group">
+                        <div id="navbarMessage"></div>
+                    </div>
                     <c:if test="${logInMessage != null}">
                         <div class="alert alert-danger">
-                            <strong><fmt:message key="navbarIssue"/>!</strong> <c:out value="${logInMessage}"/>
+                            <strong><fmt:message key="navbarIssue"/>!</strong>
+                            <c:out value="${logInMessage}"/>
                         </div>
                     </c:if>
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary"><fmt:message key="navbarWelcome"/> , <c:out
+                        <label class="text-primary"><fmt:message
+                                key="navbarWelcome"/> , <c:out
                                 value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
@@ -140,11 +144,7 @@
 <div id="search_row" class="container">
 
     <c:set var="enteredName" scope="page">
-        <fmt:message key="homesteadEnterName"/>
-    </c:set>
-
-    <c:set var="enteredPrice" scope="page">
-        <fmt:message key="homesteadEnterPrice"/>
+        <fmt:message key="enterName"/>
     </c:set>
 
     <c:set var="search" scope="page">
@@ -155,21 +155,37 @@
         <fmt:message key="homesteadKnowMore"/>
     </c:set>
 
+    <c:set var="minPrice" scope="page">
+        <fmt:message key="maxPrice"/>
+    </c:set>
+
+    <c:set var="maxPrice" scope="page">
+        <fmt:message key="minPrice"/>
+    </c:set>
+
     <div class="row">
-        <div class="col-md-5 form-group">
-            <label for="homestead_name"><fmt:message key="homesteadName"/>:</label>
-            <input type="text" placeholder="${enteredName}" id="homestead_name" class="form-control">
-        </div>
+        <form method="post" action="/findByCategory.html">
+            <div class="col-md-5 form-group">
+                <label for="homestead_name"><fmt:message key="name"/>:</label>
+                <input type="text" placeholder="${enteredName}"
+                       id="homestead_name"
+                       class="form-control">
+            </div>
 
-        <div class="col-md-5 form-group">
-            <label for="price"><fmt:message key="homesteadPrice"/>:</label>
-            <input type="text" placeholder="${enteredPrice}" id="price" class="form-control">
-        </div>
+            <div class="col-md-2 form-group">
+                <label for="minPrice"><fmt:message
+                        key="homesteadPrice"/>:</label>
+                <input type="text" placeholder="${minPrice}" id="minPrice"
+                       class="form-control">
+                <input type="text" placeholder="${maxPrice}" id="maxPrice"
+                       class="form-control">
+            </div>
 
-        <div class="col-md-2 form-group" >
-            <input id="search_button" type="submit" name="submit" value="${search}">
-        </div>
-
+            <div class="col-md-2 form-group">
+                <br/><input type="submit" class="btn btn-primary"
+                            value="${search}">
+            </div>
+        </form>
     </div>
 </div>
 
@@ -181,7 +197,7 @@
                        value="${elem.getId()}"/>
                 <div class="col-md-4">
                     <img width="300px" height="200px" class="img-rounded"
-                         src="../img/myImages/1.1_farmstead.jpg"/>
+                         src="../img/1.1_farmstead.jpg"/>
                 </div>
                 <div class="col-md-8">
                     <h2><c:out value="${elem.getTitle()}"/></h2>
@@ -193,7 +209,8 @@
                         <dd>- <c:out
                                 value="${elem.getPeopleNumber()}"/></dd>
                     </dl>
-                    <input type="submit" class="btn btn-default" value="${additionalInformation}&raquo;"/>
+                    <input type="submit" class="btn btn-default"
+                           value="${additionalInformation}&raquo;"/>
                 </div>
             </form>
         </div>
@@ -205,6 +222,10 @@
     <p>&copy; Все права защищены 2019</p>
 </footer>
 </div>
+
+<script type="text/javascript">
+    <jsp:include page="../js/log_in_validation.js"/>
+</script>
 
 </body>
 </html>

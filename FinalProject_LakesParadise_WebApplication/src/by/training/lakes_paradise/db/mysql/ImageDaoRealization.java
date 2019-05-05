@@ -56,6 +56,9 @@ public class ImageDaoRealization extends BaseDaoRealization
     private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
             = "insert into images (image, home_id) values (?, ?)";
 
+    private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE_NEW_VERSION
+            = "insert into images (pathToImage, nameOfImage, home_id) values (?, ?, ?)";
+
     /**
      * Script gets all objects from table images by homestead id.
      */
@@ -181,8 +184,56 @@ public class ImageDaoRealization extends BaseDaoRealization
         }
     }
 
+    @Override
+    public Integer createNewVersion(Image image) throws PersistentException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionDB.getConnection();
+            statement = connection.prepareStatement(
+                    SQL_SCRIPT_INSERT_DATA_INTO_TABLE_NEW_VERSION,
+                    Statement.RETURN_GENERATED_KEYS);
+
+            statement.setString(
+                    1, "img/1.1_farmstead.jpg");
+            statement.setString(
+                    2, image.getImageName());
+            statement.setInt(
+                    3, image.getHomestead().getId());
+            statement.execute();
+
+            resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                LOGGER.error("There is no autoincremented index after trying"
+                        + " to add record into table `profiles`");
+                throw new PersistentException();
+            }
+        } catch (SQLException e) {
+            LOGGER.error(SQL_EXCEPTION);
+            throw new PersistentException(e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
+            }
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
+            }
+        }
+    }
+
     /**
-     * Method searches imagesby id.
+     * Method searches images by id.
      *
      * @param id - id of image
      * @return image

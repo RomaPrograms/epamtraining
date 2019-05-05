@@ -22,26 +22,26 @@ public class SignUpAction extends Action {
     @Override
     public Forward exec(
             final HttpServletRequest request,
-            final HttpServletResponse response) throws PersistentException {
+            final HttpServletResponse response) {
         Forward forward = new Forward("/signUp.jsp", false);
         HttpSession session = request.getSession(true);
         Config.set(request, Config.FMT_LOCALE, session.getAttribute("language"));
-
+        User user = null;
         try {
             session.setAttribute("lastAction", "/signUp.html");
             Profile profile = (Profile) session.getAttribute("profile");
             request.setAttribute("profile", profile);
             UserValidator userValidator = (UserValidator)
                     ValidatorFactory.createValidator(User.class);
-            User user = userValidator.validate(request);
+            user = userValidator.validate(request);
             user.setRole(Role.USER);
             factory.getService(UserService.class).create(user);
-
-            request.setAttribute("message",
-                    "Данные были успешно сохранены");
+            request.setAttribute("successMessage", "You were successfully signed up, right now you can log in.");
         } catch (IncorrectDataException e) {
-            request.setAttribute("message",
-                    "Были обнаружены некорректно введённый данные");
+
+        } catch (PersistentException e) {
+            request.setAttribute("errorMessage", "Sorry, but profile with such login already exist, change your login please.");
+            request.setAttribute("userInfo", user);
         }
         return forward;
     }

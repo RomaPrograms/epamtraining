@@ -5,9 +5,10 @@ import by.training.lakes_paradise.db.mysql.*;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 
-import java.io.InputStream;
-
-import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,8 +26,29 @@ public class Main {
     public static void main(final String[] args) throws PersistentException,
             ParseException {
 
-        ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
-//        for (var image : imageDaoRealization.readImagesByHomeId(2)) {
+        try {
+            /*ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
+            Image image = new Image();
+            image.setPathToImage("web/img/");
+            image.setImageName("1.1_farmstead.jpg");
+            imageDaoRealization.createNewVersion(image);*/
+
+//            File file = new File("D:\\инфа\\EPAM\\05_JavaST_2019\\FinalProject_LakesParadise_WebApplication\\web\\img\\1.1_farmstead.jpg");
+//            BufferedImage image1 = ImageIO.read(file);
+//            File outputFile = new File("web/img/" + "1.1_farmstead.jpg");
+//            ImageIO.write(image1, "png", outputFile);
+
+            String photoAddress = "D:\\инфа\\EPAM\\05_JavaST_2019\\FinalProject_LakesParadise_WebApplication\\web\\img\\1.3_farmstead.jpg";
+            String photoName = "1.3_farmstead.jpg";
+            File file = new File(photoAddress);
+            BufferedImage image1 = ImageIO.read(file);
+            File outputFile = new File("web/img/" + photoName);
+            ImageIO.write(image1, "png", outputFile);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        //        for (var image : imageDaoRealization.readImagesByHomeId(2)) {
 //            System.out.println(image);
 //        }
         /*try {
@@ -99,13 +121,6 @@ public class Main {
         ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER,
                 DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE,
                 DB_POOL_CHECK_CONNECTION_TIMEOUT);
-
-        try {
-            Image image = imageDaoRealization.readImagesByHomeId(2).get(1);
-            InputStream binaryStream = image.getImage().getBinaryStream(1, image.getImage().length());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
         /*TransactionFactoryRealization transactionFactoryRealization = new TransactionFactoryRealization();

@@ -7,15 +7,16 @@ import java.sql.Connection;
 
 public class ConnectionDB {
     public static Connection getConnection() throws SQLException {
-        ResourceBundle resource = ResourceBundle.getBundle("property.database");
-        String url = resource.getString("db.url");
-        String user = resource.getString("db.user");
-        String pass = resource.getString("db.password");
+        String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
+        String DB_URL = "jdbc:mysql://localhost:3306/lakes_paradise_db?useUnicode=true&characterEncoding=UTF-8";
+        String DB_USER = "root";
+        String DB_PASSWORD = "9512684Roma";
+
         try {
-            Class.forName(resource.getString("db.driver"));
+            Class.forName(DB_DRIVER_CLASS);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return DriverManager.getConnection(url, user, pass);
+        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
     }
 }

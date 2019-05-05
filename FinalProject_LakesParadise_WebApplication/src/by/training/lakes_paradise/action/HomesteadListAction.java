@@ -20,8 +20,10 @@ public class HomesteadListAction extends Action {
         session.setAttribute("lastAction", "/homesteads.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
-        request.setAttribute("res", factory.getService(
-                HomesteadService.class).findAll());
+        if (request.getAttribute("res") == null) {
+            request.setAttribute("res", factory.getService(
+                    HomesteadService.class).findAll());
+        }
         Config.set(request, Config.FMT_LOCALE, session.getAttribute("language"));
 
         return forward;

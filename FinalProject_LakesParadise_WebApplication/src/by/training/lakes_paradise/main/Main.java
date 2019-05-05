@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class Main {
 
@@ -123,9 +124,9 @@ public class Main {
                 DB_POOL_CHECK_CONNECTION_TIMEOUT);
 
         //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
-        /*TransactionFactoryRealization transactionFactoryRealization = new TransactionFactoryRealization();
+        TransactionFactoryRealization transactionFactoryRealization = new TransactionFactoryRealization();
         List<Homestead> list = null;
-        try {
+        /*try {
             list = transactionFactoryRealization.createTransaction().createDao(HomesteadDao.class).read();
         } catch (PersistentException e) {
             e.printStackTrace();

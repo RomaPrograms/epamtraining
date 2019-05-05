@@ -164,11 +164,11 @@
     </c:set>
 
     <div class="row">
-        <form method="post" action="/findByCategory.html">
-            <div class="col-md-5 form-group">
-                <label for="homestead_name"><fmt:message key="name"/>:</label>
+        <form method="post" action="/findHomesteadByCategory.html">
+            <div class="col-md-3 form-group">
+                <label for="homesteadName"><fmt:message key="name"/>:</label>
                 <input type="text" placeholder="${enteredName}"
-                       id="homestead_name"
+                       id="homesteadName" name="homesteadName"
                        class="form-control">
             </div>
 
@@ -190,36 +190,46 @@
 </div>
 
 <div id="homestead_catalog" class="container">
-    <c:forEach var="elem" items="${res}" varStatus="status">
-        <div class="row">
-            <form method="post" action="/home.html">
-                <input type="hidden" name="homesteadIdentity"
-                       value="${elem.getId()}"/>
-                <div class="col-md-4">
-                    <img width="300px" height="200px" class="img-rounded"
-                         src="../img/1.1_farmstead.jpg"/>
-                </div>
-                <div class="col-md-8">
-                    <h2><c:out value="${elem.getTitle()}"/></h2>
-                    <p><c:out value="${elem.getDescription()}"/></p>
-                    <dl>
-                        <dt><fmt:message key="homesteadPrice"/></dt>
-                        <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                        <dt><fmt:message key="homesteadPeopleNumber"/></dt>
-                        <dd>- <c:out
-                                value="${elem.getPeopleNumber()}"/></dd>
-                    </dl>
-                    <input type="submit" class="btn btn-default"
-                           value="${additionalInformation}&raquo;"/>
-                </div>
-            </form>
+    <c:if test="${res.size() == 0}">
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> Sorry but we couldn't find any homestead
+            by your criteria :(
         </div>
-        <hr>
-    </c:forEach>
+    </c:if>
+    <c:if test="${res.size() != 0}">
+        <c:forEach var="elem" items="${res}" varStatus="status">
+            <div class="row">
+                <form method="post" action="/home.html">
+                    <input type="hidden" name="homesteadIdentity"
+                           value="${elem.getId()}"/>
+                    <div class="col-md-4">
+                        <img width="300px" height="200px" class="img-rounded"
+                             src="../img/1.1_farmstead.jpg"/>
+                    </div>
+                    <div class="col-md-8">
+                        <h2><c:out value="${elem.getTitle()}"/></h2>
+                        <p><c:out value="${elem.getDescription()}"/></p>
+                        <dl>
+                            <dt><fmt:message key="homesteadPrice"/></dt>
+                            <dd>- <c:out value="${elem.getPrice()}"/></dd>
+                            <dt><fmt:message key="homesteadPeopleNumber"/></dt>
+                            <dd>- <c:out
+                                    value="${elem.getPeopleNumber()}"/></dd>
+                        </dl>
+                        <input type="submit" class="btn btn-default"
+                               value="${additionalInformation}&raquo;"/>
+                    </div>
+                </form>
+            </div>
+            <hr>
+        </c:forEach>
+    </c:if>
 </div>
 <hr>
-<footer>
-    <p>&copy; Все права защищены 2019</p>
+<footer class="footer">
+    <div class="footer-bottom text-center">
+        <p>&copy; Все права защищены 2019</p>
+    </div>
 </footer>
 </div>
 

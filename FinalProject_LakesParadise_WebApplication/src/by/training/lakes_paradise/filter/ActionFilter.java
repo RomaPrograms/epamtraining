@@ -45,6 +45,7 @@ public class ActionFilter implements Filter {
         actions.put("/ru_RU", ChangeLanguageAction.class);
         actions.put("/ownerHomesteads", OwnerHomesteadListAction.class);
         actions.put("/addPhoto", AddPhotoAction.class);
+        actions.put("/findHomesteadByCategory", FindHomesteadsAction.class);
     }
 
     @Override

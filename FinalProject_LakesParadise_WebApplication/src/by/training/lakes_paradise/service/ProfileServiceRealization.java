@@ -30,7 +30,8 @@ public class ProfileServiceRealization extends ServiceRealization
 
     @Override
     public Profile read(final Integer id) throws PersistentException {
-        return null;
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        return profileDao.read(id);
     }
 
     @Override

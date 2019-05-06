@@ -95,13 +95,13 @@ public class OrderDaoRealization extends BaseDaoRealization
      * Script gets all objects from table orders by profile id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PROFILE_ID
-            = SQL_SCRIPT_SELECT + " orders where id_profile = ?";
+            = SQL_SCRIPT_SELECT + " orders where user_id = ?";
 
     /**
      * Script gets all objects from table orders by home id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
-            = SQL_SCRIPT_SELECT + " orders where id_home = ?";
+            = SQL_SCRIPT_SELECT + " orders where home_id = ?";
 
     /**
      * Script updates object in table orders.
@@ -147,12 +147,10 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     @Override
     public List<Order> read() throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
             resultSet = statement.executeQuery();
@@ -193,12 +191,10 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     @Override
     public Integer create(final Order order) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(
@@ -250,12 +246,10 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     @Override
     public Order read(final Integer id) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
@@ -309,11 +303,9 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     @Override
     public void update(final Order order) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
             statement.setInt(
                     1, order.getUser().getId());
@@ -379,12 +371,10 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     private List<Order> readByCategory(final String sql, final Integer id)
             throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql,
+            statement = getConnection().prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();

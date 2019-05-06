@@ -1,6 +1,7 @@
 package by.training.lakes_paradise.validator;
 
 import by.training.lakes_paradise.db.entity.Entity;
+import by.training.lakes_paradise.db.entity.Order;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
@@ -22,6 +23,7 @@ public class ValidatorFactory {
     static {
         validators.put(Profile.class, ProfileValidator.class);
         validators.put(User.class, UserValidator.class);
+        validators.put(Order.class, OrderValidator.class);
     }
 
     public static <Type extends Entity> Validator<Type> createValidator(

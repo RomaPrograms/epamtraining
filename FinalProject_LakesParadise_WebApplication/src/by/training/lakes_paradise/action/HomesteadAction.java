@@ -30,9 +30,9 @@ public class HomesteadAction extends Action {
             homestead = factory.getService(
                     HomesteadService.class).findById(homesteadId);
             homestead.setId(homesteadId);
-            session.setAttribute("homestead", homestead);
         }
 
+        session.setAttribute("homestead", homestead);
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         request.setAttribute("homestead", homestead);

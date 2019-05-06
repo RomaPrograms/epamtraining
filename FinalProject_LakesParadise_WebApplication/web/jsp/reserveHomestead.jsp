@@ -37,12 +37,6 @@
             background-attachment: fixed;
         }
 
-        #homestead_catalog {
-            background-color: white;
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
         #navbar {
             background-color: white;
         }
@@ -51,17 +45,6 @@
             background-color: white;
             padding-top: 5px;
             padding-bottom: 5px;
-        }
-
-        #search_row {
-            background-color: white;
-            padding-top: 10px;
-            padding-bottom: 100px;
-            border: none;
-            border-bottom: 1px solid deepskyblue;
-            outline: none;
-            height: 40px;
-            font-size: 16px;
         }
 
     </style>
@@ -154,98 +137,77 @@
     </div>
 </nav>
 
-<div id="search_row" class="container">
-
-    <c:set var="enteredName" scope="page">
-        <fmt:message key="enterName"/>
-    </c:set>
-
-    <c:set var="search" scope="page">
-        <fmt:message key="homesteadSearch"/>
-    </c:set>
-
-    <c:set var="additionalInformation" scope="page">
-        <fmt:message key="homesteadKnowMore"/>
-    </c:set>
-
-    <c:set var="minPrice" scope="page">
-        <fmt:message key="maxPrice"/>
-    </c:set>
-
-    <c:set var="maxPrice" scope="page">
-        <fmt:message key="minPrice"/>
-    </c:set>
-
-    <div class="row">
-        <form method="post" action="/findHomesteadByCategory.html">
-            <div class="col-md-3 form-group">
-                <label for="homesteadName"><fmt:message key="name"/>:</label>
-                <input type="text" placeholder="${enteredName}"
-                       id="homesteadName" name="homesteadName"
-                       class="form-control">
-            </div>
-
-            <div class="col-md-2 form-group">
-                <label for="minPrice"><fmt:message
-                        key="homesteadPrice"/>:</label>
-                <input type="text" placeholder="${minPrice}" id="minPrice"
-                       class="form-control">
-                <input type="text" placeholder="${maxPrice}" id="maxPrice"
-                       class="form-control">
-            </div>
-
-            <div class="col-md-2 form-group">
-                <br/><input type="submit" class="btn btn-primary"
-                            value="${search}">
-            </div>
-        </form>
-    </div>
-</div>
-
-<div id="homestead_catalog" class="container">
-    <c:if test="${res.size() == 0}">
-        <div class="alert alert-warning">
-            <strong>Warning!</strong> Sorry but we couldn't find any homestead
-            by your criteria :(
+<div class="container">
+    <form method="post" action="/reservation.html" id="reg_form">
+        <div class="col-md-3 form-group">
+            <label for="startDate">Начало аренды:</label>
+            <input type="date" placeholder="Начало аренды"
+                   id="startDate" name="startDate"
+                   class="form-control">
         </div>
-    </c:if>
-    <c:if test="${res.size() != 0}">
-        <c:forEach var="elem" items="${res}" varStatus="status">
-            <div class="row">
-                <form method="post" action="/home.html">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <div class="col-md-4">
-                        <img width="300px" height="200px" class="img-rounded"
-                             src="../img/1.1_farmstead.jpg"/>
-                    </div>
-                    <div class="col-md-8">
-                        <h2><c:out value="${elem.getTitle()}"/></h2>
-                        <p><c:out value="${elem.getDescription()}"/></p>
-                        <dl>
-                            <dt><fmt:message key="homesteadPrice"/></dt>
-                            <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                            <dt><fmt:message key="homesteadPeopleNumber"/></dt>
-                            <dd>- <c:out
-                                    value="${elem.getPeopleNumber()}"/></dd>
-                        </dl>
-                        <input type="submit" class="btn btn-default"
-                               value="${additionalInformation}&raquo;"/>
-                    </div>
-                </form>
+
+        <div class="col-md-3 form-group">
+            <label for="endDate">Конец аренды:</label>
+            <input type="date" placeholder="Конец аренды" id="endDate"
+                   class="form-control" name="endDate">
+        </div>
+
+        <br/>
+        <div class="col-md-3 form-group">
+            <button type="submit" class="btn btn-primary">Забронировать
+            </button>
+        </div>
+        <c:if test="${message != null}">
+            <div class="alert alert-danger">
+                <strong><fmt:message key="navbarIssue"/>!</strong>
+                <c:out value="${message}"/>
             </div>
-            <hr>
-        </c:forEach>
-    </c:if>
+        </c:if>
+    </form>
 </div>
-<hr>
-<footer class="footer">
-    <div class="footer-bottom text-center">
-        <p>&copy; Все права защищены 2019</p>
+
+<div class="panel-group container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title text-center">
+                <a data-toggle="collapse" href="#collapse1">Show reserved
+                    dates</a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse container">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>StartDate</th>
+                            <th>EndDate</th>
+                            <th>Login</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="elem" items="${res}" varStatus="status">
+                            <tr>
+                                <td>${elem.getStartRentingByPattern()}</td>
+                                <td>${elem.getEndRentingByPattern()}</td>
+                                <td>${elem.getUser().getLogin()}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
     </div>
+</div>
+
+<hr>
+<footer class="text-center">
+    <p>&copy; Все права защищены 2019</p>
 </footer>
 
 <script type="text/javascript">
+    <jsp:include page="../js/registration_validation.js"/>
     <jsp:include page="../js/log_in_validation.js"/>
 </script>
 

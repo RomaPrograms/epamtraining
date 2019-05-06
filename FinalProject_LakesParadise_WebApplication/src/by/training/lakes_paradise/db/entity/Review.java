@@ -80,7 +80,7 @@ public class Review extends Entity {
 
     public String getDateOfCommentByPattern() {
         SimpleDateFormat formatForDateNow
-                = new SimpleDateFormat("E yyyy.MM.dd");
+                = new SimpleDateFormat("E dd.MM.yyyy");
 
         return formatForDateNow.format(dateOfComment);
     }

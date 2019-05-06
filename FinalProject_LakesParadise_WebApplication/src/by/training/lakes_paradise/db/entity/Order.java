@@ -1,5 +1,6 @@
 package by.training.lakes_paradise.db.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -72,6 +73,13 @@ public class Order extends Entity {
         return startRenting;
     }
 
+    public String getStartRentingByPattern() {
+        SimpleDateFormat formatForDateNow
+                = new SimpleDateFormat("E dd.MM.yyyy");
+
+        return formatForDateNow.format(startRenting);
+    }
+
     /**
      * Sets the value of startRenting property.
      *
@@ -88,6 +96,13 @@ public class Order extends Entity {
      */
     public Date getEndRenting() {
         return endRenting;
+    }
+
+    public String getEndRentingByPattern() {
+        SimpleDateFormat formatForDateNow
+                = new SimpleDateFormat("E dd.MM.yyyy");
+
+        return formatForDateNow.format(endRenting);
     }
 
     /**

@@ -14,6 +14,19 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet"
+          href="/vendors/formvalidation/dist/css/formValidation.min.css">
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+    <link rel="stylesheet"
+          href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+
+    <script type="text/javascript"
+            src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript"
+            src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
+
     <style>
         body {
             font-family: sans-serif;
@@ -170,7 +183,6 @@
     </div>
 
     <div class="container text-center">
-        <input type="hidden" name="homestead" value="${homestead}">
         <h2><c:out value="${homestead.getTitle()}"/></h2>
         <p><c:out value="${homestead.getDescription()}"/></p>
         <dl>
@@ -184,35 +196,29 @@
     <hr>
 
     <div class="form-group container">
+        <form action="/reserveHomestead.html">
+            <input type="submit" class="btn btn-default"
+                   value="Забронировать агроусадьбу&raquo;"/>
+            <c:if test="${registerMessage != null}">
+                <div class="alert alert-danger">
+                    <strong><fmt:message key="navbarIssue"/>!</strong>
+                    <c:out value="${registerMessage}"/>
+                </div>
+            </c:if>
+        </form>
         <label for="comment"><fmt:message key="enterComment"/>:</label>
         <form action="/review.html">
             <textarea class="form-control" rows="5" id="comment"
-                      name="comment" <%--onkeyup="saveValue(this.value)"--%>></textarea>
+                      name="comment"></textarea>
             <br>
             <p>
                 <button type="submit"
-                        class="btn btn-primary" <%--onclick="loadComment()"--%>>
+                        class="btn btn-primary">
                     <fmt:message key="sentComment"/>
                 </button>
             </p>
         </form>
     </div>
-
-    <%--<script>
-        var value;
-
-        function loadComment() {
-            var request = new XMLHttpRequest();
-            request.open("POST", "/review.html", true);
-            request.setRequestHeader("Content-Type",
-                "application/x-www-form-urlencoded");
-            request.send("comment=" + value);
-        }
-
-        function saveValue(str) {
-            value = str;
-        }
-    </script>--%>
 
     <div class="container">
         <div class="panel-group">
@@ -258,7 +264,6 @@
 <footer>
     <p>&copy; Все права защищены 2019</p>
 </footer>
-</div>
 
 <script type="text/javascript">
     <jsp:include page="../js/log_in_validation.js"/>

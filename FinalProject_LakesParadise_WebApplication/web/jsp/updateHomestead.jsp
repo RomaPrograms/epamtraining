@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page errorPage="error.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
@@ -10,10 +9,9 @@
     <title>Transparent Login form Design</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet"
           href="/vendors/formvalidation/dist/css/formValidation.min.css">
@@ -22,40 +20,14 @@
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript"
             src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript"
             src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
-
-    <style>
-        #body {
-            font-family: sans-serif;
-            font-size: 11pt;
-            background-image: url(../img/mainPicture.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        #homestead_catalog {
-            background-color: white;
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
-        #navbar {
-            background-color: white;
-        }
-
-        footer {
-            background-color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-    </style>
 </head>
-
-<body id="body">
+<body>
 <nav class="navbar fixed-top scrolling-navbar">
 
     <c:set var="login" scope="page">
@@ -70,7 +42,7 @@
         <fmt:message key="navbarEnter"/>
     </c:set>
 
-    <div class="container" id="navbar">
+    <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>
         </div>
@@ -78,8 +50,8 @@
             <ul id="list" class="nav navbar-nav">
                 <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a>
                 </li>
-                <li><a href="/signUp.html"><fmt:message
-                        key="registration"/></a></li>
+                <li><a href="/signUp.html"><fmt:message key="registration"/></a>
+                </li>
                 <li><a href="/homesteads.html"><fmt:message
                         key="navbarHomesteads"/></a></li>
                 <c:if test="${profile != null}">
@@ -142,66 +114,73 @@
     </div>
 </nav>
 
-<div class="container">
-    <button class="btn btn-default" name="add">
-        <a href="/addHomestead.html">Добавить агроусадьбу</a>
-    </button>
-</div>
+<div class="container" id="main_body">
+    <c:set var="enterHomesteadName" scope="page">
+        <fmt:message key="enterName"/>
+    </c:set>
 
-<div id="homestead_catalog" class="container">
-    <c:forEach var="elem" items="${res}" varStatus="status">
-        <div class="row">
-            <div class="col-md-4">
-                <img width="300px" height="200px" class="img-rounded"
-                     src="../img/1.1_farmstead.jpg"/>
-            </div>
-            <div class="col-md-8">
-                <h2><c:out value="${elem.getTitle()}"/></h2>
-                <p><c:out value="${elem.getDescription()}"/></p>
-                <dl>
-                    <dt>Цена</dt>
-                    <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                    <dt>Колличество человек</dt>
-                    <dd>- <c:out
-                            value="${elem.getPeopleNumber()}"/></dd>
-                </dl>
-                <form method="post" action="/home.html">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <input type="submit" class="btn btn-default" name="show"
-                           value="Узнать
-                больше&raquo;"/>
-                </form>
-                <form method="post" action="/deleteHomestead.html">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <input type="submit" class="btn btn-default" name="delete"
-                           value="Удалить"/>
-                </form>
-                <form method="post" action="/updateHomestead.html">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <input type="submit" class="btn btn-default" name="update"
-                           value="Обновить информацию"/>
-                </form>
-                <input type="submit" class="btn btn-default" name="update"
-                       value="Добавить фотографию"/>
-                <!-- COMPONENT START -->
-                <input class="btn btn-default btn-choose" name="photo"
-                       type="file" value="Choose file"
-                       accept=".jpg, .jpeg, .png"/>
-            </div>
+    <c:set var="enterDescription" scope="page">
+        <fmt:message key="enterDescription"/>
+    </c:set>
+
+    <c:set var="enterPrice" scope="page">
+        <fmt:message key="enterPrice"/>
+    </c:set>
+
+    <c:set var="enterPeopleNumber" scope="page">
+        <fmt:message key="enterPeopleNumber"/>
+    </c:set>
+
+    <div class="page-header">
+        <h1>
+            Here you can update your data
+        </h1>
+    </div>
+    <form class="form-horizontal" role="form" id="homestead_reg_form"
+          method="post">
+        <input type="hidden" name="homesteadIdentity"
+               value="${homestead.getId()}"/>
+
+        <div class="form-group">
+            <label for="name"><fmt:message key="homesteadName"/></label>
+            <input id="name" type="text" name="name"
+                   value="${homestead.getTitle()}"
+                   placeholder="${enterHomesteadName}" class="form-control">
         </div>
-        <hr>
-    </c:forEach>
-</div>
-<hr>
-<footer>
-    <p>&copy; Все права защищены 2019</p>
-</footer>
+        <div class="form-group">
+            <label for="sign_up_description"><fmt:message
+                    key="homesteadDescription"/></label>
+            <textarea class="form-control" rows="5" id="sign_up_description"
+                      name="description" placeholder="${enterDescription}">${homestead.getDescription()}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="sign_up_price"><fmt:message
+                    key="homesteadPrice"/></label>
+            <input id="sign_up_price" type="text" name="price" value="${homestead.getPrice()}"
+                   placeholder="${enterPrice}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="sign_up_peopleNumber"><fmt:message
+                    key="homesteadPeopleNumber"/></label>
+            <input id="sign_up_peopleNumber" type="text" name="peopleNumber"
+                   placeholder="${enterPeopleNumber}" class="form-control" value="${homestead.getPeopleNumber()}">
+        </div>
+
+        <c:if test="${successMessage != null}">
+            <div class="alert alert-success form-group">
+                <strong>Success!</strong> <c:out value="${successMessage}"/>
+            </div>
+        </c:if>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+
+    </form>
 </div>
 
 <script type="text/javascript">
+    <jsp:include page="../js/homestead_sign_up_validation.js"/>
     <jsp:include page="../js/log_in_validation.js"/>
 </script>
 

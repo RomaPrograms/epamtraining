@@ -81,8 +81,8 @@
                     </div>
                     <input type="submit" class="btn btn-primary" value="${enter}">
                     <br/><div class="form-group">
-                        <div id="navbarMessage"></div>
-                    </div>
+                    <div id="navbarMessage"></div>
+                </div>
                     <c:if test="${logInMessage != null}">
                         <div class="alert alert-danger">
                             <strong><fmt:message key="navbarIssue"/>!</strong> <c:out value="${logInMessage}"/>
@@ -101,79 +101,64 @@
 </nav>
 
 <div class="container" id="main_body">
-        <c:set var="enterPassword" scope="page">
-            <fmt:message key="enterPassword"/>
-        </c:set>
+    <c:set var="enterHomesteadName" scope="page">
+        <fmt:message key="enterName"/>
+    </c:set>
 
-        <c:set var="enterLogin" scope="page">
-            <fmt:message key="enterLogin"/>
-        </c:set>
+    <c:set var="enterDescription" scope="page">
+        <fmt:message key="enterDescription"/>
+    </c:set>
 
-        <c:set var="enterName" scope="page">
-            <fmt:message key="enterName"/>
-        </c:set>
+    <c:set var="enterPrice" scope="page">
+        <fmt:message key="enterPrice"/>
+    </c:set>
 
-        <c:set var="enterSurname" scope="page">
-            <fmt:message key="enterSurname"/>
-        </c:set>
-
-        <c:set var="enterPhoneNumber" scope="page">
-            <fmt:message key="enterPhoneNumber"/>
-        </c:set>
+    <c:set var="enterPeopleNumber" scope="page">
+        <fmt:message key="enterPeopleNumber"/>
+    </c:set>
 
     <div class="page-header">
         <h1><fmt:message key="registration"/>
-            <small><fmt:message key="registrationInfo"/></small>
+            <small><fmt:message key="registrationHomesteadInfo"/></small>
         </h1>
     </div>
-    <form class="form-horizontal" role="form" id="reg_form" method="post">
+    <form class="form-horizontal" role="form" id="homestead_reg_form" method="post">
         <div class="form-group">
-            <label><fmt:message key="login"/></label>
-            <input id="sign_up_login" type="text" name="login" value="${userInfo.getLogin()}"
-                   placeholder="${enterLogin}" class="form-control">
+            <label for="name"><fmt:message key="homesteadName"/></label>
+            <input id="name" type="text" name="name"
+                   placeholder="${enterHomesteadName}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="sign_up_password"><fmt:message key="password"/></label>
-            <input id="sign_up_password" type="password" name="password"
-                   placeholder="${enterPassword}" class="form-control" value="${userInfo.getPassword()}">
+            <label for="sign_up_description"><fmt:message key="homesteadDescription"/></label>
+            <textarea class="form-control" rows="5" id="sign_up_description"
+                      name="description" placeholder="${enterDescription}"></textarea>
         </div>
         <div class="form-group">
-            <label><fmt:message key="name"/></label>
-            <input id="sign_up_name" type="text" name="name" value="${userInfo.getName()}"
-                   placeholder="${enterName}" class="form-control">
+            <label for="sign_up_price"><fmt:message key="homesteadPrice"/></label>
+            <input id="sign_up_price" type="text" name="price"
+                   placeholder="${enterPrice}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="sign_up_surname"><fmt:message key="surname"/></label>
-            <input id="sign_up_surname" type="text" name="surname" value="${userInfo.getSurname()}"
-                   placeholder="${enterSurname}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="sign_up_phoneNumber"><fmt:message key="phoneNumber"/></label>
-            <input id="sign_up_phoneNumber" type="text" name="phoneNumber"
-                   placeholder="${enterPhoneNumber}" value="${userInfo.getPhone()}"
-                   class="form-control">
+            <label for="sign_up_peopleNumber"><fmt:message key="homesteadPeopleNumber"/></label>
+            <input id="sign_up_peopleNumber" type="text" name="peopleNumber"
+                   placeholder="${enterPeopleNumber}" class="form-control">
         </div>
 
         <c:if test="${successMessage != null}">
-        <div class="alert alert-success form-group">
-            <strong>Success!</strong> <c:out value="${successMessage}"/>
-        </div>
-        </c:if>
-        <c:if test="${errorMessage != null}">
-            <div class="alert alert-warning form-group">
-                <strong>Warning!</strong> <c:out value="${errorMessage}"/>
+            <div class="alert alert-success form-group">
+                <strong>Success!</strong> <c:out value="${successMessage}"/>
             </div>
         </c:if>
 
         <div class="form-group">
-        <button type="submit" class="btn btn-primary"><fmt:message key="registration"/></button>
+            <button type="submit" class="btn btn-primary"><fmt:message key="registration"/></button>
         </div>
 
     </form>
 </div>
 
 <script type="text/javascript">
-    <jsp:include page="../js/sign_up_validation.js"/>
+    <jsp:include page="../js/homestead_sign_up_validation.js"/>
     <jsp:include page="../js/log_in_validation.js"/>
 </script>
 

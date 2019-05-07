@@ -28,10 +28,8 @@ public abstract class BaseDaoRealization {
                                        final Integer id)
             throws SQLException {
         String sql = "delete from " + nameOfTable + " where id = (?)";
-        Connection connection;
         PreparedStatement statement;
-        connection = ConnectionDB.getConnection();
-        statement = connection.prepareStatement(sql);
+        statement = getConnection().prepareStatement(sql);
         statement.setInt(1, id);
 
         statement.executeUpdate();

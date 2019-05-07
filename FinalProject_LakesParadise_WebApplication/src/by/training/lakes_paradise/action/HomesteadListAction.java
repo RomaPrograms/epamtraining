@@ -15,7 +15,7 @@ public class HomesteadListAction extends Action {
             final HttpServletRequest request,
             final HttpServletResponse response) throws PersistentException {
 
-        Forward forward = new Forward("/homesteads.jsp", false);
+        Forward forward = new Forward("/homesteadsList.jsp", false);
         HttpSession session = request.getSession(true);
         session.setAttribute("lastAction", "/homesteads.html");
         Profile profile = (Profile) session.getAttribute("profile");

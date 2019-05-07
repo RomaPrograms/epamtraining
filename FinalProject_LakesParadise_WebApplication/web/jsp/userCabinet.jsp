@@ -120,74 +120,73 @@
             <small>Здесь вы можете увидеть информацию о своём профиле</small>
         </h1>
     </div>
-    <form class="form-horizontal" role="form" id="reg_form"
-          method="post">
-        <div class="form-group">
-            <label><fmt:message key="login"/>: </label>
-            ${profile.getLogin()}
-        </div>
-        <div class="form-group">
-            <label><fmt:message key="password"/>: </label>
-            ${profile.getPassword()}
-        </div>
-        <div class="form-group">
-            <label><fmt:message key="name"/>: </label>
-            ${user.getName()}
-        </div>
-        <div class="form-group">
-            <label><fmt:message key="surname"/>: </label>
-            ${user.getSurname()}
-        </div>
-        <div class="form-group">
-            <label><fmt:message key="phoneNumber"/></label>
-            ${user.getPhone()}
-        </div>
+    <div class="form-group">
+        <label><fmt:message key="login"/>: </label>
+        ${profile.getLogin()}
+    </div>
+    <div class="form-group">
+        <label><fmt:message key="password"/>: </label>
+        ${profile.getPassword()}
+    </div>
+    <div class="form-group">
+        <label><fmt:message key="name"/>: </label>
+        ${user.getName()}
+    </div>
+    <div class="form-group">
+        <label><fmt:message key="surname"/>: </label>
+        ${user.getSurname()}
+    </div>
+    <div class="form-group">
+        <label><fmt:message key="phoneNumber"/></label>
+        ${user.getPhone()}
+    </div>
 
-        <div class="panel-group form-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title text-center">
-                        <a data-toggle="collapse" href="#collapse1"><fmt:message
-                                key="showDates"/></a>
-                    </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse container">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <table class="table table-hover">
-                                <thead>
+    <div class="panel-group form-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center">
+                    <a data-toggle="collapse" href="#collapse1"><fmt:message
+                            key="showDates"/></a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse container">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th><fmt:message key="startRenting"/></th>
+                                <th><fmt:message key="endDate"/></th>
+                                <th><fmt:message key="login"/></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="order" items="${orders}"
+                                       varStatus="status">
                                 <tr>
-                                    <th><fmt:message key="startRenting"/></th>
-                                    <th><fmt:message key="endDate"/></th>
-                                    <th><fmt:message key="login"/></th>
+                                    <td>${order.getStartRentingByPattern()}</td>
+                                    <td>${order.getEndRentingByPattern()}</td>
+                                    <td>${order.getUser().getLogin()}</td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="order" items="${orders}"
-                                           varStatus="status">
-                                    <tr>
-                                        <td>${order.getStartRentingByPattern()}</td>
-                                        <td>${order.getEndRentingByPattern()}</td>
-                                        <td>${order.getUser().getLogin()}</td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </li>
-                    </ul>
-                </div>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
 
-        <form method="post" action="/updateData.html">
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">
-                    Change my data
-                </button>
-            </div>
+
+    <div class="form-group">
+        <form class="form-horizontal" role="form" method="post"
+              action="/updateData.html">
+            <input type="submit" class="btn btn-primary"
+                   value="Update data">
         </form>
+    </div>
 
-    </form>
+
 </div>
 
 </body>

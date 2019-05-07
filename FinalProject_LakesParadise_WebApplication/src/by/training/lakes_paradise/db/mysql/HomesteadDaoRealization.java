@@ -140,10 +140,8 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        Connection connection = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_TITLE);
             if (title != null) {
                 statement.setString(1, title);
@@ -193,6 +191,8 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             Homestead homestead;
             while (resultSet.next()) {
                 homestead = new Homestead();
+                homestead.setId(resultSet
+                        .getInt("id"));
                 homestead.setTitle(resultSet
                         .getString("title"));
                 homestead.setPeopleNumber(resultSet
@@ -249,10 +249,8 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        Connection connection = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PRICE);
 
             statement.setBigDecimal(1, minPrice);
@@ -298,10 +296,8 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        Connection connection = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -319,7 +315,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                     SIXTH_ELEMENT_IN_SQL_QUERY,
                     homestead.getNumberOfVotedUsers());
             statement.setInt(
-                    EIGHTH_ELEMENT_IN_SQL_QUERY, homestead.getOwner().getId());
+                    SEVENTH_ELEMENT_IN_SQL_QUERY, homestead.getOwner().getId());
 
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
@@ -427,10 +423,8 @@ public class HomesteadDaoRealization extends BaseDaoRealization
         List<Homestead> list;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        //Connection connection;
         try {
             list = new ArrayList<>();
-            //connection = ConnectionDB.getConnection();
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE);
 
@@ -468,10 +462,8 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     @Override
     public void update(final Homestead entity) {
         PreparedStatement statement = null;
-        Connection connection;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
 
             statement.setString(

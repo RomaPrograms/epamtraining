@@ -38,7 +38,14 @@ public class UserServiceRealization extends ServiceRealization
 
     @Override
     public void update(final User user) throws PersistentException {
-
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        UserDao userDao = transaction.createDao(UserDao.class);
+        Profile profile = new Profile();
+        profile.setLogin(user.getLogin());
+        profile.setPassword(user.getPassword());
+        profile.setId(user.getId());
+        profileDao.update(profile);
+        userDao.update(user);
     }
 
     @Override

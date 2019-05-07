@@ -46,6 +46,7 @@ public class ActionFilter implements Filter {
         actions.put("/findHomesteadByCategory", FindHomesteadsAction.class);
         actions.put("/reserveHomestead", ReservedHomesteadsListAction.class);
         actions.put("/reservation", ReserveHomesteadAction.class);
+        actions.put("/updateData", UpdateUserDataAction.class);
     }
 
     @Override

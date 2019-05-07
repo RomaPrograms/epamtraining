@@ -12,68 +12,47 @@ $(document).ready(function() {
                         message: 'The name is required and cannot be empty'
                     },
                     stringLength: {
-                        min: 2,
+                        min: 1,
                         max: 45,
-                        message: 'Please enter at least 2 characters and no more than 45'
+                        message: 'Please enter at least  characters and no more than 45'
                     }
                 }
             },
             description: {
                 validators: {
                     notEmpty: {
-                        message: 'The password is required and cannot be empty'
+                        message: 'The description is required and cannot be empty'
                     },
                     stringLength: {
-                        min: 5,
-                        max: 45,
-                        message: 'Please enter at least 5 characters and no more than 45'
+                        min: 10,
+                        max: 65_535,
+                        message: 'Please enter at least 10 characters and no more than 225'
                     }
                 }
             },
             price: {
                 validators: {
                     notEmpty: {
-                        message: 'The name is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 2,
-                        max: 10,
-                        message: 'Please enter at least 2 characters and no more than 10'
+                        message: 'The price is required and cannot be empty'
                     },
                     regexp: {
-                        regexp: /^[a-zA-Z]+$/,
-                        message: 'The username can only consist of Latins letters'
+                        regexp: /((\d{0,10}\.?\d{0,3}))/,
+                        message: 'Please, follow pattern: ##########.### #-unnecessary symbol.'
                     }
                 }
             },
             peopleNumber: {
                 validators: {
                     notEmpty: {
-                        message: 'The surname is required and cannot be empty'
+                        message: 'The people number is required and cannot be empty'
                     },
                     stringLength: {
-                        min: 2,
-                        max: 30,
-                        message: 'Please enter at least 2 characters and no more than 30'
+                        min: 1,
+                        max: 3,
+                        message: 'Please enter at least 1 characters and no more than 3'
                     },
-                    regexp: {
-                        regexp: /^[a-zA-Z]+$/,
-                        message: 'The surname can only consist of Latins letters'
-                    }
-                }
-            },
-            phoneNumber: {
-                validators: {
                     numeric: {
-                        message: 'The phone number must have only numbers'
-                    },
-                    notEmpty: {
-                        message: 'The content is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 7,
-                        max: 12,
-                        message: 'Please enter at least 7 characters and no more than 12'
+                        message: 'The people number must have only numbers'
                     }
                 }
             }

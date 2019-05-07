@@ -77,8 +77,8 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      * Script updates object in table users.
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
-            = "update users set name = ?, surname = ?, phone = ?,"
-            + " where id = ?";
+            = "update users set name = ?, surname = ?, phone = ?"
+            + " where id = (?)";
 
     /**
      * Method that reads all objects from "users" table.
@@ -232,11 +232,9 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      */
     @Override
     public void update(final User user) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
 
             statement.setString(1, user.getName());

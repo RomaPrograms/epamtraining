@@ -86,7 +86,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
      * Script updates object in table profiles.
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
-            = "update profiles set login = ?, password = ?, role = ?"
+            = "update profiles set login = ?, password = ?"
             + " where id = (?)";
 
     /**
@@ -99,11 +99,9 @@ public class ProfileDaoRealization extends BaseDaoRealization
     @Override
     public Profile read(final String login, final String password)
             throws PersistentException {
-        //Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            //connection = ConnectionDB.getConnection();
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD);
             statement.setString(1, login);
@@ -152,12 +150,10 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     @Override
     public List<Profile> read() throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE);
             resultSet = statement.executeQuery();
             List<Profile> profiles = new ArrayList<>();
@@ -307,17 +303,13 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     @Override
     public void update(final Profile profile) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
             statement.setString(1, profile.getLogin());
             statement.setString(2, profile.getPassword());
-            statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY,
-                    profile.getRole().getIdentity());
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, profile.getId());
+            statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY, profile.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {

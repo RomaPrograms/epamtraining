@@ -19,7 +19,7 @@ public class HomesteadAction extends Action {
 
         HttpSession session = request.getSession(true);
         session.setAttribute("lastAction", "/home.html");
-        Forward forward = new Forward("/home.jsp", false);
+        Forward forward = new Forward("/homesteadInfo.jsp", false);
         String stringHomesteadId = request.getParameter("homesteadIdentity");
         Homestead homestead;
         int homesteadId;

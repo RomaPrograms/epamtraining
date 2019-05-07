@@ -138,29 +138,43 @@
 </nav>
 
 <div class="container">
+    <c:set var="startRenting" scope="page">
+        <fmt:message key="startRenting"/>
+    </c:set>
+
+    <c:set var="endRenting" scope="page">
+        <fmt:message key="endRenting"/>
+    </c:set>
     <form method="post" action="/reservation.html" id="reg_form">
         <div class="col-md-3 form-group">
-            <label for="startDate">Начало аренды:</label>
-            <input type="date" placeholder="Начало аренды"
+            <label for="startDate"><fmt:message key="startRenting"/></label>
+            <input type="date" placeholder="${startRenting}"
                    id="startDate" name="startDate"
                    class="form-control">
         </div>
 
         <div class="col-md-3 form-group">
-            <label for="endDate">Конец аренды:</label>
-            <input type="date" placeholder="Конец аренды" id="endDate"
+            <label for="endDate"><fmt:message key="endRenting"/></label>
+            <input type="date" placeholder="${endRenting}" id="endDate"
                    class="form-control" name="endDate">
         </div>
 
         <br/>
         <div class="col-md-3 form-group">
-            <button type="submit" class="btn btn-primary">Забронировать
+            <button type="submit" class="btn btn-primary"><fmt:message key="rentHomestead"/>
             </button>
         </div>
-        <c:if test="${message != null}">
+        <c:if test="${registerErrorMessage != null}">
             <div class="alert alert-danger">
                 <strong><fmt:message key="navbarIssue"/>!</strong>
-                <c:out value="${message}"/>
+                <c:out value="${registerErrorMessage}"/>
+            </div>
+        </c:if>
+        <c:if test="${registerSuccessMessage != null}">
+            6
+            <div class="alert alert-success">
+                <strong>Успех!</strong>
+                <c:out value="${registerSuccessMessage}"/>
             </div>
         </c:if>
     </form>
@@ -170,8 +184,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title text-center">
-                <a data-toggle="collapse" href="#collapse1">Show reserved
-                    dates</a>
+                <a data-toggle="collapse" href="#collapse1"><fmt:message key="showDates"/></a>
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse container">
@@ -180,9 +193,9 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>StartDate</th>
-                            <th>EndDate</th>
-                            <th>Login</th>
+                            <th><fmt:message key="startRenting"/></th>
+                            <th><fmt:message key="endDate"/></th>
+                            <th><fmt:message key="login"/></th>
                         </tr>
                         </thead>
                         <tbody>

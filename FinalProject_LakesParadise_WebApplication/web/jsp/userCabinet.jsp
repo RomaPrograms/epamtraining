@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page errorPage="error.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
@@ -10,10 +9,9 @@
     <title>Transparent Login form Design</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet"
           href="/vendors/formvalidation/dist/css/formValidation.min.css">
@@ -22,36 +20,14 @@
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript"
             src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript"
             src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
-
-    <style>
-        #body {
-            font-family: sans-serif;
-            font-size: 11pt;
-            background-image: url(../img/myImages/mainPicture.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        #homestead_catalog {
-            background-color: white;
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
-        footer {
-            background-color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-    </style>
 </head>
-
-<body id="body">
+<body>
 <nav class="navbar fixed-top scrolling-navbar">
 
     <c:set var="login" scope="page">
@@ -138,43 +114,81 @@
     </div>
 </nav>
 
-<div id="homestead_catalog" class="container">
-    <c:forEach var="elem" items="${res}" varStatus="status">
-        <div class="row">
-            <form method="post" action="/home.html">
-                <input type="hidden" name="homesteadIdentity"
-                       value="${elem.getId()}"/>
-                <div class="col-md-4">
-                    <img width="300px" height="200px" class="img-rounded"
-                         src="../img/myImages/1.1_farmstead.jpg"/>
-                </div>
-                <div class="col-md-8">
-                    <h2><c:out value="${elem.getTitle()}"/></h2>
-                    <p><c:out value="${elem.getDescription()}"/></p>
-                    <dl>
-                        <dt>Цена</dt>
-                        <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                        <dt>Колличество человек</dt>
-                        <dd>- <c:out
-                                value="${elem.getPeopleNumber()}"/></dd>
-                    </dl>
-                    <input type="submit" class="btn btn-default" name="Узнать
-                больше&raquo;"/>
-                </div>
-            </form>
+<div class="container" id="main_body">
+    <div class="page-header">
+        <h1>Личный кабинет
+            <small>Здесь вы можете увидеть информацию о своём профиле</small>
+        </h1>
+    </div>
+    <form class="form-horizontal" role="form" id="reg_form"
+          method="post">
+        <div class="form-group">
+            <label><fmt:message key="login"/>: </label>
+            ${profile.getLogin()}
         </div>
-        <hr>
-    </c:forEach>
-</div>
-<hr>
-<footer>
-    <p>&copy; Все права защищены 2019</p>
-</footer>
-</div>
+        <div class="form-group">
+            <label><fmt:message key="password"/>: </label>
+            ${profile.getPassword()}
+        </div>
+        <div class="form-group">
+            <label><fmt:message key="name"/>: </label>
+            ${user.getName()}
+        </div>
+        <div class="form-group">
+            <label><fmt:message key="surname"/>: </label>
+            ${user.getSurname()}
+        </div>
+        <div class="form-group">
+            <label><fmt:message key="phoneNumber"/></label>
+            ${user.getPhone()}
+        </div>
 
-<script type="text/javascript">
-    <jsp:include page="../js/log_in_validation.js"/>
-</script>
+        <div class="panel-group form-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title text-center">
+                        <a data-toggle="collapse" href="#collapse1"><fmt:message
+                                key="showDates"/></a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse container">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th><fmt:message key="startRenting"/></th>
+                                    <th><fmt:message key="endDate"/></th>
+                                    <th><fmt:message key="login"/></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="order" items="${orders}"
+                                           varStatus="status">
+                                    <tr>
+                                        <td>${order.getStartRentingByPattern()}</td>
+                                        <td>${order.getEndRentingByPattern()}</td>
+                                        <td>${order.getUser().getLogin()}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <form method="post" action="/updateData.html">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    Change my data
+                </button>
+            </div>
+        </form>
+
+    </form>
+</div>
 
 </body>
 </html>

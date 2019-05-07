@@ -34,7 +34,7 @@ public class ActionFilter implements Filter {
         actions.put("/home", HomesteadAction.class);
         actions.put("/review", ReviewAction.class);
         actions.put("/changeStatus", LogInAction.class);
-        actions.put("/ownerCabinet", OwnerHomesteadListAction.class);
+        actions.put("/personalCabinet", UserCabinetAction.class);
         actions.put("/addHomestead", AddHomesteadAction.class);
         actions.put("/deleteHomestead", DeleteHomesteadAction.class);
         actions.put("/updateHomestead", UpdateHomesteadAction.class);

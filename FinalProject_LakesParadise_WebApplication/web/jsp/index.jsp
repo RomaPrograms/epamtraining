@@ -16,7 +16,7 @@
         #main_section {
             font-family: sans-serif;
             font-size: 11pt;
-            background-image: url(../img/myImages/mainPicture.jpg);
+            background-image: url(../img/mainPicture.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
@@ -46,10 +46,8 @@
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript"
             src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript"
             src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
 
@@ -70,7 +68,7 @@
         <fmt:message key="navbarEnter"/>
     </c:set>
 
-    <div class="container">
+    <div class="container" id="navbar">
         <div class="navbar-header">
             <a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>
         </div>

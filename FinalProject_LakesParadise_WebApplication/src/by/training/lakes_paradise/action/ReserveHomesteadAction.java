@@ -13,6 +13,7 @@ import by.training.lakes_paradise.validator.ValidatorFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public class ReserveHomesteadAction extends Action {
     @Override
@@ -23,18 +24,47 @@ public class ReserveHomesteadAction extends Action {
                 ValidatorFactory.createValidator(Order.class);
         try {
             Order order = validator.validate(request);
-            Profile profile = (Profile) session.getAttribute("profile");
-            request.setAttribute("profile", profile);
-            User user = new User();
-            user.setId(profile.getId());
-            order.setUser(user);
             Homestead homestead = (Homestead) session.getAttribute("homestead");
-            order.setHomestead(homestead);
-            order.setPaid(true);
-            factory.getService(OrderService.class).create(order);
+            if (dateValidation(order, homestead.getId())) {
+                Profile profile = (Profile) session.getAttribute("profile");
+                request.setAttribute("profile", profile);
+                User user = new User();
+                user.setId(profile.getId());
+                order.setUser(user);
+                order.setHomestead(homestead);
+                order.setPaid(true);
+                factory.getService(OrderService.class).create(order);
+                forward.getAttributes().put("registerSuccessMessage", "Congratulations, you have successfully registered!");
+            } else {
+                forward.getAttributes().put("registerErrorMessage", "Sorry, but some days from your chosen dates already took!");
+            }
         } catch (IncorrectDataException e) {
-            forward.getAttributes().put("message", "Date of end renting should be older than start renting");
+            forward.getAttributes().put("registerErrorMessage", "Date of end renting should be older than start renting");
         }
         return forward;
+    }
+
+
+    public boolean dateValidation(Order newOrder, int homesteadId) throws PersistentException {
+        List<Order> orders = factory.getService(OrderService.class).readByHomestead(homesteadId);
+
+        for (var order : orders) {
+            if (newOrder.getStartRenting().after(order.getStartRenting())
+                    && newOrder.getStartRenting().before(order.getEndRenting())) {
+                return false;
+            }
+
+            if (newOrder.getEndRenting().after(order.getStartRenting())
+                    && newOrder.getStartRenting().before(order.getEndRenting())) {
+                return false;
+            }
+
+            if (newOrder.getStartRenting().before(order.getStartRenting())
+                    && newOrder.getStartRenting().after(order.getEndRenting())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

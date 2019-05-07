@@ -10,7 +10,8 @@ public class OrderServiceRealization extends ServiceRealization
         implements OrderService {
     @Override
     public List<Order> readByProfile(Integer profileId) throws PersistentException {
-        return null;
+        OrderDao orderDaoRealization = transaction.createDao(OrderDao.class);
+        return orderDaoRealization.readByProfile(profileId);
     }
 
     @Override

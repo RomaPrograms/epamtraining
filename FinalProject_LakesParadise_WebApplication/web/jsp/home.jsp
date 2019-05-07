@@ -137,6 +137,11 @@
 </nav>
 
 <div id="homestead_catalog" class="container">
+
+    <c:set var="bookHomestead" scope="page">
+        <fmt:message key="rentHomestead"/>
+    </c:set>
+
     <div class="page-header">
         <h1 class="text-center">
             <fmt:message key="welcomeInfo"/>
@@ -198,7 +203,7 @@
     <div class="form-group container">
         <form action="/reserveHomestead.html">
             <input type="submit" class="btn btn-default"
-                   value="Забронировать агроусадьбу&raquo;"/>
+                   value="${bookHomestead}"/>
             <c:if test="${registerMessage != null}">
                 <div class="alert alert-danger">
                     <strong><fmt:message key="navbarIssue"/>!</strong>
@@ -210,6 +215,12 @@
         <form action="/review.html">
             <textarea class="form-control" rows="5" id="comment"
                       name="comment"></textarea>
+            <c:if test="${reviewMessage != null}">
+                <div class="alert alert-danger">
+                    <strong><fmt:message key="navbarIssue"/>!</strong>
+                    <c:out value="${reviewMessage }"/>
+                </div>
+            </c:if>
             <br>
             <p>
                 <button type="submit"

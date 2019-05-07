@@ -19,7 +19,7 @@ public class OrderValidator implements Validator<Order> {
         String startDate = request.getParameter("startDate");
         if (startDate != null && !startDate.isEmpty()) {
             try {
-                DateFormat format = new SimpleDateFormat("mm-dd-yyyy");
+                DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
                 Date date = format.parse(startDate);
                 order.setStartRenting(date);
             } catch (ParseException e) {
@@ -32,7 +32,7 @@ public class OrderValidator implements Validator<Order> {
         String endDate = request.getParameter("endDate");
         if (endDate != null && !endDate.isEmpty()) {
             try {
-                DateFormat format = new SimpleDateFormat("mm-dd-yyyy");
+                DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
                 Date date = format.parse(endDate);
                 order.setEndRenting(date);
             } catch (ParseException e) {

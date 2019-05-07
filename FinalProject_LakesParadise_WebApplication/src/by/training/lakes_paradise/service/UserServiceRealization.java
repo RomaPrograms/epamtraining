@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.service;
 
+import by.training.lakes_paradise.db.dao.ProfileDao;
+import by.training.lakes_paradise.db.dao.UserDao;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.db.mysql.ProfileDaoRealization;
@@ -17,21 +19,21 @@ public class UserServiceRealization extends ServiceRealization
 
     @Override
     public Integer create(final User user) throws PersistentException {
-        ProfileDaoRealization profileDaoRealization
-                = new ProfileDaoRealization();
-        UserDaoRealization userDaoRealization = new UserDaoRealization();
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        UserDao userDao = transaction.createDao(UserDao.class);
         Profile profile = new Profile();
         profile.setLogin(user.getLogin());
         profile.setPassword(user.getPassword());
         profile.setRole(user.getRole());
-        int profileId = profileDaoRealization.create(profile);
+        int profileId = profileDao.create(profile);
         user.setId(profileId);
-        return userDaoRealization.create(user);
+        return userDao.create(user);
     }
 
     @Override
     public User read(final Integer id) throws PersistentException {
-        return null;
+        UserDao userDao = transaction.createDao(UserDao.class);
+        return userDao.read(id);
     }
 
     @Override

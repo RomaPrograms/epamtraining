@@ -20,7 +20,8 @@ public class ReviewAction extends Action {
         Forward forward = new Forward("/home.html", true);
         Profile profile = (Profile) session.getAttribute("profile");
         if (profile == null) {
-
+            forward.getAttributes().put("reviewMessage",
+                    "You can't do this action until you didn't log in");
         } else {
             Review review = new Review();
             review.setText(request.getParameter("comment"));

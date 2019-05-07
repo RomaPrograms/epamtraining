@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.action;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.PersistentException;
@@ -10,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 
-public class HomesteadAction extends Action {
+public class HomesteadInfoAction extends Action {
 
     @Override
     public Forward exec(
@@ -18,7 +20,7 @@ public class HomesteadAction extends Action {
             HttpServletResponse response) throws PersistentException {
 
         HttpSession session = request.getSession(true);
-        session.setAttribute("lastAction", "/home.html");
+        session.setAttribute("lastAction", "/homesteadInfo.html");
         Forward forward = new Forward("/homesteadInfo.jsp", false);
         String stringHomesteadId = request.getParameter("homesteadIdentity");
         Homestead homestead;

@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.action;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.mysql.ImageDaoRealization;
 import org.apache.logging.log4j.LogManager;
@@ -9,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
-import java.util.Locale;
 
 public class MenuAction extends Action {
 

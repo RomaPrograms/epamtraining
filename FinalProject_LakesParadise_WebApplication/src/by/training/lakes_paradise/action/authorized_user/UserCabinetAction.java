@@ -1,5 +1,7 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.authorized_user;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Order;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.User;
@@ -16,9 +18,9 @@ import java.util.List;
 public class UserCabinetAction extends Action {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/userCabinet.jsp", false);
+        Forward forward = new Forward("/authorized_user/cabinetUser.jsp", false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("lastAction", "/menu.html");
+        session.setAttribute("lastAction", "/authorized_user/userCabinet.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         User user = factory.getService(UserService.class).read(profile.getId());

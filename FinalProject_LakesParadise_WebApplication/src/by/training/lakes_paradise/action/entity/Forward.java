@@ -1,4 +1,4 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.entity;
 
 import java.util.HashMap;
 import java.util.Map;

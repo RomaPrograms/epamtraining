@@ -1,5 +1,7 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.authorized_user;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.Review;
@@ -17,7 +19,7 @@ public class ReviewAction extends Action {
             final HttpServletRequest request,
             final HttpServletResponse response) throws PersistentException {
         HttpSession session = request.getSession(true);
-        Forward forward = new Forward("/home.html", true);
+        Forward forward = new Forward("/homesteadInfo.html", true);
         Profile profile = (Profile) session.getAttribute("profile");
         if (profile == null) {
             forward.getAttributes().put("reviewMessage",

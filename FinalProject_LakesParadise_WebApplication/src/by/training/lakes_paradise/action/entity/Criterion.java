@@ -1,4 +1,4 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.entity;
 
 public enum Criterion {
     NAME("name"),

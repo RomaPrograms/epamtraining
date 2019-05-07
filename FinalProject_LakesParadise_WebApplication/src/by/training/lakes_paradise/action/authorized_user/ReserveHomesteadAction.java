@@ -1,5 +1,7 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.authorized_user;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Order;
 import by.training.lakes_paradise.db.entity.Profile;
@@ -18,7 +20,7 @@ import java.util.List;
 public class ReserveHomesteadAction extends Action {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/reserveHomestead.html", true);
+        Forward forward = new Forward("/authorized_user/reservationInfo.html", true);
         HttpSession session = request.getSession();
         OrderValidator validator = (OrderValidator)
                 ValidatorFactory.createValidator(Order.class);

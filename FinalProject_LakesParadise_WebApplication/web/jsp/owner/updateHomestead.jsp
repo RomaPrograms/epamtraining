@@ -42,33 +42,54 @@
         <fmt:message key="navbarEnter"/>
     </c:set>
 
+    <c:url value="/menu.html" var="menuUrl"/>
+    <c:url value="/sign_up.html" var="signUp"/>
+    <c:url value="/homesteadsList.html" var="homesteadListUrl"/>
+    <c:url value="/authorized_user/userCabinet.html" var="userCabinetUrl"/>
+    <c:url value="/homesteadsList.html" var="homesteadListUrl"/>
+    <c:url value="/owner/ownerHomesteads.html" var="ownerHomesteadsUrl"/>
+    <c:url value="/language/en_US.html" var="englishLanguageUrl"/>
+    <c:url value="/language/be_BY.html" var="belorussianLanguageUrl"/>
+    <c:url value="/language/ru_RU.html" var="russianLanguageUrl"/>
+    <c:url value="/log_in.html" var="logInUrl"/>
+
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
-                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a></li>
-                <li><a href="/signUp.html"><fmt:message key="registration"/></a></li>
-                <li><a href="/homesteads.html"><fmt:message key="navbarHomesteads"/></a></li>
+                <li><a href="${menuUrl}"><fmt:message key="navbarMenu"/></a>
+                </li>
+                <li><a href="${signUp}"><fmt:message key="registration"/></a>
+                </li>
+                <li><a href="${homesteadListUrl}"><fmt:message
+                        key="navbarHomesteads"/></a></li>
                 <c:if test="${profile != null}">
-                    <li><a href="/personalCabinet.html"><fmt:message key="navbarPersonalCabinet"/></a></li>
+                    <li><a href="${userCabinetUrl}"><fmt:message
+                            key="personalCabinet"/></a></li>
                 </c:if>
                 <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
-                    <li><a href="/ownerHomesteads.html"><fmt:message key="navbarOwnerHomesteads"/></a></li>
+                    <li><a href="${ownerHomesteadsUrl}"><fmt:message
+                            key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="navbarLanguage"/>
+                    <a class="dropdown-toggle"
+                       data-toggle="dropdown"><fmt:message
+                            key="navbarLanguage"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/en_US.html"><fmt:message key="englishLanguage"/></a></li>
-                        <li><a href="/be_BY.html"><fmt:message key="belarusianLanguage"/></a></li>
-                        <li><a href="/ru_RU.html"><fmt:message key="russianLanguage"/></a></li>
+                        <li><a href="${englishLanguageUrl}"><fmt:message
+                                key="englishLanguage"/></a></li>
+                        <li><a href="${belorussianLanguageUrl}"><fmt:message
+                                key="belarusianLanguage"/></a></li>
+                        <li><a href="${russianLanguageUrl}"><fmt:message
+                                key="russianLanguage"/></a></li>
                     </ul>
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-right" action="/changeStatus.html"
+            <form class="navbar-form navbar-right" action="${logInUrl}"
                   method="post" id="log_in_form">
                 <c:if test="${profile == null}">
                     <div class="form-group">
@@ -79,19 +100,23 @@
                         <input type="password" placeholder="${password}"
                                class="form-control" name="password">
                     </div>
-                    <input type="submit" class="btn btn-primary" value="${enter}">
-                    <br/><div class="form-group">
-                    <div id="navbarMessage"></div>
-                </div>
+                    <input type="submit" class="btn btn-primary"
+                           value="${enter}">
+                    <br/>
+                    <div class="form-group">
+                        <div id="navbarMessage"></div>
+                    </div>
                     <c:if test="${logInMessage != null}">
                         <div class="alert alert-danger">
-                            <strong><fmt:message key="navbarIssue"/>!</strong> <c:out value="${logInMessage}"/>
+                            <strong><fmt:message key="navbarIssue"/>!</strong>
+                            <c:out value="${logInMessage}"/>
                         </div>
                     </c:if>
                 </c:if>
                 <c:if test="${profile != null}">
                     <div class="form-group">
-                        <label class="text-primary"><fmt:message key="navbarWelcome"/> , <c:out
+                        <label class="text-primary"><fmt:message
+                                key="navbarWelcome"/> , <c:out
                                 value="${profile.getLogin()}"/></label>
                     </div>
                 </c:if>
@@ -118,30 +143,38 @@
     </c:set>
 
     <div class="page-header">
-        <h1><fmt:message key="registration"/>
-            <small><fmt:message key="registrationHomesteadInfo"/></small>
+        <h1>
+            <fmt:message key="updateInfo"/>
         </h1>
     </div>
-    <form class="form-horizontal" role="form" id="homestead_reg_form" method="post">
+    <form class="form-horizontal" role="form" id="homestead_reg_form"
+          method="post">
+        <input type="hidden" name="homesteadIdentity"
+               value="${homestead.getId()}"/>
+
         <div class="form-group">
             <label for="name"><fmt:message key="homesteadName"/></label>
             <input id="name" type="text" name="name"
+                   value="${homestead.getTitle()}"
                    placeholder="${enterHomesteadName}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="sign_up_description"><fmt:message key="homesteadDescription"/></label>
-            <textarea class="form-control" rows="5" id="sign_up_description"
-                      name="description" placeholder="${enterDescription}"></textarea>
+            <label for="description"><fmt:message
+                    key="homesteadDescription"/></label>
+            <textarea class="form-control" rows="5" id="description"
+                      name="description" placeholder="${enterDescription}">${homestead.getDescription()}</textarea>
         </div>
         <div class="form-group">
-            <label for="sign_up_price"><fmt:message key="homesteadPrice"/></label>
-            <input id="sign_up_price" type="text" name="price"
+            <label for="price"><fmt:message
+                    key="homesteadPrice"/></label>
+            <input id="price" type="text" name="price" value="${homestead.getPrice()}"
                    placeholder="${enterPrice}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="sign_up_peopleNumber"><fmt:message key="homesteadPeopleNumber"/></label>
-            <input id="sign_up_peopleNumber" type="text" name="peopleNumber"
-                   placeholder="${enterPeopleNumber}" class="form-control">
+            <label for="peopleNumber"><fmt:message
+                    key="homesteadPeopleNumber"/></label>
+            <input id="peopleNumber" type="text" name="peopleNumber"
+                   placeholder="${enterPeopleNumber}" class="form-control" value="${homestead.getPeopleNumber()}">
         </div>
 
         <c:if test="${successMessage != null}">
@@ -151,15 +184,15 @@
         </c:if>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary"><fmt:message key="registration"/></button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </div>
 
     </form>
 </div>
 
 <script type="text/javascript">
-    <jsp:include page="../js/homestead_sign_up_validation.js"/>
-    <jsp:include page="../js/log_in_validation.js"/>
+    <jsp:include page="../../js/homestead_validation.js"/>
+    <jsp:include page="../../js/log_in_validation.js"/>
 </script>
 
 </body>

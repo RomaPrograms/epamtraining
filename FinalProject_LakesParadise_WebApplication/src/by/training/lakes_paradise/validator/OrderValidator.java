@@ -1,11 +1,9 @@
 package by.training.lakes_paradise.validator;
 
 import by.training.lakes_paradise.db.entity.Order;
-import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.IncorrectDataException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,7 +17,7 @@ public class OrderValidator implements Validator<Order> {
         String startDate = request.getParameter("startDate");
         if (startDate != null && !startDate.isEmpty()) {
             try {
-                DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = format.parse(startDate);
                 order.setStartRenting(date);
             } catch (ParseException e) {
@@ -32,7 +30,7 @@ public class OrderValidator implements Validator<Order> {
         String endDate = request.getParameter("endDate");
         if (endDate != null && !endDate.isEmpty()) {
             try {
-                DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = format.parse(endDate);
                 order.setEndRenting(date);
             } catch (ParseException e) {

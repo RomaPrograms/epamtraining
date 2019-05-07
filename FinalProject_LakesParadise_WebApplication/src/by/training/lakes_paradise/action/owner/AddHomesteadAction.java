@@ -1,5 +1,7 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.owner;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.User;
@@ -14,10 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 
-public class UpdateHomesteadAction extends Action {
+public class AddHomesteadAction extends Action {
+
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/updateHomestead.jsp", false);
+        Forward forward = new Forward("/owner/addHomestead.jsp", false);
         HttpSession session = request.getSession(true);
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
@@ -25,19 +28,15 @@ public class UpdateHomesteadAction extends Action {
         Homestead homestead;
         HomesteadValidator homesteadValidator = (HomesteadValidator)
                 ValidatorFactory.createValidator(Homestead.class);
-        int homesteadId = Integer.parseInt(request.getParameter("homesteadIdentity"));
         try {
             homestead = homesteadValidator.validate(request);
             User user = new User();
             user.setId(profile.getId());
             homestead.setOwner(user);
-            homestead.setId(homesteadId);
-            factory.getService(HomesteadService.class).update(homestead);
-            request.setAttribute("successMessage", "Homestead was successfully updated.");
+            factory.getService(HomesteadService.class).add(homestead);
+            request.setAttribute("successMessage", "Homestead was successfully signed up.");
         } catch (IncorrectDataException e) {
-            homestead = factory.getService(HomesteadService.class).findById(homesteadId);
-            homestead.setId(homesteadId);
-            request.setAttribute("homestead", homestead);
+
         }
         return forward;
     }

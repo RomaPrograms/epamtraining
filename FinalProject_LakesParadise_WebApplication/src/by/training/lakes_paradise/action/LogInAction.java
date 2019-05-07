@@ -1,7 +1,8 @@
 package by.training.lakes_paradise.action;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Profile;
-import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.exception.IncorrectDataException;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.ProfileService;

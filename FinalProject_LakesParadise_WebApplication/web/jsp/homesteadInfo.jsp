@@ -64,24 +64,35 @@
         <fmt:message key="navbarEnter"/>
     </c:set>
 
-    <div class="container" id="navbar">
+    <c:url value="/menu.html" var="menuUrl"/>
+    <c:url value="/sign_up.html" var="signUp"/>
+    <c:url value="/homesteadsList.html" var="homesteadListUrl"/>
+    <c:url value="/authorized_user/userCabinet.html" var="userCabinetUrl"/>
+    <c:url value="/homesteadsList.html" var="homesteadListUrl"/>
+    <c:url value="/owner/ownerHomesteads.html" var="ownerHomesteadsUrl"/>
+    <c:url value="/language/en_US.html" var="englishLanguageUrl"/>
+    <c:url value="/language/be_BY.html" var="belorussianLanguageUrl"/>
+    <c:url value="/language/ru_RU.html" var="russianLanguageUrl"/>
+    <c:url value="/log_in.html" var="logInUrl"/>
+
+    <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
-                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a>
+                <li><a href="${menuUrl}"><fmt:message key="navbarMenu"/></a>
                 </li>
-                <li><a href="/signUp.html"><fmt:message key="registration"/></a>
+                <li><a href="${signUp}"><fmt:message key="registration"/></a>
                 </li>
-                <li><a href="/homesteads.html"><fmt:message
+                <li><a href="${homesteadListUrl}"><fmt:message
                         key="navbarHomesteads"/></a></li>
                 <c:if test="${profile != null}">
-                    <li><a href="/personalCabinet.html"><fmt:message
-                            key="navbarPersonalCabinet"/></a></li>
+                    <li><a href="${userCabinetUrl}"><fmt:message
+                            key="personalCabinet"/></a></li>
                 </c:if>
                 <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
-                    <li><a href="/ownerHomesteads.html"><fmt:message
+                    <li><a href="${ownerHomesteadsUrl}"><fmt:message
                             key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">
@@ -90,17 +101,17 @@
                             key="navbarLanguage"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/en_US.html"><fmt:message
+                        <li><a href="${englishLanguageUrl}"><fmt:message
                                 key="englishLanguage"/></a></li>
-                        <li><a href="/be_BY.html"><fmt:message
+                        <li><a href="${belorussianLanguageUrl}"><fmt:message
                                 key="belarusianLanguage"/></a></li>
-                        <li><a href="/ru_RU.html"><fmt:message
+                        <li><a href="${russianLanguageUrl}"><fmt:message
                                 key="russianLanguage"/></a></li>
                     </ul>
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-right" action="/changeStatus.html"
+            <form class="navbar-form navbar-right" action="${logInUrl}"
                   method="post" id="log_in_form">
                 <c:if test="${profile == null}">
                     <div class="form-group">
@@ -111,12 +122,12 @@
                         <input type="password" placeholder="${password}"
                                class="form-control" name="password">
                     </div>
+                    <input type="submit" class="btn btn-primary"
+                           value="${enter}">
                     <br/>
                     <div class="form-group">
                         <div id="navbarMessage"></div>
                     </div>
-                    <input type="submit" class="btn btn-primary"
-                           value="${enter}">
                     <c:if test="${logInMessage != null}">
                         <div class="alert alert-danger">
                             <strong><fmt:message key="navbarIssue"/>!</strong>
@@ -201,7 +212,10 @@
     <hr>
 
     <div class="form-group container">
-        <form action="/reserveHomestead.html">
+
+        <c:url value="/authorized_user/reservationInfo.html" var="reservationInfoUrl"/>
+
+        <form action="${reservationInfoUrl}">
             <input type="submit" class="btn btn-default"
                    value="${bookHomestead}"/>
             <c:if test="${registerMessage != null}">
@@ -212,7 +226,10 @@
             </c:if>
         </form>
         <label for="comment"><fmt:message key="enterComment"/>:</label>
-        <form action="/review.html">
+
+        <c:url value="/authorized_user/homesteadReview.html" var="homesteadReviewUrl"/>
+
+        <form action="${homesteadReviewUrl}">
             <textarea class="form-control" rows="5" id="comment"
                       name="comment"></textarea>
             <c:if test="${reviewMessage != null}">

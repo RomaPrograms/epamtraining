@@ -1,7 +1,8 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.authorized_user;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Profile;
-import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.IncorrectDataException;
 import by.training.lakes_paradise.exception.PersistentException;
@@ -15,16 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 
-public class UpdateUserDataAction extends Action {
+public class UpdateUserInfoAction extends Action {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/updateData.jsp", false);
+        Forward forward = new Forward("/authorized_user/updateUser.jsp", false);
         HttpSession session = request.getSession(true);
+        session.setAttribute("lastAction", "/authorized_user/updateUserInfo.html");
         Config.set(request, Config.FMT_LOCALE, session.getAttribute("language"));
         Profile profile = (Profile) session.getAttribute("profile");
         User user = null;
         try {
-            session.setAttribute("lastAction", "/updateData.html");
             request.setAttribute("profile", profile);
             UserValidator userValidator = (UserValidator)
                     ValidatorFactory.createValidator(User.class);

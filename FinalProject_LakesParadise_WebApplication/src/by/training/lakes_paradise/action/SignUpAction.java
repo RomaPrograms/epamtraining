@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.action;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.db.entity.User;
@@ -28,7 +30,7 @@ public class SignUpAction extends Action {
         Config.set(request, Config.FMT_LOCALE, session.getAttribute("language"));
         User user = null;
         try {
-            session.setAttribute("lastAction", "/signUp.html");
+            session.setAttribute("lastAction", "/sign_up.html");
             Profile profile = (Profile) session.getAttribute("profile");
             request.setAttribute("profile", profile);
             UserValidator userValidator = (UserValidator)

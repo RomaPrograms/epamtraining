@@ -1,16 +1,12 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.owner;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.exception.PersistentException;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class AddPhotoAction extends Action {
     @Override

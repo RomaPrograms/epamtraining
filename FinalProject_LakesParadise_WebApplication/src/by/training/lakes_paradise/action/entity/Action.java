@@ -1,4 +1,4 @@
-package by.training.lakes_paradise.action;
+package by.training.lakes_paradise.action.entity;
 
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.ServiceFactory;
@@ -23,6 +23,6 @@ abstract public class Action {
         this.factory = serviceFactory;
     }
 
-    abstract public Forward exec( HttpServletRequest request,
-            HttpServletResponse response) throws PersistentException;
+    abstract public Forward exec(HttpServletRequest request,
+                                 HttpServletResponse response) throws PersistentException;
 }

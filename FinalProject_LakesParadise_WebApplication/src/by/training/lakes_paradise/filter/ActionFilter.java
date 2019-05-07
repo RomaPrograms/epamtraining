@@ -1,6 +1,9 @@
 package by.training.lakes_paradise.filter;
 
 import by.training.lakes_paradise.action.*;
+import by.training.lakes_paradise.action.authorized_user.*;
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.owner.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,25 +31,29 @@ public class ActionFilter implements Filter {
 
     static {
         actions.put("/", MenuAction.class);
-        actions.put("/homesteads", HomesteadListAction.class);
-        actions.put("/signUp", SignUpAction.class);
         actions.put("/menu", MenuAction.class);
-        actions.put("/home", HomesteadAction.class);
-        actions.put("/review", ReviewAction.class);
-        actions.put("/changeStatus", LogInAction.class);
-        actions.put("/personalCabinet", UserCabinetAction.class);
-        actions.put("/addHomestead", AddHomesteadAction.class);
-        actions.put("/deleteHomestead", DeleteHomesteadAction.class);
-        actions.put("/updateHomestead", UpdateHomesteadAction.class);
-        actions.put("/en_US", ChangeLanguageAction.class);
-        actions.put("/be_BY", ChangeLanguageAction.class);
-        actions.put("/ru_RU", ChangeLanguageAction.class);
-        actions.put("/ownerHomesteads", OwnerHomesteadListAction.class);
-        actions.put("/addPhoto", AddPhotoAction.class);
+        actions.put("/sign_up", SignUpAction.class);
+        actions.put("/log_in", LogInAction.class);
+        actions.put("/homesteadInfo", HomesteadInfoAction.class);
+        actions.put("/homesteadsList", HomesteadsListAction.class);
         actions.put("/findHomesteadByCategory", FindHomesteadsAction.class);
-        actions.put("/reserveHomestead", ReservedHomesteadsListAction.class);
-        actions.put("/reservation", ReserveHomesteadAction.class);
-        actions.put("/updateData", UpdateUserDataAction.class);
+
+        actions.put("/language/en_US", ChangeLanguageAction.class);
+        actions.put("/language/be_BY", ChangeLanguageAction.class);
+        actions.put("/language/ru_RU", ChangeLanguageAction.class);
+
+        actions.put("/authorized_user/reservation", ReserveHomesteadAction.class);
+        actions.put("/authorized_user/reservationInfo", ReserveHomesteadInfoAction.class);
+        actions.put("/authorized_user/userCabinet", UserCabinetAction.class);
+        actions.put("/authorized_user/updateUserInfo", UpdateUserInfoAction.class);
+        actions.put("/authorized_user/homesteadReview", ReviewAction.class);
+
+
+        actions.put("/owner/addHomestead", AddHomesteadAction.class);
+        actions.put("/owner/deleteHomestead", DeleteHomesteadAction.class);
+        actions.put("/owner/updateHomestead", UpdateHomesteadAction.class);
+        actions.put("/owner/ownerHomesteads", OwnerHomesteadsListAction.class);
+        actions.put("/owner/addPhoto", AddPhotoAction.class);
     }
 
     @Override

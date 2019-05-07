@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.action;
 
+import by.training.lakes_paradise.action.entity.Action;
+import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.exception.PersistentException;
 
 import javax.servlet.http.HttpServletRequest;

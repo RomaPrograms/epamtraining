@@ -2,7 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page errorPage="error.jsp" %>
+<%@ page errorPage="../error.jsp" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
@@ -31,16 +31,10 @@
         #body {
             font-family: sans-serif;
             font-size: 11pt;
-            background-image: url(../img/mainPicture.jpg);
+            background-image: url(../img/myImages/mainPicture.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-        }
-
-        #homestead_catalog {
-            background-color: white;
-            padding-top: 25px;
-            padding-bottom: 25px;
         }
 
         #navbar {
@@ -52,6 +46,7 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
+
     </style>
 </head>
 
@@ -70,24 +65,35 @@
         <fmt:message key="navbarEnter"/>
     </c:set>
 
-    <div class="container" id="navbar">
+    <c:url value="/menu.html" var="menuUrl"/>
+    <c:url value="/sign_up.html" var="signUp"/>
+    <c:url value="/homesteadsList.html" var="homesteadListUrl"/>
+    <c:url value="/authorized_user/userCabinet.html" var="userCabinetUrl"/>
+    <c:url value="/homesteadsList.html" var="homesteadListUrl"/>
+    <c:url value="/owner/ownerHomesteads.html" var="ownerHomesteadsUrl"/>
+    <c:url value="/language/en_US.html" var="englishLanguageUrl"/>
+    <c:url value="/language/be_BY.html" var="belorussianLanguageUrl"/>
+    <c:url value="/language/ru_RU.html" var="russianLanguageUrl"/>
+    <c:url value="/log_in.html" var="logInUrl"/>
+
+    <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul id="list" class="nav navbar-nav">
-                <li><a href="/menu.html"><fmt:message key="navbarMenu"/></a>
+                <li><a href="${menuUrl}"><fmt:message key="navbarMenu"/></a>
                 </li>
-                <li><a href="/signUp.html"><fmt:message
-                        key="registration"/></a></li>
-                <li><a href="/homesteads.html"><fmt:message
+                <li><a href="${signUp}"><fmt:message key="registration"/></a>
+                </li>
+                <li><a href="${homesteadListUrl}"><fmt:message
                         key="navbarHomesteads"/></a></li>
                 <c:if test="${profile != null}">
-                    <li><a href="/personalCabinet.html"><fmt:message
-                            key="navbarPersonalCabinet"/></a></li>
+                    <li><a href="${userCabinetUrl}"><fmt:message
+                            key="personalCabinet"/></a></li>
                 </c:if>
                 <c:if test="${profile != null && profile.getRole().getIdentity() == 1}">
-                    <li><a href="/ownerHomesteads.html"><fmt:message
+                    <li><a href="${ownerHomesteadsUrl}"><fmt:message
                             key="navbarOwnerHomesteads"/></a></li>
                 </c:if>
                 <li class="dropdown">
@@ -96,17 +102,17 @@
                             key="navbarLanguage"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/en_US.html"><fmt:message
+                        <li><a href="${englishLanguageUrl}"><fmt:message
                                 key="englishLanguage"/></a></li>
-                        <li><a href="/be_BY.html"><fmt:message
+                        <li><a href="${belorussianLanguageUrl}"><fmt:message
                                 key="belarusianLanguage"/></a></li>
-                        <li><a href="/ru_RU.html"><fmt:message
+                        <li><a href="${russianLanguageUrl}"><fmt:message
                                 key="russianLanguage"/></a></li>
                     </ul>
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-right" action="/changeStatus.html"
+            <form class="navbar-form navbar-right" action="${logInUrl}"
                   method="post" id="log_in_form">
                 <c:if test="${profile == null}">
                     <div class="form-group">
@@ -143,66 +149,92 @@
 </nav>
 
 <div class="container">
-    <button class="btn btn-default" name="add">
-        <a href="/addHomestead.html">Добавить агроусадьбу</a>
-    </button>
+    <c:set var="startRenting" scope="page">
+        <fmt:message key="startRenting"/>
+    </c:set>
+
+    <c:set var="endRenting" scope="page">
+        <fmt:message key="endRenting"/>
+    </c:set>
+
+    <c:url value="/authorized_user/reservation.html" var="reservationUrl"/>
+
+    <form method="post" action="${reservationUrl}" id="reg_form">
+        <div class="col-md-3 form-group">
+            <label for="startDate"><fmt:message key="startRenting"/></label>
+            <input type="date" placeholder="${startRenting}"
+                   id="startDate" name="startDate"
+                   class="form-control">
+        </div>
+
+        <div class="col-md-3 form-group">
+            <label for="endDate"><fmt:message key="endRenting"/></label>
+            <input type="date" placeholder="${endRenting}" id="endDate"
+                   class="form-control" name="endDate">
+        </div>
+
+        <br/>
+        <div class="col-md-3 form-group">
+            <button type="submit" class="btn btn-primary"><fmt:message key="rentHomestead"/>
+            </button>
+        </div>
+        <c:if test="${registerErrorMessage != null}">
+            <div class="alert alert-danger">
+                <strong>Issue!</strong>
+                <c:out value="${registerErrorMessage}"/>
+            </div>
+        </c:if>
+        <c:if test="${registerSuccessMessage != null}">
+            <div class="alert alert-success">
+                <strong>Success!</strong>
+                <c:out value="${registerSuccessMessage}"/>
+            </div>
+        </c:if>
+    </form>
 </div>
 
-<div id="homestead_catalog" class="container">
-    <c:forEach var="elem" items="${res}" varStatus="status">
-        <div class="row">
-            <div class="col-md-4">
-                <img width="300px" height="200px" class="img-rounded"
-                     src="../img/1.1_farmstead.jpg"/>
-            </div>
-            <div class="col-md-8">
-                <h2><c:out value="${elem.getTitle()}"/></h2>
-                <p><c:out value="${elem.getDescription()}"/></p>
-                <dl>
-                    <dt>Цена</dt>
-                    <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                    <dt>Колличество человек</dt>
-                    <dd>- <c:out
-                            value="${elem.getPeopleNumber()}"/></dd>
-                </dl>
-                <form method="post" action="/home.html">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <input type="submit" class="btn btn-default" name="show"
-                           value="Узнать
-                больше&raquo;"/>
-                </form>
-                <form method="post" action="/deleteHomestead.html">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <input type="submit" class="btn btn-default" name="delete"
-                           value="Удалить"/>
-                </form>
-                <form method="post" action="/updateHomestead.html">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <input type="submit" class="btn btn-default" name="update"
-                           value="Обновить информацию"/>
-                </form>
-                <input type="submit" class="btn btn-default" name="update"
-                       value="Добавить фотографию"/>
-                <!-- COMPONENT START -->
-                <input class="btn btn-default btn-choose" name="photo"
-                       type="file" value="Choose file"
-                       accept=".jpg, .jpeg, .png"/>
-            </div>
+<div class="panel-group container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title text-center">
+                <a data-toggle="collapse" href="#collapse1"><fmt:message key="showDates"/></a>
+            </h4>
         </div>
-        <hr>
-    </c:forEach>
+        <div id="collapse1" class="panel-collapse collapse container">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th><fmt:message key="startRenting"/></th>
+                            <th><fmt:message key="endDate"/></th>
+                            <th><fmt:message key="login"/></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="elem" items="${res}" varStatus="status">
+                            <tr>
+                                <td>${elem.getStartRentingByPattern()}</td>
+                                <td>${elem.getEndRentingByPattern()}</td>
+                                <td>${elem.getUser().getLogin()}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
+
 <hr>
-<footer>
+<footer class="text-center">
     <p>&copy; Все права защищены 2019</p>
 </footer>
-</div>
 
 <script type="text/javascript">
-    <jsp:include page="../js/log_in_validation.js"/>
+    <jsp:include page="../../js/registration_validation.js"/>
+    <jsp:include page="../../js/log_in_validation.js"/>
 </script>
 
 </body>

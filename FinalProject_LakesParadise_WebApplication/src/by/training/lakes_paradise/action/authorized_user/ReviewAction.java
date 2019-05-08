@@ -7,6 +7,8 @@ import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.Review;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.ReviewService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,16 +16,23 @@ import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 public class ReviewAction extends Action {
+
+    private static final Logger LOGGER
+            = LogManager.getLogger(ReviewAction.class);
+
     @Override
     public Forward exec(
             final HttpServletRequest request,
             final HttpServletResponse response) throws PersistentException {
-        HttpSession session = request.getSession(true);
+
         Forward forward = new Forward("/homesteadInfo.html", true);
+        HttpSession session = request.getSession(true);
         Profile profile = (Profile) session.getAttribute("profile");
+
         if (profile == null) {
             forward.getAttributes().put("reviewMessage",
                     "You can't do this action until you didn't log in");
+            LOGGER.info("Review wasn't saved, cause user didn't log in");
         } else {
             Review review = new Review();
             review.setText(request.getParameter("comment"));
@@ -34,6 +43,7 @@ public class ReviewAction extends Action {
             factory.getService(ReviewService.class).create(review);
             homestead.getReviews().add(0, review);
             session.setAttribute("homestead", homestead);
+            LOGGER.info("Review was saved successfully");
         }
 
         return forward;

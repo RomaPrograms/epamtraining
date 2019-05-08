@@ -18,8 +18,7 @@ public class ChangeLanguageAction extends Action {
 
     @Override
     public Forward exec(HttpServletRequest request,
-                        HttpServletResponse response)
-            throws PersistentException {
+                        HttpServletResponse response) {
 
         HttpSession session = request.getSession(true);
         String lastAction = (String) session.getAttribute("lastAction");
@@ -34,6 +33,8 @@ public class ChangeLanguageAction extends Action {
         String country = currentLang[1];
         Locale locale = new Locale(language, country);
         session.setAttribute("language", locale);
+
+        LOGGER.info("Language was changed successfully.");
 
         return forward;
     }

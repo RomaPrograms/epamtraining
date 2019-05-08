@@ -6,11 +6,6 @@
     <tlib-version>1.0</tlib-version>
     <short-name>ctg</short-name>
     <uri>customtags</uri>
-    <tag>
-        <name>info-time</name>
-        <tag-class>by.training.lakes_paradise.custom.InfoTimeTag</tag-class>
-        <body-content>empty</body-content>
-    </tag>
 
     <tag>
         <name>footer-tag</name>

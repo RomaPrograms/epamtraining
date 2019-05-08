@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.db.mysql;
 
-import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.HomesteadDao;
 import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.User;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,23 +47,22 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     /**
      * First part of query for getting data from table.
      */
-    private static final String SQL_SCRIPT_SELECT
-            = "SELECT id, title, people_number,"
-            + " price, description, rating, number_of_voted_users, owner_id ";
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
+            = "SELECT * from homesteads h inner join users u on"
+            + " h.owner_id = u.id ";
 
     /**
      * Script gets all objects from table homesteads by title.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_TITLE
-            = SQL_SCRIPT_SELECT
-            + "FROM homesteads WHERE title = (?)";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " WHERE h.title = (?)";
 
     /**
      * Script gets all objects from table homesteads by price.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PRICE
-            = SQL_SCRIPT_SELECT
-            + "FROM homesteads WHERE price BETWEEN (?) AND (?)";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE
+            + " WHERE h.price BETWEEN (?) AND (?)";
 
     /**
      * Script insert new object into the table homesteads.
@@ -79,21 +76,13 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * Script gets all objects from table homesteads by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
-            = "SELECT title, people_number, price, description, rating,"
-            + " number_of_voted_users,"
-            + " owner_id FROM homesteads WHERE id = (?)";
-
-    /**
-     * Script gets all objects from table homesteads.
-     */
-    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
-            = SQL_SCRIPT_SELECT + "FROM homesteads";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + "WHERE id = (?)";
 
     /**
      * Script gets all objects from table homesteads.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID
-            = SQL_SCRIPT_SELECT + "FROM homesteads where owner_id=(?)";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " where owner_id=(?)";
 
     /**
      * Script updates object in table homesteads.
@@ -190,25 +179,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             List<Homestead> homesteads = new ArrayList<>();
             Homestead homestead;
             while (resultSet.next()) {
-                homestead = new Homestead();
-                homestead.setId(resultSet
-                        .getInt("id"));
-                homestead.setTitle(resultSet
-                        .getString("title"));
-                homestead.setPeopleNumber(resultSet
-                        .getInt("people_number"));
-                homestead.setPrice(resultSet
-                        .getBigDecimal("price"));
-                homestead.setDescription(resultSet
-                        .getString("description"));
-                homestead.setRating(resultSet
-                        .getDouble("rating"));
-                homestead.setNumberOfVotedUsers(resultSet
-                        .getLong("number_of_voted_users"));
-                User owner = new User();
-                owner.setId(resultSet
-                        .getInt("owner_id"));
-                homestead.setOwner(owner);
+                homestead = createHomestead(resultSet);
                 homesteads.add(homestead);
             }
 
@@ -371,24 +342,9 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             resultSet = statement.executeQuery();
             Homestead homestead = null;
             while (resultSet.next()) {
-                homestead = new Homestead();
-                homestead.setTitle(resultSet
-                        .getString("title"));
-                homestead.setPeopleNumber(resultSet
-                        .getInt("people_number"));
-                homestead.setPrice(resultSet
-                        .getBigDecimal("price"));
-                homestead.setDescription(resultSet
-                        .getString("description"));
-                homestead.setRating(resultSet
-                        .getDouble("rating"));
-                homestead.setNumberOfVotedUsers(resultSet
-                        .getLong("number_of_voted_users"));
-                User owner = new User();
-                owner.setId(resultSet
-                        .getInt("owner_id"));
-                homestead.setOwner(owner);
+                homestead = createHomestead(resultSet);
             }
+
             return homestead;
 
         } catch (SQLException e) {
@@ -546,9 +502,14 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                 resultSet.getDouble("rating"));
         homestead.setNumberOfVotedUsers(
                 resultSet.getLong("number_of_voted_users"));
+
         User owner = new User();
         owner.setId(
                 resultSet.getInt("owner_id"));
+        owner.setName(resultSet.getString("name"));
+        owner.setSurname(resultSet.getString("surname"));
+        owner.setPhone(resultSet.getInt("phone"));
+
         homestead.setOwner(owner);
         return homestead;
     }

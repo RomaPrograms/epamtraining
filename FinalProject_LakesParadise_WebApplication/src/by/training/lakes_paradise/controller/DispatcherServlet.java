@@ -21,7 +21,6 @@ import java.util.Map;
 /**
  * Servlet class which handles WEB-requests.
  */
-@WebServlet("/firstAction")
 public class DispatcherServlet extends HttpServlet {
     /**
      * Logger for creation notes to some appender.
@@ -80,6 +79,7 @@ public class DispatcherServlet extends HttpServlet {
                         HttpServletResponse response)
             throws ServletException, IOException, PersistentException {
         Action action = (Action) request.getAttribute("action");
+
         try {
             HttpSession session = request.getSession(false);
             if (session != null) {
@@ -99,14 +99,14 @@ public class DispatcherServlet extends HttpServlet {
             Forward forward
                     = actionManager.execute(action, request, response);
             actionManager.close();
-            if (session != null && forward != null
-                    && !forward.getAttributes().isEmpty()) {
+
+            if (session != null && !forward.getAttributes().isEmpty()) {
                 session.setAttribute("redirectedData",
                         forward.getAttributes());
             }
 
             String requestedUri = request.getRequestURI();
-            if (forward != null && forward.isRedirect()) {
+            if (forward.isRedirect()) {
                 String redirectedUri
                         = request.getContextPath() + forward.getForward();
                 LOGGER.debug(String.format("Request for URI \"%s\" id"
@@ -114,13 +114,9 @@ public class DispatcherServlet extends HttpServlet {
                         redirectedUri));
                 response.sendRedirect(redirectedUri);
             } else {
-                String jspPage;
-                if (forward != null) {
-                    jspPage = forward.getForward();
-                } else {
-                    jspPage = action.getName() + ".jsp";
-                }
+                String jspPage = action.getName() + ".jsp";
                 jspPage = "/jsp" + jspPage;
+
                 LOGGER.debug(String.format("Request for URI \"%s\" is forwarded"
                         + " to JSP \"%s\"", requestedUri, jspPage));
                 getServletContext().getRequestDispatcher(jspPage)
@@ -128,7 +124,7 @@ public class DispatcherServlet extends HttpServlet {
             }
         } catch (PersistentException e) {
             LOGGER.error("It is impossible to process request", e);
-            request.setAttribute("error", "Ошибка обработки данных");
+            request.setAttribute("error", "Data processing error");
             getServletContext().getRequestDispatcher(
                     "/WEB-INF/jsp/error.jsp").forward(request, response);
         }

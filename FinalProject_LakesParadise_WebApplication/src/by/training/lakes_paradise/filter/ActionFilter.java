@@ -65,18 +65,18 @@ public class ActionFilter implements Filter {
         if (servletRequest instanceof HttpServletRequest) {
             HttpServletRequest httpServletRequest
                     = (HttpServletRequest) servletRequest;
-            String contextPath = httpServletRequest.getContextPath();//TODO что эта хрень вообще возвращает.
             String uri = httpServletRequest.getRequestURI();
             LOGGER.debug(String.format(
                     "Starting of processing of request for URI \"%s\"", uri));
-            int beginAction = contextPath.length();
             int endAction = uri.lastIndexOf('.');
             String actionName;
+
             if (endAction >= 0) {
-                actionName = uri.substring(beginAction, endAction);
+                actionName = uri.substring(0, endAction);
             } else {
-                actionName = uri.substring(beginAction);
+                actionName = uri;
             }
+
             Class<? extends Action> actionClass = actions.get(actionName);
             try {
                 Action action = actionClass.getConstructor().newInstance();
@@ -85,7 +85,7 @@ public class ActionFilter implements Filter {
                 filterChain.doFilter(servletRequest, servletResponse);
             } catch (IllegalAccessException | InstantiationException e) {
                 httpServletRequest.setAttribute("error", String.format(
-                        "Запрошенный адрес %s не может быть обработан сервером",
+                        "Required address %s can not be handled by server",
                         uri));
                 httpServletRequest.getServletContext().getRequestDispatcher(
                         "/jsp/error.jsp").forward(servletRequest,

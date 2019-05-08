@@ -18,25 +18,13 @@ $(document).ready(function() {
                     }
                 }
             },
-            description: {
-                validators: {
-                    notEmpty: {
-                        message: 'The description is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 10,
-                        max: 65_535,
-                        message: 'Please enter at least 10 characters and no more than 225'
-                    }
-                }
-            },
             price: {
                 validators: {
                     notEmpty: {
                         message: 'The price is required and cannot be empty'
                     },
                     regexp: {
-                        regexp: /((\d{0,10}\.?\d{0,3}))/,
+                        regexp: /^\d{0,10}((\.\d{0,3}))?$/,
                         message: 'Please, follow pattern: ##########.### #-unnecessary symbol.'
                     }
                 }

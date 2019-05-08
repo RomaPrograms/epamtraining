@@ -4,7 +4,6 @@
 <%@ taglib prefix="cng" uri="customtags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page errorPage="error.jsp" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
@@ -201,9 +200,9 @@
                 &raquo;</a></p>
         </div>
     </div>
-
-    <cng:footer-tag/>
 </div>
+
+<cng:footer-tag language="${locale}"/>
 
 <script type="text/javascript">
     <jsp:include page="../js/log_in_validation.js"/>

@@ -105,12 +105,12 @@
     </form>
 </div>
 
+<cng:footer-tag language="${locale}"/>
+
 <script type="text/javascript">
     <jsp:include page="../js/sign_up_validation.js"/>
     <jsp:include page="../js/log_in_validation.js"/>
 </script>
-
-<cng:footer-tag/>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
+<%@ taglib prefix="cng" uri="customtags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <fmt:setBundle basename="property.text"/>
@@ -17,7 +18,7 @@
     <link rel="stylesheet"
           href="/vendors/formvalidation/dist/css/formValidation.min.css">
     <link rel="stylesheet"
-          href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+          href="/cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
@@ -37,10 +38,11 @@
 </head>
 <body>
 
-<ctg:navbar-tag profile="${profile}" language="${locale}" logInMessage="${logInMessage}"/>
+<ctg:navbar-tag profile="${profile}" language="${locale}"
+                logInMessage="${logInMessage}"/>
 
 
-<div class="container" id="main_body">
+<div class="container">
     <div class="page-header">
         <h1><fmt:message key="personalCabinet"/>
             <small><fmt:message key="personalCabinetInfo"/></small>
@@ -93,8 +95,9 @@
                                     <tr>
                                         <td>${order.getStartRentingByPattern()}</td>
                                         <td>${order.getEndRentingByPattern()}</td>
-                                        <input type="hidden" value="${order.getHomestead().getId()}"
-                                        name="homesteadIdentity"/>
+                                        <input type="hidden"
+                                               value="${order.getHomestead().getId()}"
+                                               name="homesteadIdentity"/>
                                         <td>
                                             <button id="homesteadButton">
                                                     ${order.getHomestead().getTitle()}
@@ -125,9 +128,9 @@
                    value="${update}">
         </form>
     </div>
-
-
 </div>
+
+<cng:footer-tag language="${locale}"/>
 
 </body>
 </html>

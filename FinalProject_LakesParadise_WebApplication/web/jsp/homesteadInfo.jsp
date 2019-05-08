@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
-<%@ page errorPage="error.jsp" %>
+<%@ taglib prefix="cng" uri="customtags" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
@@ -38,14 +38,8 @@
             background-attachment: fixed;
         }
 
-        #homestead_catalog, #navbar {
+        #homestead_catalog {
             background-color: white;
-        }
-
-        footer {
-            background-color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
         }
 
     </style>
@@ -213,10 +207,7 @@
 
 </div>
 
-<hr>
-<footer>
-    <p>&copy; Все права защищены 2019</p>
-</footer>
+<cng:footer-tag language="${locale}"/>
 
 <script type="text/javascript">
     <jsp:include page="../js/log_in_validation.js"/>

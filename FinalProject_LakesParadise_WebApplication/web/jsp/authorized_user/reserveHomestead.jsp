@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
+<%@ taglib prefix="cng" uri="customtags" %>
 <%@ page errorPage="../error.jsp" %>
 <fmt:setBundle basename="property.text"/>
 
@@ -37,17 +38,6 @@
             background-size: cover;
             background-attachment: fixed;
         }
-
-        #navbar {
-            background-color: white;
-        }
-
-        footer {
-            background-color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
     </style>
 </head>
 
@@ -134,10 +124,7 @@
     </div>
 </div>
 
-<hr>
-<footer class="text-center">
-    <p>&copy; Все права защищены 2019</p>
-</footer>
+<cng:footer-tag language="${locale}"/>
 
 <script type="text/javascript">
     <jsp:include page="../../js/registration_validation.js"/>

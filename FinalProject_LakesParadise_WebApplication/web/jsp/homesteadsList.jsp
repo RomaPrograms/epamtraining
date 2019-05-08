@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
-<%@ page errorPage="error.jsp" %>
+<%@ taglib prefix="cng" uri="customtags" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
@@ -42,16 +42,6 @@
             background-color: white;
             padding-top: 25px;
             padding-bottom: 25px;
-        }
-
-        #navbar {
-            background-color: white;
-        }
-
-        footer {
-            background-color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
         }
 
         #search_row {
@@ -161,12 +151,8 @@
         </c:forEach>
     </c:if>
 </div>
-<hr>
-<footer class="footer">
-    <div class="footer-bottom text-center">
-        <p>&copy; Все права защищены 2019</p>
-    </div>
-</footer>
+
+<cng:footer-tag language="${locale}"/>
 
 <script type="text/javascript">
     <jsp:include page="../js/log_in_validation.js"/>

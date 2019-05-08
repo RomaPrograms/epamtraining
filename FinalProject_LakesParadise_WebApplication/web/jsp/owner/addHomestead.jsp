@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
+<%@ taglib prefix="cng" uri="customtags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <fmt:setBundle basename="property.text"/>
@@ -17,7 +18,7 @@
     <link rel="stylesheet"
           href="/vendors/formvalidation/dist/css/formValidation.min.css">
     <link rel="stylesheet"
-          href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+          href="/cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
@@ -65,7 +66,7 @@
             <label for="description"><fmt:message
                     key="homesteadDescription"/></label>
             <textarea class="form-control" rows="5" id="description"
-                      name="description"
+                      name="description" minlength="10"
                       placeholder="${enterDescription}"></textarea>
         </div>
         <div class="form-group">
@@ -94,9 +95,11 @@
     </form>
 </div>
 
+<cng:footer-tag language="${locale}"/>
+
 <script type="text/javascript">
-    <jsp:include page="../../js/homestead_validation.js"/>
     <jsp:include page="../../js/log_in_validation.js"/>
+    <jsp:include page="../../js/homestead_validation.js"/>
 </script>
 
 </body>

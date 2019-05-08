@@ -10,16 +10,19 @@ import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.UserService;
 import by.training.lakes_paradise.validator.UserValidator;
 import by.training.lakes_paradise.validator.ValidatorFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
-
-// мне ещё здесь нужно добавить логгеры и обработку этих логеров
-
+import java.util.Locale;
 
 public class SignUpAction extends Action {
+
+    private static final Logger LOGGER
+            = LogManager.getLogger(SignUpAction.class);
 
     @Override
     public Forward exec(
@@ -27,24 +30,29 @@ public class SignUpAction extends Action {
             final HttpServletResponse response) {
         Forward forward = new Forward("/signUp.jsp", false);
         HttpSession session = request.getSession(true);
-        Config.set(request, Config.FMT_LOCALE, session.getAttribute("language"));
+        session.setAttribute("lastAction", "/sign_up.html");
+        Profile profile = (Profile) session.getAttribute("profile");
+        request.setAttribute("profile", profile);
+        Locale locale = (Locale) session.getAttribute("language");
+        request.setAttribute("locale", locale);
+        Config.set(request, Config.FMT_LOCALE, locale);
+
         User user = null;
         try {
-            session.setAttribute("lastAction", "/sign_up.html");
-            Profile profile = (Profile) session.getAttribute("profile");
-            request.setAttribute("profile", profile);
             UserValidator userValidator = (UserValidator)
                     ValidatorFactory.createValidator(User.class);
             user = userValidator.validate(request);
             user.setRole(Role.USER);
             factory.getService(UserService.class).create(user);
             request.setAttribute("successMessage", "You were successfully signed up, right now you can log in.");
+            LOGGER.info("User " + user.getLogin() + " signed up successfully.");
         } catch (IncorrectDataException e) {
-
+            LOGGER.error("User validation wasn't passed.");
         } catch (PersistentException e) {
             request.setAttribute("errorMessage", "Sorry, but profile with such login already exist, change your login please.");
             request.setAttribute("userInfo", user);
         }
+
         return forward;
     }
 }

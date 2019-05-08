@@ -82,7 +82,7 @@
                         <li><a href="${englishLanguageUrl}"><fmt:message
                                 key="englishLanguage"/></a></li>
                         <li><a href="${belorussianLanguageUrl}"><fmt:message
-                                key="belarusianLanguage"/></a></li>
+                                key="belorussianLanguage"/></a></li>
                         <li><a href="${russianLanguageUrl}"><fmt:message
                                 key="russianLanguage"/></a></li>
                     </ul>

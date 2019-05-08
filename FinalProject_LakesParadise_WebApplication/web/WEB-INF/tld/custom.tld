@@ -22,4 +22,28 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>navbar-tag</name>
+        <tag-class>by.training.lakes_paradise.custom.NavbarTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>profile</name>
+            <required>true</required>
+            <type>by.training.lakes_paradise.db.entity.Profile</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>language</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.util.Locale</type>
+        </attribute>
+        <attribute>
+            <name>logInMessage</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
 </taglib>

@@ -46,7 +46,8 @@ public class ServiceFactoryRealization implements ServiceFactory {
                 ClassLoader classLoader = value.getClassLoader();
                 Class<?>[] interfaces = {key};
                 Transaction transaction = factory.createTransaction();
-                ServiceRealization service = value.getConstructor().newInstance();
+                ServiceRealization service
+                        = value.getConstructor().newInstance();
                 service.setTransaction(transaction);
                 InvocationHandler handler
                         = new ServiceInvocationHandlerRealization(service);

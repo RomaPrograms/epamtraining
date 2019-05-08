@@ -2,7 +2,6 @@ package by.training.lakes_paradise.action;
 
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
-import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,14 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Locale;
 
+/**
+ * Class handles user request for changing language.
+ */
 public class ChangeLanguageAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(ChangeLanguageAction.class);
 
     @Override
-    public Forward exec(HttpServletRequest request,
-                        HttpServletResponse response) {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response) {
 
         HttpSession session = request.getSession(true);
         String lastAction = (String) session.getAttribute("lastAction");

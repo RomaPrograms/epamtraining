@@ -11,7 +11,8 @@ import java.util.Date;
 
 public class OrderValidator implements Validator<Order> {
     @Override
-    public Order validate(HttpServletRequest request) throws IncorrectDataException {
+    public Order validate(final HttpServletRequest request)
+            throws IncorrectDataException {
         Order order = new Order();
 
         String startDate = request.getParameter("startDate");
@@ -40,7 +41,7 @@ public class OrderValidator implements Validator<Order> {
             throw new IncorrectDataException("startDate", startDate);
         }
 
-        if(order.getStartRenting().getTime()
+        if (order.getStartRenting().getTime()
                 > order.getEndRenting().getTime()) {
             throw new IncorrectDataException("endDate", endDate);
         }

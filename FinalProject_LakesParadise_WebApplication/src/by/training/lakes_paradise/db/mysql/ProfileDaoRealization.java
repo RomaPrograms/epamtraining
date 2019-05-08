@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.db.mysql;
 
-import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.ProfileDao;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.Role;
@@ -11,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Connection;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -253,12 +251,10 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     @Override
     public Profile read(final Integer id) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();

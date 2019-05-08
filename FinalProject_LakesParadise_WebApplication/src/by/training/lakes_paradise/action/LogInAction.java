@@ -15,15 +15,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Class handles user request for authentication.
+ */
 public class LogInAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(LogInAction.class);
 
     @Override
-    public Forward exec(
-            final HttpServletRequest request,
-            final HttpServletResponse response) throws PersistentException {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
+
         Forward forward;
         HttpSession session = request.getSession(true);
         String lastAction = (String) session.getAttribute("lastAction");
@@ -33,8 +40,10 @@ public class LogInAction extends Action {
         try {
             ProfileValidator profileValidator = (ProfileValidator)
                     ValidatorFactory.createValidator(Profile.class);
+            ProfileService profileService
+                    = factory.getService(ProfileService.class);
             profile = profileValidator.validate(request);
-            profile = factory.getService(ProfileService.class)
+            profile = profileService
                     .read(profile.getLogin(), profile.getPassword());
 
             if (profile == null) {
@@ -43,7 +52,8 @@ public class LogInAction extends Action {
                 LOGGER.info("Incorrect data. User doesn't exist.");
             } else {
                 session.setAttribute("profile", profile);
-                LOGGER.info("Authentication " + profile.getLogin() + " passed successfully.");
+                LOGGER.info("Authentication " + profile.getLogin()
+                        + " passed successfully.");
             }
 
         } catch (IncorrectDataException e) {

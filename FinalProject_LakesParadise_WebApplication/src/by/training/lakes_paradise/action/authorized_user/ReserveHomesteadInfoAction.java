@@ -17,31 +17,46 @@ import javax.servlet.jsp.jstl.core.Config;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Class handles authorized user request for showing reservation page.
+ */
 public class ReserveHomesteadInfoAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(ReserveHomesteadInfoAction.class);
 
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
         Forward forward;
         HttpSession session = request.getSession();
-        session.setAttribute("lastAction", "/authorized_user/reservationInfo.html");
+        session.setAttribute("lastAction",
+                "/authorized_user/reservationInfo.html");
         Profile profile = (Profile) session.getAttribute("profile");
 
         if (profile != null) {
-            forward = new Forward("/authorized_user/reserveHomestead.jsp", false);
-            Homestead homestead = (Homestead) session.getAttribute("homestead");
-            List<Order> orders = factory.getService(OrderService.class)
-                    .readByHomestead(homestead.getId());
+            forward = new Forward(
+                    "/authorized_user/reserveHomestead.jsp",
+                    false);
+            Homestead homestead
+                    = (Homestead) session.getAttribute("homestead");
+            OrderService orderService = factory.getService(OrderService.class);
+            List<Order> orders
+                    = orderService.readByHomestead(homestead.getId());
             request.setAttribute("res", orders);
             Locale locale = (Locale) session.getAttribute("language");
             request.setAttribute("locale", locale);
             Config.set(request, Config.FMT_LOCALE, locale);
-            LOGGER.info("Page for reserving homesteads was opened successfully");
+            LOGGER.info(
+                    "Page for reserving homesteads was opened successfully");
         } else {
             forward = new Forward("/homesteadInfo.html", true);
-            forward.getAttributes().put("registerMessage", "You can't do this action until you didn't log in");
+            forward.getAttributes().put("registerMessage",
+                    "You can't do this action until you didn't log in");
         }
 
         return forward;

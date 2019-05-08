@@ -19,14 +19,24 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
 
+/**
+ * Class handles owner request for adding new homestead.
+ */
 public class AddHomesteadAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(AddHomesteadAction.class);
 
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/owner/addHomestead.jsp", false);
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
+
+        Forward forward = new Forward("/owner/addHomestead.jsp",
+                false);
         HttpSession session = request.getSession(true);
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
@@ -41,7 +51,9 @@ public class AddHomesteadAction extends Action {
             User user = new User();
             user.setId(profile.getId());
             homestead.setOwner(user);
-            factory.getService(HomesteadService.class).create(homestead);
+            HomesteadService homesteadService
+                    = factory.getService(HomesteadService.class);
+            homesteadService.create(homestead);
             request.setAttribute("successMessage",
                     "Homestead was successfully signed up.");
         } catch (IncorrectDataException e) {

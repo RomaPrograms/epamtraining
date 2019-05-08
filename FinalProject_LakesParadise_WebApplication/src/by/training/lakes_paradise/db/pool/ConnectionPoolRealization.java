@@ -68,7 +68,9 @@ public class ConnectionPoolRealization implements ConnectionPool {
     public void init(final String driverClass, final String url,
                      final String user, final String password,
                      final int startSize, final int maxSize,
-                     final int checkConnectionTimeout) throws PersistentException {
+                     final int checkConnectionTimeout)
+            throws PersistentException {
+
         try {
             lock.lock();
             destroy();
@@ -83,7 +85,8 @@ public class ConnectionPoolRealization implements ConnectionPool {
             }
         } catch (ClassNotFoundException | SQLException
                 | InterruptedException e) {
-            LOGGER.fatal("It is impossible to initialize connection pool", e);
+            LOGGER.fatal(
+                    "It is impossible to initialize connection pool", e);
             throw new PersistentException(e);
         } finally {
             lock.unlock();

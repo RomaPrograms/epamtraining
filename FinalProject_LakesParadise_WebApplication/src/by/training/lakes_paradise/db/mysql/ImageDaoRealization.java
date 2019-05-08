@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.db.mysql;
 
-import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.ImageDao;
 import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Image;
@@ -8,7 +7,6 @@ import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,7 +55,8 @@ public class ImageDaoRealization extends BaseDaoRealization
             = "insert into images (image, home_id) values (?, ?)";
 
     private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE_NEW_VERSION
-            = "insert into images (pathToImage, nameOfImage, home_id) values (?, ?, ?)";
+            = "insert into images (pathToImage, nameOfImage, home_id)"
+            + " values (?, ?, ?)";
 
     /**
      * Script gets all objects from table images by homestead id.
@@ -181,7 +180,8 @@ public class ImageDaoRealization extends BaseDaoRealization
     }
 
     @Override
-    public Integer createNewVersion(Image image) throws PersistentException {
+    public Integer createNewVersion(final Image image)
+            throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {

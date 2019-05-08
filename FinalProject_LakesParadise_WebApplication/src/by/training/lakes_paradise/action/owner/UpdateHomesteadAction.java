@@ -19,39 +19,53 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
 
+/**
+ * Class handles owner request for updating homestead.
+ */
 public class UpdateHomesteadAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(UpdateHomesteadAction.class);
 
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/owner/updateHomestead.jsp", false);
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
+
+        Forward forward = new Forward("/owner/updateHomestead.jsp",
+                false);
         HttpSession session = request.getSession(true);
         session.setAttribute("lastAction", "/owner/updateHomestead.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");
         request.setAttribute("locale", locale);
-        Config.set(request, Config.FMT_LOCALE, session.getAttribute("locale"));
+        Config.set(request, Config.FMT_LOCALE, locale);
 
         Homestead homestead;
         HomesteadValidator homesteadValidator = (HomesteadValidator)
                 ValidatorFactory.createValidator(Homestead.class);
-        int homesteadId = Integer.parseInt(request.getParameter("homesteadIdentity"));
+        HomesteadService homesteadService
+                = factory.getService(HomesteadService.class);
+        String homesteadId = request.getParameter("homesteadIdentity");
+        int homesteadIdentity = Integer.parseInt(homesteadId);
 
         try {
             homestead = homesteadValidator.validate(request);
             User user = new User();
             user.setId(profile.getId());
             homestead.setOwner(user);
-            homestead.setId(homesteadId);
-            factory.getService(HomesteadService.class).update(homestead);
-            request.setAttribute("successMessage", "Homestead was successfully updated.");
+            homestead.setId(homesteadIdentity);
+            homesteadService.update(homestead);
+            request.setAttribute("successMessage",
+                    "Homestead was successfully updated.");
             LOGGER.info("Homestead updating was passed successfully.");
         } catch (IncorrectDataException e) {
-            homestead = factory.getService(HomesteadService.class).readById(homesteadId);
-            homestead.setId(homesteadId);
+            homestead = homesteadService.readById(homesteadIdentity);
+            homestead.setId(homesteadIdentity);
             request.setAttribute("homestead", homestead);
             LOGGER.info("Homestead validation wasn't passed.");
         }

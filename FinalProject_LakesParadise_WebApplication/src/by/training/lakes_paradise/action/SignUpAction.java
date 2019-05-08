@@ -19,8 +19,14 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
 
+/**
+ * Class handles user request for registration.
+ */
 public class SignUpAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(SignUpAction.class);
 
@@ -43,13 +49,18 @@ public class SignUpAction extends Action {
                     ValidatorFactory.createValidator(User.class);
             user = userValidator.validate(request);
             user.setRole(Role.USER);
-            factory.getService(UserService.class).create(user);
-            request.setAttribute("successMessage", "You were successfully signed up, right now you can log in.");
-            LOGGER.info("User " + user.getLogin() + " signed up successfully.");
+            UserService userService = factory.getService(UserService.class);
+            userService.create(user);
+            request.setAttribute("successMessage",
+                    "You were successfully signed up, right now you"
+                            + " can log in.");
+            LOGGER.info("User " + user.getLogin()
+                    + " signed up successfully.");
         } catch (IncorrectDataException e) {
             LOGGER.error("User validation wasn't passed.");
         } catch (PersistentException e) {
-            request.setAttribute("errorMessage", "Sorry, but profile with such login already exist, change your login please.");
+            request.setAttribute("errorMessage", "Sorry, but profile with"
+                    + " such login already exist, change your login please.");
             request.setAttribute("userInfo", user);
         }
 

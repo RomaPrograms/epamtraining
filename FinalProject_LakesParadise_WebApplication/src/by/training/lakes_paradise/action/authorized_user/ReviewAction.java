@@ -15,8 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
+/**
+ * Class handles authorized user request for saving a comment about homestead.
+ */
 public class ReviewAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(ReviewAction.class);
 
@@ -25,7 +31,8 @@ public class ReviewAction extends Action {
             final HttpServletRequest request,
             final HttpServletResponse response) throws PersistentException {
 
-        Forward forward = new Forward("/homesteadInfo.html", true);
+        Forward forward
+                = new Forward("/homesteadInfo.html", true);
         HttpSession session = request.getSession(true);
         Profile profile = (Profile) session.getAttribute("profile");
 
@@ -36,11 +43,14 @@ public class ReviewAction extends Action {
         } else {
             Review review = new Review();
             review.setText(request.getParameter("comment"));
-            Homestead homestead = (Homestead) session.getAttribute("homestead");
+            Homestead homestead
+                    = (Homestead) session.getAttribute("homestead");
             review.setHomesteadId(homestead.getId());
             review.setDateOfComment(new Date());
             review.setUserName(profile.getLogin());
-            factory.getService(ReviewService.class).create(review);
+            ReviewService reviewService
+                    = factory.getService(ReviewService.class);
+            reviewService.create(review);
             homestead.getReviews().add(0, review);
             session.setAttribute("homestead", homestead);
             LOGGER.info("Review was saved successfully");

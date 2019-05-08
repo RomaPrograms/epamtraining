@@ -8,9 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Class handles owner request for adding new homestead photo.
+ */
 public class AddPhotoAction extends Action {
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
         HttpSession session = request.getSession();
         Forward forward = new Forward((String) session.getAttribute("lastAction"), true);
 //        try {

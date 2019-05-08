@@ -1,6 +1,5 @@
 package by.training.lakes_paradise.db.mysql;
 
-import by.training.lakes_paradise.db.ConnectionDB;
 import by.training.lakes_paradise.db.dao.OrderDao;
 import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Order;
@@ -12,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Statement;
 import java.util.ArrayList;

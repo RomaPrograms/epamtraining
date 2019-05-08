@@ -17,8 +17,12 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
+/**
+ * Class handles authorized user request for reservation homestead.
+ */
 public class ReserveHomesteadAction extends Action {
 
     /**
@@ -28,7 +32,9 @@ public class ReserveHomesteadAction extends Action {
             = LogManager.getLogger(ReserveHomesteadInfoAction.class);
 
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
         Forward forward = new Forward(
                 "/authorized_user/reservationInfo.html", true);
         HttpSession session = request.getSession();
@@ -36,7 +42,8 @@ public class ReserveHomesteadAction extends Action {
                 ValidatorFactory.createValidator(Order.class);
         try {
             Order order = validator.validate(request);
-            Homestead homestead = (Homestead) session.getAttribute("homestead");
+            Homestead homestead
+                    = (Homestead) session.getAttribute("homestead");
             if (dateValidation(order, homestead.getId())) {
                 Profile profile = (Profile) session.getAttribute("profile");
                 User user = new User();
@@ -45,36 +52,46 @@ public class ReserveHomesteadAction extends Action {
                 order.setHomestead(homestead);
                 order.setPaid(true);
                 factory.getService(OrderService.class).create(order);
-                forward.getAttributes().put("registerSuccessMessage", "Congratulations, you have successfully registered!");
+                forward.getAttributes().put("registerSuccessMessage",
+                        "Congratulations, you have successfully registered!");
                 LOGGER.info("Registration passed successfully");
             } else {
-                forward.getAttributes().put("registerErrorMessage", "Sorry, but some days from your chosen dates already took!");
+                forward.getAttributes().put("registerErrorMessage",
+                        "Sorry, but some days from your chosen dates"
+                                + " already took!");
             }
         } catch (IncorrectDataException e) {
-            forward.getAttributes().put("registerErrorMessage", "Date of end renting should be older than start renting");
+            forward.getAttributes().put("registerErrorMessage",
+                    "Date of end renting should be older than start renting");
         }
         return forward;
     }
 
 
-    private boolean dateValidation(Order newOrder, int homesteadId)
+    private boolean dateValidation(final Order newOrder, final int homesteadId)
             throws PersistentException {
         List<Order> orders = factory.getService(OrderService.class)
                 .readByHomestead(homesteadId);
 
+        Date newStartRenting = newOrder.getStartRenting();
+        Date newEndRenting = newOrder.getEndRenting();
         for (var order : orders) {
-            if (newOrder.getStartRenting().after(order.getStartRenting())
-                    && newOrder.getStartRenting().before(order.getEndRenting())) {
+
+            Date startRenting = order.getStartRenting();
+            Date endRenting = order.getEndRenting();
+
+            if (newStartRenting.after(startRenting)
+                    && newStartRenting.before(endRenting)) {
                 return false;
             }
 
-            if (newOrder.getEndRenting().after(order.getStartRenting())
-                    && newOrder.getStartRenting().before(order.getEndRenting())) {
+            if (newEndRenting.after(startRenting)
+                    && newEndRenting.before(endRenting)) {
                 return false;
             }
 
-            if (newOrder.getStartRenting().before(order.getStartRenting())
-                    && newOrder.getStartRenting().after(order.getEndRenting())) {
+            if (newStartRenting.before(startRenting)
+                    && newEndRenting.after(endRenting)) {
                 return false;
             }
         }

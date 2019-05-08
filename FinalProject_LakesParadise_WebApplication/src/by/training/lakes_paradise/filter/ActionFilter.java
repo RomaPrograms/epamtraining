@@ -1,9 +1,25 @@
 package by.training.lakes_paradise.filter;
 
-import by.training.lakes_paradise.action.*;
-import by.training.lakes_paradise.action.authorized_user.*;
+import by.training.lakes_paradise.action.HomesteadInfoAction;
+import by.training.lakes_paradise.action.LogInAction;
+import by.training.lakes_paradise.action.MenuAction;
+import by.training.lakes_paradise.action.SignUpAction;
+import by.training.lakes_paradise.action.ChangeLanguageAction;
+import by.training.lakes_paradise.action.FindHomesteadsAction;
+import by.training.lakes_paradise.action.HomesteadsListAction;
+import by.training.lakes_paradise.action.authorized_user.ReviewAction;
+import by.training.lakes_paradise.action.authorized_user
+        .ReserveHomesteadAction;
+import by.training.lakes_paradise.action.authorized_user
+        .ReserveHomesteadInfoAction;
+import by.training.lakes_paradise.action.authorized_user.UpdateUserInfoAction;
+import by.training.lakes_paradise.action.authorized_user.UserCabinetAction;
 import by.training.lakes_paradise.action.entity.Action;
-import by.training.lakes_paradise.action.owner.*;
+import by.training.lakes_paradise.action.owner.AddHomesteadAction;
+import by.training.lakes_paradise.action.owner.DeleteHomesteadAction;
+import by.training.lakes_paradise.action.owner.OwnerHomesteadsListAction;
+import by.training.lakes_paradise.action.owner.UpdateHomesteadAction;
+import by.training.lakes_paradise.action.owner.AddPhotoAction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +43,8 @@ public class ActionFilter implements Filter {
     private static final Logger LOGGER
             = LogManager.getLogger(ActionFilter.class);
 
-    private static Map<String, Class<? extends Action>> actions = new ConcurrentHashMap<>();
+    private static Map<String, Class<? extends Action>> actions
+            = new ConcurrentHashMap<>();
 
     static {
         actions.put("/", MenuAction.class);
@@ -42,10 +59,13 @@ public class ActionFilter implements Filter {
         actions.put("/language/be_BY", ChangeLanguageAction.class);
         actions.put("/language/ru_RU", ChangeLanguageAction.class);
 
-        actions.put("/authorized_user/reservation", ReserveHomesteadAction.class);
-        actions.put("/authorized_user/reservationInfo", ReserveHomesteadInfoAction.class);
+        actions.put("/authorized_user/reservation",
+                ReserveHomesteadAction.class);
+        actions.put("/authorized_user/reservationInfo",
+                ReserveHomesteadInfoAction.class);
         actions.put("/authorized_user/userCabinet", UserCabinetAction.class);
-        actions.put("/authorized_user/updateUserInfo", UpdateUserInfoAction.class);
+        actions.put("/authorized_user/updateUserInfo",
+                UpdateUserInfoAction.class);
         actions.put("/authorized_user/homesteadReview", ReviewAction.class);
 
 

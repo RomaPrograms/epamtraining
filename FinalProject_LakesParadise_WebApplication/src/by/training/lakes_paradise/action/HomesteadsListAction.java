@@ -14,27 +14,35 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
 
+/**
+ * Class handles user request for showing list of homesteads.
+ */
 public class HomesteadsListAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(HomesteadsListAction.class);
 
     @Override
-    public Forward exec(
-            final HttpServletRequest request,
-            final HttpServletResponse response) throws PersistentException {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
 
-        Forward forward = new Forward("/homesteadsList.jsp", false);
+        Forward forward = new Forward("/homesteadsList.jsp",
+                false);
         HttpSession session = request.getSession(true);
         session.setAttribute("lastAction", "/homesteadsList.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");
         request.setAttribute("locale", locale);
+        HomesteadService homesteadService
+                = factory.getService(HomesteadService.class);
 
         if (request.getAttribute("res") == null) {
-            request.setAttribute("res", factory.getService(
-                    HomesteadService.class).readAll());
+            request.setAttribute("res", homesteadService.readAll());
             LOGGER.info("Homesteads list was shown successfully.");
         }
 

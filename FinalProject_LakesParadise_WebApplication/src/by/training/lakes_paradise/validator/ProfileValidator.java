@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class ProfileValidator implements Validator<Profile> {
     @Override
-    public Profile validate(
-            final HttpServletRequest request) throws IncorrectDataException {
+    public Profile validate(final HttpServletRequest request)
+            throws IncorrectDataException {
         Profile profile = new Profile();
 
         String login = request.getParameter("login");

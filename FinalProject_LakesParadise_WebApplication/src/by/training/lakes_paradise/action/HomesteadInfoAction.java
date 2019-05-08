@@ -15,17 +15,24 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
 
+/**
+ * Class handles user request for showing detailed information about homestead.
+ */
 public class HomesteadInfoAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(HomesteadInfoAction.class);
 
     @Override
-    public Forward exec(
-            HttpServletRequest request,
-            HttpServletResponse response) throws PersistentException {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
 
-        Forward forward = new Forward("/homesteadInfo.jsp", false);
+        Forward forward = new Forward("/homesteadInfo.jsp",
+                false);
         HttpSession session = request.getSession(true);
         session.setAttribute("lastAction", "/homesteadInfo.html");
         Profile profile = (Profile) session.getAttribute("profile");
@@ -36,12 +43,13 @@ public class HomesteadInfoAction extends Action {
 
         String stringHomesteadId = request.getParameter("homesteadIdentity");
         Homestead homestead;
+        HomesteadService homesteadService = factory.getService(
+                HomesteadService.class);
         if (stringHomesteadId == null) {
             homestead = (Homestead) session.getAttribute("homestead");
         } else {
             int homesteadId = Integer.parseInt(stringHomesteadId);
-            homestead = factory.getService(
-                    HomesteadService.class).readById(homesteadId);
+            homestead = homesteadService.readById(homesteadId);
             homestead.setId(homesteadId);
         }
 

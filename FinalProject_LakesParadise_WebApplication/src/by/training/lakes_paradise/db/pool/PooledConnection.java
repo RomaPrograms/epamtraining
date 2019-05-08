@@ -213,7 +213,7 @@ public class PooledConnection
 
     @Override
     public PreparedStatement prepareStatement(
-            String arg0, int arg1) throws SQLException {
+            final String arg0, final int arg1) throws SQLException {
         return connection.prepareStatement(arg0, arg1);
     }
 

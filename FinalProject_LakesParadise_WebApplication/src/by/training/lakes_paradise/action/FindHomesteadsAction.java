@@ -9,13 +9,21 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Class handles user request for finding homesteads.
+ */
 public class FindHomesteadsAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(FindHomesteadsAction.class);
 
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
         Forward forward = new Forward("/homesteads.html", true);
         String homesteadName = request.getParameter("homesteadName");
         String homesteadMinPrice = request.getParameter("minPrice");

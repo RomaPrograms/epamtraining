@@ -13,8 +13,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
@@ -29,7 +31,8 @@ public class DispatcherServlet extends HttpServlet {
             = LogManager.getLogger(DispatcherServlet.class);
 
     private static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/lakes_paradise_db?useUnicode=true&characterEncoding=UTF-8";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306"
+            + "/lakes_paradise_db?useUnicode=true&characterEncoding=UTF-8";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "9512684Roma";
     private static final int DB_POOL_START_SIZE = 10;
@@ -50,12 +53,13 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     public ServiceFactory getFactory() throws PersistentException {
-        return new ServiceFactoryRealization(new TransactionFactoryRealization());
+        return new ServiceFactoryRealization(
+                new TransactionFactoryRealization());
     }
 
     @Override
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
+    protected void doGet(final HttpServletRequest request,
+                         final HttpServletResponse response)
             throws ServletException, IOException {
         try {
             action(request, response);
@@ -65,8 +69,8 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
+    protected void doPost(final HttpServletRequest request,
+                          final HttpServletResponse response)
             throws ServletException, IOException {
         try {
             action(request, response);
@@ -75,8 +79,8 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
-    private void action(HttpServletRequest request,
-                        HttpServletResponse response)
+    private void action(final HttpServletRequest request,
+                        final HttpServletResponse response)
             throws ServletException, IOException, PersistentException {
         Action action = (Action) request.getAttribute("action");
 
@@ -116,7 +120,7 @@ public class DispatcherServlet extends HttpServlet {
             } else {
                 String jspPage;
 
-                if(forward != null) {
+                if (forward != null) {
                     jspPage = forward.getForward();
                 } else {
                     jspPage = action.getName() + ".jsp";

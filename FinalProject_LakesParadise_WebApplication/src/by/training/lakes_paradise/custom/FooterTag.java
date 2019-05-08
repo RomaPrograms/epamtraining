@@ -34,11 +34,11 @@ public class FooterTag extends TagSupport {
             ResourceBundle rb = ResourceBundle
                     .getBundle("property.text", language);
 
-            pageContext.getOut().write("<hr/><footer class=\"footer\">\n" +
-                    "    <div class=\"footer-bottom text-center\">\n" +
-                    rb.getString("footer") +
-                    "    </div>\n" +
-                    "</footer>");
+            pageContext.getOut().write("<hr/><footer class=\"footer\">\n"
+                    + "    <div class=\"footer-bottom text-center\">\n"
+                    + rb.getString("footer")
+                    + "    </div>\n"
+                    + "</footer>");
         } catch (IOException e) {
             e.printStackTrace();
         }

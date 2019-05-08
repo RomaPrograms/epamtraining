@@ -16,16 +16,19 @@ public class NavbarTag extends TagSupport {
     private Locale language;
     private String logInMessage;
 
-    private static final String englishLanguageUrl = "/language/en_US.html";
-    private static final String belorussianLanguageUrl = "/language/be_BY.html";
-    private static final String russianLanguageUrl = "/language/ru_RU.html";
+    private static final String ENGLISH_LANGUAGE_URL = "/language/en_US.html";
+    private static final String BELORUSSIAN_LANGUAGE_URL
+            = "/language/be_BY.html";
+    private static final String RUSSIAN_LANGUAGE_URL = "/language/ru_RU.html";
 
-    private static final String menuUrl = "/menu.html";
-    private static final String signUpUrl = "/sign_up.html";
-    private static final String homesteadListUrl = "/homesteadsList.html";
-    private static final String userCabinetUrl = "/authorized_user/userCabinet.html";
-    private static final String ownerHomesteadsUrl = "/owner/ownerHomesteads.html";
-    private static final String logInUrl = "/log_in.html";
+    private static final String MENU_URL = "/menu.html";
+    private static final String SIGN_UP_URL = "/sign_up.html";
+    private static final String HOMESTEAD_LIST_URL = "/homesteadsList.html";
+    private static final String USER_CABINET_URL
+            = "/authorized_user/userCabinet.html";
+    private static final String OWNER_HOMESTEADS_URL
+            = "/owner/ownerHomesteads.html";
+    private static final String LOG_IN_URL = "/log_in.html";
 
 
     public Profile getProfile() {
@@ -68,18 +71,18 @@ public class NavbarTag extends TagSupport {
                     "        <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n" +
                     "            <ul id=\"list\" class=\"nav navbar-nav\">");
 
-            out.write("<li><a href=\"" + menuUrl + "\">" + rb.getString("navbarMenu") + "</a>\n" +
+            out.write("<li><a href=\"" + MENU_URL + "\">" + rb.getString("navbarMenu") + "</a>\n" +
                     "                </li>\n" +
-                    "                <li><a href=\"" + signUpUrl + "\">" + rb.getString("registration") + "</a>\n" +
+                    "                <li><a href=\"" + SIGN_UP_URL + "\">" + rb.getString("registration") + "</a>\n" +
                     "                </li>\n" +
-                    "                <li><a href=\"" + homesteadListUrl + "\">" + rb.getString("homesteads") + "</a></li>");
+                    "                <li><a href=\"" + HOMESTEAD_LIST_URL + "\">" + rb.getString("homesteads") + "</a></li>");
 
             if (profile != null) {
-                out.write("<li><a href=\"" + userCabinetUrl + "\">" + rb.getString("personalCabinet") + "</a></li>");
+                out.write("<li><a href=\"" + USER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
             }
 
             if (profile != null && profile.getRole().equals(Role.OWNER)) {
-                out.write("<li><a href=\"" + ownerHomesteadsUrl + "\">" + rb.getString("navbarOwnerHomesteads") + "</a></li>");
+                out.write("<li><a href=\"" + OWNER_HOMESTEADS_URL + "\">" + rb.getString("navbarOwnerHomesteads") + "</a></li>");
             }
 
             out.write("<li class=\"dropdown\">\n" +
@@ -88,14 +91,14 @@ public class NavbarTag extends TagSupport {
                     "                        <span class=\"caret\"></span></a>");
 
             out.write("<ul class=\"dropdown-menu\">\n" +
-                    "                        <li><a href=\"" + englishLanguageUrl + "\">" + rb.getString("englishLanguage") + "</a></li>\n" +
-                    "                        <li><a href=\"" + belorussianLanguageUrl + "\">" + rb.getString("belorussianLanguage") + "</a></li>\n" +
-                    "                        <li><a href=\"" + russianLanguageUrl + "\">" + rb.getString("russianLanguage") + "</a></li>\n" +
+                    "                        <li><a href=\"" + ENGLISH_LANGUAGE_URL + "\">" + rb.getString("englishLanguage") + "</a></li>\n" +
+                    "                        <li><a href=\"" + BELORUSSIAN_LANGUAGE_URL + "\">" + rb.getString("belorussianLanguage") + "</a></li>\n" +
+                    "                        <li><a href=\"" + RUSSIAN_LANGUAGE_URL + "\">" + rb.getString("russianLanguage") + "</a></li>\n" +
                     "                    </ul>\n" +
                     "               </li>\n" +
                     "          </ul>\n");
 
-            out.write("<form class=\"navbar-form navbar-right\" action=\"" + logInUrl + "\"\n" +
+            out.write("<form class=\"navbar-form navbar-right\" action=\"" + LOG_IN_URL + "\"\n" +
                     "                  method=\"post\" id=\"log_in_form\">\n");
 
             if (profile == null) {

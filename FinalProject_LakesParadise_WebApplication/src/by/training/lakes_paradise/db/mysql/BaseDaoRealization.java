@@ -1,7 +1,5 @@
 package by.training.lakes_paradise.db.mysql;
 
-import by.training.lakes_paradise.db.ConnectionDB;
-
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;

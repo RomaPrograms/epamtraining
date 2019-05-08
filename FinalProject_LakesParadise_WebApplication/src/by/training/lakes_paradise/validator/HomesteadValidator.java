@@ -8,7 +8,8 @@ import java.math.BigDecimal;
 
 public class HomesteadValidator implements Validator<Homestead> {
     @Override
-    public Homestead validate(HttpServletRequest request) throws IncorrectDataException {
+    public Homestead validate(final HttpServletRequest request)
+            throws IncorrectDataException {
         Homestead homestead = new Homestead();
 
         String title = request.getParameter("name");

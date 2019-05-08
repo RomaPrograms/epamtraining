@@ -13,7 +13,8 @@ public class HomesteadServiceRealization extends ServiceRealization
         implements HomesteadService {
 
     @Override
-    public List<Homestead> readByOwner(int ownerId) throws PersistentException {
+    public List<Homestead> readByOwner(int ownerId)
+            throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.readByOwner(ownerId);
     }
@@ -40,7 +41,8 @@ public class HomesteadServiceRealization extends ServiceRealization
     }
 
     @Override
-    public Integer create(final Homestead homestead) throws PersistentException {
+    public Integer create(final Homestead homestead)
+            throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.create(homestead);
     }

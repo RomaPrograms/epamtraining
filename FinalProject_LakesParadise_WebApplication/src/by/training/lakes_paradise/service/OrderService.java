@@ -6,19 +6,19 @@ import by.training.lakes_paradise.exception.PersistentException;
 import java.util.List;
 
 public interface OrderService extends Service {
-    List<Order> readByProfile(final Integer profileId)
+    List<Order> readByProfile(Integer profileId)
             throws PersistentException;
 
-    List<Order> readByHomestead(final Integer homesteadId)
+    List<Order> readByHomestead(Integer homesteadId)
             throws PersistentException;
 
     List<Order> readAll() throws PersistentException;
 
-    Integer create(final Order order) throws PersistentException;
+    Integer create(Order order) throws PersistentException;
 
-    Order read(final Integer id) throws PersistentException;
+    Order read(Integer id) throws PersistentException;
 
-    void update(final Order order) throws PersistentException;
+    void update(Order order) throws PersistentException;
 
-    void delete(final Integer id) throws PersistentException;
+    void delete(Integer id) throws PersistentException;
 }

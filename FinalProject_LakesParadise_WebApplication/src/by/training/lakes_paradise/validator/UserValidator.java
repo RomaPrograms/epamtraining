@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class UserValidator implements Validator<User> {
     @Override
-    public User validate(
-            final HttpServletRequest request) throws IncorrectDataException {
+    public User validate(final HttpServletRequest request)
+            throws IncorrectDataException {
         User user = new User();
 
         String login = request.getParameter("login");

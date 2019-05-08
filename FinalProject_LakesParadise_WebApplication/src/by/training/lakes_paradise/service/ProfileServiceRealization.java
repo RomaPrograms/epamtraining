@@ -2,7 +2,6 @@ package by.training.lakes_paradise.service;
 
 import by.training.lakes_paradise.db.dao.ProfileDao;
 import by.training.lakes_paradise.db.entity.Profile;
-import by.training.lakes_paradise.db.mysql.ProfileDaoRealization;
 import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;

@@ -2,7 +2,6 @@ package by.training.lakes_paradise.action.authorized_user;
 
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
-import by.training.lakes_paradise.action.owner.AddHomesteadAction;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.IncorrectDataException;
@@ -20,16 +19,27 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
 
+/**
+ * Class handles authorized user request for updating user info.
+ */
 public class UpdateUserInfoAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(UpdateUserInfoAction.class);
 
     @Override
-    public Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-        Forward forward = new Forward("/authorized_user/updateUser.jsp", false);
+    public Forward exec(final HttpServletRequest request,
+                        final HttpServletResponse response)
+            throws PersistentException {
+
+        Forward forward = new Forward("/authorized_user/updateUser.jsp",
+                false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("lastAction", "/authorized_user/updateUserInfo.html");
+        session.setAttribute("lastAction",
+                "/authorized_user/updateUserInfo.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");
@@ -37,6 +47,9 @@ public class UpdateUserInfoAction extends Action {
         Config.set(request, Config.FMT_LOCALE, locale);
 
         User user = null;
+        UserService userService = factory.getService(UserService.class);
+        ProfileService profileService
+                = factory.getService(ProfileService.class);
         try {
             UserValidator userValidator = (UserValidator)
                     ValidatorFactory.createValidator(User.class);
@@ -44,21 +57,24 @@ public class UpdateUserInfoAction extends Action {
             user.setRole(profile.getRole());
             user.setId(profile.getId());
 
-            factory.getService(UserService.class).update(user);
-            request.setAttribute("successMessage", "You data were successfully updated.");
-            profile = factory.getService(ProfileService.class).read(user.getId());
+            userService.update(user);
+            request.setAttribute("successMessage",
+                    "You data were successfully updated.");
+            profile = profileService.read(user.getId());
             profile.setId(user.getId());
             session.setAttribute("profile", profile);
             request.setAttribute("profile", profile);
             LOGGER.info("User data were successfully updated");
         } catch (IncorrectDataException e) {
-            user = factory.getService(UserService.class).read(profile.getId());
+            user = userService.read(profile.getId());
             user.setLogin(profile.getLogin());
             user.setPassword(profile.getPassword());
             request.setAttribute("userInfo", user);
             LOGGER.info("User validation wasn't passed");
         } catch (PersistentException e) {
-            request.setAttribute("errorMessage", "Sorry, but profile with such login already exist, change your login please.");
+            request.setAttribute("errorMessage",
+                    "Sorry, but profile with such login already exist,"
+                            + " change your login please.");
             request.setAttribute("userInfo", user);
         }
 

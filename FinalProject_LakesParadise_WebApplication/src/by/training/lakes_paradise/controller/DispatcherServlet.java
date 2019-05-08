@@ -114,9 +114,15 @@ public class DispatcherServlet extends HttpServlet {
                         redirectedUri));
                 response.sendRedirect(redirectedUri);
             } else {
-                String jspPage = action.getName() + ".jsp";
-                jspPage = "/jsp" + jspPage;
+                String jspPage;
 
+                if(forward != null) {
+                    jspPage = forward.getForward();
+                } else {
+                    jspPage = action.getName() + ".jsp";
+                }
+
+                jspPage = "/jsp" + jspPage;
                 LOGGER.debug(String.format("Request for URI \"%s\" is forwarded"
                         + " to JSP \"%s\"", requestedUri, jspPage));
                 getServletContext().getRequestDispatcher(jspPage)

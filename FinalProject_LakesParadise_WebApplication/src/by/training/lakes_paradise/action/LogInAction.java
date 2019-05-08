@@ -28,7 +28,7 @@ public class LogInAction extends Action {
         HttpSession session = request.getSession(true);
         String lastAction = (String) session.getAttribute("lastAction");
         forward = new Forward(lastAction, true);
-        Profile profile = null;
+        Profile profile;
 
         try {
             ProfileValidator profileValidator = (ProfileValidator)
@@ -40,8 +40,7 @@ public class LogInAction extends Action {
             if (profile == null) {
                 forward.getAttributes().put("logInMessage",
                         "Such profile doesn't exist!");
-                LOGGER.info("Incorrect data. User with "
-                        + profile.getLogin() + "doesn't exist.");
+                LOGGER.info("Incorrect data. User doesn't exist.");
             } else {
                 session.setAttribute("profile", profile);
                 LOGGER.info("Authentication " + profile.getLogin() + " passed successfully.");
@@ -50,8 +49,7 @@ public class LogInAction extends Action {
         } catch (IncorrectDataException e) {
             forward.getAttributes().put("logInMessage",
                     "Incorrect data were entered!");
-            LOGGER.info("Incorrect data. User with "
-                    + profile.getLogin() + "doesn't exist.");
+            LOGGER.info("Incorrect data. User doesn't exist.");
         }
 
         return forward;

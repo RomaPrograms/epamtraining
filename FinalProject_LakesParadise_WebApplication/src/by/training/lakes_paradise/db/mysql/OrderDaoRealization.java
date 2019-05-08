@@ -51,8 +51,9 @@ public class OrderDaoRealization extends BaseDaoRealization
      * String first part of SQL query for reading from database.
      */
     private static final String SQL_SCRIPT_SELECT
-            = "select id, user_id, home_id, date_start, date_end, "
-            + "status_pay from";
+            = "select o.user_id, o.home_id, o.date_start, o.date_end, "
+            + "o.status_pay, h.title, p.login from orders o inner join homesteads h on"
+            + " o.home_id = h.id inner join profiles p on o.user_id = p.id ";
 
     /**
      * Point to the third element in SQL query.
@@ -95,13 +96,13 @@ public class OrderDaoRealization extends BaseDaoRealization
      * Script gets all objects from table orders by profile id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PROFILE_ID
-            = SQL_SCRIPT_SELECT + " orders where user_id = ?";
+            = SQL_SCRIPT_SELECT + "where o.user_id = ?";
 
     /**
      * Script gets all objects from table orders by home id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
-            = SQL_SCRIPT_SELECT + " orders where home_id = ?";
+            = SQL_SCRIPT_SELECT + "where o.home_id = ?";
 
     /**
      * Script updates object in table orders.
@@ -415,13 +416,14 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     private Order createOrder(final ResultSet resultSet) throws SQLException {
         Order order = new Order();
-        order.setId(resultSet.getInt("id"));
         User user = new User();
         user.setId(resultSet.getInt("user_id"));
+        user.setLogin(resultSet.getString("login"));
         order.setUser(user);
         Homestead homestead = new Homestead();
         homestead.setId(
                 resultSet.getInt("home_id"));
+        homestead.setTitle("title");
         order.setHomestead(homestead);
         Date date = resultSet.getDate("date_start");
         order.setStartRenting(new java.util.Date(date.getTime()));

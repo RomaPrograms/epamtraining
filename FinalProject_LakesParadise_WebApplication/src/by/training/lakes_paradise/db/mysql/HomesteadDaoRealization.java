@@ -76,13 +76,13 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * Script gets all objects from table homesteads by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
-            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + "WHERE id = (?)";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + "WHERE h.id = (?)";
 
     /**
      * Script gets all objects from table homesteads.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID
-            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " where owner_id=(?)";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " where h.owner_id=(?)";
 
     /**
      * Script updates object in table homesteads.
@@ -508,7 +508,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                 resultSet.getInt("owner_id"));
         owner.setName(resultSet.getString("name"));
         owner.setSurname(resultSet.getString("surname"));
-        owner.setPhone(resultSet.getInt("phone"));
+        owner.setPhone(resultSet.getLong("phone"));
 
         homestead.setOwner(owner);
         return homestead;

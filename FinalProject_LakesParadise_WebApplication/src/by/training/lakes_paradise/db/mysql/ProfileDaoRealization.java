@@ -201,12 +201,10 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     @Override
     public Integer create(final Profile profile) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, profile.getId());

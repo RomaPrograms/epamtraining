@@ -15,9 +15,11 @@ public class FooterTag extends TagSupport {
     @Override
     public int doStartTag() throws JspException {
         try {
-            pageContext.getOut().write("<hr/>");
-            pageContext.getOut().write("<footer><p>"
-                    + text + "</p></footer>");
+            pageContext.getOut().write("<hr/><footer class=\"footer\">\n" +
+                    "    <div class=\"footer-bottom text-center\">\n" +
+                    "&copy; Все права защищены 2019" +
+                    "    </div>\n" +
+                    "</footer>");
         } catch (IOException e) {
             e.printStackTrace();
         }

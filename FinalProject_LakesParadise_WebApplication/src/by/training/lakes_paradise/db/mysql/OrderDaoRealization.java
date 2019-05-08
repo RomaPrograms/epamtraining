@@ -423,7 +423,7 @@ public class OrderDaoRealization extends BaseDaoRealization
         Homestead homestead = new Homestead();
         homestead.setId(
                 resultSet.getInt("home_id"));
-        homestead.setTitle("title");
+        homestead.setTitle(resultSet.getString("title"));
         order.setHomestead(homestead);
         Date date = resultSet.getDate("date_start");
         order.setStartRenting(new java.util.Date(date.getTime()));

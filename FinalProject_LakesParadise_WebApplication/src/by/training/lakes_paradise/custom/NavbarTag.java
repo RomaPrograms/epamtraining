@@ -72,7 +72,7 @@ public class NavbarTag extends TagSupport {
                     "                </li>\n" +
                     "                <li><a href=\"" + signUpUrl + "\">" + rb.getString("registration") + "</a>\n" +
                     "                </li>\n" +
-                    "                <li><a href=\"" + homesteadListUrl + "\">" + rb.getString("navbarHomesteads") + "</a></li>");
+                    "                <li><a href=\"" + homesteadListUrl + "\">" + rb.getString("homesteads") + "</a></li>");
 
             if (profile != null) {
                 out.write("<li><a href=\"" + userCabinetUrl + "\">" + rb.getString("personalCabinet") + "</a></li>");

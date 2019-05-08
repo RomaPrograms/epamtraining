@@ -202,7 +202,7 @@
         </div>
     </div>
 
-    <cng:footer-tag text="&copy; Все права защищены 2019"/>
+    <cng:footer-tag/>
 </div>
 
 <script type="text/javascript">

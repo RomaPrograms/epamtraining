@@ -11,6 +11,8 @@ import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPoolRealization implements ConnectionPool {
 
@@ -38,7 +40,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
             = "Connection was received from pool. Current pool size: %d used"
             + " connections; %d free connection";
 
-    //private static Lock lock = new ReentrantLock();
+    private static Lock lock = new ReentrantLock();
 
     private static int checkConnectionTimeout;
 
@@ -68,6 +70,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
                      final int startSize, final int maxSize,
                      final int checkConnectionTimeout) throws PersistentException {
         try {
+            lock.lock();
             destroy();
             Class.forName(driverClass);
             this.url = url;
@@ -80,8 +83,10 @@ public class ConnectionPoolRealization implements ConnectionPool {
             }
         } catch (ClassNotFoundException | SQLException
                 | InterruptedException e) {
-            LOGGER.fatal("It is imposible to initialize connection pool", e);
+            LOGGER.fatal("It is impossible to initialize connection pool", e);
             throw new PersistentException(e);
+        } finally {
+            lock.unlock();
         }
     }
 
@@ -90,6 +95,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
         PooledConnection connection = null;
         while (connection == null) {
             try {
+                lock.lock();
                 if (!freeConnection.isEmpty()) {
                     connection = freeConnection.take();
                     if (!connection.isValid(checkConnectionTimeout)) { //возвращает true если соединение ещё не было закрыто и можно работать.
@@ -101,24 +107,27 @@ public class ConnectionPoolRealization implements ConnectionPool {
                         connection = createConnection();
                     } else {
                         LOGGER.error(CONNECTION_LIMIT_NUMBER_EXCEPTION);
+                        lock.unlock();
                         throw new PersistentException();
                     }
                 }
             } catch (InterruptedException | SQLException e) {
                 LOGGER.error(CONNECTION_RECEIVED_EXCEPTION, e);
-                //lock.unlock();
+                lock.unlock();
                 throw new PersistentException(e);
             }
         }
         usedConnection.add(connection);
         LOGGER.debug(String.format(CONNECTION_RECEIVED_MESSAGE,
                 usedConnection.size(), freeConnection.size()));
+        lock.unlock();
         return connection;
     }
 
     @Override
     public void releaseConnection(PooledConnection connection) {
         try {
+            lock.lock();
             if (connection.isValid(checkConnectionTimeout)) {
                 connection.clearWarnings();
                 connection.setAutoCommit(true);
@@ -134,17 +143,23 @@ public class ConnectionPoolRealization implements ConnectionPool {
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
+        } finally {
+            lock.unlock();
         }
     }
 
     @Override
     public PooledConnection createConnection() throws SQLException {
-        return new PooledConnection(DriverManager
+        lock.lock();
+        PooledConnection connection = new PooledConnection(DriverManager
                 .getConnection(url, user, password));
+        lock.unlock();
+        return connection;
     }
 
     @Override
     public void destroy() {
+        lock.lock();
         usedConnection.addAll(freeConnection);
         freeConnection.clear();
         for (PooledConnection connection : usedConnection) {
@@ -155,5 +170,6 @@ public class ConnectionPoolRealization implements ConnectionPool {
             }
         }
         usedConnection.clear();
+        lock.unlock();
     }
 }

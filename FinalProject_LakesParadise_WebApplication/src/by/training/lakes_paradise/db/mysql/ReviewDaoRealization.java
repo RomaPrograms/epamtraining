@@ -98,13 +98,11 @@ public class ReviewDaoRealization extends BaseDaoRealization
     @Override
     public List<Review> readReviewsByHomeId(final Integer homeId)
             throws PersistentException {
-        //Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<Review> reviews = new ArrayList<>();
 
         try {
-            //connection = ConnectionDB.getConnection();
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID);
             statement.setInt(1, homeId);
@@ -154,11 +152,9 @@ public class ReviewDaoRealization extends BaseDaoRealization
     public void deleteReviewsByHomeId(final Integer homeId)
             throws PersistentException {
         String sql = "delete from reviews where home_id = (?)";
-        Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = getConnection().prepareStatement(sql);
             statement.setInt(1, homeId);
 
             statement.executeUpdate();
@@ -185,13 +181,10 @@ public class ReviewDaoRealization extends BaseDaoRealization
      */
     @Override
     public Integer create(final Review review) throws PersistentException {
-        //Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            //connection = ConnectionDB.getConnection();
-            Connection connection = ConnectionPoolRealization.getInstance().getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -240,13 +233,11 @@ public class ReviewDaoRealization extends BaseDaoRealization
      */
     @Override
     public Review read(final Integer id) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
@@ -291,12 +282,10 @@ public class ReviewDaoRealization extends BaseDaoRealization
      */
     @Override
     public void update(final Review review) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
 
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
             statement.setString(1, review.getText());
             statement.setString(2, review.getUserName());

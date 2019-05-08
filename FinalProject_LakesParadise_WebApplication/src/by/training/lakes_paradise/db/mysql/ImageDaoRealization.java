@@ -87,13 +87,11 @@ public class ImageDaoRealization extends BaseDaoRealization
     @Override
     public List<Image> readImagesByHomeId(final Integer homeId)
             throws PersistentException {
-        //Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<Image> images = new ArrayList<>();
 
         try {
-            //connection = ConnectionDB.getConnection();
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID);
             statement.setInt(1, homeId);
@@ -140,12 +138,10 @@ public class ImageDaoRealization extends BaseDaoRealization
      */
     @Override
     public Integer create(final Image image) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -186,12 +182,10 @@ public class ImageDaoRealization extends BaseDaoRealization
 
     @Override
     public Integer createNewVersion(Image image) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE_NEW_VERSION,
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -242,12 +236,10 @@ public class ImageDaoRealization extends BaseDaoRealization
      */
     @Override
     public Image read(final Integer id) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
@@ -293,11 +285,9 @@ public class ImageDaoRealization extends BaseDaoRealization
      */
     @Override
     public void update(final Image image) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
             statement.setBlob(
                     1, image.getImage());
@@ -359,11 +349,9 @@ public class ImageDaoRealization extends BaseDaoRealization
     public void deleteImagesByHomeId(final Integer homeId)
             throws PersistentException {
         String sql = "delete from images where home_id = (?)";
-        Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = getConnection().prepareStatement(sql);
             statement.setInt(1, homeId);
 
             statement.executeUpdate();

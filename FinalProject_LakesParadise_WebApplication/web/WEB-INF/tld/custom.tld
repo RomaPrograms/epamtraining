@@ -11,11 +11,6 @@
         <name>footer-tag</name>
         <tag-class>by.training.lakes_paradise.custom.FooterTag</tag-class>
         <body-content>empty</body-content>
-        <attribute>
-            <name>text</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
     </tag>
 
     <tag>

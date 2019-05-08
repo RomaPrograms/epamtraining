@@ -87,12 +87,10 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      */
     @Override
     public List<User> read() throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE);
             resultSet = statement.executeQuery();
             List<User> users = new ArrayList<>();
@@ -140,12 +138,10 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      */
     @Override
     public Integer create(final User user) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, user.getId());
@@ -184,12 +180,10 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      */
     @Override
     public User read(final Integer id) throws PersistentException {
-        Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            connection = ConnectionDB.getConnection();
-            statement = connection.prepareStatement(
+            statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();

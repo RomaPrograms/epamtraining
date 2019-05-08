@@ -52,7 +52,8 @@
 </head>
 <body>
 
-<ctg:navbar-tag profile="${profile}" language="${locale}" logInMessage="${logInMessage}"/>
+<ctg:navbar-tag profile="${profile}" language="${locale}"
+                logInMessage="${logInMessage}"/>
 
 <div id="homestead_catalog" class="container">
 
@@ -105,22 +106,38 @@
         </div>
     </div>
 
-    <div class="container text-center">
-        <h2><c:out value="${homestead.getTitle()}"/></h2>
-        <p><c:out value="${homestead.getDescription()}"/></p>
-        <dl>
-            <dt><fmt:message key="homesteadPrice"/></dt>
-            <dd>- <c:out value="${homestead.getPrice()}"/></dd>
-            <dt><fmt:message key="homesteadPeopleNumber"/></dt>
-            <dd>- <c:out value="${homestead.getPeopleNumber()}"/></dd>
-        </dl>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h2><c:out value="${homestead.getTitle()}"/></h2>
+                <p><c:out value="${homestead.getDescription()}"/></p>
+                <dl>
+                    <dt><fmt:message key="homesteadPrice"/></dt>
+                    <dd>- <c:out value="${homestead.getPrice()}"/></dd>
+                    <dt><fmt:message key="homesteadPeopleNumber"/></dt>
+                    <dd>- <c:out value="${homestead.getPeopleNumber()}"/></dd>
+                </dl>
+            </div>
+            <div class="col-md-6 text-center">
+                <h2><fmt:message key="homesteadOwner"/></h2>
+                <dl>
+                    <dt><fmt:message key="name"/></dt>
+                    <dd>- <c:out value="${homestead.getOwner().getName()}"/></dd>
+                    <dt><fmt:message key="surname"/></dt>
+                    <dd>- <c:out value="${homestead.getOwner().getSurname()}"/></dd>
+                    <dt><fmt:message key="phoneNumber"/></dt>
+                    <dd>- <c:out value="${homestead.getOwner().getPhone()}"/></dd>
+                </dl>
+            </div>
+        </div>
     </div>
 
     <hr>
 
     <div class="form-group container">
 
-        <c:url value="/authorized_user/reservationInfo.html" var="reservationInfoUrl"/>
+        <c:url value="/authorized_user/reservationInfo.html"
+               var="reservationInfoUrl"/>
 
         <form action="${reservationInfoUrl}">
             <input type="submit" class="btn btn-default"
@@ -134,7 +151,8 @@
         </form>
         <label for="comment"><fmt:message key="enterComment"/>:</label>
 
-        <c:url value="/authorized_user/homesteadReview.html" var="homesteadReviewUrl"/>
+        <c:url value="/authorized_user/homesteadReview.html"
+               var="homesteadReviewUrl"/>
 
         <form action="${homesteadReviewUrl}">
             <textarea class="form-control" rows="5" id="comment"

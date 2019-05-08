@@ -17,7 +17,7 @@ public interface HomesteadDao extends Dao<Homestead> {
      * @return - list with objects that have expected title
      * @throws PersistentException - exception with searching in database
      */
-    List<Homestead> findByTitle(String search) throws PersistentException;
+    List<Homestead> readByTitle(String search) throws PersistentException;
 
     /**
      * Method searches all homesteads in database by price.
@@ -27,10 +27,10 @@ public interface HomesteadDao extends Dao<Homestead> {
      * @return - list with objects that cost expected price
      * @throws PersistentException - exception with searching in database
      */
-    List<Homestead> findByPrice(BigDecimal minPrice, BigDecimal maxPrice)
+    List<Homestead> readByPrice(BigDecimal minPrice, BigDecimal maxPrice)
             throws PersistentException;
 
-    List<Homestead> findByOwner(int ownerId) throws PersistentException;
+    List<Homestead> readByOwner(int ownerId) throws PersistentException;
 
     /**
      * Method reads all object from homesteads table.

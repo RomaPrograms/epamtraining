@@ -49,26 +49,26 @@ public class Main {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        //        for (var image : imageDaoRealization.readImagesByHomeId(2)) {
+        //        for (var image : imageDaoRealization.readByHomeId(2)) {
 //            System.out.println(image);
 //        }
         /*try {
             Connection connection = ConnectionDB.getConnection();
             imageDaoRealization.delete(3);
             List<String> list = new ArrayList<>();
-            list.add("www/img/1.1_farmstead.jpg");
-            list.add("www/img/1.2_farmstead.jpg");
-            list.add("www/img/1.3_farmstead.jpg");
-            list.add("www/img/2.0_farmstead.jpg");
-            list.add("www/img/2.1_farmstead.jpg");
-            list.add("www/img/2.2_farmstead.jpg");
-            list.add("www/img/2.3_farmstead.jpg");
-            list.add("www/img/3.0_farmstead.jpg");
-            list.add("www/img/3.1_farmstead.jpg");
-            list.add("www/img/3.2_farmstead.jpg");
-            list.add("www/img/4.0_farmstead.jpg");
-            list.add("www/img/4.1_farmstead.jpg");
-            list.add("www/img/4.2_farmstead.jpg");
+            list.create("www/img/1.1_farmstead.jpg");
+            list.create("www/img/1.2_farmstead.jpg");
+            list.create("www/img/1.3_farmstead.jpg");
+            list.create("www/img/2.0_farmstead.jpg");
+            list.create("www/img/2.1_farmstead.jpg");
+            list.create("www/img/2.2_farmstead.jpg");
+            list.create("www/img/2.3_farmstead.jpg");
+            list.create("www/img/3.0_farmstead.jpg");
+            list.create("www/img/3.1_farmstead.jpg");
+            list.create("www/img/3.2_farmstead.jpg");
+            list.create("www/img/4.0_farmstead.jpg");
+            list.create("www/img/4.1_farmstead.jpg");
+            list.create("www/img/4.2_farmstead.jpg");
             for(int i = 10; i < 13; i++) {
                 BufferedImage image = ImageIO
                         .read(new File(list.get(i)));
@@ -115,7 +115,7 @@ public class Main {
 //        profileDao.create(profile);
 //        ReviewDaoRealization reviewDaoRealization
 // = new ReviewDaoRealization();
-//        for(var review : reviewDaoRealization.readReviewsByHomeId(1)) {
+//        for(var review : reviewDaoRealization.readByHomeId(1)) {
 //            System.out.println(review);
 //        }
 //        System.out.println(profileDao.read("pasha@gmail.com", "111"));
@@ -137,7 +137,7 @@ public class Main {
         }*/
         //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
 
-        //System.out.println(factoryRealization.getService(HomesteadService.class).findAll());
+        //System.out.println(factoryRealization.getService(HomesteadService.class).readAll());
         //System.out.println(new HomesteadDaoRealization().read(2));
     }
 }

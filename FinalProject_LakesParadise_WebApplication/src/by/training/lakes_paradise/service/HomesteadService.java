@@ -7,18 +7,18 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface HomesteadService extends Service {
-    List<Homestead> findAllByTitle(String search) throws PersistentException;
+    List<Homestead> readAllByTitle(String search) throws PersistentException;
 
-    List<Homestead> findAllByPrice(BigDecimal minPrice, BigDecimal maxPrice)
+    List<Homestead> readAllByPrice(BigDecimal minPrice, BigDecimal maxPrice)
             throws PersistentException;
 
-    List<Homestead> findByOwner(int ownerId) throws PersistentException;
+    List<Homestead> readByOwner(int ownerId) throws PersistentException;
 
-    List<Homestead> findAll() throws PersistentException;
+    List<Homestead> readAll() throws PersistentException;
 
-    Integer add(Homestead homestead) throws PersistentException;
+    Integer create(Homestead homestead) throws PersistentException;
 
-    Homestead findById(Integer id) throws PersistentException;
+    Homestead readById(Integer id) throws PersistentException;
 
     void update(Homestead entity) throws PersistentException;
 

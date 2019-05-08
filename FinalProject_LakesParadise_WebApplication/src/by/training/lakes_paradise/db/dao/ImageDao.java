@@ -16,7 +16,7 @@ public interface ImageDao extends Dao<Image> {
      * @return list with images
      * @throws PersistentException - exception with searching in database
      */
-    List<Image> readImagesByHomeId(Integer homeId) throws PersistentException;
+    List<Image> readByHomeId(Integer homeId) throws PersistentException;
 
     Integer createNewVersion(Image entity) throws PersistentException;
 
@@ -26,5 +26,5 @@ public interface ImageDao extends Dao<Image> {
      * @param homeId - id of homestead
      * @throws PersistentException - exception with deleting in database
      */
-    void deleteImagesByHomeId(Integer homeId) throws PersistentException;
+    void deleteByHomeId(Integer homeId) throws PersistentException;
 }

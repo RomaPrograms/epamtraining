@@ -12,13 +12,13 @@ public class ReviewServiceRealization extends ServiceRealization
     public List<Review> readReviewsByHomeId(
             final Integer homeId) throws PersistentException {
         ReviewDao reviewDao = transaction.createDao(ReviewDao.class);
-        return reviewDao.readReviewsByHomeId(homeId);
+        return reviewDao.readByHomeId(homeId);
     }
 
     @Override
     public void deleteReviewsByHomeId(
             final Integer homeId) throws PersistentException {
-        transaction.createDao(ReviewDao.class).deleteReviewsByHomeId(homeId);
+        transaction.createDao(ReviewDao.class).deleteByHomeId(homeId);
     }
 
     @Override

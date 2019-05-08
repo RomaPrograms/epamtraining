@@ -18,7 +18,7 @@ public class ProfileServiceRealization extends ServiceRealization
     }
 
     @Override
-    public List<Profile> read() throws PersistentException {
+    public List<Profile> readAll() throws PersistentException {
         return null;
     }
 

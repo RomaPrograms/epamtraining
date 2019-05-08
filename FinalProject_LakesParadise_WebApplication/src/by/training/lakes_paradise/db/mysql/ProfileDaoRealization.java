@@ -220,7 +220,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after trying"
-                        + " to add record into table `profiles`");
+                        + " to create record into table `profiles`");
                 throw new PersistentException();
             }
         } catch (SQLException e) {

@@ -32,7 +32,7 @@ public class OwnerHomesteadsListAction extends Action {
         Config.set(request, Config.FMT_LOCALE, locale);
 
         request.setAttribute("res", factory.getService(
-                HomesteadService.class).findByOwner(profile.getId()));
+                HomesteadService.class).readByOwner(profile.getId()));
         LOGGER.info("Owner homesteads list was shown successfully");
 
         return forward;

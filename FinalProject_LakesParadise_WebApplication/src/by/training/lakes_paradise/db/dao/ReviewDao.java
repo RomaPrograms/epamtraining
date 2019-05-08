@@ -17,7 +17,7 @@ public interface ReviewDao extends Dao<Review> {
      * @throws PersistentException - exception with searching in review table by
      *                             homestead id
      */
-    List<Review> readReviewsByHomeId(Integer homeId) throws PersistentException;
+    List<Review> readByHomeId(Integer homeId) throws PersistentException;
 
     /**
      * Method deletes reviews by id of homestead.
@@ -25,5 +25,5 @@ public interface ReviewDao extends Dao<Review> {
      * @param homeId - id of homestead
      * @throws PersistentException - exception with deleting in review table
      */
-    void deleteReviewsByHomeId(Integer homeId) throws PersistentException;
+    void deleteByHomeId(Integer homeId) throws PersistentException;
 }

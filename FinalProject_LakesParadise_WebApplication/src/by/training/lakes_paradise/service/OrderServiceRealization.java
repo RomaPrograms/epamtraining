@@ -21,7 +21,7 @@ public class OrderServiceRealization extends ServiceRealization
     }
 
     @Override
-    public List<Order> read() throws PersistentException {
+    public List<Order> readAll() throws PersistentException {
         return null;
     }
 

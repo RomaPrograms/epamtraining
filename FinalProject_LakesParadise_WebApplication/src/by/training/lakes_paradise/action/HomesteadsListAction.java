@@ -34,7 +34,7 @@ public class HomesteadsListAction extends Action {
 
         if (request.getAttribute("res") == null) {
             request.setAttribute("res", factory.getService(
-                    HomesteadService.class).findAll());
+                    HomesteadService.class).readAll());
             LOGGER.info("Homesteads list was shown successfully.");
         }
 

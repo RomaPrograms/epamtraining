@@ -85,7 +85,7 @@ public class ImageDaoRealization extends BaseDaoRealization
      * @throws PersistentException - exception with searching in database
      */
     @Override
-    public List<Image> readImagesByHomeId(final Integer homeId)
+    public List<Image> readByHomeId(final Integer homeId)
             throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -156,7 +156,7 @@ public class ImageDaoRealization extends BaseDaoRealization
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after trying"
-                        + " to add record into table `profiles`");
+                        + " to create record into table `profiles`");
                 throw new PersistentException();
             }
         } catch (SQLException e) {
@@ -202,7 +202,7 @@ public class ImageDaoRealization extends BaseDaoRealization
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after trying"
-                        + " to add record into table `profiles`");
+                        + " to create record into table `profiles`");
                 throw new PersistentException();
             }
         } catch (SQLException e) {
@@ -346,7 +346,7 @@ public class ImageDaoRealization extends BaseDaoRealization
      *                             by home id
      */
     @Override
-    public void deleteImagesByHomeId(final Integer homeId)
+    public void deleteByHomeId(final Integer homeId)
             throws PersistentException {
         String sql = "delete from images where home_id = (?)";
         PreparedStatement statement = null;

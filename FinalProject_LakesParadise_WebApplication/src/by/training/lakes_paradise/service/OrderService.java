@@ -12,7 +12,7 @@ public interface OrderService extends Service {
     List<Order> readByHomestead(final Integer homesteadId)
             throws PersistentException;
 
-    List<Order> read() throws PersistentException;
+    List<Order> readAll() throws PersistentException;
 
     Integer create(final Order order) throws PersistentException;
 

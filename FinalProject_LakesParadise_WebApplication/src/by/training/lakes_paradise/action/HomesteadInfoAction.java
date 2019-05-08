@@ -41,7 +41,7 @@ public class HomesteadInfoAction extends Action {
         } else {
             int homesteadId = Integer.parseInt(stringHomesteadId);
             homestead = factory.getService(
-                    HomesteadService.class).findById(homesteadId);
+                    HomesteadService.class).readById(homesteadId);
             homestead.setId(homesteadId);
         }
 

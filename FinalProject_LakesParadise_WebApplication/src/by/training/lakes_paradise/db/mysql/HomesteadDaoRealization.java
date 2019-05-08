@@ -125,7 +125,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * @throws PersistentException - exception with searching in database
      */
     @Override
-    public List<Homestead> findByTitle(final String title)
+    public List<Homestead> readByTitle(final String title)
             throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -166,7 +166,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     }
 
     @Override
-    public List<Homestead> findByOwner(int ownerId) throws PersistentException {
+    public List<Homestead> readByOwner(int ownerId) throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
@@ -215,7 +215,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * @throws PersistentException - exception with searching in database
      */
     @Override
-    public List<Homestead> findByPrice(final BigDecimal minPrice,
+    public List<Homestead> readByPrice(final BigDecimal minPrice,
                                        final BigDecimal maxPrice)
             throws PersistentException {
         PreparedStatement statement = null;
@@ -294,7 +294,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after"
-                        + " trying to add record into table `homesteads`");
+                        + " trying to create record into table `homesteads`");
                 throw new PersistentException();
             }
 

@@ -214,7 +214,7 @@ public class OrderDaoRealization extends BaseDaoRealization
                 return resultSet.getInt(1);
             } else {
                 LOGGER.error("There is no autoincremented index after trying"
-                        + " to add record into table `orders`");
+                        + " to create record into table `orders`");
                 throw new PersistentException();
             }
         } catch (SQLException e) {

@@ -21,6 +21,9 @@ import java.util.List;
 
 public class ReserveHomesteadAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(ReserveHomesteadInfoAction.class);
 

@@ -41,7 +41,7 @@ public class AddHomesteadAction extends Action {
             User user = new User();
             user.setId(profile.getId());
             homestead.setOwner(user);
-            factory.getService(HomesteadService.class).add(homestead);
+            factory.getService(HomesteadService.class).create(homestead);
             request.setAttribute("successMessage",
                     "Homestead was successfully signed up.");
         } catch (IncorrectDataException e) {

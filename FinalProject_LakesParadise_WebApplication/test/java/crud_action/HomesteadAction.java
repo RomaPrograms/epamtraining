@@ -61,7 +61,7 @@ public class HomesteadAction {
     @Test(dataProvider = "dataProviderForReadByIdAction")
     public void readByIdAction(Homestead expectedHomestead) {
         try {
-            Homestead homestead = homesteadService.findById(2);
+            Homestead homestead = homesteadService.readById(2);
 
         } catch (PersistentException e) {
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class HomesteadAction {
     @Test(dataProvider = "dataProviderForReadByIdAction")
     public void readAllHomesteadsAction(Homestead expectedHomestead) {
         try {
-            List<Homestead> homestead = homesteadService.findAll();
+            List<Homestead> homestead = homesteadService.readAll();
 
         } catch (PersistentException e) {
             e.printStackTrace();

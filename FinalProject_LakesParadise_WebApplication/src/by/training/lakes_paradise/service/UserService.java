@@ -6,7 +6,7 @@ import by.training.lakes_paradise.exception.PersistentException;
 import java.util.List;
 
 public interface UserService extends Service {
-    List<User> read() throws PersistentException;
+    List<User> readAll() throws PersistentException;
 
     Integer create(User user) throws PersistentException;
 

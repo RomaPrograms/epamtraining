@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProfileService extends Service {
     Profile read(String login, String password) throws PersistentException;
 
-    List<Profile> read() throws PersistentException;
+    List<Profile> readAll() throws PersistentException;
 
     Integer create(Profile profile) throws PersistentException;
 

@@ -13,48 +13,48 @@ public class HomesteadServiceRealization extends ServiceRealization
         implements HomesteadService {
 
     @Override
-    public List<Homestead> findByOwner(int ownerId) throws PersistentException {
+    public List<Homestead> readByOwner(int ownerId) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.findByOwner(ownerId);
+        return homesteadDao.readByOwner(ownerId);
     }
 
     @Override
-    public List<Homestead> findAllByTitle(
+    public List<Homestead> readAllByTitle(
             final String search) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.findByTitle(search);
+        return homesteadDao.readByTitle(search);
     }
 
     @Override
-    public List<Homestead> findAllByPrice(
+    public List<Homestead> readAllByPrice(
             final BigDecimal minPrice,
             final BigDecimal maxPrice) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.findByPrice(minPrice, maxPrice);
+        return homesteadDao.readByPrice(minPrice, maxPrice);
     }
 
     @Override
-    public List<Homestead> findAll() throws PersistentException {
+    public List<Homestead> readAll() throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.read();
     }
 
     @Override
-    public Integer add(final Homestead homestead) throws PersistentException {
+    public Integer create(final Homestead homestead) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.create(homestead);
     }
 
     @Override
-    public Homestead findById(final Integer id) throws PersistentException {
+    public Homestead readById(final Integer id) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         ImageDao imageDao = transaction.createDao(ImageDao.class);
         ReviewDao reviewDao = transaction.createDao(ReviewDao.class);
         Homestead homestead = homesteadDao.read(id);
-        for (var image : imageDao.readImagesByHomeId(id)) {
+        for (var image : imageDao.readByHomeId(id)) {
             homestead.getImages().add(image);
         }
-        for (var review : reviewDao.readReviewsByHomeId(id)) {
+        for (var review : reviewDao.readByHomeId(id)) {
             homestead.getReviews().add(review);
         }
         return homestead;

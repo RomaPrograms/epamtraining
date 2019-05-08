@@ -13,7 +13,7 @@ import java.util.List;
 public class UserServiceRealization extends ServiceRealization
         implements UserService {
     @Override
-    public List<User> read() throws PersistentException {
+    public List<User> readAll() throws PersistentException {
         return null;
     }
 

@@ -11,7 +11,7 @@
 # чтобы в дальнейшем была возможность удалить это ограничение.*/
 # );
 #
-# alter table orders add constraint orders_profile_id foreign key (profile_id) references profiles (id);
+# alter table orders create constraint orders_profile_id foreign key (profile_id) references profiles (id);
 #
 # create table if not exists profiles (
 #   id INT(11),

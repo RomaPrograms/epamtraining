@@ -50,7 +50,7 @@ public class UpdateHomesteadAction extends Action {
             request.setAttribute("successMessage", "Homestead was successfully updated.");
             LOGGER.info("Homestead updating was passed successfully.");
         } catch (IncorrectDataException e) {
-            homestead = factory.getService(HomesteadService.class).findById(homesteadId);
+            homestead = factory.getService(HomesteadService.class).readById(homesteadId);
             homestead.setId(homesteadId);
             request.setAttribute("homestead", homestead);
             LOGGER.info("Homestead validation wasn't passed.");

@@ -20,6 +20,14 @@ public class FindHomesteadsAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(FindHomesteadsAction.class);
 
+    /**
+     * Method executes request for finding homesteads.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return URL of jsp page which should be shown
+     * @throws PersistentException - exception connected with DAO
+     */
     @Override
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)

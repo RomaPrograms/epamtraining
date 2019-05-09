@@ -6,6 +6,9 @@ import by.training.lakes_paradise.service.ServiceFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Class which contains common methods and variables for all action classes.
+ */
 abstract public class Action {
     /**
      * Action name.

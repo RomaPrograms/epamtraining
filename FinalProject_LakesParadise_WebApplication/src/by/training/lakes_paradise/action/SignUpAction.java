@@ -30,6 +30,13 @@ public class SignUpAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(SignUpAction.class);
 
+    /**
+     * Method executes request for registration.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return URL of jsp page which should be shown
+     */
     @Override
     public Forward exec(
             final HttpServletRequest request,

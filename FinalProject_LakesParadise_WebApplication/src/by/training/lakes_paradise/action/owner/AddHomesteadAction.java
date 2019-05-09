@@ -30,6 +30,14 @@ public class AddHomesteadAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(AddHomesteadAction.class);
 
+    /**
+     * Method executes request for adding new homestead.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return URL of jsp page which should be shown
+     * @throws PersistentException - exception connected with DAO
+     */
     @Override
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)

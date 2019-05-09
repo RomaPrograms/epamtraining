@@ -31,6 +31,14 @@ public class ReserveHomesteadAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(ReserveHomesteadInfoAction.class);
 
+    /**
+     * Method executes request for reservation homestead.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return action which should be executed after current request
+     * @throws PersistentException - exception connected with DAO
+     */
     @Override
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)
@@ -51,7 +59,9 @@ public class ReserveHomesteadAction extends Action {
                 order.setUser(user);
                 order.setHomestead(homestead);
                 order.setPaid(true);
-                factory.getService(OrderService.class).create(order);
+                OrderService orderService
+                        = factory.getService(OrderService.class);
+                orderService.create(order);
                 forward.getAttributes().put("registerSuccessMessage",
                         "Congratulations, you have successfully registered!");
                 LOGGER.info("Registration passed successfully");

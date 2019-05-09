@@ -26,6 +26,14 @@ public class ReviewAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(ReviewAction.class);
 
+    /**
+     * Method executes request for saving a comment about homestead.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return name of action which should be executed after current request
+     * @throws PersistentException - exception connected with DAO
+     */
     @Override
     public Forward exec(
             final HttpServletRequest request,

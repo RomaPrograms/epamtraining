@@ -25,6 +25,14 @@ public class HomesteadsListAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(HomesteadsListAction.class);
 
+    /**
+     * Method executes request for showing list of homesteads.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return URL of jsp page which should be shown
+     * @throws PersistentException - exception connected with DAO
+     */
     @Override
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)

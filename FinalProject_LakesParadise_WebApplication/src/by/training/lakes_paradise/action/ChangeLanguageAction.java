@@ -2,6 +2,7 @@ package by.training.lakes_paradise.action;
 
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
+import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,6 +22,14 @@ public class ChangeLanguageAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(ChangeLanguageAction.class);
 
+    /**
+     * Method executes request for changing language.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return name of action which should be executed after current request
+     * @throws PersistentException - exception connected with DAO
+     */
     @Override
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response) {

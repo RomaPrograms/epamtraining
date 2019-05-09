@@ -12,6 +12,17 @@ import javax.servlet.http.HttpSession;
  * Class handles owner request for adding new homestead photo.
  */
 public class AddPhotoAction extends Action {
+
+
+
+    /**
+     * Method executes request for adding new homestead photo.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return URL of jsp page which should be shown
+     * @throws PersistentException - exception connected with DAO
+     */
     @Override
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)

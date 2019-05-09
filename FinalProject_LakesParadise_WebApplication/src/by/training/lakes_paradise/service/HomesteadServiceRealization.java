@@ -12,6 +12,13 @@ import java.util.List;
 public class HomesteadServiceRealization extends ServiceRealization
         implements HomesteadService {
 
+    /**
+     * Method searches all homesteads in database by owner.
+     *
+     * @param ownerId - current id of owner
+     * @return list with objects belong to current owner
+     * @throws PersistentException - exception with searching in database
+     */
     @Override
     public List<Homestead> readByOwner(int ownerId)
             throws PersistentException {
@@ -19,13 +26,28 @@ public class HomesteadServiceRealization extends ServiceRealization
         return homesteadDao.readByOwner(ownerId);
     }
 
+    /**
+     * Method searches all homesteads in database by title.
+     *
+     * @param title - title
+     * @return - list with objects that have expected title
+     * @throws PersistentException - exception with searching in database
+     */
     @Override
     public List<Homestead> readAllByTitle(
-            final String search) throws PersistentException {
+            final String title) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.readByTitle(search);
+        return homesteadDao.readByTitle(title);
     }
 
+    /**
+     * Method searches all homesteads in database by price.
+     *
+     * @param minPrice - min price of homestead
+     * @param maxPrice - max price of homestead
+     * @return - list with objects that cost expected price
+     * @throws PersistentException - exception with searching in database
+     */
     @Override
     public List<Homestead> readAllByPrice(
             final BigDecimal minPrice,
@@ -34,12 +56,25 @@ public class HomesteadServiceRealization extends ServiceRealization
         return homesteadDao.readByPrice(minPrice, maxPrice);
     }
 
+    /**
+     * Method reads all object from homesteads table.
+     *
+     * @return - list with objects from homestead table
+     * @throws PersistentException - exception with searching in database
+     */
     @Override
     public List<Homestead> readAll() throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.read();
     }
 
+    /**
+     * Method adds new object to database.
+     *
+     * @param homestead - new object
+     * @return - id of new object in database
+     * @throws PersistentException - exception with adding object to database
+     */
     @Override
     public Integer create(final Homestead homestead)
             throws PersistentException {
@@ -47,6 +82,13 @@ public class HomesteadServiceRealization extends ServiceRealization
         return homesteadDao.create(homestead);
     }
 
+    /**
+     * Method reads object from database by id.
+     *
+     * @param id - id of object
+     * @return object which was read
+     * @throws PersistentException - exception with reading object from database
+     */
     @Override
     public Homestead readById(final Integer id) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);

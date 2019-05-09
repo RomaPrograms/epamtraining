@@ -61,9 +61,11 @@ public class DispatcherServlet extends HttpServlet {
      */
     private static final int DB_POOL_MAX_SIZE = 1000;
 
-
+    /**
+     * Method initializes connection poop.
+     */
     @Override
-    public void init() throws ServletException {
+    public void init() {
         try {
             ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS,
                     DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE,
@@ -74,36 +76,66 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Method creates and initializes instance of
+     * {@code ServiceFactoryRealization} class
+     * which will be used for creating needed services.
+     *
+     * @return instance of {@code ServiceFactoryRealization} class
+     * @throws PersistentException - exception connected with DAO
+     */
     public ServiceFactory getFactory() throws PersistentException {
         return new ServiceFactoryRealization(
                 new TransactionFactoryRealization());
     }
 
+    /**
+     * Method that processes GET requests.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @throws ServletException - exception connected with incorrect servlet
+     * working
+     * @throws IOException - exception connected with redirecting and
+     * forwarding requests
+     */
     @Override
     protected void doGet(final HttpServletRequest request,
                          final HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            action(request, response);
-        } catch (PersistentException e) {
-            e.printStackTrace();
-        }
+        action(request, response);
     }
 
+    /**
+     * Method that processes POST requests.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @throws ServletException - exception connected with incorrect servlet
+     * working
+     * @throws IOException - exception connected with redirecting and
+     * forwarding requests
+     */
     @Override
     protected void doPost(final HttpServletRequest request,
                           final HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            action(request, response);
-        } catch (PersistentException e) {
-            e.printStackTrace();
-        }
+        action(request, response);
     }
 
+    /**
+     * Method that calls all necessary methods for executing user action.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @throws ServletException - exception connected with incorrect servlet
+     * working
+     * @throws IOException - exception connected with redirecting and
+     * forwarding requests
+     */
     private void action(final HttpServletRequest request,
                         final HttpServletResponse response)
-            throws ServletException, IOException, PersistentException {
+            throws ServletException, IOException {
         Action action = (Action) request.getAttribute("action");
 
         try {

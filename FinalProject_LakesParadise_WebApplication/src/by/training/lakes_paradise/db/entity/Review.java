@@ -78,6 +78,11 @@ public class Review extends Entity {
         this.dateOfComment = reviewDateOfComment;
     }
 
+    /**
+     * Gets the value of dateOfComment property by special pattern.
+     *
+     * @return value of dateOfComment property
+     */
     public String getDateOfCommentByPattern() {
         SimpleDateFormat formatForDateNow
                 = new SimpleDateFormat("E dd.MM.yyyy");

@@ -1,5 +1,9 @@
 package by.training.lakes_paradise.exception;
 
+/**
+ * Class which declares exception connected with incorrect validation of
+ * some parameters
+ */
 public class IncorrectDataException extends Exception {
     /**
      * Zero-argument constructor.
@@ -17,6 +21,12 @@ public class IncorrectDataException extends Exception {
         super(message, cause);
     }
 
+    /**
+     * Two-argument constructor.
+     *
+     * @param parameter - name of incorrect parameter
+     * @param value - value of incorrect parameter
+     */
     public IncorrectDataException(final String parameter, final String value) {
         super("Parameter '" + parameter + "' got empty or incorrect value '"
                 + "'");

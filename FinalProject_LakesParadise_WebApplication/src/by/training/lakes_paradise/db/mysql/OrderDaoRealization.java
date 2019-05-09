@@ -50,8 +50,9 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     private static final String SQL_SCRIPT_SELECT
             = "select o.user_id, o.home_id, o.date_start, o.date_end, "
-            + "o.status_pay, h.title, p.login from orders o inner join homesteads h on"
-            + " o.home_id = h.id inner join profiles p on o.user_id = p.id ";
+            + "o.status_pay, h.title, p.login from orders o inner join"
+            + " homesteads h on o.home_id = h.id inner join profiles p on"
+            + " o.user_id = p.id ";
 
     /**
      * Point to the third element in SQL query.

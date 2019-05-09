@@ -77,7 +77,15 @@ public class ReserveHomesteadAction extends Action {
         return forward;
     }
 
-
+    /**
+     * Method validates is it possible to rent such dates.
+     *
+     * @param newOrder - new order
+     * @param homesteadId - homestead id
+     * @return {@code true} in condition that it is possible ant {@code false}
+     * otherwise
+     * @throws PersistentException - exception connected with DAO
+     */
     private boolean dateValidation(final Order newOrder, final int homesteadId)
             throws PersistentException {
         List<Order> orders = factory.getService(OrderService.class)

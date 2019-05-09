@@ -5,7 +5,19 @@ import by.training.lakes_paradise.exception.IncorrectDataException;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class for validation user data from request.
+ */
 public class UserValidator implements Validator<User> {
+
+    /**
+     * Method for validation {@code User} class.
+     *
+     * @param request - user request
+     * @return User class which will be created if validation will be passed
+     * successfully
+     * @throws IncorrectDataException - incorrect validation exception
+     */
     @Override
     public User validate(final HttpServletRequest request)
             throws IncorrectDataException {

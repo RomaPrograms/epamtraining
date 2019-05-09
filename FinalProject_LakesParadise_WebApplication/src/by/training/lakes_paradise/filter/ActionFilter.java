@@ -35,6 +35,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Filter class which pinpoint name of action before it will be executed.
+ */
 public class ActionFilter implements Filter {
 
     /**

@@ -30,10 +30,17 @@ public interface HomesteadDao extends Dao<Homestead> {
     List<Homestead> readByPrice(BigDecimal minPrice, BigDecimal maxPrice)
             throws PersistentException;
 
+    /**
+     * Method searches all homesteads in database by owner.
+     *
+     * @param ownerId - current id of owner
+     * @return list with objects belong to current owner
+     * @throws PersistentException - exception with searching in database
+     */
     List<Homestead> readByOwner(int ownerId) throws PersistentException;
 
     /**
-     * Method reads all object from homesteads table.
+     * Method reads all objects from homesteads table.
      *
      * @return - list with objects from homestead table
      * @throws PersistentException - exception with searching in database

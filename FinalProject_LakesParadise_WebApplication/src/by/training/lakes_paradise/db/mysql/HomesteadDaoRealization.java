@@ -165,8 +165,16 @@ public class HomesteadDaoRealization extends BaseDaoRealization
         }
     }
 
+    /**
+     * Method searches all homesteads in database by owner.
+     *
+     * @param ownerId - current id of owner
+     * @return list with objects belong to current owner
+     * @throws PersistentException - exception with searching in database
+     */
     @Override
-    public List<Homestead> readByOwner(int ownerId) throws PersistentException {
+    public List<Homestead> readByOwner(final int ownerId)
+            throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 

@@ -10,57 +10,131 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * Class declares user-defined navbar-tag.
+ */
 public class NavbarTag extends TagSupport {
-
+    /**
+     * Current profile of user.
+     */
     private Profile profile;
+    /**
+     * Current language of page.
+     */
     private Locale language;
+    /**
+     * Message for user connected with authentication.
+     */
     private String logInMessage;
 
+    /**
+     * Name of action for changing language to english.
+     */
     private static final String ENGLISH_LANGUAGE_URL = "/language/en_US.html";
+    /**
+     * Name of action for changing language to belorussian.
+     */
     private static final String BELORUSSIAN_LANGUAGE_URL
             = "/language/be_BY.html";
+    /**
+     * Name of action for changing language to russian.
+     */
     private static final String RUSSIAN_LANGUAGE_URL = "/language/ru_RU.html";
 
+    /**
+     * Name of action for opening menu page.
+     */
     private static final String MENU_URL = "/menu.html";
+    /**
+     * Name of action for opening registration page.
+     */
     private static final String SIGN_UP_URL = "/sign_up.html";
+    /**
+     * Name of action for opening homesteads catalog page.
+     */
     private static final String HOMESTEAD_LIST_URL = "/homesteadsList.html";
+    /**
+     * Name of action for opening user cabinet page.
+     */
     private static final String USER_CABINET_URL
             = "/authorized_user/userCabinet.html";
+    /**
+     * Name of action for opening owner homesteads catalog page.
+     */
     private static final String OWNER_HOMESTEADS_URL
             = "/owner/ownerHomesteads.html";
+    /**
+     * Name of action for authentication.
+     */
     private static final String LOG_IN_URL = "/log_in.html";
 
 
+    /**
+     * Gets the value of profile property.
+     *
+     * @return value of profile property
+     */
     public Profile getProfile() {
         return profile;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    /**
+     * Sets the value of profile property.
+     *
+     * @param curProfile - value of profile property
+     */
+    public void setProfile(final Profile curProfile) {
+        this.profile = curProfile;
     }
 
+    /**
+     * Gets the value of language property.
+     *
+     * @return value of language property
+     */
     public Locale getLanguage() {
         return language;
     }
 
-    public void setLanguage(Locale language) {
-        this.language = language;
+    /**
+     * Sets the value of curLanguage property.
+     *
+     * @param curLanguage - value of curLanguage property
+     */
+    public void setLanguage(final Locale curLanguage) {
+        this.language = curLanguage;
     }
 
+    /**
+     * Gets the value of logInMessage property.
+     *
+     * @return value of logInMessage property
+     */
     public String getLogInMessage() {
         return logInMessage;
     }
 
-    public void setLogInMessage(String logInMessage) {
-        this.logInMessage = logInMessage;
+    /**
+     * Sets the value of curLogInMessage property.
+     *
+     * @param curLogInMessage - value of curLogInMessage property
+     */
+    public void setLogInMessage(final String curLogInMessage) {
+        this.logInMessage = curLogInMessage;
     }
 
+    /**
+     * Method that starts processing of navbar-tag.
+     *
+     * @return code which means how to process navbar-tag body
+     */
     @Override
     public int doStartTag() throws JspException {
 
         try {
             JspWriter out = pageContext.getOut();
-            ResourceBundle rb = ResourceBundle.getBundle("property.text", language);
+            ResourceBundle rb = ResourceBundle
+                    .getBundle("property.text", language);
 
             out.write("<nav class=\"navbar fixed-top scrolling-navbar\">");
 
@@ -143,6 +217,11 @@ public class NavbarTag extends TagSupport {
         return SKIP_BODY;
     }
 
+    /**
+     * Method that end processing of navbar-tag.
+     *
+     * @return code which means how to complete processing of navbar-tag
+     */
     @Override
     public int doEndTag() throws JspException {
         return super.doEndTag();

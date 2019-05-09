@@ -9,7 +9,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Class for validation order data from request.
+ */
 public class OrderValidator implements Validator<Order> {
+
+    /**
+     * Method for validation {@code Order} class.
+     *
+     * @param request - user request
+     * @return Order class which will be created if validation will be passed
+     * successfully
+     * @throws IncorrectDataException - incorrect validation exception
+     */
     @Override
     public Order validate(final HttpServletRequest request)
             throws IncorrectDataException {

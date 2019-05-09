@@ -6,7 +6,18 @@ import by.training.lakes_paradise.exception.IncorrectDataException;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
+/**
+ * Class for validation homestead data from request.
+ */
 public class HomesteadValidator implements Validator<Homestead> {
+    /**
+     * Method for validation {@code Homestead} class.
+     *
+     * @param request - user request
+     * @return Homestead class which will be created if validation will be passed
+     * successfully
+     * @throws IncorrectDataException - incorrect validation exception
+     */
     @Override
     public Homestead validate(final HttpServletRequest request)
             throws IncorrectDataException {

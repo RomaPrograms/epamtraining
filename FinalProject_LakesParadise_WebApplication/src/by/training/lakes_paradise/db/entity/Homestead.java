@@ -24,11 +24,15 @@ public class Homestead extends Entity {
      * Max number of people in homestead.
      */
     private int peopleNumber;
+
     /**
      * Rating of homestead.
      */
     private double rating;
 
+    /**
+     * Number of people which saved a comment.
+     */
     private long numberOfVotedUsers;
 
     /**
@@ -36,8 +40,14 @@ public class Homestead extends Entity {
      */
     private User owner;
 
+    /**
+     * List with images of homestead.
+     */
     private List<Image> images = new ArrayList<>();
 
+    /**
+     * List with reviews about homestead.
+     */
     private List<Review> reviews = new ArrayList<>();
 
     /**
@@ -76,29 +86,52 @@ public class Homestead extends Entity {
         this.price = homePrice;
     }
 
+    /**
+     * Gets the value of numberOfVotedUsers property.
+     *
+     * @return value of numberOfVotedUsers property.
+     */
     public long getNumberOfVotedUsers() {
         return numberOfVotedUsers;
     }
 
-    public void setNumberOfVotedUsers(long numberOfVotedUsers) {
-        this.numberOfVotedUsers = numberOfVotedUsers;
+    /**
+     * Sets the value of numberOfVotedUsers property.
+     *
+     * @param homesteadNumberOfVotedUsers - value of numberOfVotedUsers
+     * property.
+     */
+    public void setNumberOfVotedUsers(final long homesteadNumberOfVotedUsers) {
+        this.numberOfVotedUsers = homesteadNumberOfVotedUsers;
     }
 
+    /**
+     * Gets the value of images property.
+     *
+     * @return value of images property.
+     */
     public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(final List<Image> images) {
-        this.images = images;
+    /**
+     * Sets the value of images property.
+     *
+     * @param homesteadImages - value of images property.
+     */
+    public void setImages(final List<Image> homesteadImages) {
+        this.images = homesteadImages;
     }
 
+    /**
+     * Gets the value of reviews property.
+     *
+     * @return value of reviews property.
+     */
     public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(final List<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     /**
      * Gets the value of description property.

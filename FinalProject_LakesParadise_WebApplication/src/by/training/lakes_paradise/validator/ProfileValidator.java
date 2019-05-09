@@ -5,7 +5,18 @@ import by.training.lakes_paradise.exception.IncorrectDataException;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Class for validation profile data from request.
+ */
 public class ProfileValidator implements Validator<Profile> {
+    /**
+     * Method for validation {@code Profile} class.
+     *
+     * @param request - user request
+     * @return Profile class which will be created if validation will be passed
+     * successfully
+     * @throws IncorrectDataException - incorrect validation exception
+     */
     @Override
     public Profile validate(final HttpServletRequest request)
             throws IncorrectDataException {

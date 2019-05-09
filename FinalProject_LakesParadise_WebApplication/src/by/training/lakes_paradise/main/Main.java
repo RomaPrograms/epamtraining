@@ -22,8 +22,6 @@ public class Main {
     private static final String DB_PASSWORD = "9512684Roma";
     private static final int DB_POOL_START_SIZE = 10;
     private static final int DB_POOL_MAX_SIZE = 1000;
-    private static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
-
     public static void main(final String[] args) throws PersistentException,
             ParseException {
 
@@ -120,8 +118,7 @@ public class Main {
 //        }
 //        System.out.println(profileDao.read("pasha@gmail.com", "111"));
         ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER,
-                DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE,
-                DB_POOL_CHECK_CONNECTION_TIMEOUT);
+                DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE);
 
         //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
         TransactionFactoryRealization transactionFactoryRealization = new TransactionFactoryRealization();

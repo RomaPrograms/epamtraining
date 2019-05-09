@@ -323,7 +323,7 @@ public class PooledConnection
     }
 
     @Override
-    public int compareTo(final PooledConnection connection) {
-        return hashCode() - connection.hashCode();
+    public int compareTo(final PooledConnection curConnection) {
+        return hashCode() - curConnection.hashCode();
     }
 }

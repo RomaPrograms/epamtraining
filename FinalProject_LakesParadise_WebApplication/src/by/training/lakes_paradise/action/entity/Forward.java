@@ -24,19 +24,19 @@ public class Forward {
     /**
      * Two-argument constructor.
      *
-     * @param newForward - value of forward property
-     * @param newIsRedirect - value of isRedirect property
+     * @param curForward - value of forward property
+     * @param curIsRedirect - value of isRedirect property
      */
-    public Forward(String newForward, boolean newIsRedirect) {
-        this.forward = newForward;
-        this.isRedirect = newIsRedirect;
+    public Forward(final String curForward, final boolean curIsRedirect) {
+        this.forward = curForward;
+        this.isRedirect = curIsRedirect;
     }
 
     /**
      * One-argument constructor, which calls two-argument constructor where
      * second argument will be true.
      *
-     * @param forward
+     * @param forward - value of forward property
      */
     public Forward(final String forward) {
         this(forward, true);
@@ -54,10 +54,10 @@ public class Forward {
     /**
      * Sets the value of forward property.
      *
-     * @param newForward - value of forward property
+     * @param curForward - value of forward property
      */
-    public void setForward(final String newForward) {
-        this.forward = newForward;
+    public void setForward(final String curForward) {
+        this.forward = curForward;
     }
 
     /**
@@ -72,10 +72,10 @@ public class Forward {
     /**
      * Sets the value of isRedirect property.
      *
-     * @param newIsRedirect - value of isRedirect property
+     * @param curIsRedirect - value of isRedirect property
      */
-    public void setRedirect(final boolean newIsRedirect) {
-        this.isRedirect = newIsRedirect;
+    public void setRedirect(final boolean curIsRedirect) {
+        this.isRedirect = curIsRedirect;
     }
 
     /**
@@ -90,9 +90,9 @@ public class Forward {
     /**
      * Sets the value of attributes property.
      *
-     * @param newAttributes - value of attributes property
+     * @param curAttributes - value of attributes property
      */
-    public void setAttributes(final Map<String, Object> newAttributes) {
-        this.attributes = newAttributes;
+    public void setAttributes(final Map<String, Object> curAttributes) {
+        this.attributes = curAttributes;
     }
 }

@@ -1,6 +1,10 @@
 package by.training.lakes_paradise.validator;
 
-import by.training.lakes_paradise.db.entity.*;
+import by.training.lakes_paradise.db.entity.Profile;
+import by.training.lakes_paradise.db.entity.Entity;
+import by.training.lakes_paradise.db.entity.Homestead;
+import by.training.lakes_paradise.db.entity.Order;
+import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,11 +13,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Factory for creating validation classes.
+ */
 public class ValidatorFactory {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
     private static final Logger LOGGER
             = LogManager.getLogger(ValidatorFactory.class);
 
+    /**
+     * Map which helps to create required validation class by entity class.
+     */
     private static Map<Class<? extends Entity>, Class<? extends Validator>>
             validators = new HashMap<>();
 
@@ -24,8 +37,16 @@ public class ValidatorFactory {
         validators.put(Homestead.class, HomesteadValidator.class);
     }
 
+    /**
+     * Method creates required validator class.
+     *
+     * @param entity - entity class
+     * @param <Type> - entity class
+     * @return required validator by entity class
+     * @throws PersistentException - required validator doesn't exist exception
+     */
     public static <Type extends Entity> Validator<Type> createValidator(
-            Class<Type> entity) throws PersistentException {
+            final Class<Type> entity) throws PersistentException {
         Class<? extends Validator> value = validators.get(entity);
         if (value != null) {
             try {

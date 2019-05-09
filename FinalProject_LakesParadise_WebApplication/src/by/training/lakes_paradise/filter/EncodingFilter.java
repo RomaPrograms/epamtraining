@@ -8,6 +8,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 
+/**
+ * Filter class which sets encoding of request before it will be executed.
+ */
 public class EncodingFilter implements Filter {
     @Override
     public void doFilter(

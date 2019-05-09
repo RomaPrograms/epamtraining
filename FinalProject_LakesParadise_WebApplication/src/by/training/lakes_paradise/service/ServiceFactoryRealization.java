@@ -32,8 +32,8 @@ public class ServiceFactoryRealization implements ServiceFactory {
     private TransactionFactory factory;
 
     public ServiceFactoryRealization(
-            final TransactionFactory factory) throws PersistentException {
-        this.factory = factory;
+            final TransactionFactory curFactory) throws PersistentException {
+        this.factory = curFactory;
     }
 
     @Override

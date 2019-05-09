@@ -189,7 +189,8 @@ public class ReviewDaoRealization extends BaseDaoRealization
             statement.setString(2, review.getUserName());
             statement.setDate(THIRD_ELEMENT_IN_SQL_QUERY,
                     new Date(review.getDateOfComment().getTime()));
-            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY, review.getHomesteadId());
+            statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY,
+                    review.getHomesteadId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();

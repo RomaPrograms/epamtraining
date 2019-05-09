@@ -73,6 +73,11 @@ public class Order extends Entity {
         return startRenting;
     }
 
+    /**
+     * Gets the value of startRenting property in string by special pattern.
+     *
+     * @return value of startRenting property.
+     */
     public String getStartRentingByPattern() {
         SimpleDateFormat formatForDateNow
                 = new SimpleDateFormat("E dd.MM.yyyy");
@@ -98,6 +103,11 @@ public class Order extends Entity {
         return endRenting;
     }
 
+    /**
+     * Gets the value of endRenting property in string by special pattern.
+     *
+     * @return value of endRenting property.
+     */
     public String getEndRentingByPattern() {
         SimpleDateFormat formatForDateNow
                 = new SimpleDateFormat("E dd.MM.yyyy");
@@ -130,16 +140,5 @@ public class Order extends Entity {
      */
     public void setPaid(final boolean paid) {
         isPaid = paid;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{"
-                + "\nhomestead=" + homestead
-                + ", \nuser=" + user
-                + ", \nstartRenting=" + startRenting
-                + ", \nendRenting=" + endRenting
-                + ", \nisPaid=" + isPaid
-                + "\n}";
     }
 }

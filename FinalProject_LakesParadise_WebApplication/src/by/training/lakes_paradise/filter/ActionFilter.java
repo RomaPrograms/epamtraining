@@ -7,14 +7,7 @@ import by.training.lakes_paradise.action.SignUpAction;
 import by.training.lakes_paradise.action.ChangeLanguageAction;
 import by.training.lakes_paradise.action.FindHomesteadsAction;
 import by.training.lakes_paradise.action.HomesteadsListAction;
-import by.training.lakes_paradise.action.authorized_user.ReviewAction;
-import by.training.lakes_paradise.action.authorized_user
-        .ReserveHomesteadAction;
-import by.training.lakes_paradise.action.authorized_user
-        .ReserveHomesteadInfoAction;
-import by.training.lakes_paradise.action.authorized_user.UpdateUserInfoAction;
-import by.training.lakes_paradise.action.authorized_user.UserCabinetAction;
-import by.training.lakes_paradise.action.authorized_user.LogOutAction;
+import by.training.lakes_paradise.action.authorized_user.*;
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.owner.AddHomesteadAction;
 import by.training.lakes_paradise.action.owner.DeleteHomesteadAction;
@@ -72,6 +65,8 @@ public class ActionFilter implements Filter {
         actions.put("/authorized_user/updateUserInfo",
                 UpdateUserInfoAction.class);
         actions.put("/authorized_user/homesteadReview", ReviewAction.class);
+        actions.put("/authorized_user/deleteUserAccount",
+                DeleteAccountAction.class);
 
 
         actions.put("/owner/addHomestead", AddHomesteadAction.class);

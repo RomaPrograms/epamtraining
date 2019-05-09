@@ -66,7 +66,8 @@ public class ProfileServiceRealization extends ServiceRealization
      */
     @Override
     public void update(final Profile profile) throws PersistentException {
-
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        profileDao.update(profile);
     }
 
     /**
@@ -76,6 +77,7 @@ public class ProfileServiceRealization extends ServiceRealization
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
-
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        profileDao.delete(id);
     }
 }

@@ -78,6 +78,7 @@ public class UserServiceRealization extends ServiceRealization
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
-
+        UserDao userDao = transaction.createDao(UserDao.class);
+        userDao.delete(id);
     }
 }

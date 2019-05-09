@@ -135,9 +135,9 @@
                    value="${update}">
         </form>
         <form class="form-horizontal" role="form" method="post"
-              action="${updateUserInfoUrl}">
+              action="${deleteUserAccountUrl}">
             <input type="submit" class="btn btn-primary"
-                   value="${deleteUserAccount}">
+                   value="${delete}">
         </form>
     </div>
 </div>

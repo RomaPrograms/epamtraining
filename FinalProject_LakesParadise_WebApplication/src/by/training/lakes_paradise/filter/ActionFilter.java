@@ -7,6 +7,7 @@ import by.training.lakes_paradise.action.SignUpAction;
 import by.training.lakes_paradise.action.ChangeLanguageAction;
 import by.training.lakes_paradise.action.FindHomesteadsAction;
 import by.training.lakes_paradise.action.HomesteadsListAction;
+import by.training.lakes_paradise.action.admin.AdminCabinetAction;
 import by.training.lakes_paradise.action.authorized_user.*;
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.owner.AddHomesteadAction;
@@ -74,6 +75,8 @@ public class ActionFilter implements Filter {
         actions.put("/owner/updateHomestead", UpdateHomesteadAction.class);
         actions.put("/owner/ownerHomesteads", OwnerHomesteadsListAction.class);
         actions.put("/owner/addPhoto", AddPhotoAction.class);
+
+        actions.put("/admin/cabinetAdmin", AdminCabinetAction.class);
     }
 
     @Override

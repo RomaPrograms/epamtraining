@@ -55,7 +55,11 @@ public class SignUpAction extends Action {
             UserValidator userValidator = (UserValidator)
                     ValidatorFactory.createValidator(User.class);
             user = userValidator.validate(request);
-            user.setRole(Role.USER);
+            if (profile == null) {
+                user.setRole(Role.USER);
+            } else {
+                user.setRole(Role.OWNER);
+            }
             UserService userService = factory.getService(UserService.class);
             userService.create(user);
             request.setAttribute("successMessage",

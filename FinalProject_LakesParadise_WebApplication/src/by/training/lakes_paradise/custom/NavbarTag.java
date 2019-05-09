@@ -73,6 +73,11 @@ public class NavbarTag extends TagSupport {
      */
     private static final String LOG_OUT_URL = "/authorized_user/log_out.html";
 
+    /**
+     * Name of action for opening admin cabinet page.
+     */
+    private static final String ADMIN_CABINET_URL
+            = "/admin/cabinetAdmin.html";
 
     /**
      * Gets the value of profile property.
@@ -158,11 +163,22 @@ public class NavbarTag extends TagSupport {
                         + rb.getString("registration") + "</a>\n" + "</li>\n");
             }
 
+            if (profile != null && profile.getRole().equals(Role.ADMINISTRATOR)) {
+                out.write("<li><a href=\"" + SIGN_UP_URL + "\">"
+                        + rb.getString("signUpOwner") + "</a>\n" + "</li>\n");
+            }
+
             out.write(" <li><a href=\"" + HOMESTEAD_LIST_URL + "\">"
                     + rb.getString("homesteads") + "</a></li>");
 
-            if (profile != null) {
+            if (profile != null
+                    && !profile.getRole().equals(Role.ADMINISTRATOR)) {
                 out.write("<li><a href=\"" + USER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
+            } else {
+                if(profile != null
+                        && !profile.getRole().equals(Role.ADMINISTRATOR)) {
+                    out.write("<li><a href=\"" + ADMIN_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
+                }
             }
 
             if (profile != null && profile.getRole().equals(Role.OWNER)) {

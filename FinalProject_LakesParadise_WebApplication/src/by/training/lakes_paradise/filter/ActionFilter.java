@@ -14,6 +14,7 @@ import by.training.lakes_paradise.action.authorized_user
         .ReserveHomesteadInfoAction;
 import by.training.lakes_paradise.action.authorized_user.UpdateUserInfoAction;
 import by.training.lakes_paradise.action.authorized_user.UserCabinetAction;
+import by.training.lakes_paradise.action.authorized_user.LogOutAction;
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.owner.AddHomesteadAction;
 import by.training.lakes_paradise.action.owner.DeleteHomesteadAction;
@@ -62,6 +63,7 @@ public class ActionFilter implements Filter {
         actions.put("/language/be_BY", ChangeLanguageAction.class);
         actions.put("/language/ru_RU", ChangeLanguageAction.class);
 
+        actions.put("/authorized_user/log_out", LogOutAction.class);
         actions.put("/authorized_user/reservation",
                 ReserveHomesteadAction.class);
         actions.put("/authorized_user/reservationInfo",

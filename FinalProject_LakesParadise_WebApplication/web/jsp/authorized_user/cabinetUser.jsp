@@ -118,14 +118,26 @@
         <fmt:message key="update"/>
     </c:set>
 
+    <c:set var="delete" scope="page">
+        <fmt:message key="deleteAccount"/>
+    </c:set>
+
     <c:url value="/authorized_user/updateUserInfo.html"
            var="updateUserInfoUrl"/>
 
-    <div class="form-group">
+    <c:url value="/authorized_user/deleteUserAccount.html"
+           var="deleteUserAccountUrl"/>
+
+    <div class="form-group form-horizontal">
         <form class="form-horizontal" role="form" method="post"
               action="${updateUserInfoUrl}">
             <input type="submit" class="btn btn-primary"
                    value="${update}">
+        </form>
+        <form class="form-horizontal" role="form" method="post"
+              action="${updateUserInfoUrl}">
+            <input type="submit" class="btn btn-primary"
+                   value="${deleteUserAccount}">
         </form>
     </div>
 </div>

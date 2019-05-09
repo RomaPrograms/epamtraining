@@ -26,6 +26,12 @@ public class Main {
             ParseException {
 
         try {
+            Profile profile = new Profile();
+            profile.setRole(Role.OWNER);
+            if(!profile.getRole().equals(Role.OWNER)) {
+                System.out.println("");
+            }
+            System.out.println();
             /*ImageDaoRealization imageDaoRealization = new ImageDaoRealization();
             Image image = new Image();
             image.setPathToImage("web/img/");

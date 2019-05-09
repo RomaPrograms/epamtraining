@@ -23,7 +23,6 @@ public class HomesteadAction {
     private static final String DB_PASSWORD = "9512684Roma";
     private static final int DB_POOL_START_SIZE = 10;
     private static final int DB_POOL_MAX_SIZE = 1000;
-    private static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
 
     /**
      * Logger for creation notes to some appender.
@@ -38,7 +37,7 @@ public class HomesteadAction {
         try {
             ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS,
                     DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE,
-                    DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT);
+                    DB_POOL_MAX_SIZE);
 
             TransactionFactoryRealization transaction
                     = new TransactionFactoryRealization();

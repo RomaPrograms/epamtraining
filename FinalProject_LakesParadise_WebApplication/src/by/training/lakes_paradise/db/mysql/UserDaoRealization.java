@@ -128,7 +128,7 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
     }
 
     /**
-     * Method adds new object to database.
+     * Method adds new user to "users" table.
      *
      * @param user - new object
      * @return - id of new object in database
@@ -170,7 +170,7 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
     }
 
     /**
-     * Method reads object from database by id.
+     * Method reads user from "users" table by id.
      *
      * @param id - id of object
      * @return object which was read
@@ -218,7 +218,7 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
     }
 
     /**
-     * Method updates object in database by id.
+     * Method updates user from "users" table by id.
      *
      * @param user - updated object
      */
@@ -249,7 +249,7 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
     }
 
     /**
-     * Method deletes object in database by id.
+     * Method deletes user from "users" table by id.
      *
      * @param id - id of object for deletion
      */

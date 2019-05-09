@@ -54,7 +54,7 @@ public interface HomesteadService extends Service {
     Integer create(Homestead homestead) throws PersistentException;
 
     /**
-     * Method reads object from database by id.
+     * Method reads object from homesteads table by id.
      *
      * @param id - id of object
      * @return object which was read
@@ -62,7 +62,17 @@ public interface HomesteadService extends Service {
      */
     Homestead readById(Integer id) throws PersistentException;
 
+    /**
+     * Method updates homestead from homesteads table by id.
+     *
+     * @param entity - updated homestead
+     */
     void update(Homestead entity) throws PersistentException;
 
+    /**
+     * Method deletes homestead from homesteads table by id.
+     *
+     * @param id - id of homestead for deletion
+     */
     void delete(Integer id) throws PersistentException;
 }

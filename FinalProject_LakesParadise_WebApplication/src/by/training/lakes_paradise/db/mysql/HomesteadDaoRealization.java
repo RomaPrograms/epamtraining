@@ -328,7 +328,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method reads object from database by id.
+     * Method reads all objects from homesteads table by id.
      *
      * @param id - id of object
      * @return object which was read
@@ -419,9 +419,9 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method updates object in database by id.
+     * Method updates homestead from homesteads table by id.
      *
-     * @param entity - updated object
+     * @param entity - updated homestead
      */
     @Override
     public void update(final Homestead entity) {
@@ -462,9 +462,9 @@ public class HomesteadDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method deletes object in database by id.
+     * Method deletes homestead from homesteads table by id.
      *
-     * @param id - id of object for deletion
+     * @param id - id of homestead for deletion
      */
     @Override
     public void delete(final Integer id) throws PersistentException {

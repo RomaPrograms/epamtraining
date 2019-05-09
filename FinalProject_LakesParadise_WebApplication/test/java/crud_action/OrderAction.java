@@ -24,7 +24,6 @@ public class OrderAction {
     private static final String DB_PASSWORD = "9512684Roma";
     private static final int DB_POOL_START_SIZE = 10;
     private static final int DB_POOL_MAX_SIZE = 1000;
-    private static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
 
     /**
      * Logger for creation notes to some appender.

@@ -10,11 +10,24 @@ import java.util.List;
 
 public class UserServiceRealization extends ServiceRealization
         implements UserService {
+
+    /**
+     * Method that reads all objects from "users" table.
+     *
+     * @return list with objects from "users" table
+     */
     @Override
     public List<User> readAll() throws PersistentException {
         return null;
     }
 
+    /**
+     * Method adds new user to "users" table.
+     *
+     * @param user - new object
+     * @return - id of new object in database
+     * @throws PersistentException - exception with adding object to database
+     */
     @Override
     public Integer create(final User user) throws PersistentException {
         ProfileDao profileDao = transaction.createDao(ProfileDao.class);
@@ -28,12 +41,24 @@ public class UserServiceRealization extends ServiceRealization
         return userDao.create(user);
     }
 
+    /**
+     * Method reads user from "users" table by id.
+     *
+     * @param id - id of object
+     * @return object which was read
+     * @throws PersistentException - exception with reading object from database
+     */
     @Override
     public User read(final Integer id) throws PersistentException {
         UserDao userDao = transaction.createDao(UserDao.class);
         return userDao.read(id);
     }
 
+    /**
+     * Method updates user from "users" table by id.
+     *
+     * @param user - updated object
+     */
     @Override
     public void update(final User user) throws PersistentException {
         ProfileDao profileDao = transaction.createDao(ProfileDao.class);
@@ -46,6 +71,11 @@ public class UserServiceRealization extends ServiceRealization
         userDao.update(user);
     }
 
+    /**
+     * Method deletes user from "users" table by id.
+     *
+     * @param id - id of object for deletion
+     */
     @Override
     public void delete(final Integer id) throws PersistentException {
 

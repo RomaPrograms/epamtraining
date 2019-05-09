@@ -183,7 +183,7 @@ public class OrderDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method adds new object to database.
+     * Method adds new object to "orders" table.
      *
      * @param order - new object
      * @return - id of new object in database
@@ -238,7 +238,7 @@ public class OrderDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method reads object from database by id.
+     * Method reads object from "orders" table by id.
      *
      * @param id - id of object
      * @return object which was read
@@ -297,7 +297,7 @@ public class OrderDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method updates object in database by id.
+     * Method updates object in "orders" table by id.
      *
      * @param order - updated object
      */
@@ -336,7 +336,7 @@ public class OrderDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method deletes object in database by id.
+     * Method deletes object in "orders" table by id.
      *
      * @param id - id of object for deletion
      */

@@ -68,6 +68,11 @@ public class NavbarTag extends TagSupport {
      */
     private static final String LOG_IN_URL = "/log_in.html";
 
+    /**
+     * Name of action to log out.
+     */
+    private static final String LOG_OUT_URL = "/authorized_user/log_out.html";
+
 
     /**
      * Gets the value of profile property.
@@ -145,11 +150,16 @@ public class NavbarTag extends TagSupport {
                     "        <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n" +
                     "            <ul id=\"list\" class=\"nav navbar-nav\">");
 
-            out.write("<li><a href=\"" + MENU_URL + "\">" + rb.getString("navbarMenu") + "</a>\n" +
-                    "                </li>\n" +
-                    "                <li><a href=\"" + SIGN_UP_URL + "\">" + rb.getString("registration") + "</a>\n" +
-                    "                </li>\n" +
-                    "                <li><a href=\"" + HOMESTEAD_LIST_URL + "\">" + rb.getString("homesteads") + "</a></li>");
+            out.write("<li><a href=\"" + MENU_URL + "\">"
+                    + rb.getString("navbarMenu") + "</a>\n" + "</li>\n");
+
+            if (profile == null) {
+                out.write("<li><a href=\"" + SIGN_UP_URL + "\">"
+                        + rb.getString("registration") + "</a>\n" + "</li>\n");
+            }
+
+            out.write(" <li><a href=\"" + HOMESTEAD_LIST_URL + "\">"
+                    + rb.getString("homesteads") + "</a></li>");
 
             if (profile != null) {
                 out.write("<li><a href=\"" + USER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
@@ -199,11 +209,18 @@ public class NavbarTag extends TagSupport {
                         "                        </div>");
             }
 
-            if(profile != null) {
-                out.write("<div class=\"form-group\">\n" +
-                        "                        <label class=\"text-primary\">" + rb.getString("navbarWelcome") + " , "  +
+            if (profile != null) {
+                out.write("<ul class=\"nav navbar-right\">\n" +
+                        "                            <li>" +
+                        "                        <label class=\"text-primary\">" + rb.getString("navbarWelcome") + " , " +
                         "                               " + profile.getLogin() + "</label>\n" +
-                        "                    </div>");
+                        "                    </li>\n" +
+                        "                            <li>\n" +
+                        "                                <a href=\"" + LOG_OUT_URL + "\">" + rb.getString("logOut") +
+                        "                                         </a>\n" +
+                        "                            </li>\n" +
+                        "                        </ul>\n" +
+                        "                </c:if>");
             }
 
             out.write("</form>\n" +

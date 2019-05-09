@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
 <%@ taglib prefix="cng" uri="customtags" %>
+<%@ page import="by.training.lakes_paradise.db.entity.Role" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
@@ -116,11 +117,14 @@
                 <h2><fmt:message key="homesteadOwner"/></h2>
                 <dl>
                     <dt><fmt:message key="name"/></dt>
-                    <dd>- <c:out value="${homestead.getOwner().getName()}"/></dd>
+                    <dd>- <c:out
+                            value="${homestead.getOwner().getName()}"/></dd>
                     <dt><fmt:message key="surname"/></dt>
-                    <dd>- <c:out value="${homestead.getOwner().getSurname()}"/></dd>
+                    <dd>- <c:out
+                            value="${homestead.getOwner().getSurname()}"/></dd>
                     <dt><fmt:message key="phoneNumber"/></dt>
-                    <dd>- <c:out value="${homestead.getOwner().getPhone()}"/></dd>
+                    <dd>- <c:out
+                            value="${homestead.getOwner().getPhone()}"/></dd>
                 </dl>
             </div>
         </div>
@@ -128,44 +132,45 @@
 
     <hr>
 
-    <div class="form-group container">
+    <c:if test="${profile.getRole().equals(Role.USER) || profile == null}">
+        <div class="form-group container">
 
-        <c:url value="/authorized_user/reservationInfo.html"
-               var="reservationInfoUrl"/>
+            <c:url value="/authorized_user/reservationInfo.html"
+                   var="reservationInfoUrl"/>
+            <form action="${reservationInfoUrl}">
+                <input type="submit" class="btn btn-default"
+                       value="${bookHomestead}"/>
+                <c:if test="${registerMessage != null}">
+                    <div class="alert alert-danger">
+                        <strong><fmt:message key="navbarIssue"/>!</strong>
+                        <c:out value="${registerMessage}"/>
+                    </div>
+                </c:if>
+            </form>
+            <label for="comment"><fmt:message key="enterComment"/>:</label>
 
-        <form action="${reservationInfoUrl}">
-            <input type="submit" class="btn btn-default"
-                   value="${bookHomestead}"/>
-            <c:if test="${registerMessage != null}">
-                <div class="alert alert-danger">
-                    <strong><fmt:message key="navbarIssue"/>!</strong>
-                    <c:out value="${registerMessage}"/>
-                </div>
-            </c:if>
-        </form>
-        <label for="comment"><fmt:message key="enterComment"/>:</label>
+            <c:url value="/authorized_user/homesteadReview.html"
+                   var="homesteadReviewUrl"/>
 
-        <c:url value="/authorized_user/homesteadReview.html"
-               var="homesteadReviewUrl"/>
-
-        <form action="${homesteadReviewUrl}">
+            <form action="${homesteadReviewUrl}">
             <textarea class="form-control" rows="5" id="comment"
                       name="comment"></textarea>
-            <c:if test="${reviewMessage != null}">
-                <div class="alert alert-danger">
-                    <strong><fmt:message key="navbarIssue"/>!</strong>
-                    <c:out value="${reviewMessage }"/>
-                </div>
-            </c:if>
-            <br>
-            <p>
-                <button type="submit"
-                        class="btn btn-primary">
-                    <fmt:message key="sentComment"/>
-                </button>
-            </p>
-        </form>
-    </div>
+                <c:if test="${reviewMessage != null}">
+                    <div class="alert alert-danger">
+                        <strong><fmt:message key="navbarIssue"/>!</strong>
+                        <c:out value="${reviewMessage }"/>
+                    </div>
+                </c:if>
+                <br>
+                <p>
+                    <button type="submit"
+                            class="btn btn-primary">
+                        <fmt:message key="sentComment"/>
+                    </button>
+                </p>
+            </form>
+        </div>
+    </c:if>
 
     <div class="container">
         <div class="panel-group">

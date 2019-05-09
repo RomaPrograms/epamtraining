@@ -85,7 +85,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
             + " home_id = ? where id = ?";
 
     /**
-     * Method that searches all reviews by id of homestead.
+     * Method that searches all reviews by id of homestead in "orders" table.
      *
      * @param homeId - id of homestead
      * @return list with images
@@ -140,7 +140,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method deletes reviews by id of homestead.
+     * Method deletes reviews by id of homestead in "orders" table..
      *
      * @param homeId - id of homestead
      * @throws PersistentException - exception with deleting in review table
@@ -170,7 +170,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method adds new object to database.
+     * Method adds new review to "reviews" table.
      *
      * @param review - new object
      * @return - id of new object in database
@@ -223,7 +223,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method reads object from database by id.
+     * Method reads object to "reviews" table.
      *
      * @param id - id of object
      * @return object which was read
@@ -273,7 +273,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method that updates reviews.
+     * Method that updates from "reviews" table.
      *
      * @param review - updated reviews
      * @throws PersistentException - exception with updating in review table
@@ -309,7 +309,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method deletes object in database by id.
+     * Method deletes review from "reviews" table by review id.
      *
      * @param id - id of object for deletion
      */

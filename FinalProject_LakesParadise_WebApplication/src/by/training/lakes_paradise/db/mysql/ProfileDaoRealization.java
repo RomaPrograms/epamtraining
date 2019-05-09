@@ -191,7 +191,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method adds new object to database.
+     * Method adds new object to "profiles" table.
      *
      * @param profile - new object
      * @return - id of new object in database
@@ -243,7 +243,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method reads object from database by id.
+     * Method reads object from "profiles" table by id.
      *
      * @param id - id of object
      * @return object which was read
@@ -291,7 +291,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method updates object in database by id.
+     * Method updates object in "profiles" table by id.
      *
      * @param profile - updated object
      */
@@ -321,7 +321,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method deletes object in database by id.
+     * Method deletes object in "profiles" table by id.
      *
      * @param id - id of object for deletion
      */

@@ -104,12 +104,22 @@ public class HomesteadServiceRealization extends ServiceRealization
         return homestead;
     }
 
+    /**
+     * Method updates homestead from homesteads table by id.
+     *
+     * @param homestead - updated homestead
+     */
     @Override
     public void update(final Homestead homestead) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         homesteadDao.update(homestead);
     }
 
+    /**
+     * Method deletes homestead from homesteads table by id.
+     *
+     * @param id - id of homestead for deletion
+     */
     @Override
     public void delete(final Integer id) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);

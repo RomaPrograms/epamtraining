@@ -54,7 +54,8 @@
 
 <body>
 
-<ctg:navbar-tag profile="${profile}" language="${locale}" logInMessage="${logInMessage}"/>
+<ctg:navbar-tag profile="${profile}" language="${locale}"
+logInMessage="${logInMessage}"/>
 
 <%--<nav class="navbar fixed-top scrolling-navbar">--%>
 
@@ -88,14 +89,14 @@
         <%--<div class="navbar-header">--%>
             <%--<a class="navbar-brand blue-text"><fmt:message key="siteName"/></a>--%>
         <%--</div>--%>
-        <%--<div class="collapse navbar-collapse" id="myNavbar">--%>
+        <%--<div class="collapse navbar-collapse">--%>
             <%--<ul id="list" class="nav navbar-nav">--%>
                 <%--<li><a href="${menuUrl}"><fmt:message key="navbarMenu"/></a>--%>
                 <%--</li>--%>
                 <%--<li><a href="${signUp}"><fmt:message key="registration"/></a>--%>
                 <%--</li>--%>
                 <%--<li><a href="${homesteadListUrl}"><fmt:message--%>
-                        <%--key="navbarHomesteads"/></a></li>--%>
+                        <%--key="homesteads"/></a></li>--%>
                 <%--<c:if test="${profile != null}">--%>
                     <%--<li><a href="${userCabinetUrl}"><fmt:message--%>
                             <%--key="personalCabinet"/></a></li>--%>
@@ -110,12 +111,12 @@
                             <%--key="navbarLanguage"/>--%>
                         <%--<span class="caret"></span></a>--%>
                     <%--<ul class="dropdown-menu">--%>
-                    <%--<li><a href="${englishLanguageUrl}"><fmt:message--%>
-                    <%--key="englishLanguage"/></a></li>--%>
-                    <%--<li><a href="${belorussianLanguageUrl}"><fmt:message--%>
-                    <%--key="belorussianLanguage"/></a></li>--%>
-                    <%--<li><a href="${russianLanguageUrl}"><fmt:message--%>
-                    <%--key="russianLanguage"/></a></li>--%>
+                        <%--<li><a href="${englishLanguageUrl}"><fmt:message--%>
+                                <%--key="englishLanguage"/></a></li>--%>
+                        <%--<li><a href="${belorussianLanguageUrl}"><fmt:message--%>
+                                <%--key="belorussianLanguage"/></a></li>--%>
+                        <%--<li><a href="${russianLanguageUrl}"><fmt:message--%>
+                                <%--key="russianLanguage"/></a></li>--%>
                     <%--</ul>--%>
                 <%--</li>--%>
             <%--</ul>--%>
@@ -145,11 +146,17 @@
                     <%--</c:if>--%>
                 <%--</c:if>--%>
                 <%--<c:if test="${profile != null}">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="text-primary"><fmt:message--%>
-                                <%--key="navbarWelcome"/> , <c:out--%>
-                                <%--value="${profile.getLogin()}"/></label>--%>
-                    <%--</div>--%>
+                        <%--<ul class="nav navbar-right">--%>
+                            <%--<li>--%>
+                                <%--<label class="text-primary"><fmt:message--%>
+                                        <%--key="navbarWelcome"/> , <c:out--%>
+                                        <%--value="${profile.getLogin()}"/></label>--%>
+                            <%--</li>--%>
+                            <%--<li>--%>
+                                <%--<a href="${logOut}"><fmt:message--%>
+                                        <%--key="logOut"/></a>--%>
+                            <%--</li>--%>
+                        <%--</ul>--%>
                 <%--</c:if>--%>
             <%--</form>--%>
         <%--</div>--%>
@@ -174,7 +181,8 @@
             Исследователи смогут ознакомиться на экскурсии с древним искусством,
             этническим способом жизни и природными сокровищами Байкала. Зимой
             привлекательна подледная рыбалка на Байкале.</p>
-        <p><a href="homesteadsList.jsp" class="btn btn-primary btn-lg">Узнать больше
+        <p><a href="homesteadsList.jsp" class="btn btn-primary btn-lg">Узнать
+            больше
             &raquo;</a></p>
     </div>
 </div>

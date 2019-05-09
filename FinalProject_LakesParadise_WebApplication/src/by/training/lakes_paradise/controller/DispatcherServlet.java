@@ -30,14 +30,36 @@ public class DispatcherServlet extends HttpServlet {
     private static final Logger LOGGER
             = LogManager.getLogger(DispatcherServlet.class);
 
+    /**
+     * Driver which is required for MySql database.
+     */
     private static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
+
+    /**
+     * URL of the required database.
+     */
     private static final String DB_URL = "jdbc:mysql://localhost:3306"
             + "/lakes_paradise_db?useUnicode=true&characterEncoding=UTF-8";
+
+    /**
+     * MySql root name of user.
+     */
     private static final String DB_USER = "root";
+
+    /**
+     * MySql root password.
+     */
     private static final String DB_PASSWORD = "9512684Roma";
+
+    /**
+     * Minimum size of accessible connections.
+     */
     private static final int DB_POOL_START_SIZE = 10;
+
+    /**
+     * Maximum size of accessible connections.
+     */
     private static final int DB_POOL_MAX_SIZE = 1000;
-    private static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
 
 
     @Override
@@ -45,7 +67,7 @@ public class DispatcherServlet extends HttpServlet {
         try {
             ConnectionPoolRealization.getInstance().init(DB_DRIVER_CLASS,
                     DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE,
-                    DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT);
+                    DB_POOL_MAX_SIZE);
         } catch (PersistentException e) {
             LOGGER.error("It is impossible to initialize application", e);
             destroy();

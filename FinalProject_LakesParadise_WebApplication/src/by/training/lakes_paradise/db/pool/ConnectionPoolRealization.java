@@ -42,8 +42,6 @@ public class ConnectionPoolRealization implements ConnectionPool {
 
     private static Lock lock = new ReentrantLock();
 
-    private static int checkConnectionTimeout;
-
     private static int maxPoolSize;
 
     private static String url;
@@ -67,8 +65,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
     @Override
     public void init(final String driverClass, final String url,
                      final String user, final String password,
-                     final int startSize, final int maxSize,
-                     final int checkConnectionTimeout)
+                     final int startSize, final int maxSize)
             throws PersistentException {
 
         try {
@@ -79,7 +76,6 @@ public class ConnectionPoolRealization implements ConnectionPool {
             this.user = user;
             this.password = password;
             this.maxPoolSize = maxSize;
-            this.checkConnectionTimeout = checkConnectionTimeout;
             for (int i = 0; i < startSize; i++) {
                 freeConnection.put(createConnection());
             }
@@ -101,10 +97,6 @@ public class ConnectionPoolRealization implements ConnectionPool {
                 lock.lock();
                 if (!freeConnection.isEmpty()) {
                     connection = freeConnection.take();
-                    if (!connection.isValid(checkConnectionTimeout)) { //возвращает true если соединение ещё не было закрыто и можно работать.
-                        connection.close();
-                        connection = null;
-                    }
                 } else {
                     if (usedConnection.size() < maxPoolSize) {
                         connection = createConnection();
@@ -131,14 +123,14 @@ public class ConnectionPoolRealization implements ConnectionPool {
     public void releaseConnection(PooledConnection connection) {
         try {
             lock.lock();
-            if (connection.isValid(checkConnectionTimeout)) {
-                connection.clearWarnings();
-                connection.setAutoCommit(true);
-                usedConnection.remove(connection);
-                freeConnection.put(connection);
-                LOGGER.debug(String.format(CONNECTION_RETURNED_MESSAGE,
-                        usedConnection.size(), freeConnection.size()));
-            }
+
+            connection.clearWarnings();
+            connection.setAutoCommit(true);
+            usedConnection.remove(connection);
+            freeConnection.put(connection);
+            LOGGER.debug(String.format(CONNECTION_RETURNED_MESSAGE,
+                    usedConnection.size(), freeConnection.size()));
+
         } catch (SQLException | InterruptedException e) {
             LOGGER.warn(CONNECTION_RECEIVED_EXCEPTION);
             try {

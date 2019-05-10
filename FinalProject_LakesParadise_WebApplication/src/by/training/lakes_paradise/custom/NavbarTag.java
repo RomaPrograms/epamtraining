@@ -221,7 +221,7 @@ public class NavbarTag extends TagSupport {
             if (logInMessage != null && !logInMessage.isEmpty()) {
                 out.write("<div class=\"alert alert-danger\">\n" +
                         "                            <strong>" + rb.getString("navbarIssue") + "!</strong>\n" +
-                        "                            " + logInMessage + "/>\n" +
+                        "                            " + logInMessage + "\n" +
                         "                        </div>");
             }
 

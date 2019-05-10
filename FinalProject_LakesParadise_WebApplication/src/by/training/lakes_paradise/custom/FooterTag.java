@@ -23,7 +23,7 @@ public class FooterTag extends TagSupport {
      *
      * @param curText - value of text property
      */
-    public void setText(String curText) {
+    public void setText(final String curText) {
         this.text = curText;
     }
 
@@ -50,7 +50,7 @@ public class FooterTag extends TagSupport {
      *
      * @param curLanguage value of language property
      */
-    public void setLanguage(Locale curLanguage) {
+    public void setLanguage(final Locale curLanguage) {
         this.language = curLanguage;
     }
 

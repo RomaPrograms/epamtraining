@@ -5,11 +5,15 @@ import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
 
+/**
+ * Interface with methods for working throw the DAO with "users" table.
+ */
 public interface UserService extends Service {
     /**
      * Method that reads all objects from "users" table.
      *
      * @return list with objects from "users" table
+     * @throws PersistentException - exception with reading object from database
      */
     List<User> readAll() throws PersistentException;
 
@@ -35,6 +39,8 @@ public interface UserService extends Service {
      * Method updates user from "users" table by id.
      *
      * @param user - updated object
+     * @throws PersistentException - exception with updating object from
+     * database
      */
     void update(User user) throws PersistentException;
 
@@ -42,6 +48,8 @@ public interface UserService extends Service {
      * Method deletes user from "users" table by id.
      *
      * @param id - id of object for deletion
+     * @throws PersistentException - exception with deleting object from
+     * database
      */
     void delete(Integer id) throws PersistentException;
 }

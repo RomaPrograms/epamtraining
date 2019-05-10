@@ -2,7 +2,7 @@ package by.training.lakes_paradise.exception;
 
 /**
  * Class which declares exception connected with incorrect validation of
- * some parameters
+ * some parameters.
  */
 public class IncorrectDataException extends Exception {
     /**

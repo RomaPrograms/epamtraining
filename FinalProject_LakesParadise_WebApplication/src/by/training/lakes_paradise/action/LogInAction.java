@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 
 /**
  * Class handles user request for authentication.
@@ -41,7 +42,8 @@ public class LogInAction extends Action {
 
         Forward forward;
         HttpSession session = request.getSession(true);
-        String lastAction = (String) session.getAttribute("lastAction");
+        String lastAction = request.getHeader("referer");
+        lastAction = lastAction.substring(lastAction.lastIndexOf('/'));
         forward = new Forward(lastAction, true);
         Profile profile;
 

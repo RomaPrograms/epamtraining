@@ -1,6 +1,5 @@
 package crud_action;
 
-import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Order;
 import by.training.lakes_paradise.db.mysql.TransactionFactoryRealization;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
@@ -29,7 +28,7 @@ public class OrderAction {
      * Logger for creation notes to some appender.
      */
     private static final Logger LOGGER
-            = LogManager.getLogger(HomesteadAction.class);
+            = LogManager.getLogger(OrderAction.class);
 
     private OrderService orderService;
 

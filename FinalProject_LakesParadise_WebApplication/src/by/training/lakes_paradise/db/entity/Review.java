@@ -2,7 +2,6 @@ package by.training.lakes_paradise.db.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * Class which describes review.

@@ -98,18 +98,18 @@ public class ReserveHomesteadAction extends Action {
             Date startRenting = order.getStartRenting();
             Date endRenting = order.getEndRenting();
 
-            if (newStartRenting.after(startRenting)
-                    && newStartRenting.before(endRenting)) {
+            if (newStartRenting.getTime() >= startRenting.getTime()
+                    && newStartRenting.getTime() <= endRenting.getTime()) {
                 return false;
             }
 
-            if (newEndRenting.after(startRenting)
-                    && newEndRenting.before(endRenting)) {
+            if (newEndRenting.getTime() >= startRenting.getTime()
+                    && newEndRenting.getTime() <= startRenting.getTime()) {
                 return false;
             }
 
-            if (newStartRenting.before(startRenting)
-                    && newEndRenting.after(endRenting)) {
+            if (newStartRenting.getTime() < startRenting.getTime()
+                    && newEndRenting.getTime() > endRenting.getTime()) {
                 return false;
             }
         }

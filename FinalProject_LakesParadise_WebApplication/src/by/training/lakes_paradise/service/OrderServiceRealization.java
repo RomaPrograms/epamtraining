@@ -6,6 +6,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
 
+/**
+ * Class with methods for working throw the DAO with "orders" table.
+ */
 public class OrderServiceRealization extends ServiceRealization
         implements OrderService {
 

@@ -46,8 +46,6 @@ public class UpdateUserInfoAction extends Action {
         Forward forward = new Forward("/authorized_user/updateUser.jsp",
                 false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("lastAction",
-                "/authorized_user/updateUserInfo.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");

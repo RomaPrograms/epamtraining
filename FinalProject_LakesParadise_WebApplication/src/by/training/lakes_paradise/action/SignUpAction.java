@@ -43,7 +43,6 @@ public class SignUpAction extends Action {
             final HttpServletResponse response) {
         Forward forward = new Forward("/signUp.jsp", false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("lastAction", "/sign_up.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");

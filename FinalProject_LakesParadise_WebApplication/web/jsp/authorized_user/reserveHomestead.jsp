@@ -43,7 +43,8 @@
 
 <body id="body">
 
-<ctg:navbar-tag profile="${profile}" language="${locale}" logInMessage="${logInMessage}"/>
+<ctg:navbar-tag profile="${profile}" language="${locale}"
+                logInMessage="${logInMessage}"/>
 
 <div class="container">
     <c:set var="startRenting" scope="page">
@@ -72,7 +73,8 @@
 
         <br/>
         <div class="col-md-3 form-group">
-            <button type="submit" class="btn btn-primary"><fmt:message key="rentHomestead"/>
+            <button type="submit" class="btn btn-primary"><fmt:message
+                    key="rentHomestead"/>
             </button>
         </div>
         <c:if test="${registerErrorMessage != null}">
@@ -94,7 +96,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title text-center">
-                <a data-toggle="collapse" href="#collapse1"><fmt:message key="showDates"/></a>
+                <a data-toggle="collapse" href="#collapse1">
+                    <fmt:message key="showDates"/>
+                </a>
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse container">

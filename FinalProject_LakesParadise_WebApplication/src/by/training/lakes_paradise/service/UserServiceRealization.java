@@ -8,6 +8,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
 
+/**
+ * Class with methods for working throw the DAO with "users" table.
+ */
 public class UserServiceRealization extends ServiceRealization
         implements UserService {
 

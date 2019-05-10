@@ -41,7 +41,6 @@ public class OwnerHomesteadsListAction extends Action {
         Forward forward = new Forward("/owner/ownerHomesteadsList.jsp",
                 false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("lastAction", "/owner/ownerHomesteads.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");

@@ -44,10 +44,10 @@ public class Main {
 //            ImageIO.write(image1, "png", outputFile);
 
             String photoAddress = "D:\\инфа\\EPAM\\05_JavaST_2019\\FinalProject_LakesParadise_WebApplication\\web\\img\\1.3_farmstead.jpg";
-            String photoName = "1.3_farmstead.jpg";
+//            String photoName = "1.3_farmstead.jpg";
             File file = new File(photoAddress);
             BufferedImage image1 = ImageIO.read(file);
-            File outputFile = new File("web/img/" + photoName);
+            File outputFile = new File("web/img/please");
             ImageIO.write(image1, "png", outputFile);
 
         } catch (IOException e) {

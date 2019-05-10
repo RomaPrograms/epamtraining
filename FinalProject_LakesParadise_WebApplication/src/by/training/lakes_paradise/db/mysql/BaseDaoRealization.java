@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Class with common methods and variables for DAO classes
+ * Class with common methods and variables for DAO classes.
  */
 public abstract class BaseDaoRealization {
     /**
@@ -19,7 +19,7 @@ public abstract class BaseDaoRealization {
      *
      * @param curConnection - value of connection property
      */
-    public void setConnection(Connection curConnection) {
+    public void setConnection(final Connection curConnection) {
         this.connection = curConnection;
     }
 

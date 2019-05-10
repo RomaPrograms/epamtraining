@@ -29,7 +29,6 @@ public class MenuAction extends Action {
         Forward forward
                 = new Forward("/index.jsp", false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("lastAction", "/menu.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");

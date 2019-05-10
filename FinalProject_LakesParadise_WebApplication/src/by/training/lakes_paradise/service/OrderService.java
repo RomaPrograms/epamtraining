@@ -5,6 +5,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
 
+/**
+ * Interface with methods for working throw the DAO with "orders" table.
+ */
 public interface OrderService extends Service {
     /**
      * Method that search all orders by id of profile.

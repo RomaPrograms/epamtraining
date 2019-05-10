@@ -165,7 +165,7 @@ public class Homestead extends Entity {
      *
      * @param maxPeopleNumber - value of peopleNumber property.
      */
-    public void setPeopleNumber(int maxPeopleNumber) {
+    public void setPeopleNumber(final int maxPeopleNumber) {
         this.peopleNumber = maxPeopleNumber;
     }
 

@@ -9,6 +9,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Class with methods for working throw the DAO with "homesteads" table.
+ */
 public class HomesteadServiceRealization extends ServiceRealization
         implements HomesteadService {
 
@@ -20,7 +23,7 @@ public class HomesteadServiceRealization extends ServiceRealization
      * @throws PersistentException - exception with searching in database
      */
     @Override
-    public List<Homestead> readByOwner(int ownerId)
+    public List<Homestead> readByOwner(final int ownerId)
             throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
         return homesteadDao.readByOwner(ownerId);

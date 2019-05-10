@@ -6,6 +6,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
 
+/**
+ * Class with methods for working throw the DAO with "reviews" table.
+ */
 public class ReviewServiceRealization extends ServiceRealization
         implements ReviewService {
     /**
@@ -26,7 +29,8 @@ public class ReviewServiceRealization extends ServiceRealization
     @Override
     public void deleteReviewsByHomeId(
             final Integer homeId) throws PersistentException {
-        transaction.createDao(ReviewDao.class).deleteByHomeId(homeId);
+        ReviewDao reviewDao = transaction.createDao(ReviewDao.class);
+        reviewDao.deleteByHomeId(homeId);
     }
 
     /**
@@ -64,7 +68,8 @@ public class ReviewServiceRealization extends ServiceRealization
      */
     @Override
     public void update(final Review review) throws PersistentException {
-        transaction.createDao(ReviewDao.class).update(review);
+        ReviewDao reviewDao = transaction.createDao(ReviewDao.class);
+        reviewDao.update(review);
     }
 
     /**
@@ -74,6 +79,7 @@ public class ReviewServiceRealization extends ServiceRealization
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
-        transaction.createDao(ReviewDao.class).delete(id);
+        ReviewDao reviewDao = transaction.createDao(ReviewDao.class);
+        reviewDao.delete(id);
     }
 }

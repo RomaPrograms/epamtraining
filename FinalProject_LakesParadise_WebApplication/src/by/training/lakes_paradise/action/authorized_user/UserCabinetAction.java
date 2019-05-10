@@ -45,8 +45,6 @@ public class UserCabinetAction extends Action {
         Forward forward = new Forward(
                 "/authorized_user/cabinetUser.jsp", false);
         HttpSession session = request.getSession(true);
-        session.setAttribute("lastAction",
-                "/authorized_user/userCabinet.html");
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");

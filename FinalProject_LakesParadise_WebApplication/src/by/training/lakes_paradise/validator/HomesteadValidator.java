@@ -14,8 +14,8 @@ public class HomesteadValidator implements Validator<Homestead> {
      * Method for validation {@code Homestead} class.
      *
      * @param request - user request
-     * @return Homestead class which will be created if validation will be passed
-     * successfully
+     * @return Homestead class which will be created if validation will be
+     * passed successfully
      * @throws IncorrectDataException - incorrect validation exception
      */
     @Override

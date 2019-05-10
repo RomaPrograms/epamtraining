@@ -8,6 +8,7 @@ import by.training.lakes_paradise.action.ChangeLanguageAction;
 import by.training.lakes_paradise.action.FindHomesteadsAction;
 import by.training.lakes_paradise.action.HomesteadsListAction;
 import by.training.lakes_paradise.action.admin.AdminCabinetAction;
+import by.training.lakes_paradise.action.admin.DeleteReviewAction;
 import by.training.lakes_paradise.action.authorized_user.*;
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.owner.AddHomesteadAction;
@@ -77,6 +78,7 @@ public class ActionFilter implements Filter {
         actions.put("/owner/addPhoto", AddPhotoAction.class);
 
         actions.put("/admin/cabinetAdmin", AdminCabinetAction.class);
+        actions.put("/admin/deleteReview", DeleteReviewAction.class);
     }
 
     @Override
@@ -129,11 +131,9 @@ public class ActionFilter implements Filter {
 
     @Override
     public void init(final FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
     public void destroy() {
-        //здесь требуется прописать закрытие всех ресурсов, которые мы использовали в данном фильтре.
     }
 }

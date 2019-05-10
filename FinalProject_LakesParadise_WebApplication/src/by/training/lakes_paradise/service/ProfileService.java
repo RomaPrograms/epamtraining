@@ -5,6 +5,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
 
+/**
+ * Interface with methods for working throw the DAO with "profiles" table.
+ */
 public interface ProfileService extends Service {
     /**
      * Method returns profile of user by login and password.

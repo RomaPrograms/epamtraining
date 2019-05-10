@@ -24,6 +24,7 @@
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
+    ///////////////////////////////////////
     <script type="text/javascript"
             src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript"
@@ -64,6 +65,7 @@
     <c:url value="/owner/deleteHomestead.html" var="deleteHomesteadUrl"/>
     <c:url value="/owner/updateHomestead.html" var="updateHomesteadUrl"/>
     <c:url value="/homesteadInfo.html" var="homesteadInfoUrl"/>
+    <c:url value="/owner/addPhoto.html" var="addPhotoUrl"/>
 
     <c:set var="knowMore" scope="page">
         <fmt:message key="homesteadKnowMore"/>
@@ -111,12 +113,17 @@
                     <input type="submit" class="btn btn-default" name="update"
                            value="${update}"/>
                 </form>
-                <input type="submit" class="btn btn-default" name="update"
-                       value="Добавить фотографию"/>
-                <!-- COMPONENT START -->
-                <input class="btn btn-default btn-choose" name="photo"
-                       type="file" value="Choose file"
-                       accept=".jpg, .jpeg, .png"/>
+                <form method="post" action="${addPhotoUrl}">
+
+                    <input type="hidden" name="homesteadIdentity"
+                           value="${elem.getId()}"/>
+                    <input type="submit" class="btn btn-default" name="update"
+                           value="Добавить фотографию"/>
+                    <!-- COMPONENT START -->
+                    <input class="btn btn-default btn-choose" name="photo"
+                           type="file" value="Choose file"
+                           accept=".jpg, .jpeg, .png"/>
+                </form>
             </div>
         </div>
         <hr>

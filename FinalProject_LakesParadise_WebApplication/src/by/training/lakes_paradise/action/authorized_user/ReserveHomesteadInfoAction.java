@@ -42,8 +42,6 @@ public class ReserveHomesteadInfoAction extends Action {
             throws PersistentException {
         Forward forward;
         HttpSession session = request.getSession();
-        session.setAttribute("lastAction",
-                "/authorized_user/reservationInfo.html");
         Profile profile = (Profile) session.getAttribute("profile");
 
         if (profile != null) {

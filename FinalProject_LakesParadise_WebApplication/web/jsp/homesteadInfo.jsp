@@ -113,6 +113,7 @@
                     <dd>- <c:out value="${homestead.getPeopleNumber()}"/></dd>
                 </dl>
             </div>
+
             <div class="col-md-6 text-center">
                 <h2><fmt:message key="homesteadOwner"/></h2>
                 <dl>
@@ -185,11 +186,38 @@
                     <c:forEach var="review" items="${homestead.getReviews()}"
                                varStatus="status">
                         <div class="panel-body">
-                            <div class="row container text-center">
-                                <label><fmt:message key="login"/>: </label>
-                                <div>
-                                        ${review.getUserName()}
+
+                            <div class="row container">
+                                <div class="col-md-1">
+                                    <c:if test="${profile.getRole().equals(Role.ADMINISTRATOR)}">
+
+                                        <c:set var="deleteReview" scope="page">
+                                            <fmt:message key="delete"/>
+                                        </c:set>
+
+                                        <c:url value="/admin/deleteReview.html"
+                                               var="deleteReviewUrl"/>
+
+                                        <form method="post"
+                                              action="${deleteReviewUrl}"
+                                              class="container text-left">
+                                            <input type="hidden"
+                                                   value="${review.getId()}"
+                                                   name="reviewIdentity"/>
+                                            <input type="submit"
+                                                   class="btn btn-primary"
+                                                   value="${deleteReview}"/>
+                                        </form>
+                                    </c:if>
                                 </div>
+
+                                <div class="col-md-10 text-center">
+                                    <label><fmt:message key="login"/>: </label>
+                                    <div>
+                                            ${review.getUserName()}
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="row container text-center">
                                 <label>

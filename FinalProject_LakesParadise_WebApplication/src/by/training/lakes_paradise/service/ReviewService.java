@@ -5,6 +5,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
 
+/**
+ * Interface with methods for working throw the DAO with "reviews" table.
+ */
 public interface ReviewService extends Service {
     /**
      * Method that searches all reviews by id of homestead in "orders" table.
@@ -54,6 +57,8 @@ public interface ReviewService extends Service {
      * Method deletes review from "reviews" table by review id.
      *
      * @param id - id of object for deletion
+     * @throws PersistentException - exception with deleting from review table
+
      */
     void delete(Integer id) throws PersistentException;
 }

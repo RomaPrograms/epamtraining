@@ -36,10 +36,10 @@ public class Forward {
      * One-argument constructor, which calls two-argument constructor where
      * second argument will be true.
      *
-     * @param forward - value of forward property
+     * @param curForward - value of forward property
      */
-    public Forward(final String forward) {
-        this(forward, true);
+    public Forward(final String curForward) {
+        this(curForward, true);
     }
 
     /**

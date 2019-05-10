@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ page import="by.training.lakes_paradise.db.entity.Role" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
@@ -60,7 +61,8 @@
 
 <body id="body">
 
-<ctg:navbar-tag profile="${profile}" language="${locale}" logInMessage="${logInMessage}"/>
+<ctg:navbar-tag profile="${profile}" language="${locale}"
+                logInMessage="${logInMessage}"/>
 
 <div id="search_row" class="container">
 
@@ -76,6 +78,10 @@
         <fmt:message key="homesteadKnowMore"/>
     </c:set>
 
+    <c:set var="deleteHomestead" scope="page">
+        <fmt:message key="delete"/>
+    </c:set>
+
     <c:set var="minPrice" scope="page">
         <fmt:message key="maxPrice"/>
     </c:set>
@@ -84,7 +90,8 @@
         <fmt:message key="minPrice"/>
     </c:set>
 
-    <c:url value="/findHomesteadByCategory.html" var="findHomesteadByCategoryUrl"/>
+    <c:url value="/findHomesteadByCategory.html"
+           var="findHomesteadByCategoryUrl"/>
 
     <div class="row">
         <form method="post" action="${findHomesteadByCategoryUrl}">
@@ -115,6 +122,7 @@
 <div id="homestead_catalog" class="container">
 
     <c:url value="/homesteadInfo.html" var="homesteadInfoUrl"/>
+    <c:url value="/owner/deleteHomestead.html" var="homesteadDeleteUrl"/>
 
     <c:if test="${res.size() == 0}">
         <div class="alert alert-warning">
@@ -142,8 +150,19 @@
                             <dd>- <c:out
                                     value="${elem.getPeopleNumber()}"/></dd>
                         </dl>
+
                         <input type="submit" class="btn btn-default"
                                value="${additionalInformation}&raquo;"/>
+
+                        <c:if test="${profile.getRole().equals(Role.ADMINISTRATOR)}">
+                            <form method="post" action="${homesteadDeleteUrl}">
+                                <input type="hidden" name="homesteadIdentity"
+                                       value="${elem.getId()}"/>
+
+                                <input type="submit" class="btn btn-default"
+                                       value="${deleteHomestead}&raquo;"/>
+                            </form>
+                        </c:if>
                     </div>
                 </form>
             </div>

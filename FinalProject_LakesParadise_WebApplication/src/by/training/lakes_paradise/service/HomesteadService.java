@@ -6,6 +6,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Interface with methods for working throw the DAO with "homesteads" table.
+ */
 public interface HomesteadService extends Service {
     /**
      * Method searches all homesteads in database by title.
@@ -66,6 +69,8 @@ public interface HomesteadService extends Service {
      * Method updates homestead from homesteads table by id.
      *
      * @param entity - updated homestead
+     * @throws PersistentException - exception with updating object from
+     * database
      */
     void update(Homestead entity) throws PersistentException;
 
@@ -73,6 +78,8 @@ public interface HomesteadService extends Service {
      * Method deletes homestead from homesteads table by id.
      *
      * @param id - id of homestead for deletion
+     * @throws PersistentException - exception with deleting object from
+     * database
      */
     void delete(Integer id) throws PersistentException;
 }

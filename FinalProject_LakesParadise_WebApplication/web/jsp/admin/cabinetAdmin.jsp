@@ -15,13 +15,6 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-    <link rel="stylesheet"
-          href="/vendors/formvalidation/dist/css/formValidation.min.css">
-    <link rel="stylesheet"
-          href="/cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-    <link rel="stylesheet"
-          href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-
     <style>
         #homesteadButton {
             border: none;
@@ -44,10 +37,6 @@
     <div class="form-group">
         <label><fmt:message key="login"/>: </label>
         ${profile.getLogin()}
-    </div>
-    <div class="form-group">
-        <label><fmt:message key="password"/>: </label>
-        ${profile.getPassword()}
     </div>
 
     <div class="panel-group form-group">
@@ -126,9 +115,6 @@
 <cng:footer-tag language="${locale}"/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-        src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript"
         src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
 

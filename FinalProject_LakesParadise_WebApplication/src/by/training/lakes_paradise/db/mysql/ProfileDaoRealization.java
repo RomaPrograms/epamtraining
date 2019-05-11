@@ -6,6 +6,7 @@ import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,12 +74,12 @@ public class ProfileDaoRealization extends BaseDaoRealization
             + " where id = (?)";
 
     /**
-     * Script gets all objects from table profiles by login and password.
+     * Script gets all objects from table profiles by login.
      */
     private static final String
-            SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD
+            SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN
             = "select id, login, password, role from profiles"
-            + " where login = (?) and password = (?)";
+            + " where login = (?)";
 
     /**
      * Script updates object in table profiles.
@@ -101,22 +102,22 @@ public class ProfileDaoRealization extends BaseDaoRealization
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(
-                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN_AND_PASSWORD);
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN);
             statement.setString(1, login);
-            statement.setString(2, password);
             resultSet = statement.executeQuery();
             Profile profile = null;
 
             while (resultSet.next()) {
-                profile = new Profile();
-                profile.setId(
-                        resultSet.getInt("id"));
-                profile.setLogin(
-                        resultSet.getString("login"));
-                profile.setPassword(
-                        resultSet.getString("password"));
-                profile.setRole(Role.getByIdentity(
-                        resultSet.getInt("role")));
+                if (BCrypt.checkpw(password,
+                        resultSet.getString("password"))) {
+                    profile = new Profile();
+                    profile.setId(
+                            resultSet.getInt("id"));
+                    profile.setLogin(
+                            resultSet.getString("login"));
+                    profile.setRole(Role.getByIdentity(
+                            resultSet.getInt("role")));
+                }
             }
 
             return profile;
@@ -161,7 +162,6 @@ public class ProfileDaoRealization extends BaseDaoRealization
                 profile = new Profile();
                 profile.setId(resultSet.getInt("id"));
                 profile.setLogin(resultSet.getString("login"));
-                profile.setPassword(resultSet.getString("password"));
                 profile.setRole(Role.getByIdentity(
                         resultSet.getInt("role")));
 
@@ -207,8 +207,10 @@ public class ProfileDaoRealization extends BaseDaoRealization
                     Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, profile.getId());
             statement.setString(2, profile.getLogin());
+            String hashedPassword
+                    = BCrypt.hashpw(profile.getPassword(), BCrypt.gensalt());
             statement.setString(THIRD_ELEMENT_IN_SQL_QUERY,
-                    profile.getPassword());
+                    hashedPassword);
             statement.setInt(FORTH_ELEMENT_IN_SQL_QUERY,
                     profile.getRole().getIdentity());
             statement.executeUpdate();
@@ -263,7 +265,6 @@ public class ProfileDaoRealization extends BaseDaoRealization
             while (resultSet.next()) {
                 profile = new Profile();
                 profile.setLogin(resultSet.getString("login"));
-                profile.setPassword(resultSet.getString("password"));
                 profile.setRole(Role.getByIdentity(
                         resultSet.getInt("role")));
             }
@@ -302,7 +303,9 @@ public class ProfileDaoRealization extends BaseDaoRealization
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
             statement.setString(1, profile.getLogin());
-            statement.setString(2, profile.getPassword());
+            String hashedPassword
+                    = BCrypt.hashpw(profile.getPassword(), BCrypt.gensalt());
+            statement.setString(2, hashedPassword);
             statement.setInt(THIRD_ELEMENT_IN_SQL_QUERY, profile.getId());
 
             statement.executeUpdate();

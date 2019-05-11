@@ -100,12 +100,13 @@ public class ProfileDaoRealization extends BaseDaoRealization
             throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+        Profile profile = null;
+
         try {
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN);
             statement.setString(1, login);
             resultSet = statement.executeQuery();
-            Profile profile = null;
 
             while (resultSet.next()) {
                 if (BCrypt.checkpw(password,
@@ -120,6 +121,8 @@ public class ProfileDaoRealization extends BaseDaoRealization
                 }
             }
 
+            return profile;
+        } catch(IllegalArgumentException e) {
             return profile;
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);

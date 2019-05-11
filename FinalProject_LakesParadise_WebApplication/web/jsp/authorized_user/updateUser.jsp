@@ -14,6 +14,12 @@
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="/vendors/formvalidation/dist/css/formValidation.min.css">
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+    <link rel="stylesheet"
+          href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
 </head>
 <body>
@@ -106,8 +112,10 @@
     <jsp:include page="../../js/sign_up_validation.js"/>
     <jsp:include page="../../js/log_in_validation.js"/>
 </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript"
         src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
-
 </body>
 </html>

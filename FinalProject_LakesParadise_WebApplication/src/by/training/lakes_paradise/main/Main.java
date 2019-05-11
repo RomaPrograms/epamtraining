@@ -1,9 +1,11 @@
 package by.training.lakes_paradise.main;
 
+import by.training.lakes_paradise.db.dao.ProfileDao;
 import by.training.lakes_paradise.db.entity.*;
 import by.training.lakes_paradise.db.mysql.*;
 import by.training.lakes_paradise.db.pool.ConnectionPoolRealization;
 import by.training.lakes_paradise.exception.PersistentException;
+import by.training.lakes_paradise.service.ProfileService;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -47,8 +49,8 @@ public class Main {
 //            String photoName = "1.3_farmstead.jpg";
             File file = new File(photoAddress);
             BufferedImage image1 = ImageIO.read(file);
-            File outputFile = new File("web/img/please");
-            ImageIO.write(image1, "png", outputFile);
+            //File outputFile = new File("web/img/please");
+            //ImageIO.write(image1, "png", outputFile);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -128,6 +130,12 @@ public class Main {
 
         //ServiceFactoryRealization factoryRealization = new ServiceFactoryRealization(new TransactionFactoryRealization());
         TransactionFactoryRealization transactionFactoryRealization = new TransactionFactoryRealization();
+        Profile profile = new Profile();
+        profile.setRole(Role.ADMINISTRATOR);
+        profile.setLogin("admin");
+        profile.setPassword("admin");
+        profile.setId(5);
+        transactionFactoryRealization.createTransaction().createDao(ProfileDao.class).update(profile);
         List<Homestead> list = null;
         /*try {
             list = transactionFactoryRealization.createTransaction().createDao(HomesteadDao.class).read();

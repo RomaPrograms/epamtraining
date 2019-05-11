@@ -55,7 +55,7 @@ public class SignUpAction extends Action {
                     ValidatorFactory.createValidator(User.class);
             user = userValidator.validate(request);
             if (profile == null) {
-                user.setRole(Role.USER);
+                user.setRole(Role.OWNER);
             } else {
                 user.setRole(Role.OWNER);
             }

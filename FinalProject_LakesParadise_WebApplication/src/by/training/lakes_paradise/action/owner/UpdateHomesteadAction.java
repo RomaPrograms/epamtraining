@@ -46,8 +46,6 @@ public class UpdateHomesteadAction extends Action {
         Forward forward = new Forward("/owner/updateHomestead.jsp",
                 false);
         HttpSession session = request.getSession(true);
-        String lastAction = request.getHeader("referer");
-        lastAction = lastAction.substring(lastAction.lastIndexOf('/'));
         Profile profile = (Profile) session.getAttribute("profile");
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");

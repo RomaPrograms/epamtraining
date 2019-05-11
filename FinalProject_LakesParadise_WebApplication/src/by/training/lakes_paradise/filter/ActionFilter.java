@@ -1,12 +1,6 @@
 package by.training.lakes_paradise.filter;
 
-import by.training.lakes_paradise.action.HomesteadInfoAction;
-import by.training.lakes_paradise.action.LogInAction;
-import by.training.lakes_paradise.action.MenuAction;
-import by.training.lakes_paradise.action.SignUpAction;
-import by.training.lakes_paradise.action.ChangeLanguageAction;
-import by.training.lakes_paradise.action.FindHomesteadsAction;
-import by.training.lakes_paradise.action.HomesteadsListAction;
+import by.training.lakes_paradise.action.*;
 import by.training.lakes_paradise.action.admin.AdminCabinetAction;
 import by.training.lakes_paradise.action.admin.DeleteReviewAction;
 import by.training.lakes_paradise.action.authorized_user.*;
@@ -53,6 +47,7 @@ public class ActionFilter implements Filter {
         actions.put("/homesteadInfo", HomesteadInfoAction.class);
         actions.put("/homesteadsList", HomesteadsListAction.class);
         actions.put("/findHomesteadByCategory", FindHomesteadsAction.class);
+        actions.put("/error", ErrorAction.class);
 
         actions.put("/language/en_US", ChangeLanguageAction.class);
         actions.put("/language/be_BY", ChangeLanguageAction.class);

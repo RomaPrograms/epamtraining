@@ -40,14 +40,13 @@ public class ReserveHomesteadInfoAction extends Action {
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)
             throws PersistentException {
-        Forward forward;
+        Forward forward = new Forward(
+                "/authorized_user/reserveHomestead.jsp",
+                false);
         HttpSession session = request.getSession();
         Profile profile = (Profile) session.getAttribute("profile");
 
         if (profile != null) {
-            forward = new Forward(
-                    "/authorized_user/reserveHomestead.jsp",
-                    false);
             Homestead homestead
                     = (Homestead) session.getAttribute("homestead");
             OrderService orderService = factory.getService(OrderService.class);
@@ -59,10 +58,6 @@ public class ReserveHomesteadInfoAction extends Action {
             Config.set(request, Config.FMT_LOCALE, locale);
             LOGGER.info(
                     "Page for reserving homesteads was opened successfully");
-        } else {
-            forward = new Forward("/homesteadInfo.html", true);
-            forward.getAttributes().put("registerMessage",
-                    "You can't do this action until you didn't log in");
         }
 
         return forward;

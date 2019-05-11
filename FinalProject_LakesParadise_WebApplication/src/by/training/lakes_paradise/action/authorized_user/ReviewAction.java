@@ -44,11 +44,7 @@ public class ReviewAction extends Action {
         HttpSession session = request.getSession(true);
         Profile profile = (Profile) session.getAttribute("profile");
 
-        if (profile == null) {
-            forward.getAttributes().put("reviewMessage",
-                    "You can't do this action until you didn't log in");
-            LOGGER.info("Review wasn't saved, cause user didn't log in");
-        } else {
+        if (profile != null) {
             Review review = new Review();
             review.setText(request.getParameter("comment"));
             Homestead homestead

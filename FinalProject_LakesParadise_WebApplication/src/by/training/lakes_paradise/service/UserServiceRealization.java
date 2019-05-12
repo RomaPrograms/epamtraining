@@ -21,7 +21,8 @@ public class UserServiceRealization extends ServiceRealization
      */
     @Override
     public List<User> readAll() throws PersistentException {
-        return null;
+        UserDao userDao = transaction.createDao(UserDao.class);
+        return userDao.read();
     }
 
     /**

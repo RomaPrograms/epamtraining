@@ -3,6 +3,7 @@ package by.training.lakes_paradise.custom;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.Role;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -52,7 +53,11 @@ public class NavbarTag extends TagSupport {
     /**
      * Name of action for opening homesteads catalog page.
      */
-    private static final String HOMESTEAD_LIST_URL = "/homesteadsList.html";
+    private static final String HOMESTEADS_LIST_HTML = "/homesteadsList.html";
+    /**
+     * Name of action for opening users catalog page.
+     */
+    private static final String USERS_LIST_URL = "/admin/usersList.html";
     /**
      * Name of action for opening user cabinet page.
      */
@@ -145,7 +150,6 @@ public class NavbarTag extends TagSupport {
             JspWriter out = pageContext.getOut();
             ResourceBundle rb = ResourceBundle
                     .getBundle("property.text", language);
-
             out.write("<nav class=\"navbar fixed-top scrolling-navbar\">");
 
             out.write(" <div class=\"container\">\n" +
@@ -166,17 +170,18 @@ public class NavbarTag extends TagSupport {
             if (profile != null && profile.getRole().equals(Role.ADMINISTRATOR)) {
                 out.write("<li><a href=\"" + SIGN_UP_URL + "\">"
                         + rb.getString("signUpOwner") + "</a>\n" + "</li>\n");
+                out.write(" <li><a href=\"" + USERS_LIST_URL + "\">"
+                        + rb.getString("users") + "</a></li>");
             }
 
-            out.write(" <li><a href=\"" + HOMESTEAD_LIST_URL + "\">"
+            out.write(" <li><a href=\"" + HOMESTEADS_LIST_HTML + "\">"
                     + rb.getString("homesteads") + "</a></li>");
 
             if (profile != null
                     && !profile.getRole().equals(Role.ADMINISTRATOR)) {
                 out.write("<li><a href=\"" + USER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
             } else {
-                if(profile != null
-                        && !profile.getRole().equals(Role.ADMINISTRATOR)) {
+                if(profile != null) {
                     out.write("<li><a href=\"" + ADMIN_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
                 }
             }

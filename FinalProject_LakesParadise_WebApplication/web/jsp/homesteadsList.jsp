@@ -22,30 +22,11 @@
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
     <style>
-        #body {
-            font-family: sans-serif;
-            font-size: 11pt;
-            background-image: url(../img/myImages/mainPicture.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
 
         #homestead_catalog {
             background-color: white;
             padding-top: 25px;
             padding-bottom: 25px;
-        }
-
-        #search_row {
-            background-color: white;
-            padding-top: 10px;
-            padding-bottom: 100px;
-            border: none;
-            border-bottom: 1px solid deepskyblue;
-            outline: none;
-            height: 40px;
-            font-size: 16px;
         }
 
     </style>
@@ -62,8 +43,12 @@
         <fmt:message key="enterName"/>
     </c:set>
 
-    <c:set var="search" scope="page">
-        <fmt:message key="homesteadSearch"/>
+    <c:set var="findByPrice" scope="page">
+        <fmt:message key="findByPrice"/>
+    </c:set>
+
+    <c:set var="findByTitle" scope="page">
+        <fmt:message key="findByTitle"/>
     </c:set>
 
     <c:set var="additionalInformation" scope="page">
@@ -74,47 +59,71 @@
         <fmt:message key="delete"/>
     </c:set>
 
-    <c:set var="minPrice" scope="page">
-        <fmt:message key="maxPrice"/>
-    </c:set>
-
-    <c:set var="maxPrice" scope="page">
+    <c:set var="minPriceLabel" scope="page">
         <fmt:message key="minPrice"/>
     </c:set>
 
-    <c:url value="/findHomesteadByCategory.html"
-           var="findHomesteadByCategoryUrl"/>
+    <c:set var="maxPriceLabel" scope="page">
+        <fmt:message key="maxPrice"/>
+    </c:set>
+
+    <c:url value="/findHomesteadsByName.html"
+           var="findHomesteadByNameUrl"/>
+
+    <c:url value="/findHomesteadsByPrice.html"
+           var="findHomesteadByPriceUrl"/>
 
     <div class="row">
-        <form method="post" action="${findHomesteadByCategoryUrl}">
-            <div class="col-md-3 form-group">
-                <label for="homesteadName"><fmt:message key="name"/>:</label>
-                <input type="text" placeholder="${enteredName}"
-                       id="homesteadName" name="homesteadName"
-                       class="form-control">
-            </div>
+        <div class="col-md-6">
+            <form method="post" action="${findHomesteadByNameUrl}">
+                <div class="col-md-12">
+                    <label><fmt:message key="name"/>:</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" placeholder="${enteredName}"
+                                   id="homesteadName" name="homesteadName"
+                                   class="form-control">
+                        </div>
 
-            <div class="col-md-2 form-group">
-                <label for="minPrice"><fmt:message
-                        key="homesteadPrice"/>:</label>
-                <input type="text" placeholder="${minPrice}" id="minPrice"
-                       class="form-control">
-                <input type="text" placeholder="${maxPrice}" id="maxPrice"
-                       class="form-control">
-            </div>
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary"
+                                   value="${findByTitle}">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-            <div class="col-md-2 form-group">
-                <br/><input type="submit" class="btn btn-primary"
-                            value="${search}">
-            </div>
-        </form>
+        <div class="col-md-6">
+            <form method="post" action="${findHomesteadByPriceUrl}">
+                <div class="col-md-8">
+                    <label><fmt:message
+                            key="homesteadPrice"/>:</label>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input type="text" placeholder="${minPriceLabel}"
+                                   id="minPrice" name="minPrice"
+                                   class="form-control" value="${minPrice}">
+                            <input type="text" placeholder="${maxPriceLabel}"
+                                   id="maxPrice" name="maxPrice"
+                                   class="form-control" value="${maxPrice}">
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <input type="submit" class="btn btn-primary"
+                                   value="${findByPrice}">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 <div id="homestead_catalog" class="container">
-
+    <hr/>
     <c:url value="/homesteadInfo.html" var="homesteadInfoUrl"/>
-    <c:url value="/owner/deleteHomestead.html" var="homesteadDeleteUrl"/>
+    <c:url value="/admin/deleteHomestead.html" var="homesteadDeleteUrl"/>
 
     <c:if test="${res.size() == 0}">
         <div class="alert alert-warning">
@@ -125,37 +134,39 @@
     <c:if test="${res.size() != 0}">
         <c:forEach var="elem" items="${res}" varStatus="status">
             <div class="row">
-                <form method="post" action="${homesteadInfoUrl}">
-                    <input type="hidden" name="homesteadIdentity"
-                           value="${elem.getId()}"/>
-                    <div class="col-md-4">
-                        <img width="300px" height="200px" class="img-rounded"
-                             src="../img/1.1_farmstead.jpg"/>
-                    </div>
-                    <div class="col-md-8">
-                        <h2><c:out value="${elem.getTitle()}"/></h2>
-                        <p><c:out value="${elem.getDescription()}"/></p>
-                        <dl>
-                            <dt><fmt:message key="homesteadPrice"/></dt>
-                            <dd>- <c:out value="${elem.getPrice()}"/></dd>
-                            <dt><fmt:message key="homesteadPeopleNumber"/></dt>
-                            <dd>- <c:out
-                                    value="${elem.getPeopleNumber()}"/></dd>
-                        </dl>
+                <input type="hidden" name="homesteadIdentity"
+                       value="${elem.getId()}"/>
+                <div class="col-md-4">
+                    <img width="300px" height="200px" class="img-rounded"
+                         src="../img/1.1_farmstead.jpg"/>
+                </div>
+                <div class="col-md-8">
+                    <h2><c:out value="${elem.getTitle()}"/></h2>
+                    <p><c:out value="${elem.getDescription()}"/></p>
+                    <dl>
+                        <dt><fmt:message key="homesteadPrice"/></dt>
+                        <dd>- <c:out value="${elem.getPrice()}"/></dd>
+                        <dt><fmt:message key="homesteadPeopleNumber"/></dt>
+                        <dd>- <c:out
+                                value="${elem.getPeopleNumber()}"/></dd>
+                    </dl>
 
+                    <form method="post" action="${homesteadInfoUrl}">
+                        <input type="hidden" name="homesteadIdentity"
+                               value="${elem.getId()}"/>
                         <input type="submit" class="btn btn-default"
                                value="${additionalInformation}&raquo;"/>
+                    </form>
+                    <c:if test="${profile.getRole().equals(Role.ADMINISTRATOR)}">
+                        <form method="post" action="${homesteadDeleteUrl}">
+                            <input type="hidden" name="homesteadIdentity"
+                                   value="${elem.getId()}"/>
 
-                        <c:if test="${profile.getRole().equals(Role.ADMINISTRATOR)}">
-                            <form method="post" action="${homesteadDeleteUrl}">
-                                <input type="hidden" name="homesteadIdentity"
-                                       value="${elem.getId()}"/>
-
-                                <input type="submit" class="btn btn-default"
-                                       value="${deleteHomestead}&raquo;"/>
-                            </form>
-                        </c:if>
-                    </div>
+                            <input type="submit" class="btn btn-default"
+                                   value="${deleteHomestead}&raquo;"/>
+                        </form>
+                    </c:if>
+                </div>
                 </form>
             </div>
             <hr>

@@ -42,7 +42,7 @@ public class AddPhotoAction extends Action {
             BufferedImage image1 = ImageIO.read(file);
             File outputFile = new File("web\\img\\please.jpg");
             String uploadPath = request.getServletContext().getRealPath("");
-
+            String str = request.getServletContext().getRealPath(request.getServletPath());
             ImageIO.write(image1, "png", outputFile);
 
         } catch (IOException e) {

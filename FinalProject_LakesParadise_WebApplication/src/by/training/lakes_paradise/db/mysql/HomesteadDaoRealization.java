@@ -55,7 +55,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * Script gets all objects from table homesteads by title.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_TITLE
-            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " WHERE h.title = (?)";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " where h.title like `%`?`%`";
 
     /**
      * Script gets all objects from table homesteads by price.

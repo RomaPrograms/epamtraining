@@ -1,12 +1,11 @@
 package by.training.lakes_paradise.filter;
 
 import by.training.lakes_paradise.action.*;
-import by.training.lakes_paradise.action.admin.AdminCabinetAction;
-import by.training.lakes_paradise.action.admin.DeleteReviewAction;
+import by.training.lakes_paradise.action.admin.*;
 import by.training.lakes_paradise.action.authorized_user.*;
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.owner.AddHomesteadAction;
-import by.training.lakes_paradise.action.owner.DeleteHomesteadAction;
+import by.training.lakes_paradise.action.owner.DeleteOwnerHomesteadAction;
 import by.training.lakes_paradise.action.owner.OwnerHomesteadsListAction;
 import by.training.lakes_paradise.action.owner.UpdateHomesteadAction;
 import by.training.lakes_paradise.action.owner.AddPhotoAction;
@@ -46,7 +45,8 @@ public class ActionFilter implements Filter {
         actions.put("/log_in", LogInAction.class);
         actions.put("/homesteadInfo", HomesteadInfoAction.class);
         actions.put("/homesteadsList", HomesteadsListAction.class);
-        actions.put("/findHomesteadByCategory", FindHomesteadsAction.class);
+        actions.put("/findHomesteadsByName", FindHomesteadsByNameAction.class);
+        actions.put("/findHomesteadsByPrice", FindHomesteadsByPriceAction.class);
         actions.put("/error", ErrorAction.class);
 
         actions.put("/language/en_US", ChangeLanguageAction.class);
@@ -67,13 +67,17 @@ public class ActionFilter implements Filter {
 
 
         actions.put("/owner/addHomestead", AddHomesteadAction.class);
-        actions.put("/owner/deleteHomestead", DeleteHomesteadAction.class);
+        actions.put("/owner/deleteHomestead", DeleteOwnerHomesteadAction.class);
         actions.put("/owner/updateHomestead", UpdateHomesteadAction.class);
         actions.put("/owner/ownerHomesteads", OwnerHomesteadsListAction.class);
         actions.put("/owner/addPhoto", AddPhotoAction.class);
 
         actions.put("/admin/cabinetAdmin", AdminCabinetAction.class);
         actions.put("/admin/deleteReview", DeleteReviewAction.class);
+        actions.put("/admin/deleteHomestead", DeleteHomesteadAction.class);
+        actions.put("/admin/deleteUser", DeleteUserAction.class);
+        actions.put("/admin/usersList", UsersListAction.class);
+        actions.put("/admin/findUserByLogin", FindUserByLoginAction.class);
     }
 
     @Override

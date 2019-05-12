@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class HomesteadAction {
@@ -71,6 +72,29 @@ public class HomesteadAction {
     public void readAllHomesteadsAction(Homestead expectedHomestead) {
         try {
             List<Homestead> homestead = homesteadService.readAll();
+
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test()
+    public void readAllHomesteadsByTitleAction() {
+        try {
+            List<Homestead> homestead = homesteadService.readAllByTitle("Da");
+
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test()
+    public void readAllHomesteadsByPriceAction() {
+        try {
+            BigDecimal minPrice = new BigDecimal(150);
+            BigDecimal maxPrice = new BigDecimal(200);
+            List<Homestead> homestead = homesteadService
+                    .readAllByPrice(minPrice, maxPrice);
 
         } catch (PersistentException e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package by.training.lakes_paradise.db.mysql;
 
 import by.training.lakes_paradise.db.dao.UserDao;
+import by.training.lakes_paradise.db.entity.Role;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;
@@ -54,7 +55,8 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
      * Script gets all objects from table users.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
-            = "select id, name, surname, phone from users";
+            = "select u.id, u.name, u.surname, u.phone, p.login, p.role from"
+            + " users u inner join profiles p on u.id = p.id";
 
     /**
      * Script insert new object into the table users.
@@ -101,6 +103,9 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
                 user.setSurname(resultSet.getString("surname"));
                 user.setPhone(Long.parseLong(resultSet
                         .getString("phone")));
+                user.setLogin(resultSet.getString("login"));
+                user.setRole(Role.getByIdentity(
+                        resultSet.getInt("role")));
 
                 users.add(user);
             }

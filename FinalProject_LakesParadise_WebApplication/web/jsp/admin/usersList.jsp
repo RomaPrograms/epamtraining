@@ -20,6 +20,7 @@
           href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 
     <style>
 
@@ -31,8 +32,6 @@
 
     </style>
 </head>
-
-<body id="body">
 
 <ctg:navbar-tag profile="${profile}" language="${locale}"
                 logInMessage="${logInMessage}"/>
@@ -97,15 +96,15 @@
                          src="/img/avatar.png"/>
                 </div>
                 <div class="col-md-8">
-                    <%--<c:if test="${elem.getRole().equals(Role.OWNER)}">
+                    <c:if test="${elem.getRole().equals(Role.OWNER)}">
                         <h2><fmt:message key="homesteadOwner"/></h2>
                     </c:if>
                     <c:if test="${elem.getRole().equals(Role.USER)}">
                         <h2><fmt:message key="user"/></h2>
-                    </c:if>--%>
+                    </c:if>
                     <dl>
-                        <%--<dt><fmt:message key="login"/></dt>
-                        <dd>- <c:out value="${elem.getLogin()}"/></dd>--%>
+                        <dt><fmt:message key="login"/></dt>
+                        <dd>- <c:out value="${elem.getLogin()}"/></dd>
                         <dt><fmt:message key="name"/></dt>
                         <dd>- <c:out value="${elem.getName()}"/></dd>
                         <dt><fmt:message key="surname"/></dt>
@@ -127,10 +126,16 @@
             </div>
             <hr>
         </c:forEach>
+        <c:forEach var="elem" items=""
+        <a href='ViewServlet?page=1'>1</a>
     </c:if>
 </div>
 
 <cng:footer-tag language="${locale}"/>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">

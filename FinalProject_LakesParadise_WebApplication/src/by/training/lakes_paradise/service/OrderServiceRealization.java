@@ -1,7 +1,9 @@
 package by.training.lakes_paradise.service;
 
 import by.training.lakes_paradise.db.dao.OrderDao;
+import by.training.lakes_paradise.db.dao.UserDao;
 import by.training.lakes_paradise.db.entity.Order;
+import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
@@ -24,6 +26,19 @@ public class OrderServiceRealization extends ServiceRealization
             throws PersistentException {
         OrderDao orderDaoRealization = transaction.createDao(OrderDao.class);
         return orderDaoRealization.readByProfile(profileId);
+    }
+
+    @Override
+    public List<Order> readByOwner(Integer ownerId) throws PersistentException {
+        OrderDao orderDaoRealization = transaction.createDao(OrderDao.class);
+        List<Order> orders = orderDaoRealization.readByOwner(ownerId);
+        UserDao userDaoRealization = transaction.createDao(UserDao.class);
+        for(var order : orders) {
+            User orderUser = order.getUser();
+            User user = userDaoRealization.read(orderUser.getId());
+            orderUser.setPhone(user.getPhone());
+        }
+        return orders;
     }
 
     /**

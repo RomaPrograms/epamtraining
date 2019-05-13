@@ -78,8 +78,10 @@ public class ProfileDaoRealization extends BaseDaoRealization
      */
     private static final String
             SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN
-            = "select id, login, password, role from profiles"
-            + " where login = (?)";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE
+            + " where login LIKE ?";
+//%(?)%
+//%?%
 
     /**
      * Script updates object in table profiles.
@@ -122,8 +124,55 @@ public class ProfileDaoRealization extends BaseDaoRealization
             }
 
             return profile;
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return profile;
+        } catch (SQLException e) {
+            LOGGER.error(SQL_EXCEPTION);
+            throw new PersistentException(e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
+            }
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
+            }
+        }
+    }
+
+
+    @Override
+    public List<Profile> readByLogin(String login) throws PersistentException {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Profile> profiles = new ArrayList<>();
+        Profile profile;
+
+        try {
+            statement = getConnection().prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN);
+            statement.setString(1, '%' + login + '%');
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                profile = new Profile();
+                profile.setId(
+                        resultSet.getInt("id"));
+                profile.setLogin(
+                        resultSet.getString("login"));
+                profile.setRole(Role.getByIdentity(
+                        resultSet.getInt("role")));
+                profiles.add(profile);
+            }
+
+            return profiles;
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

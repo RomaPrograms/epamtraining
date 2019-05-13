@@ -63,6 +63,9 @@ public class NavbarTag extends TagSupport {
      */
     private static final String USER_CABINET_URL
             = "/authorized_user/userCabinet.html";
+
+    private static final String OWNER_CABINET_URL
+            = "/owner/ownerCabinet.html";
     /**
      * Name of action for opening owner homesteads catalog page.
      */
@@ -178,11 +181,15 @@ public class NavbarTag extends TagSupport {
                     + rb.getString("homesteads") + "</a></li>");
 
             if (profile != null
-                    && !profile.getRole().equals(Role.ADMINISTRATOR)) {
+                    && profile.getRole().equals(Role.USER)) {
                 out.write("<li><a href=\"" + USER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
             } else {
-                if(profile != null) {
+                if(profile != null && profile.getRole().equals(Role.USER)) {
                     out.write("<li><a href=\"" + ADMIN_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
+                } else {
+                    if(profile != null) {
+                        out.write("<li><a href=\"" + OWNER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
+                    }
                 }
             }
 

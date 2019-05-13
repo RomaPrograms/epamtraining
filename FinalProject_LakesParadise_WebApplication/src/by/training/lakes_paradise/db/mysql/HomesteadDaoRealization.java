@@ -55,7 +55,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * Script gets all objects from table homesteads by title.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_TITLE
-            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " where h.title like `%`?`%`";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " where h.title like ?";
 
     /**
      * Script gets all objects from table homesteads by price.
@@ -133,7 +133,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_TITLE);
             if (title != null) {
-                statement.setString(1, title);
+                statement.setString(1, '%' + title + '%');
             }
 
             resultSet = statement.executeQuery();

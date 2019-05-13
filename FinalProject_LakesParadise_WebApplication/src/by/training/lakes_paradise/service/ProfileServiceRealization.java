@@ -1,9 +1,12 @@
 package by.training.lakes_paradise.service;
 
 import by.training.lakes_paradise.db.dao.ProfileDao;
+import by.training.lakes_paradise.db.dao.UserDao;
 import by.training.lakes_paradise.db.entity.Profile;
+import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +27,21 @@ public class ProfileServiceRealization extends ServiceRealization
                         final String password) throws PersistentException {
         ProfileDao profileDao = transaction.createDao(ProfileDao.class);
         return profileDao.read(login, password);
+    }
+
+    @Override
+    public List<User> readByLogin(String login) throws PersistentException {
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        UserDao userDao = transaction.createDao(UserDao.class);
+        List<Profile> profiles = profileDao.readByLogin(login);
+        List<User> users = new ArrayList<>();
+        for(var profile : profiles) {
+            User user = userDao.read(profile.getId());
+            users.add(user);
+            user.setLogin(profile.getLogin());
+            user.setRole(profile.getRole());
+        }
+        return users;
     }
 
     /**

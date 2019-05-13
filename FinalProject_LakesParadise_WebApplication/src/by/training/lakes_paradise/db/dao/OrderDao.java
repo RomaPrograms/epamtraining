@@ -28,6 +28,15 @@ public interface OrderDao extends Dao<Order> {
     List<Order> readByHomestead(Integer homesteadId) throws PersistentException;
 
     /**
+     * Method that searches all orders by owner id.
+     *
+     * @param ownerId - id of owner
+     * @return list with orders which were done with expected homestead
+     * @throws PersistentException - exception with searching in orders table
+     */
+    List<Order> readByOwner(Integer ownerId) throws PersistentException;
+
+    /**
      * Method that reads all objects from "orders" table.
      *
      * @return list with objects from "orders" table

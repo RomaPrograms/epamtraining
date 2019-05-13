@@ -76,4 +76,14 @@ public class OrderAction {
             e.printStackTrace();
         }
     }
+
+    @Test()
+    public void readAllOrdersByOwnerAction() {
+        try {
+            List<Order> orders = orderService.readByOwner(57);
+
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+    }
 }

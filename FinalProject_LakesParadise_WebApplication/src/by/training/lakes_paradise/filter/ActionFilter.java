@@ -4,11 +4,7 @@ import by.training.lakes_paradise.action.*;
 import by.training.lakes_paradise.action.admin.*;
 import by.training.lakes_paradise.action.authorized_user.*;
 import by.training.lakes_paradise.action.entity.Action;
-import by.training.lakes_paradise.action.owner.AddHomesteadAction;
-import by.training.lakes_paradise.action.owner.DeleteOwnerHomesteadAction;
-import by.training.lakes_paradise.action.owner.OwnerHomesteadsListAction;
-import by.training.lakes_paradise.action.owner.UpdateHomesteadAction;
-import by.training.lakes_paradise.action.owner.AddPhotoAction;
+import by.training.lakes_paradise.action.owner.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -78,6 +74,7 @@ public class ActionFilter implements Filter {
         actions.put("/admin/deleteUser", DeleteUserAction.class);
         actions.put("/admin/usersList", UsersListAction.class);
         actions.put("/admin/findUserByLogin", FindUserByLoginAction.class);
+        actions.put("/owner/ownerCabinet", OwnerCabinetAction.class);
     }
 
     @Override

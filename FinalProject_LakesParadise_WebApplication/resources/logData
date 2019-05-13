@@ -1,276 +1,148 @@
-2019-05-12 17:15:42,710 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/"
-2019-05-12 17:15:42,806 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:42,841 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:42,843 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:15:46,011 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/"
-2019-05-12 17:15:46,013 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:46,021 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:46,022 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:15:47,076 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/"
-2019-05-12 17:15:47,077 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:47,083 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:47,085 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:15:47,930 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:15:47,931 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:47,935 ERROR [http-nio-8080-exec-4] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:15:47,937 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:47,938 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:15:47,945 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:15:47,947 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:47,951 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:47,952 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:15:51,943 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:15:51,945 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:52,060 INFO  [http-nio-8080-exec-6] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:15:52,062 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:52,062 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:15:53,883 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:15:53,884 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:53,895 ERROR [http-nio-8080-exec-8] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:15:53,897 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:53,898 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:15:53,916 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:15:53,917 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:53,924 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:53,926 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:15:59,249 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/findHomesteadsByPrice.html"
-2019-05-12 17:15:59,252 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:59,301 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:59,302 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/findHomesteadsByPrice.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:15:59,318 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:15:59,319 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:59,324 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:59,324 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:15:59,383 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:15:59,384 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:59,388 ERROR [http-nio-8080-exec-3] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:15:59,392 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:59,393 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:15:59,399 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:15:59,400 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:15:59,403 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:15:59,405 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:02,165 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/language/ru_RU.html"
-2019-05-12 17:16:02,167 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:02,169 INFO  [http-nio-8080-exec-5] action.ChangeLanguageAction (ChangeLanguageAction.java:50) - Language was changed successfully.
-2019-05-12 17:16:02,173 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:02,174 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/language/ru_RU.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:16:02,188 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:02,189 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:02,196 INFO  [http-nio-8080-exec-6] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:16:02,198 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:02,199 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:02,265 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:02,267 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:02,268 ERROR [http-nio-8080-exec-8] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:02,271 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:02,272 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:02,287 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:02,289 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:02,294 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:02,294 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:06,775 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/language/en_US.html"
-2019-05-12 17:16:06,776 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:06,778 INFO  [http-nio-8080-exec-10] action.ChangeLanguageAction (ChangeLanguageAction.java:50) - Language was changed successfully.
-2019-05-12 17:16:06,780 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:06,781 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/language/en_US.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:16:06,792 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:06,793 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:06,799 INFO  [http-nio-8080-exec-1] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:16:06,801 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:06,802 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:06,854 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:06,855 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:06,857 ERROR [http-nio-8080-exec-3] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:06,859 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:06,860 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:06,870 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:06,872 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:06,876 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:06,876 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:10,423 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/findHomesteadsByPrice.html"
-2019-05-12 17:16:10,427 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:10,445 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:10,445 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/findHomesteadsByPrice.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:16:10,466 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:10,468 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:10,477 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:10,478 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:10,543 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:10,544 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:10,546 ERROR [http-nio-8080-exec-8] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:10,548 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:10,549 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:10,561 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:10,562 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:10,565 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:10,566 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:18,389 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:18,390 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:18,394 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:18,395 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:18,605 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:18,606 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:18,608 ERROR [http-nio-8080-exec-2] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:18,609 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:18,610 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:18,663 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:18,664 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:18,666 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:18,667 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:20,188 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:20,189 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:20,196 INFO  [http-nio-8080-exec-4] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:16:20,198 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:20,199 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:20,309 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:20,310 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:20,312 ERROR [http-nio-8080-exec-6] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:20,315 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:20,316 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:20,375 DEBUG [http-nio-8080-exec-7] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:20,376 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:20,380 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:20,381 DEBUG [http-nio-8080-exec-7] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:24,220 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/findHomesteadsByPrice.html"
-2019-05-12 17:16:24,221 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:24,229 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:24,230 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/findHomesteadsByPrice.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:16:24,252 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:24,253 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:24,256 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:24,257 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:24,350 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:24,351 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:24,355 ERROR [http-nio-8080-exec-1] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:24,357 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:24,358 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:24,381 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:24,383 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:24,386 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:24,387 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:27,828 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/language/ru_RU.html"
-2019-05-12 17:16:27,829 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:27,831 INFO  [http-nio-8080-exec-3] action.ChangeLanguageAction (ChangeLanguageAction.java:50) - Language was changed successfully.
-2019-05-12 17:16:27,832 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:27,833 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/language/ru_RU.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:16:27,863 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:27,864 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:27,870 INFO  [http-nio-8080-exec-4] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:16:27,872 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:27,873 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:27,964 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:27,966 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:27,967 ERROR [http-nio-8080-exec-6] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:27,970 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:27,970 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:28,028 DEBUG [http-nio-8080-exec-7] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:28,030 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:28,033 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:28,033 DEBUG [http-nio-8080-exec-7] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:39,001 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/log_in.html"
-2019-05-12 17:16:39,007 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:39,417 INFO  [http-nio-8080-exec-10] action.LogInAction (LogInAction.java:65) - Incorrect data. User doesn't exist.
-2019-05-12 17:16:39,419 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:39,420 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/log_in.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:16:39,431 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:39,432 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:39,439 INFO  [http-nio-8080-exec-1] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:16:39,440 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:39,441 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:39,551 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:39,552 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:39,554 ERROR [http-nio-8080-exec-3] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:39,556 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:39,556 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:39,613 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:39,614 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:39,616 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:39,617 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:50,399 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/log_in.html"
-2019-05-12 17:16:50,400 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:50,714 INFO  [http-nio-8080-exec-6] action.LogInAction (LogInAction.java:65) - Incorrect data. User doesn't exist.
-2019-05-12 17:16:50,715 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:50,716 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/log_in.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:16:50,726 DEBUG [http-nio-8080-exec-7] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:50,727 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:50,732 INFO  [http-nio-8080-exec-7] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:16:50,733 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:50,734 DEBUG [http-nio-8080-exec-7] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:50,870 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:50,872 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:50,874 ERROR [http-nio-8080-exec-9] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:50,876 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:50,877 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:50,932 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:50,933 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:50,936 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:50,936 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:16:55,217 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/language/en_US.html"
-2019-05-12 17:16:55,218 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:55,220 INFO  [http-nio-8080-exec-1] action.ChangeLanguageAction (ChangeLanguageAction.java:50) - Language was changed successfully.
-2019-05-12 17:16:55,222 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:55,223 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/language/en_US.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:16:55,248 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:16:55,249 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:55,254 INFO  [http-nio-8080-exec-2] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:16:55,256 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:55,257 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:16:55,344 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:16:55,346 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:55,347 ERROR [http-nio-8080-exec-4] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:16:55,349 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:55,350 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:16:55,376 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:16:55,377 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:16:55,379 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:16:55,380 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:17:01,194 DEBUG [http-nio-8080-exec-7] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/log_in.html"
-2019-05-12 17:17:01,195 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:01,517 INFO  [http-nio-8080-exec-7] action.LogInAction (LogInAction.java:65) - Incorrect data. User doesn't exist.
-2019-05-12 17:17:01,518 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:01,519 DEBUG [http-nio-8080-exec-7] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/log_in.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:17:01,530 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:17:01,531 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:01,536 INFO  [http-nio-8080-exec-8] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
-2019-05-12 17:17:01,538 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:01,538 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:17:01,663 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:17:01,664 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:01,665 ERROR [http-nio-8080-exec-10] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:17:01,666 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:01,667 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:17:01,717 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:17:01,718 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:01,721 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:01,721 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:17:05,523 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/findHomesteadsByPrice.html"
-2019-05-12 17:17:05,525 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:05,534 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:05,535 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/findHomesteadsByPrice.html" id redirected to URI "/homesteadsList.html"
-2019-05-12 17:17:05,560 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/homesteadsList.html"
-2019-05-12 17:17:05,561 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:05,563 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:05,564 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
-2019-05-12 17:17:05,676 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:17:05,677 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:05,678 ERROR [http-nio-8080-exec-5] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:17:05,680 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:05,680 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:17:05,745 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:17:05,746 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:05,748 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:05,749 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:17:25,580 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:17:25,581 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:25,584 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:25,585 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
-2019-05-12 17:17:25,717 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/error.html"
-2019-05-12 17:17:25,718 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:25,720 ERROR [http-nio-8080-exec-10] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
-2019-05-12 17:17:25,721 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:25,722 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
-2019-05-12 17:17:25,772 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:93) - Starting of processing of request for URI "/menu.html"
-2019-05-12 17:17:25,773 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
-2019-05-12 17:17:25,775 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
-2019-05-12 17:17:25,776 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:06,283 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/"
+2019-05-13 15:13:06,367 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:06,396 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:06,399 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:09,077 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/"
+2019-05-13 15:13:09,081 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:09,088 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:09,095 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:10,269 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/"
+2019-05-13 15:13:10,271 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:10,277 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:10,278 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:11,260 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:13:11,261 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:11,266 ERROR [http-nio-8080-exec-5] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:13:11,268 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:11,270 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:13:11,276 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:13:11,277 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:11,285 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:11,286 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:35,934 DEBUG [http-nio-8080-exec-7] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/log_in.html"
+2019-05-13 15:13:35,940 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:36,461 INFO  [http-nio-8080-exec-7] action.LogInAction (LogInAction.java:68) - Authentication admin passed successfully.
+2019-05-13 15:13:36,463 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:36,464 DEBUG [http-nio-8080-exec-7] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/log_in.html" id redirected to URI "/"
+2019-05-13 15:13:36,479 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/"
+2019-05-13 15:13:36,480 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:36,486 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:36,487 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:36,545 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:13:36,547 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:36,550 ERROR [http-nio-8080-exec-4] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:13:36,552 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:36,553 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:13:36,562 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:13:36,564 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:36,568 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:36,569 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:38,332 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/homesteadsList.html"
+2019-05-13 15:13:38,334 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:38,373 INFO  [http-nio-8080-exec-2] action.HomesteadsListAction (HomesteadsListAction.java:53) - Homesteads list was shown successfully.
+2019-05-13 15:13:38,375 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:38,376 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
+2019-05-13 15:13:39,958 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:13:39,961 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:39,965 ERROR [http-nio-8080-exec-5] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:13:39,966 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:39,967 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:13:39,986 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:13:39,990 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:39,994 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:39,994 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:47,625 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/findHomesteadsByName.html"
+2019-05-13 15:13:47,628 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:47,642 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:47,643 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/findHomesteadsByName.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
+2019-05-13 15:13:47,715 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:13:47,716 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:47,718 ERROR [http-nio-8080-exec-8] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:13:47,722 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:47,723 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:13:47,731 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:13:47,733 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:47,738 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:47,739 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:13:54,650 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/findHomesteadsByName.html"
+2019-05-13 15:13:54,651 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:54,659 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:54,660 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/findHomesteadsByName.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
+2019-05-13 15:13:54,707 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:13:54,709 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:54,711 ERROR [http-nio-8080-exec-2] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:13:54,713 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:54,714 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:13:54,720 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:13:54,721 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:13:54,725 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:13:54,726 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:14:04,702 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/findHomesteadsByName.html"
+2019-05-13 15:14:04,703 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:04,713 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:04,714 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/findHomesteadsByName.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
+2019-05-13 15:14:04,790 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:14:04,791 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:04,794 ERROR [http-nio-8080-exec-9] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:14:04,798 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:04,799 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:14:04,811 DEBUG [http-nio-8080-exec-7] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:14:04,815 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:04,820 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:04,821 DEBUG [http-nio-8080-exec-7] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:14:07,073 DEBUG [http-nio-8080-exec-8] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/findHomesteadsByName.html"
+2019-05-13 15:14:07,074 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:07,090 DEBUG [http-nio-8080-exec-8] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:07,091 DEBUG [http-nio-8080-exec-8] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/findHomesteadsByName.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
+2019-05-13 15:14:07,142 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:14:07,143 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:07,145 ERROR [http-nio-8080-exec-4] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:14:07,148 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:07,148 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:14:07,160 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:14:07,161 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:07,165 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:07,166 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:14:10,122 DEBUG [http-nio-8080-exec-2] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/findHomesteadsByName.html"
+2019-05-13 15:14:10,123 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:10,133 DEBUG [http-nio-8080-exec-2] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:10,133 DEBUG [http-nio-8080-exec-2] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/findHomesteadsByName.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
+2019-05-13 15:14:10,187 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:14:10,189 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:10,191 ERROR [http-nio-8080-exec-5] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:14:10,193 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:10,194 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:14:10,215 DEBUG [http-nio-8080-exec-10] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:14:10,216 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:10,221 DEBUG [http-nio-8080-exec-10] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:10,222 DEBUG [http-nio-8080-exec-10] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:14:26,461 DEBUG [http-nio-8080-exec-9] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/findHomesteadsByPrice.html"
+2019-05-13 15:14:26,462 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:26,471 DEBUG [http-nio-8080-exec-9] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:26,472 DEBUG [http-nio-8080-exec-9] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/findHomesteadsByPrice.html" id redirected to URI "/homesteadsList.html"
+2019-05-13 15:14:26,484 DEBUG [http-nio-8080-exec-7] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/homesteadsList.html"
+2019-05-13 15:14:26,485 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:26,487 DEBUG [http-nio-8080-exec-7] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:26,488 DEBUG [http-nio-8080-exec-7] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/homesteadsList.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
+2019-05-13 15:14:26,549 DEBUG [http-nio-8080-exec-6] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:14:26,550 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:26,553 ERROR [http-nio-8080-exec-6] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:14:26,555 DEBUG [http-nio-8080-exec-6] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:26,558 DEBUG [http-nio-8080-exec-6] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:14:26,564 DEBUG [http-nio-8080-exec-4] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:14:26,565 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:26,568 DEBUG [http-nio-8080-exec-4] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:26,568 DEBUG [http-nio-8080-exec-4] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"
+2019-05-13 15:14:32,813 DEBUG [http-nio-8080-exec-1] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/findHomesteadsByName.html"
+2019-05-13 15:14:32,814 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:32,828 DEBUG [http-nio-8080-exec-1] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:32,829 DEBUG [http-nio-8080-exec-1] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/findHomesteadsByName.html" is forwarded to JSP "/jsp/homesteadsList.jsp"
+2019-05-13 15:14:32,884 DEBUG [http-nio-8080-exec-3] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/error.html"
+2019-05-13 15:14:32,885 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:32,886 ERROR [http-nio-8080-exec-3] action.ErrorAction (ErrorAction.java:32) - Exception connected with opening unavailable page.
+2019-05-13 15:14:32,888 DEBUG [http-nio-8080-exec-3] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:32,889 DEBUG [http-nio-8080-exec-3] controller.DispatcherServlet (DispatcherServlet.java:170) - Request for URI "/error.html" id redirected to URI "/menu.html"
+2019-05-13 15:14:32,895 DEBUG [http-nio-8080-exec-5] filter.ActionFilter (ActionFilter.java:90) - Starting of processing of request for URI "/menu.html"
+2019-05-13 15:14:32,896 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:116) - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2019-05-13 15:14:32,898 DEBUG [http-nio-8080-exec-5] pool.ConnectionPoolRealization (ConnectionPoolRealization.java:131) - Connection was returned into pool. Current pool size: 0 used connections; 10 free connection
+2019-05-13 15:14:32,899 DEBUG [http-nio-8080-exec-5] controller.DispatcherServlet (DispatcherServlet.java:184) - Request for URI "/menu.html" is forwarded to JSP "/jsp/index.jsp"

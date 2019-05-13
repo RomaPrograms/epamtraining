@@ -45,7 +45,7 @@ CREATE TABLE `reviews` (
   CONSTRAINT `FK_reviews_homesteads_id` FOREIGN KEY (`home_id`) REFERENCES `homesteads` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
-REATE TABLE `images` (
+СREATE TABLE `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image` mediumblob NOT NULL,
   `home_id` int(11) NOT NULL,

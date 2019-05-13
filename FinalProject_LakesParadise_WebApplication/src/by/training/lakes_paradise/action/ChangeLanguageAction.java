@@ -34,7 +34,8 @@ public class ChangeLanguageAction extends Action {
 
         HttpSession session = request.getSession(true);
         String lastAction = request.getHeader("referer");
-        lastAction = lastAction.substring(lastAction.lastIndexOf('/'));
+        lastAction = lastAction.substring(
+                lastAction.indexOf('/', 8));
         Forward forward = new Forward(lastAction, true);
 
         String typeOfLanguage = request.getRequestURI();

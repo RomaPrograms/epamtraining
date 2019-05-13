@@ -1,6 +1,7 @@
 package by.training.lakes_paradise.service;
 
 import by.training.lakes_paradise.db.entity.Profile;
+import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 
 import java.util.List;
@@ -24,6 +25,8 @@ public interface ProfileService extends Service {
      * @return objects from "profiles" table
      */
     List<Profile> readAll() throws PersistentException;
+
+    List<User> readByLogin(String login) throws PersistentException;
 
     /**
      * Method adds new object to "profiles" table.

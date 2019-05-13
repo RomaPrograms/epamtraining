@@ -48,7 +48,7 @@ public class OrderDaoRealization extends BaseDaoRealization
     /**
      * String first part of SQL query for reading from database.
      */
-    private static final String SQL_SCRIPT_SELECT
+    private static final String SQL_SCRIPT_SELECT_BY_USER
             = "select o.user_id, o.home_id, o.date_start, o.date_end, "
             + "o.status_pay, h.title, p.login from orders o inner join"
             + " homesteads h on o.home_id = h.id inner join profiles p on"
@@ -75,7 +75,12 @@ public class OrderDaoRealization extends BaseDaoRealization
      * Script gets all objects from table orders.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
-            = SQL_SCRIPT_SELECT + " orders";
+            = SQL_SCRIPT_SELECT_BY_USER + " orders";
+
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID
+            = SQL_SCRIPT_SELECT_BY_USER
+            + " where h.owner_id = (?)";
+
 
     /**
      * Script insert new object into the table orders.
@@ -95,13 +100,13 @@ public class OrderDaoRealization extends BaseDaoRealization
      * Script gets all objects from table orders by profile id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PROFILE_ID
-            = SQL_SCRIPT_SELECT + "where o.user_id = ?";
+            = SQL_SCRIPT_SELECT_BY_USER + "where o.user_id = ?";
 
     /**
      * Script gets all objects from table orders by home id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
-            = SQL_SCRIPT_SELECT + "where o.home_id = ?";
+            = SQL_SCRIPT_SELECT_BY_USER + "where o.home_id = ?";
 
     /**
      * Script updates object in table orders.
@@ -122,7 +127,15 @@ public class OrderDaoRealization extends BaseDaoRealization
     public List<Order> readByProfile(final Integer profileId)
             throws PersistentException {
         return readByCategory(
-                SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PROFILE_ID, profileId);
+                SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_PROFILE_ID, profileId,
+                false);
+    }
+
+    @Override
+    public List<Order> readByOwner(Integer ownerId) throws PersistentException {
+        return readByCategory(
+                SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID, ownerId,
+                true);
     }
 
     /**
@@ -136,7 +149,8 @@ public class OrderDaoRealization extends BaseDaoRealization
     public List<Order> readByHomestead(final Integer homesteadId)
             throws PersistentException {
         return readByCategory(
-                SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID, homesteadId);
+                SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID, homesteadId,
+                false);
     }
 
     /**
@@ -369,7 +383,8 @@ public class OrderDaoRealization extends BaseDaoRealization
      * @throws PersistentException - exception with reading objects from
      *                             database
      */
-    private List<Order> readByCategory(final String sql, final Integer id)
+    private List<Order> readByCategory(final String sql, final Integer id,
+                                       boolean isReadingByOwner)
             throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -379,9 +394,13 @@ public class OrderDaoRealization extends BaseDaoRealization
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             List<Order> orders = new ArrayList<>();
-
+            Order order;
             while (resultSet.next()) {
-                orders.add(createOrder(resultSet));
+                order = createOrder(resultSet);
+                if (isReadingByOwner) {
+                    order.getUser().setLogin(resultSet.getString("login"));
+                }
+                orders.add(order);
             }
 
             return orders;

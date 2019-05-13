@@ -29,6 +29,8 @@ public interface OrderService extends Service {
     List<Order> readByHomestead(Integer homesteadId)
             throws PersistentException;
 
+    List<Order> readByOwner(Integer ownerId) throws PersistentException;
+
     /**
      * Method that reads all objects from "orders" table.
      *

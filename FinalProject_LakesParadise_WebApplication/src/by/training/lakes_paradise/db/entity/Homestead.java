@@ -3,6 +3,7 @@ package by.training.lakes_paradise.db.entity;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class which describes homestead.
@@ -156,6 +157,34 @@ public class Homestead extends Entity {
      */
     public void setOwner(final User homesteadOwnerId) {
         this.owner = homesteadOwnerId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Homestead)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Homestead homestead = (Homestead) o;
+        return getPeopleNumber() == homestead.getPeopleNumber()
+                && Objects.equals(getTitle(), homestead.getTitle())
+                && Objects.equals(getPrice(), homestead.getPrice())
+                && Objects.equals(getDescription(), homestead.getDescription())
+                && Objects.equals(getOwner(), homestead.getOwner())
+                && Objects.equals(getImages(), homestead.getImages())
+                && Objects.equals(getReviews(), homestead.getReviews());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getTitle(), getPrice(),
+                getDescription(), getPeopleNumber(), getOwner(), getImages(),
+                getReviews());
     }
 
     /**

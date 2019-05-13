@@ -2,6 +2,7 @@ package by.training.lakes_paradise.db.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Class which describes order.
@@ -118,5 +119,29 @@ public class Order extends Entity {
      */
     public void setEndRenting(final Date orderEndRenting) {
         this.endRenting = orderEndRenting;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Order)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Order order = (Order) o;
+        return Objects.equals(getHomestead(), order.getHomestead())
+                && Objects.equals(getUser(), order.getUser())
+                && Objects.equals(getStartRenting(), order.getStartRenting())
+                && Objects.equals(getEndRenting(), order.getEndRenting());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getHomestead(), getUser(),
+                getStartRenting(), getEndRenting());
     }
 }

@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.db.entity;
 
+import java.util.Objects;
+
 /**
  * Class which describes user.
  */
@@ -69,6 +71,29 @@ public class User extends Profile {
      */
     public void setPhone(final long userPhone) {
         this.phone = userPhone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        User user = (User) o;
+        return getPhone() == user.getPhone()
+                && Objects.equals(getName(), user.getName())
+                && Objects.equals(getSurname(), user.getSurname());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getName(), getSurname(),
+                getPhone());
     }
 
     /**

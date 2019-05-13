@@ -35,13 +35,6 @@ public abstract class BaseDaoRealization {
     /**
      * Method deletes object in database by id and name of table.
      *
-     * @param id          - id of object for deletion
-     * @param nameOfTable - name of table
-     */
-
-    /**
-     * Method deletes object in database by id and name of table.
-     *
      * @param nameOfTable - name of table
      * @param id - id of object for deletion
      * @return instance of executed statement

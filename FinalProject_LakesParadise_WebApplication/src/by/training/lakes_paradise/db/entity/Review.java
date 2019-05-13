@@ -2,6 +2,7 @@ package by.training.lakes_paradise.db.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Class which describes review.
@@ -105,6 +106,31 @@ public class Review extends Entity {
      */
     public void setHomesteadId(final int reviewHomeId) {
         this.homesteadId = reviewHomeId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Review)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Review review = (Review) o;
+        return getHomesteadId() == review.getHomesteadId()
+                && Objects.equals(getText(), review.getText())
+                && Objects.equals(getUserName(), review.getUserName())
+                && Objects.equals(getDateOfComment(),
+                review.getDateOfComment());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getText(), getUserName(),
+                getDateOfComment(), getHomesteadId());
     }
 
     /**

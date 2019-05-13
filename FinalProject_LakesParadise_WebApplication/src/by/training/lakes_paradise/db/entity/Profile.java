@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.db.entity;
 
+import java.util.Objects;
+
 /**
  * Class which describes profile.
  */
@@ -69,6 +71,29 @@ public class Profile extends Entity {
      */
     public void setRole(final Role profileRole) {
         this.role = profileRole;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Profile)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Profile profile = (Profile) o;
+        return Objects.equals(getLogin(), profile.getLogin())
+                && Objects.equals(getPassword(), profile.getPassword())
+                && getRole() == profile.getRole();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getLogin(), getPassword(),
+                getRole());
     }
 
     /**

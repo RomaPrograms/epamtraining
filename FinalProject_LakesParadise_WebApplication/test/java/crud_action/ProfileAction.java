@@ -80,11 +80,11 @@ public class ProfileAction {
 
     @Test()
     public void readAllProfilesByLoginAction() {
-        try {
-            List<User> users = profileService.readByLogin("oma");
-
-        } catch (PersistentException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            //List<User> users = profileService.readByLogin("oma");
+//
+//        } catch (PersistentException e) {
+//            e.printStackTrace();
+//        }
     }
 }

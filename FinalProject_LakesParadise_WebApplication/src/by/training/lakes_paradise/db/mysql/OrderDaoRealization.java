@@ -50,7 +50,7 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     private static final String SQL_SCRIPT_SELECT_BY_USER
             = "select o.user_id, o.home_id, o.date_start, o.date_end, "
-            + "o.status_pay, h.title, p.login from orders o inner join"
+            + " h.title, p.login from orders o inner join"
             + " homesteads h on o.home_id = h.id inner join profiles p on"
             + " o.user_id = p.id ";
 
@@ -66,10 +66,6 @@ public class OrderDaoRealization extends BaseDaoRealization
      * Point to the fifth element in SQL query.
      */
     private static final int FIFTH_ELEMENT_IN_SQL_QUERY = 5;
-    /**
-     * Point to the sixth element in SQL query.
-     */
-    private static final int SIXTH_ELEMENT_IN_SQL_QUERY = 6;
 
     /**
      * Script gets all objects from table orders.
@@ -77,24 +73,26 @@ public class OrderDaoRealization extends BaseDaoRealization
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
             = SQL_SCRIPT_SELECT_BY_USER + " orders";
 
+    /**
+     * Script gets all objects from table orders.
+     */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID
             = SQL_SCRIPT_SELECT_BY_USER
             + " where h.owner_id = (?)";
-
 
     /**
      * Script insert new object into the table orders.
      */
     private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
             = "insert into orders (user_id, home_id, date_start,"
-            + " date_end, status_pay) values (?, ?, ?, ?, ?)";
+            + " date_end) values (?, ?, ?, ?)";
 
     /**
      * Script gets all objects from table orders by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
-            = "select user_id, home_id, date_start, date_end, "
-            + "status_pay from orders where id = (?)";
+            = "select user_id, home_id, date_start, date_end "
+            + " from orders where id = (?)";
 
     /**
      * Script gets all objects from table orders by profile id.
@@ -113,8 +111,7 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
             = "update orders set user_id = ?, home_id = ?,"
-            + " date_start = ?, date_end = ?, status_pay = ?"
-            + " where id = ?";
+            + " date_start = ?, date_end = ? where id = ?";
 
     /**
      * Method that search all orders by id of profile.
@@ -131,8 +128,16 @@ public class OrderDaoRealization extends BaseDaoRealization
                 false);
     }
 
+    /**
+     * Method that search all orders by id of owner.
+     *
+     * @param ownerId - id of owner
+     * @return list with orders which were done by expected profile
+     * @throws PersistentException - exception with searching in orders table
+     */
     @Override
-    public List<Order> readByOwner(Integer ownerId) throws PersistentException {
+    public List<Order> readByOwner(final Integer ownerId)
+            throws PersistentException {
         return readByCategory(
                 SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID, ownerId,
                 true);
@@ -219,8 +224,6 @@ public class OrderDaoRealization extends BaseDaoRealization
                     new Date(order.getStartRenting().getTime()));
             statement.setDate(FORTH_ELEMENT_IN_SQL_QUERY,
                     new Date(order.getEndRenting().getTime()));
-            statement.setBoolean(FIFTH_ELEMENT_IN_SQL_QUERY,
-                    order.getPaid());
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -284,8 +287,6 @@ public class OrderDaoRealization extends BaseDaoRealization
                 order.setStartRenting(new java.util.Date(date.getTime()));
                 date = resultSet.getDate("date_end");
                 order.setEndRenting(new java.util.Date(date.getTime()));
-                order.setPaid(
-                        resultSet.getBoolean("status_pay"));
             }
 
             return order;
@@ -329,9 +330,7 @@ public class OrderDaoRealization extends BaseDaoRealization
                     new Date(order.getStartRenting().getTime()));
             statement.setDate(FORTH_ELEMENT_IN_SQL_QUERY,
                     new Date(order.getEndRenting().getTime()));
-            statement.setBoolean(FIFTH_ELEMENT_IN_SQL_QUERY,
-                    order.getPaid());
-            statement.setInt(SIXTH_ELEMENT_IN_SQL_QUERY,
+            statement.setInt(FIFTH_ELEMENT_IN_SQL_QUERY,
                     order.getId());
 
             statement.executeUpdate();
@@ -377,14 +376,15 @@ public class OrderDaoRealization extends BaseDaoRealization
     /**
      * Method that search all orders by some category.
      *
-     * @param sql - sql script which will be executed.
-     * @param id  - id of parameter
+     * @param sql              - sql script which will be executed.
+     * @param id               - id of parameter
+     * @param isReadingByOwner - {@code true} if information for owner
      * @return list with orders
      * @throws PersistentException - exception with reading objects from
      *                             database
      */
     private List<Order> readByCategory(final String sql, final Integer id,
-                                       boolean isReadingByOwner)
+                                       final boolean isReadingByOwner)
             throws PersistentException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -398,7 +398,8 @@ public class OrderDaoRealization extends BaseDaoRealization
             while (resultSet.next()) {
                 order = createOrder(resultSet);
                 if (isReadingByOwner) {
-                    order.getUser().setLogin(resultSet.getString("login"));
+                    order.getUser().setLogin(resultSet
+                            .getString("login"));
                 }
                 orders.add(order);
             }
@@ -447,8 +448,6 @@ public class OrderDaoRealization extends BaseDaoRealization
         order.setStartRenting(new java.util.Date(date.getTime()));
         date = resultSet.getDate("date_end");
         order.setEndRenting(new java.util.Date(date.getTime()));
-        order.setPaid(resultSet
-                .getBoolean("status_pay"));
         return order;
     }
 }

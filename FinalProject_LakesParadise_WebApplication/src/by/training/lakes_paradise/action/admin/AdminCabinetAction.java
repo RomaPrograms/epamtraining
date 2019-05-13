@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
 
+/**
+ * Class handles admin request for showing admin cabinet page
+ */
 public class AdminCabinetAction extends Action {
     /**
      * Logger for creation notes to some appender.

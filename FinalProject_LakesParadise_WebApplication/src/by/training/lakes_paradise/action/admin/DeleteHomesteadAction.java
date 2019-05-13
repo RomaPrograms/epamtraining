@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Class handles admin request for deleting homestead.
+ */
 public class DeleteHomesteadAction extends Action {
 
     /**
@@ -18,6 +21,14 @@ public class DeleteHomesteadAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(DeleteReviewAction.class);
 
+    /**
+     * Method executes request for deleting homestead.
+     *
+     * @param request  - user request
+     * @param response - user response
+     * @return URL of jsp page which should be shown
+     * @throws PersistentException - exception connected with DAO
+     */
     @Override
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)

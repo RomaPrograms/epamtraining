@@ -15,6 +15,9 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
 
+/**
+ * Class executes request for showing list of users.
+ */
 public class UsersListAction extends Action {
     /**
      * Logger for creation notes to some appender.
@@ -44,8 +47,10 @@ public class UsersListAction extends Action {
         UserService userService
                 = factory.getService(UserService.class);
 
-        request.setAttribute("res", userService.readAll());
-        LOGGER.info("Users list was shown successfully.");
+        if(request.getAttribute("res") == null) {
+            request.setAttribute("res", userService.readAll());
+            LOGGER.info("Users list was shown successfully.");
+        }
 
         Config.set(request, Config.FMT_LOCALE, locale);
 

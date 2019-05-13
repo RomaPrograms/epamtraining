@@ -80,7 +80,7 @@
     <hr/>
     <c:url value="/admin/deleteUser.html" var="userDeleteUrl"/>
 
-    <c:if test="${res.size() == 0}">
+    <c:if test="${res == null || res.size() == 0}">
         <div class="alert alert-warning">
             <strong>Warning!</strong> Sorry but we couldn't find any user
             by your criteria :(
@@ -126,8 +126,6 @@
             </div>
             <hr>
         </c:forEach>
-        <c:forEach var="elem" items=""
-        <a href='ViewServlet?page=1'>1</a>
     </c:if>
 </div>
 

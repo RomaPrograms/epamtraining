@@ -1,11 +1,6 @@
 package by.training.lakes_paradise.db.entity;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Blob;
-import java.sql.SQLException;
 
 /**
  * Class which describes image.

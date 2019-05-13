@@ -29,21 +29,6 @@ public class ProfileServiceRealization extends ServiceRealization
         return profileDao.read(login, password);
     }
 
-    @Override
-    public List<User> readByLogin(String login) throws PersistentException {
-        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
-        UserDao userDao = transaction.createDao(UserDao.class);
-        List<Profile> profiles = profileDao.readByLogin(login);
-        List<User> users = new ArrayList<>();
-        for(var profile : profiles) {
-            User user = userDao.read(profile.getId());
-            users.add(user);
-            user.setLogin(profile.getLogin());
-            user.setRole(profile.getRole());
-        }
-        return users;
-    }
-
     /**
      * Method reads all objects from "profiles" table.
      *
@@ -98,7 +83,9 @@ public class ProfileServiceRealization extends ServiceRealization
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
+        UserDao userDao = transaction.createDao(UserDao.class);
         ProfileDao profileDao = transaction.createDao(ProfileDao.class);
+        userDao.delete(id);
         profileDao.delete(id);
     }
 }

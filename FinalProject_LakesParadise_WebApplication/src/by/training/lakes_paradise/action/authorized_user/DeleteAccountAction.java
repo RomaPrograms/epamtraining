@@ -4,7 +4,6 @@ import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.PersistentException;
-import by.training.lakes_paradise.service.ProfileService;
 import by.training.lakes_paradise.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,11 +40,8 @@ public class DeleteAccountAction extends Action {
         Profile profile = (Profile) session.getAttribute("profile");
         session.removeAttribute("profile");
 
-        ProfileService profileService
-                = factory.getService(ProfileService.class);
         UserService userService
                 = factory.getService(UserService.class);
-        profileService.delete(profile.getId());
         userService.delete(profile.getId());
         LOGGER.info("User was successfully logged out");
 

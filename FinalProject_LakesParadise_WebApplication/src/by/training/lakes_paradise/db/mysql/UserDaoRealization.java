@@ -81,6 +81,12 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
             + " where id = (?)";
 
     /**
+     * Script returns all users by in some part of login.
+     */
+    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " where p.login like ?";
+
+    /**
      * Method that reads all objects from "users" table.
      *
      * @return list with objects from "users" table
@@ -142,7 +148,6 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
     @Override
     public Integer create(final User user) throws PersistentException {
         PreparedStatement statement = null;
-        ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
@@ -153,6 +158,55 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
             statement.setLong(FORTH_ELEMENT_IN_SQL_QUERY, user.getPhone());
             return statement.executeUpdate();
 
+        } catch (SQLException e) {
+            LOGGER.error(SQL_EXCEPTION);
+            throw new PersistentException(e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
+            }
+        }
+    }
+
+    /**
+     * Finds users by login.
+     *
+     * @param login - login of user.
+     * @return list with users
+     * @throws PersistentException - exception connected with DAO.
+     */
+    @Override
+    public List<User> readByLogin(final String login)
+            throws PersistentException {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = getConnection().prepareStatement(
+                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_LOGIN);
+            statement.setString(1, '%' + login + '%');
+            resultSet = statement.executeQuery();
+            List<User> users = new ArrayList<>();
+            User user;
+
+            while (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                user.setSurname(resultSet.getString("surname"));
+                user.setPhone(Long.parseLong(resultSet
+                        .getString("phone")));
+                user.setLogin(resultSet.getString("login"));
+                user.setRole(Role.getByIdentity(
+                        resultSet.getInt("role")));
+
+                users.add(user);
+            }
+
+            return users;
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

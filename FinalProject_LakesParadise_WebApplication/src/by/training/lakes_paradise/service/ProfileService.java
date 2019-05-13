@@ -26,8 +26,6 @@ public interface ProfileService extends Service {
      */
     List<Profile> readAll() throws PersistentException;
 
-    List<User> readByLogin(String login) throws PersistentException;
-
     /**
      * Method adds new object to "profiles" table.
      *

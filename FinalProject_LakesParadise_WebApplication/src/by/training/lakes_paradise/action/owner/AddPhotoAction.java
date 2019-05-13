@@ -5,7 +5,6 @@ import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.exception.PersistentException;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,16 +32,20 @@ public class AddPhotoAction extends Action {
                         final HttpServletResponse response)
             throws PersistentException {
         HttpSession session = request.getSession();
-        Forward forward = new Forward((String) session.getAttribute("lastAction"), true);
+        Forward forward = new Forward((String)
+                session.getAttribute("lastAction"), true);
         try {
-            //int homesteadIdentity = Integer.parseInt(request.getParameter("homesteadIdentity"));
+            //int homesteadIdentity
+            // = Integer.parseInt(request.getParameter("homesteadIdentity"));
             String photoAddress = request.getParameter("photo");
-            //String photoName = photoAddress.substring(photoAddress.lastIndexOf('\\') + 1);
+            //String photoName
+            // = photoAddress.substring(photoAddress.lastIndexOf('\\') + 1);
             File file = new File(photoAddress);
             BufferedImage image1 = ImageIO.read(file);
             File outputFile = new File("web\\img\\please.jpg");
             String uploadPath = request.getServletContext().getRealPath("");
-            String str = request.getServletContext().getRealPath(request.getServletPath());
+            String str = request.getServletContext()
+                    .getRealPath(request.getServletPath());
             ImageIO.write(image1, "png", outputFile);
 
         } catch (IOException e) {

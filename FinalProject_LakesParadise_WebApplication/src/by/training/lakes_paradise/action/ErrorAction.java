@@ -8,6 +8,9 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Class handles error situation with opening not available page.
+ */
 public class ErrorAction extends Action {
     /**
      * Logger for creation notes to some appender.
@@ -16,7 +19,7 @@ public class ErrorAction extends Action {
             = LogManager.getLogger(ErrorAction.class);
 
     /**
-     * Method executes handles authorization errors.
+     * Method executes handles error situation with opening not available page.
      *
      * @param request  - user request
      * @param response - user response

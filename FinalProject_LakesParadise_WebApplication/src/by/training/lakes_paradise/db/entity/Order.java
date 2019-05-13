@@ -23,10 +23,6 @@ public class Order extends Entity {
      * Date of end renting.
      */
     private Date endRenting;
-    /**
-     * Payment state.
-     */
-    private boolean isPaid;
 
     /**
      * Gets the value of homestead property.
@@ -122,23 +118,5 @@ public class Order extends Entity {
      */
     public void setEndRenting(final Date orderEndRenting) {
         this.endRenting = orderEndRenting;
-    }
-
-    /**
-     * Gets the value of isPaid property.
-     *
-     * @return value of isPaid property.
-     */
-    public boolean getPaid() {
-        return isPaid;
-    }
-
-    /**
-     * Sets the value of isPaid property.
-     *
-     * @param paid - value of isPaid property.
-     */
-    public void setPaid(final boolean paid) {
-        isPaid = paid;
     }
 }

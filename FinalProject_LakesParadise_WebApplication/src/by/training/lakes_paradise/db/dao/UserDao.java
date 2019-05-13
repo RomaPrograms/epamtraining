@@ -16,4 +16,6 @@ public interface UserDao extends Dao<User> {
      * @throws PersistentException - exception with searching in users table
      */
     List<User> read() throws PersistentException;
+
+    List<User> readByLogin(String login) throws PersistentException;
 }

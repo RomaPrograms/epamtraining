@@ -17,6 +17,9 @@ import javax.servlet.jsp.jstl.core.Config;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Class handles admin request for deleting review about homestead.
+ */
 public class DeleteReviewAction extends Action {
     /**
      * Logger for creation notes to some appender.
@@ -53,8 +56,8 @@ public class DeleteReviewAction extends Action {
         reviewService.delete(reviewId);
         Homestead homestead = (Homestead) session.getAttribute("homestead");
         List<Review> reviewList = homestead.getReviews();
-        for(int i = 0; i < reviewList.size(); i++) {
-            if(reviewList.get(i).getId() == reviewId) {
+        for (int i = 0; i < reviewList.size(); i++) {
+            if (reviewList.get(i).getId() == reviewId) {
                 reviewList.remove(i);
                 break;
             }

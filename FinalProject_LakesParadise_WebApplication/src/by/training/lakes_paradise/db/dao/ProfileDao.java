@@ -26,7 +26,4 @@ public interface ProfileDao extends Dao<Profile> {
      * @throws PersistentException - exception with searching in profile table
      */
     Profile read(String login, String password) throws PersistentException;
-
-
-    List<Profile> readByLogin(String login) throws PersistentException;
 }

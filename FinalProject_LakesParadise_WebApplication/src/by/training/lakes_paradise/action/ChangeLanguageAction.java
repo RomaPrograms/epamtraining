@@ -22,6 +22,21 @@ public class ChangeLanguageAction extends Action {
             = LogManager.getLogger(ChangeLanguageAction.class);
 
     /**
+     * Length of "https://".
+     */
+    private static final int LENGTH_OF_PROTOCOL_STRING = 8;
+
+    /**
+     * Length of "/language/".
+     */
+    private static final int LENGTH_OF_REDUNDANT_PART_IN_ACTION_NAME = 10;
+
+    /**
+     * Length of ".html".
+     */
+    private static final int LENGTH_OF_EXTENSION = 5;
+
+    /**
      * Method executes request for changing language.
      *
      * @param request  - user request
@@ -35,12 +50,13 @@ public class ChangeLanguageAction extends Action {
         HttpSession session = request.getSession(true);
         String lastAction = request.getHeader("referer");
         lastAction = lastAction.substring(
-                lastAction.indexOf('/', 8));
+                lastAction.indexOf('/', LENGTH_OF_PROTOCOL_STRING));
         Forward forward = new Forward(lastAction, true);
 
         String typeOfLanguage = request.getRequestURI();
-        typeOfLanguage = typeOfLanguage.substring(10,
-                typeOfLanguage.length() - 5);
+        typeOfLanguage = typeOfLanguage.substring(
+                LENGTH_OF_REDUNDANT_PART_IN_ACTION_NAME,
+                typeOfLanguage.length() - LENGTH_OF_EXTENSION);
 
         String[] currentLang = typeOfLanguage.split("_");
         String language = currentLang[0];

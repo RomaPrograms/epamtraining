@@ -35,6 +35,8 @@ public interface UserService extends Service {
      */
     User read(Integer id) throws PersistentException;
 
+    List<User> readByLogin(String login) throws PersistentException;
+
     /**
      * Method updates user from "users" table by id.
      *

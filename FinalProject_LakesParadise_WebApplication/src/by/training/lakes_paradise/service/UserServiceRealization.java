@@ -6,6 +6,7 @@ import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,12 @@ public class UserServiceRealization extends ServiceRealization
     public List<User> readAll() throws PersistentException {
         UserDao userDao = transaction.createDao(UserDao.class);
         return userDao.read();
+    }
+
+    @Override
+    public List<User> readByLogin(String login) throws PersistentException {
+        UserDao userDao = transaction.createDao(UserDao.class);
+        return userDao.readByLogin(login);
     }
 
     /**
@@ -83,6 +90,8 @@ public class UserServiceRealization extends ServiceRealization
     @Override
     public void delete(final Integer id) throws PersistentException {
         UserDao userDao = transaction.createDao(UserDao.class);
+        ProfileDao profileDao = transaction.createDao(ProfileDao.class);
         userDao.delete(id);
+        profileDao.delete(id);
     }
 }

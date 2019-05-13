@@ -26,16 +26,6 @@ public class Homestead extends Entity {
     private int peopleNumber;
 
     /**
-     * Rating of homestead.
-     */
-    private double rating;
-
-    /**
-     * Number of people which saved a comment.
-     */
-    private long numberOfVotedUsers;
-
-    /**
      * Id of owner who belongs homestead.
      */
     private User owner;
@@ -84,25 +74,6 @@ public class Homestead extends Entity {
      */
     public void setPrice(final BigDecimal homePrice) {
         this.price = homePrice;
-    }
-
-    /**
-     * Gets the value of numberOfVotedUsers property.
-     *
-     * @return value of numberOfVotedUsers property.
-     */
-    public long getNumberOfVotedUsers() {
-        return numberOfVotedUsers;
-    }
-
-    /**
-     * Sets the value of numberOfVotedUsers property.
-     *
-     * @param homesteadNumberOfVotedUsers - value of numberOfVotedUsers
-     * property.
-     */
-    public void setNumberOfVotedUsers(final long homesteadNumberOfVotedUsers) {
-        this.numberOfVotedUsers = homesteadNumberOfVotedUsers;
     }
 
     /**
@@ -170,24 +141,6 @@ public class Homestead extends Entity {
     }
 
     /**
-     * Gets the value of rating property.
-     *
-     * @return value of rating property.
-     */
-    public double getRating() {
-        return rating;
-    }
-
-    /**
-     * Sets the value of rating property.
-     *
-     * @param homeRating - value of rating property.
-     */
-    public void setRating(final double homeRating) {
-        this.rating = homeRating;
-    }
-
-    /**
      * Gets the value of owner property.
      *
      * @return value of owner property.
@@ -217,7 +170,6 @@ public class Homestead extends Entity {
                 + ", \nprice=" + price
                 + ", \ndescription='" + description + '\''
                 + ", \npeopleNumber=" + peopleNumber
-                + ", \nrating=" + rating
                 + ", \nowner=" + owner
                 + "\n}";
     }

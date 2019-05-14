@@ -186,20 +186,4 @@ public class Homestead extends Entity {
                 getDescription(), getPeopleNumber(), getOwner(), getImages(),
                 getReviews());
     }
-
-    /**
-     * Returns description of homestead in String.
-     *
-     * @return description of homestead in String.
-     */
-    @Override
-    public String toString() {
-        return "Homestead{"
-                + "\ntitle='" + title + '\''
-                + ", \nprice=" + price
-                + ", \ndescription='" + description + '\''
-                + ", \npeopleNumber=" + peopleNumber
-                + ", \nowner=" + owner
-                + "\n}";
-    }
 }

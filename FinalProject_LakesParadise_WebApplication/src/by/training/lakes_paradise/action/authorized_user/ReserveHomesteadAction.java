@@ -44,7 +44,8 @@ public class ReserveHomesteadAction extends Action {
                         final HttpServletResponse response)
             throws PersistentException {
         Forward forward = new Forward(
-                "/authorized_user/reservationInfo.html", true);
+                "/authorized_user/reservationInfo.html",
+                true);
         HttpSession session = request.getSession();
         OrderValidator validator = (OrderValidator)
                 ValidatorFactory.createValidator(Order.class);

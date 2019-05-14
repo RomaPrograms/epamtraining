@@ -132,19 +132,4 @@ public class Review extends Entity {
         return Objects.hash(super.hashCode(), getText(), getUserName(),
                 getDateOfComment(), getHomesteadId());
     }
-
-    /**
-     * Returns description of review in String.
-     *
-     * @return description of review in String
-     */
-    @Override
-    public String toString() {
-        return "Review{"
-                + "\ntext='" + text + '\''
-                + ", \nuserName='" + userName + '\''
-                + ", \ndateOfComment=" + dateOfComment
-                + ", \nhomesteadId=" + homesteadId
-                + "\n}";
-    }
 }

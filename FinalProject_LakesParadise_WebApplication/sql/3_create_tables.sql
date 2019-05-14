@@ -1,3 +1,5 @@
+use roma;
+
 CREATE TABLE `profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(45) NOT NULL,
@@ -12,7 +14,6 @@ CREATE TABLE `users` (
   `name` varchar(10) NOT NULL,
   `surname` varchar(30) NOT NULL,
   `phone` bigint(12) NOT NULL,
-  `image` mediumblob,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_users_profiles_id` FOREIGN KEY (`id`) REFERENCES `profiles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
@@ -23,14 +24,11 @@ CREATE TABLE `homesteads` (
   `price` decimal(10,3) NOT NULL,
   `description` mediumtext NOT NULL,
   `people_number` tinyint(6) NOT NULL,
-  `rating` double DEFAULT NULL,
-  `number_of_voted_users` bigint(11) DEFAULT NULL,
   `owner_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_homesteads_owner_id` (`owner_id`),
   KEY `IDX_homesteads_title` (`title`),
   KEY `IDX_homesteads_price` (`price`),
-  KEY `IDX_homesteads_people_number` (`people_number`),
   CONSTRAINT `FK_homesteads_users_id` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
@@ -45,9 +43,9 @@ CREATE TABLE `reviews` (
   CONSTRAINT `FK_reviews_homesteads_id` FOREIGN KEY (`home_id`) REFERENCES `homesteads` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
-СREATE TABLE `images` (
+CREATE TABLE `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `image` mediumblob NOT NULL,
+  `pathToImage` varchar(225) NOT NULL,
   `home_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_images_home_id` (`home_id`),
@@ -60,7 +58,6 @@ CREATE TABLE `orders` (
   `home_id` int(11) NOT NULL,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
-  `status_pay` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_orders_home_id` (`home_id`),
   KEY `IDX_orders_user_id` (`user_id`),

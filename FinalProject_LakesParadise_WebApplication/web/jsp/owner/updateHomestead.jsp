@@ -51,12 +51,12 @@
     <form class="form-horizontal" role="form" id="homestead_reg_form"
           method="post">
         <input type="hidden" name="homesteadIdentity"
-               value="${homestead.getId()}"/>
+               value="${updatedHomestead.getId()}"/>
 
         <div class="form-group">
             <label for="name"><fmt:message key="homesteadName"/></label>
             <input id="name" type="text" name="name"
-                   value="${homestead.getTitle()}"
+                   value="${updatedHomestead.getTitle()}"
                    placeholder="${enterHomesteadName}" class="form-control">
         </div>
         <div class="form-group">
@@ -64,13 +64,13 @@
                     key="homesteadDescription"/></label>
             <textarea class="form-control" rows="5" id="description"
                       name="description"
-                      placeholder="${enterDescription}">${homestead.getDescription()}</textarea>
+                      placeholder="${enterDescription}">${updatedHomestead.getDescription()}</textarea>
         </div>
         <div class="form-group">
             <label for="price"><fmt:message
                     key="homesteadPrice"/></label>
             <input id="price" type="text" name="price"
-                   value="${homestead.getPrice()}"
+                   value="${updatedHomestead.getPrice()}"
                    placeholder="${enterPrice}" class="form-control">
         </div>
         <div class="form-group">
@@ -78,7 +78,7 @@
                     key="homesteadPeopleNumber"/></label>
             <input id="peopleNumber" type="text" name="peopleNumber"
                    placeholder="${enterPeopleNumber}" class="form-control"
-                   value="${homestead.getPeopleNumber()}">
+                   value="${updatedHomestead.getPeopleNumber()}">
         </div>
 
         <c:if test="${successMessage != null}">

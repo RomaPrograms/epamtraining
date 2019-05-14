@@ -44,11 +44,6 @@ public class DeleteReviewAction extends Action {
         String lastAction = request.getHeader("referer");
         lastAction = lastAction.substring(lastAction.lastIndexOf('/'));
         Forward forward = new Forward(lastAction, true);
-        Profile profile = (Profile) session.getAttribute("profile");
-        request.setAttribute("profile", profile);
-        Locale locale = (Locale) session.getAttribute("language");
-        request.setAttribute("locale", locale);
-        Config.set(request, Config.FMT_LOCALE, locale);
 
         String reviewIdentity = request.getParameter("reviewIdentity");
         int reviewId = Integer.parseInt(reviewIdentity);

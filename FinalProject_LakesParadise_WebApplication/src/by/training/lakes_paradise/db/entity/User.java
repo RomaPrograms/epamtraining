@@ -95,18 +95,4 @@ public class User extends Profile {
         return Objects.hash(super.hashCode(), getName(), getSurname(),
                 getPhone());
     }
-
-    /**
-     * Sets the description of user in String.
-     *
-     * @return description of user in String
-     */
-    @Override
-    public String toString() {
-        return "User{"
-                + "\nname='" + name + '\''
-                + ", \nsurname='" + surname + '\''
-                + ", \nphone='" + phone + '\''
-                + "\n}";
-    }
 }

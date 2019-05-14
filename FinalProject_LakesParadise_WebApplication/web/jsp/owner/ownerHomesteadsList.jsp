@@ -70,6 +70,10 @@
         <fmt:message key="update"/>
     </c:set>
 
+    <c:set var="addPhoto" scope="page">
+        <fmt:message key="addPhoto"/>
+    </c:set>
+
     <c:forEach var="elem" items="${res}" varStatus="status">
         <div class="row">
             <div class="col-md-4">
@@ -107,11 +111,10 @@
                            value="${update}"/>
                 </form>
                 <form method="post" action="${addPhotoUrl}">
-
                     <input type="hidden" name="homesteadIdentity"
                            value="${elem.getId()}"/>
                     <input type="submit" class="btn btn-default" name="update"
-                           value="Добавить фотографию"/>
+                           value="${addPhoto}"/>
                     <input class="btn btn-default btn-choose" name="photo"
                            type="file" value="Choose file"
                            accept=".jpg, .jpeg, .png"/>

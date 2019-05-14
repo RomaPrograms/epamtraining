@@ -1,5 +1,7 @@
 package by.training.lakes_paradise.db.entity;
 
+import java.util.Objects;
+
 /**
  * Class which describes image.
  */
@@ -49,5 +51,27 @@ public class Image extends Entity {
      */
     public void setHomesteadId(int homesteadId) {
         this.homesteadId = homesteadId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Image)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Image image = (Image) o;
+        return getHomesteadId() == image.getHomesteadId()
+                && Objects.equals(getPathToImage(), image.getPathToImage());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getPathToImage(),
+                getHomesteadId());
     }
 }

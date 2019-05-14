@@ -73,7 +73,7 @@ public class UpdateHomesteadAction extends Action {
         } catch (IncorrectDataException e) {
             homestead = homesteadService.readById(homesteadIdentity);
             homestead.setId(homesteadIdentity);
-            request.setAttribute("homestead", homestead);
+            request.setAttribute("updatedHomestead", homestead);
             LOGGER.info("Homestead validation wasn't passed.");
         }
 

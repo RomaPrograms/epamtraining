@@ -95,18 +95,4 @@ public class Profile extends Entity {
         return Objects.hash(super.hashCode(), getLogin(), getPassword(),
                 getRole());
     }
-
-    /**
-     * Returns description of profile in String.
-     *
-     * @return description of profile in String
-     */
-    @Override
-    public String toString() {
-        return "Profile{"
-                + "\nlogin='" + login + '\''
-                + ", \npassword='" + password + '\''
-                + ", \nrole=" + role
-                + "\n}";
-    }
 }

@@ -1,8 +1,8 @@
 insert into profiles (id, login, password, role) values
-(1, "pasha@gmail.com", "111", 1),
-(2, "gena@gmail.com", "222", 1),
-(3, "luda@gmail.com", "333", 2),
-(4, "roma@gmail.com", "444", 0),
+(1, "user1", "11111", 2),
+(2, "user2", "22222", 2),
+(3, "user3", "33333", 2),
+(4, "user4", "44444", 2),
 (5, "pasha1@gmail.com", "555", 2),
 (6, "slava@gmail.com", "666", 2),
 (7, "masha@gmail.com", "777", 2);

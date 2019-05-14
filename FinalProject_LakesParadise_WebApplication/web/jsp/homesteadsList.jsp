@@ -20,16 +20,6 @@
           href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-
-    <style>
-
-        #homestead_catalog {
-            background-color: white;
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
-    </style>
 </head>
 
 <body id="body">
@@ -82,7 +72,7 @@
                         <div class="col-md-6">
                             <input type="text" placeholder="${enteredName}"
                                    id="homesteadName" name="homesteadName"
-                                   class="form-control">
+                                   class="form-control" value="${homesteadName}">
                         </div>
 
                         <div class="col-md-6">

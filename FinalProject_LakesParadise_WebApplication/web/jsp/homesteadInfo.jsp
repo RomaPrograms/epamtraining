@@ -22,14 +22,6 @@
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
     <style>
-        body {
-            font-family: sans-serif;
-            font-size: 11pt;
-            background-image: url(../img/myImages/mainPicture.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
 
         #homestead_catalog {
             background-color: white;
@@ -48,6 +40,8 @@
         <fmt:message key="rentHomestead"/>
     </c:set>
 
+    <c:set var="isFirstPhoto" scope="session" value="${true}"/>
+
     <div class="page-header">
         <h1 class="text-center">
             <fmt:message key="welcomeInfo"/>
@@ -56,29 +50,24 @@
     <div class="container" style="width:90%; height:80%;">
         <div id="myCarousel" class="carousel slide"
              data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li class="active" data-target="#myCarousel"
-                    data-slide-to="0"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
             <div class="carousel-inner">
-                <%--<c:forEach var="image" items="${homestead.getImages()}"
-                           varStatus="status">--%>
-
-                <div class="item active">
-                    <img src="../img/3.0_farmstead.jpg"
-                         alt="" style="width:100%; height:100%;"/>
-                </div>
-                <div class="item">
-                    <img src="../img/3.1_farmstead.jpg"
-                         alt="" style="width:100%; height:100%;"/>
-                </div>
-                <div class="item">
-                    <img src="../img/3.2_farmstead.jpg"
-                         alt="" style="width:100%; height:100%;"/>
-                </div>
-                <%--</c:forEach>--%>
+                <c:forEach var="image" items="${homestead.getImages()}"
+                           varStatus="status">
+                    <c:if test="${!isFirstPhoto}">
+                        <div class="item">
+                            <img src="${image.getPathToImage()}"
+                                 alt="" style="width:100%; height:100%;"/>
+                        </div>
+                    </c:if>
+                    <c:if test="${isFirstPhoto}">
+                        <div class="item active">
+                            <img src="${image.getPathToImage()}"
+                                 alt="" style="width:100%; height:100%;"/>
+                        </div>
+                        <c:set var="isFirstPhoto" scope="session"
+                               value="${false}"/>
+                    </c:if>
+                </c:forEach>
             </div>
             <a class="left carousel-control" href="#myCarousel"
                data-slide="prev">
@@ -126,7 +115,8 @@
     <hr>
     <c:if test="${profile == null}">
         <div class="alert alert-info container text-center">
-            <strong>Info!</strong> If you want to sent a review or rent a homestead
+            <strong>Info!</strong> If you want to sent a review or rent a
+            homestead
             you should log in.
         </div>
     </c:if>

@@ -3,6 +3,7 @@ package by.training.lakes_paradise.action;
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Profile;
+import by.training.lakes_paradise.exception.PersistentException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +25,8 @@ public class MenuAction extends Action {
      */
     @Override
     public Forward exec(final HttpServletRequest request,
-                        final HttpServletResponse response) {
+                        final HttpServletResponse response)
+            throws PersistentException {
 
         Forward forward
                 = new Forward("/index.jsp", false);

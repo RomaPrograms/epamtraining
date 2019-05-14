@@ -2,12 +2,15 @@ package by.training.lakes_paradise.action.owner;
 
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
+import by.training.lakes_paradise.db.entity.Image;
 import by.training.lakes_paradise.exception.PersistentException;
+import by.training.lakes_paradise.service.ImageService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +20,20 @@ import java.io.IOException;
  */
 public class AddPhotoAction extends Action {
 
+    /**
+     * Logger for creation notes to some appender.
+     */
+    private static final Logger LOGGER
+            = LogManager.getLogger(AddPhotoAction.class);
 
+    private static final String NAME_OF_HIDDEN_FOLDER
+            = "\\out\\artifact";
 
+    private static final String PATH_TO_IMAGE_FOLDER
+            =  "\\web\\img\\";
+
+    private static final String PATH_TO_IMAGE_FOLDER_FROM_TABLE
+            = "../img/";
     /**
      * Method executes request for adding new homestead photo.
      *
@@ -31,37 +46,36 @@ public class AddPhotoAction extends Action {
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)
             throws PersistentException {
-        HttpSession session = request.getSession();
-        Forward forward = new Forward((String)
-                session.getAttribute("lastAction"), true);
+        String stringHomesteadIdentity
+                = request.getParameter("homesteadIdentity");
+        int homesteadIdentity = Integer.parseInt(stringHomesteadIdentity);
+        Forward forward = new Forward(
+                "/owner/ownerHomesteads.html", true);
         try {
-            //int homesteadIdentity
-            // = Integer.parseInt(request.getParameter("homesteadIdentity"));
-            String photoAddress = request.getParameter("photo");
-            //String photoName
-            // = photoAddress.substring(photoAddress.lastIndexOf('\\') + 1);
-            File file = new File(photoAddress);
+            String photoPath = request.getParameter("photo");
+            int photoNameIndex = photoPath.lastIndexOf('\\');
+            String photoName = photoPath.substring(photoNameIndex + 1);
+            int expansionIndex = photoName.lastIndexOf('.');
+            String expansion = photoName.substring(expansionIndex + 1);
+            File file = new File(photoPath);
             BufferedImage image1 = ImageIO.read(file);
-            File outputFile = new File("web\\img\\please.jpg");
             String uploadPath = request.getServletContext().getRealPath("");
-            String str = request.getServletContext()
-                    .getRealPath(request.getServletPath());
-            ImageIO.write(image1, "png", outputFile);
+            Integer uploadPathIndex = uploadPath.indexOf(NAME_OF_HIDDEN_FOLDER);
+            String pathToProject = uploadPath.substring(0, uploadPathIndex);
+            String newPhotoPath
+                    = pathToProject + PATH_TO_IMAGE_FOLDER + photoName;
+            File outputFile = new File(newPhotoPath);
+            ImageIO.write(image1, expansion, outputFile);
+
+            Image image = new Image();
+            image.setHomesteadId(homesteadIdentity);
+            image.setPathToImage(PATH_TO_IMAGE_FOLDER_FROM_TABLE + photoName);
+            ImageService imageService = factory.getService(ImageService.class);
+            imageService.create(image);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("File was saved or created incorrectly.");
         }
         return forward;
     }
-
-//    private String extractFileName(Part part) {
-//        String contentDisp = part.getHeader("content-disposition");
-//        String[] items = contentDisp.split(";");
-//        for(String s : items) {
-//            if(s.trim().startsWith("filename")) {
-//                return s.substring(s.indexOf("=") + 2, s.length() - 1);
-//            }
-//        }
-//        return "";
-//    }
 }

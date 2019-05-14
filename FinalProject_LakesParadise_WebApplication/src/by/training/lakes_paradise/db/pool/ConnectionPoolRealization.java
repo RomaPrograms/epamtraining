@@ -36,10 +36,6 @@ public class ConnectionPoolRealization implements ConnectionPool {
             = "Connection was returned into pool. Current pool size: %d used"
             + " connections; %d free connection";
 
-    private static final String CONNECTION_RETURNED_EXEPTION
-            = "Connection was received from pool. Current pool size: %d used"
-            + " connections; %d free connection";
-
     private static Lock lock = new ReentrantLock();
 
     private static int maxPoolSize;
@@ -50,7 +46,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
 
     private static String password;
 
-    private static ConnectionPoolRealization INSTANCE
+    private static ConnectionPoolRealization instance
             = new ConnectionPoolRealization();
 
     private BlockingQueue<PooledConnection> freeConnection
@@ -59,7 +55,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
             = new ConcurrentSkipListSet<>();
 
     public static ConnectionPoolRealization getInstance() {
-        return INSTANCE;
+        return instance;
     }
 
     @Override

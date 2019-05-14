@@ -58,7 +58,6 @@ public class ReserveHomesteadAction extends Action {
                 user.setId(profile.getId());
                 order.setUser(user);
                 order.setHomestead(homestead);
-                order.setPaid(true);
                 OrderService orderService
                         = factory.getService(OrderService.class);
                 orderService.create(order);

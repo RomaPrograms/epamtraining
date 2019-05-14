@@ -73,8 +73,10 @@
     <c:forEach var="elem" items="${res}" varStatus="status">
         <div class="row">
             <div class="col-md-4">
-                <img width="300px" height="200px" class="img-rounded"
-                     src="../../img/1.1_farmstead.jpg"/>
+                <c:if test="${!elem.getImages().isEmpty()}">
+                    <img width="300px" height="200px" class="img-rounded"
+                         src="${elem.getImages().get(0).getPathToImage()}"/>
+                </c:if>
             </div>
             <div class="col-md-8">
                 <h2><c:out value="${elem.getTitle()}"/></h2>

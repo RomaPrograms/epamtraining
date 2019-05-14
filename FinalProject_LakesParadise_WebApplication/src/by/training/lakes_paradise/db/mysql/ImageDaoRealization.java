@@ -52,29 +52,25 @@ public class ImageDaoRealization extends BaseDaoRealization
      * Script insert new object into the table images.
      */
     private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
-            = "insert into images (image, home_id) values (?, ?)";
-
-    private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE_NEW_VERSION
-            = "insert into images (pathToImage, nameOfImage, home_id)"
-            + " values (?, ?, ?)";
+            = "insert into images (pathToImage, home_id) values (?, ?)";
 
     /**
      * Script gets all objects from table images by homestead id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
-            = "select id, image from images where home_id = (?)";
+            = "select id, pathToImage from images where home_id = (?)";
 
     /**
      * Script gets all objects from table images by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
-            = "select image, home_id from images where id = (?)";
+            = "select pathToImage, home_id from images where id = (?)";
 
     /**
      * Script updates object in table images.
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
-            = "update images set image = ?, home_id = ? where id = (?)";
+            = "update images set pathToImage = ?, home_id = ? where id = (?)";
 
     /**
      * Method that searches all images by id of homestead.
@@ -101,8 +97,8 @@ public class ImageDaoRealization extends BaseDaoRealization
                 image = new Image();
                 image.setId(
                         resultSet.getInt(1));
-                image.setImage(
-                        resultSet.getBlob(2));
+                image.setPathToImage(
+                        resultSet.getString(2));
                 images.add(image);
             }
 
@@ -144,57 +140,10 @@ public class ImageDaoRealization extends BaseDaoRealization
                     SQL_SCRIPT_INSERT_DATA_INTO_TABLE,
                     Statement.RETURN_GENERATED_KEYS);
 
-            statement.setBlob(
-                    1, image.getImage());
-            statement.setInt(
-                    2, image.getHomestead().getId());
-            statement.execute();
-
-            resultSet = statement.getGeneratedKeys();
-            if (resultSet.next()) {
-                return resultSet.getInt(1);
-            } else {
-                LOGGER.error("There is no autoincremented index after trying"
-                        + " to create record into table `profiles`");
-                throw new PersistentException();
-            }
-        } catch (SQLException e) {
-            LOGGER.error(SQL_EXCEPTION);
-            throw new PersistentException(e);
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
-            }
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
-            }
-        }
-    }
-
-    @Override
-    public Integer createNewVersion(final Image image)
-            throws PersistentException {
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try {
-            statement = getConnection().prepareStatement(
-                    SQL_SCRIPT_INSERT_DATA_INTO_TABLE_NEW_VERSION,
-                    Statement.RETURN_GENERATED_KEYS);
-
             statement.setString(
-                    1, "img/1.1_farmstead.jpg");
-            statement.setString(
-                    2, image.getImageName());
+                    1, image.getPathToImage());
             statement.setInt(
-                    3, image.getHomestead().getId());
+                    2, image.getHomesteadId());
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -247,12 +196,10 @@ public class ImageDaoRealization extends BaseDaoRealization
 
             while (resultSet.next()) {
                 image = new Image();
-                image.setImage(
-                        resultSet.getBlob(1));
-                Homestead homestead = new Homestead();
-                homestead.setId(
+                image.setPathToImage(
+                        resultSet.getString(1));
+                image.setHomesteadId(
                         resultSet.getInt(2));
-                image.setHomestead(homestead);
             }
 
             return image;
@@ -289,10 +236,10 @@ public class ImageDaoRealization extends BaseDaoRealization
         try {
             statement = getConnection().prepareStatement(
                     SQL_SCRIPT_UPDATE_DATA_IN_TABLE);
-            statement.setBlob(
-                    1, image.getImage());
+            statement.setString(
+                    1, image.getPathToImage());
             statement.setInt(
-                    2, image.getHomestead().getId());
+                    2, image.getHomesteadId());
             statement.setInt(
                     THIRD_ELEMENT_IN_SQL_QUERY, image.getId());
 
@@ -324,37 +271,6 @@ public class ImageDaoRealization extends BaseDaoRealization
 
         try {
             statement = delete("images", id);
-        } catch (SQLException e) {
-            LOGGER.error(SQL_EXCEPTION);
-            throw new PersistentException(e);
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
-            }
-        }
-    }
-
-    /**
-     * Methods that deletes images by id of homestead.
-     *
-     * @param homeId - id of homestead
-     * @throws PersistentException - exception with deleting in image table
-     *                             by home id
-     */
-    @Override
-    public void deleteByHomeId(final Integer homeId)
-            throws PersistentException {
-        String sql = "delete from images where home_id = (?)";
-        PreparedStatement statement = null;
-        try {
-            statement = getConnection().prepareStatement(sql);
-            statement.setInt(1, homeId);
-
-            statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(SQL_EXCEPTION);
             throw new PersistentException(e);

@@ -4,6 +4,7 @@ import by.training.lakes_paradise.db.dao.HomesteadDao;
 import by.training.lakes_paradise.db.dao.ImageDao;
 import by.training.lakes_paradise.db.dao.ReviewDao;
 import by.training.lakes_paradise.db.entity.Homestead;
+import by.training.lakes_paradise.db.entity.Image;
 import by.training.lakes_paradise.exception.PersistentException;
 
 import java.math.BigDecimal;
@@ -26,7 +27,15 @@ public class HomesteadServiceRealization extends ServiceRealization
     public List<Homestead> readByOwner(final int ownerId)
             throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.readByOwner(ownerId);
+        ImageDao imageDao = transaction.createDao(ImageDao.class);
+        List<Homestead> homesteads = homesteadDao.readByOwner(ownerId);
+        for (var homestead : homesteads) {
+            List<Image> image = imageDao.readByHomeId(homestead.getId());
+            if (!image.isEmpty()) {
+                homestead.getImages().add(image.get(0));
+            }
+        }
+        return homesteads;
     }
 
     /**
@@ -40,7 +49,15 @@ public class HomesteadServiceRealization extends ServiceRealization
     public List<Homestead> readAllByTitle(
             final String title) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.readByTitle(title);
+        ImageDao imageDao = transaction.createDao(ImageDao.class);
+        List<Homestead> homesteads = homesteadDao.readByTitle(title);
+        for (var homestead : homesteads) {
+            List<Image> image = imageDao.readByHomeId(homestead.getId());
+            if (!image.isEmpty()) {
+                homestead.getImages().add(image.get(0));
+            }
+        }
+        return homesteads;
     }
 
     /**
@@ -56,7 +73,16 @@ public class HomesteadServiceRealization extends ServiceRealization
             final BigDecimal minPrice,
             final BigDecimal maxPrice) throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.readByPrice(minPrice, maxPrice);
+        ImageDao imageDao = transaction.createDao(ImageDao.class);
+        List<Homestead> homesteads
+                = homesteadDao.readByPrice(minPrice, maxPrice);
+        for (var homestead : homesteads) {
+            List<Image> image = imageDao.readByHomeId(homestead.getId());
+            if (!image.isEmpty()) {
+                homestead.getImages().add(image.get(0));
+            }
+        }
+        return homesteads;
     }
 
     /**
@@ -68,7 +94,15 @@ public class HomesteadServiceRealization extends ServiceRealization
     @Override
     public List<Homestead> readAll() throws PersistentException {
         HomesteadDao homesteadDao = transaction.createDao(HomesteadDao.class);
-        return homesteadDao.read();
+        ImageDao imageDao = transaction.createDao(ImageDao.class);
+        List<Homestead> homesteads = homesteadDao.read();
+        for (var homestead : homesteads) {
+            List<Image> image = imageDao.readByHomeId(homestead.getId());
+            if (!image.isEmpty()) {
+                homestead.getImages().add(image.get(0));
+            }
+        }
+        return homesteads;
     }
 
     /**

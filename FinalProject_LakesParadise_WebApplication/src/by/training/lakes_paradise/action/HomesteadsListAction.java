@@ -2,6 +2,7 @@ package by.training.lakes_paradise.action;
 
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
+import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.HomesteadService;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -49,7 +51,8 @@ public class HomesteadsListAction extends Action {
                 = factory.getService(HomesteadService.class);
 
         if (request.getAttribute("res") == null) {
-            request.setAttribute("res", homesteadService.readAll());
+            List<Homestead> homesteadList = homesteadService.readAll();
+            request.setAttribute("res", homesteadList);
             LOGGER.info("Homesteads list was shown successfully.");
         }
 

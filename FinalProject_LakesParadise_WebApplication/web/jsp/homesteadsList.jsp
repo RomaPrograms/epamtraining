@@ -95,7 +95,8 @@
         </div>
 
         <div class="col-md-6">
-            <form method="post" action="${findHomesteadByPriceUrl}">
+            <form method="post" action="${findHomesteadByPriceUrl}"
+                  id="find_by_price_form" role="form">
                 <div class="col-md-8">
                     <label><fmt:message
                             key="homesteadPrice"/>:</label>
@@ -137,8 +138,10 @@
                 <input type="hidden" name="homesteadIdentity"
                        value="${elem.getId()}"/>
                 <div class="col-md-4">
-                    <img width="300px" height="200px" class="img-rounded"
-                         src="../img/1.1_farmstead.jpg"/>
+                    <c:if test="${!elem.getImages().isEmpty()}">
+                        <img width="300px" height="200px" class="img-rounded"
+                             src="${elem.getImages().get(0).getPathToImage()}"/>
+                    </c:if>
                 </div>
                 <div class="col-md-8">
                     <h2><c:out value="${elem.getTitle()}"/></h2>
@@ -178,6 +181,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+    <jsp:include page="/js/find_by_price_validation.js"/>
     <jsp:include page="../js/log_in_validation.js"/>
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>

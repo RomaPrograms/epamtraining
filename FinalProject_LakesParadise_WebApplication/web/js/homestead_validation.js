@@ -24,7 +24,7 @@ $(document).ready(function() {
                         message: 'The price is required and cannot be empty'
                     },
                     regexp: {
-                        regexp: /^\d{0,10}((\.\d{0,3}))?$/,
+                        regexp: /^[0-9]{0,10}((\.[0-9]{0,3}))?$/,
                         message: 'Please, follow pattern: ##########.### #-unnecessary symbol.'
                     }
                 }
@@ -41,6 +41,13 @@ $(document).ready(function() {
                     },
                     numeric: {
                         message: 'The people number must have only numbers'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'The people number is required and cannot be empty'
                     }
                 }
             }

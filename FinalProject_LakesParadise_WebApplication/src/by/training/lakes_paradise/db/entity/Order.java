@@ -121,6 +121,15 @@ public class Order extends Entity {
         this.endRenting = orderEndRenting;
     }
 
+    /**
+     * Checks equality of orders by matching properties.
+     *
+     * @param  o -
+     *        The object to compare this {@code Order} against
+     *
+     * @return  {@code true} if the given object equivalent to this object,
+     * {@code false} otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -139,6 +148,11 @@ public class Order extends Entity {
                 && Objects.equals(getEndRenting(), order.getEndRenting());
     }
 
+    /**
+     * Calculates unique code for every order.
+     *
+     * @return unique code of order.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getHomestead(), getUser(),

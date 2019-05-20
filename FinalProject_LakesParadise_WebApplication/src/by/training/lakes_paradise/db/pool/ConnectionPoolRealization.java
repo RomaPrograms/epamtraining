@@ -59,8 +59,8 @@ public class ConnectionPoolRealization implements ConnectionPool {
     }
 
     @Override
-    public void init(final String driverClass, final String url,
-                     final String user, final String password,
+    public void init(final String driverClass, final String dbUrl,
+                     final String dbUser, final String dbPassword,
                      final int startSize, final int maxSize)
             throws PersistentException {
 
@@ -68,9 +68,9 @@ public class ConnectionPoolRealization implements ConnectionPool {
             lock.lock();
             destroy();
             Class.forName(driverClass);
-            this.url = url;
-            this.user = user;
-            this.password = password;
+            this.url = dbUrl;
+            this.user = dbUser;
+            this.password = dbPassword;
             this.maxPoolSize = maxSize;
             for (int i = 0; i < startSize; i++) {
                 freeConnection.put(createConnection());
@@ -116,7 +116,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
     }
 
     @Override
-    public void releaseConnection(PooledConnection connection) {
+    public void releaseConnection(final PooledConnection connection) {
         try {
             lock.lock();
 

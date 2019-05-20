@@ -104,6 +104,16 @@ public class ActionFilter implements Filter {
         actions.put("/owner/ownerCabinet", OwnerCabinetAction.class);
     }
 
+    /**
+     * Method which will be executed before every request of user.
+     * It pinpoints which action was called and uses appropriate class.
+     *
+     * @param servletRequest  - user request
+     * @param servletResponse - user response
+     * @param filterChain     - chain of filters
+     * @throws IOException      - exception connected with forwarding
+     * @throws ServletException - exception connected with servlet
+     */
     @Override
     public void doFilter(
             final ServletRequest servletRequest,

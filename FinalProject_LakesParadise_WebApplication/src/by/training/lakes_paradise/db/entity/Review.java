@@ -108,6 +108,15 @@ public class Review extends Entity {
         this.homesteadId = reviewHomeId;
     }
 
+    /**
+     * Checks equality of reviews by matching properties.
+     *
+     * @param  o -
+     *        The object to compare this {@code Review} against
+     *
+     * @return  {@code true} if the given object equivalent to this object,
+     * {@code false} otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -127,6 +136,11 @@ public class Review extends Entity {
                 review.getDateOfComment());
     }
 
+    /**
+     * Calculates unique code for every review.
+     *
+     * @return unique code of review.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getText(), getUserName(),

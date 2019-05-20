@@ -73,6 +73,15 @@ public class Profile extends Entity {
         this.role = profileRole;
     }
 
+    /**
+     * Checks equality of profiles by matching properties.
+     *
+     * @param  o -
+     *        The object to compare this {@code Profile} against
+     *
+     * @return  {@code true} if the given object equivalent to this object,
+     * {@code false} otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -90,6 +99,11 @@ public class Profile extends Entity {
                 && getRole() == profile.getRole();
     }
 
+    /**
+     * Calculates unique code for every profile.
+     *
+     * @return unique code of profile.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getLogin(), getPassword(),

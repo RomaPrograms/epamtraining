@@ -53,6 +53,15 @@ public class Image extends Entity {
         this.homesteadId = homesteadId;
     }
 
+    /**
+     * Checks equality of images by matching properties.
+     *
+     * @param  o -
+     *        The object to compare this {@code Image} against
+     *
+     * @return  {@code true} if the given object equivalent to this object,
+     * {@code false} otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -69,6 +78,11 @@ public class Image extends Entity {
                 && Objects.equals(getPathToImage(), image.getPathToImage());
     }
 
+    /**
+     * Calculates unique code for every image.
+     *
+     * @return unique code of image.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getPathToImage(),

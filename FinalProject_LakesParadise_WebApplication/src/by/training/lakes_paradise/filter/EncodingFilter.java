@@ -12,6 +12,16 @@ import java.io.IOException;
  * Filter class which sets encoding of request before it will be executed.
  */
 public class EncodingFilter implements Filter {
+    /**
+     * Method which will be executed before every request of user.
+     * It changes encoding of servlet request.
+     *
+     * @param servletRequest  - user request
+     * @param servletResponse - user response
+     * @param filterChain     - chain of filters
+     * @throws IOException      - exception connected with forwarding
+     * @throws ServletException - exception connected with servlet
+     */
     @Override
     public void doFilter(
             final ServletRequest servletRequest,

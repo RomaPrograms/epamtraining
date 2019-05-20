@@ -73,6 +73,15 @@ public class User extends Profile {
         this.phone = userPhone;
     }
 
+    /**
+     * Checks equality of users by matching properties.
+     *
+     * @param  o -
+     *        The object to compare this {@code User} against
+     *
+     * @return  {@code true} if the given object equivalent to this object,
+     * {@code false} otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -90,6 +99,11 @@ public class User extends Profile {
                 && Objects.equals(getSurname(), user.getSurname());
     }
 
+    /**
+     * Calculates unique code for every user.
+     *
+     * @return unique code of user.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getName(), getSurname(),

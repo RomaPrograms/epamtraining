@@ -159,6 +159,15 @@ public class Homestead extends Entity {
         this.owner = homesteadOwnerId;
     }
 
+    /**
+     * Checks equality of homesteads by matching properties.
+     *
+     * @param  o -
+     *        The object to compare this {@code Homestead} against
+     *
+     * @return  {@code true} if the given object equivalent to this object,
+     * {@code false} otherwise
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -180,6 +189,11 @@ public class Homestead extends Entity {
                 && Objects.equals(getReviews(), homestead.getReviews());
     }
 
+    /**
+     * Calculates unique code for every homestead.
+     *
+     * @return unique code of homestead.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getTitle(), getPrice(),

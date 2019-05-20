@@ -8,30 +8,12 @@
 
 <html>
 <head>
-    <meta charset="utf-8">
     <title>Lakes Paradise site</title>
-
-    <style>
-        .mainSection {
-            font-family: sans-serif;
-            font-size: 11pt;
-            background-image: url(../img/mainPicture.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        .mainSectionText {
-            color: white;
-        }
-
-        #text {
-            color: #00b0ff;
-        }
-    </style>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -57,7 +39,7 @@
 
 <div class="jumbotron mainSection">
     <div class="container">
-        <h1 id="text"><fmt:message key="navbarWelcome"/>!</h1>
+        <h1><span class="text"><fmt:message key="navbarWelcome"/>!</span></h1>
         <p class="mainSectionText">
             <fmt:message key="mainPageIntroduction"/>
         </p>

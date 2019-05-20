@@ -12,6 +12,8 @@
     <title>Transparent Login form Design</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -20,20 +22,6 @@
           href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-
-    <style>
-        #body {
-            font-family: sans-serif;
-            font-size: 11pt;
-        }
-
-        #homestead_catalog {
-            background-color: white;
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
-    </style>
 </head>
 
 <body id="body">
@@ -50,7 +38,7 @@
     </button>
 </div>
 
-<div id="homestead_catalog" class="container">
+<div class="container catalog">
 
     <c:url value="/homesteadInfo.html" var="homesteadInfoUrl"/>
     <c:url value="/owner/deleteHomestead.html" var="deleteHomesteadUrl"/>

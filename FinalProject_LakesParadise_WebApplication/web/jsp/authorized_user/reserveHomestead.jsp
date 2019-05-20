@@ -20,20 +20,9 @@
           href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <link rel="stylesheet"
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-
-    <style>
-        #body {
-            font-family: sans-serif;
-            font-size: 11pt;
-            background-image: url(../img/myImages/mainPicture.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-    </style>
 </head>
 
-<body id="body">
+<body>
 
 <ctg:navbar-tag profile="${profile}" language="${locale}"
                 logInMessage="${logInMessage}"/>

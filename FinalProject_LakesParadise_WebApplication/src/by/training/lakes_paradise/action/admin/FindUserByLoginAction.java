@@ -5,6 +5,8 @@ import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,12 @@ import java.util.List;
  * Class executes request for finding users by login.
  */
 public class FindUserByLoginAction extends Action {
+
+    /**
+     * Logger for creation notes to some appender.
+     */
+    private static final Logger LOGGER
+            = LogManager.getLogger(FindUserByLoginAction.class);
 
     /**
      * Method executes request for finding users by login.
@@ -36,6 +44,7 @@ public class FindUserByLoginAction extends Action {
                 = userService.readByLogin(userLogin);
         forward.getAttributes().put("res", users);
         forward.getAttributes().put("userLogin", userLogin);
+        LOGGER.info("Users were found successfully");
 
         return forward;
     }

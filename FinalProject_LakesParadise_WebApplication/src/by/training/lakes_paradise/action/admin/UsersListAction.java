@@ -2,9 +2,7 @@ package by.training.lakes_paradise.action.admin;
 
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
-import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.PersistentException;
-import by.training.lakes_paradise.service.HomesteadService;
 import by.training.lakes_paradise.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,8 +38,6 @@ public class UsersListAction extends Action {
         Forward forward = new Forward("/admin/usersList.jsp",
                 false);
         HttpSession session = request.getSession(true);
-        Profile profile = (Profile) session.getAttribute("profile");
-        request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");
         request.setAttribute("locale", locale);
         UserService userService

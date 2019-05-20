@@ -30,16 +30,6 @@ public class ProfileServiceRealization extends ServiceRealization
     }
 
     /**
-     * Method reads all objects from "profiles" table.
-     *
-     * @return objects from "profiles" table
-     */
-    @Override
-    public List<Profile> readAll() throws PersistentException {
-        return null;
-    }
-
-    /**
      * Method adds new object to "profiles" table.
      *
      * @param profile - new object

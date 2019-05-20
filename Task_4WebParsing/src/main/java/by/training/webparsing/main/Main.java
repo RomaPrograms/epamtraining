@@ -1,6 +1,7 @@
 package by.training.webparsing.main;
 
 import by.training.webparsing.entity.Device;
+import by.training.webparsing.entity.PeripheralDevice;
 import by.training.webparsing.exception.ParsingException;
 import by.training.webparsing.parser.AbstractDeviceBuilder;
 import by.training.webparsing.parser.DevicesBuilderFactory;
@@ -42,7 +43,6 @@ final class Main {
             for (var device : list) {
                 LOGGER.info(device);
             }
-
         } catch (ParsingException e) {
             LOGGER.error(e.getMessage());
         }

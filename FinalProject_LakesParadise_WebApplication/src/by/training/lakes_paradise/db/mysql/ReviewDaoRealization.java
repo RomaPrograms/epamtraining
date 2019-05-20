@@ -67,15 +67,15 @@ public class ReviewDaoRealization extends BaseDaoRealization
      * Script gets all objects from table reviews by homestead id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID
-            = "select id, text, user_name, date_of_comment from reviews"
-            + " where home_id = (?) order by date_of_comment DESC";
+            = "select id, text, user_name, date_of_comment, home_id from "
+            + "reviews where home_id = (?) order by date_of_comment DESC";
 
     /**
      * Script gets all objects from table reviews by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
-            = "select text, user_name, date_of_comment, home_id from reviews"
-            + " where id = (?)";
+            = "select id, text, user_name, date_of_comment, home_id from"
+            + " reviews where id = (?)";
 
     /**
      * Script updates object in table reviews.
@@ -113,6 +113,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
                 review.setUserName(resultSet.getString("user_name"));
                 Date date = resultSet.getDate("date_of_comment");
                 review.setDateOfComment(new java.util.Date(date.getTime()));
+                review.setHomesteadId(resultSet.getInt("home_id"));
 
                 reviews.add(review);
             }
@@ -243,6 +244,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
 
             while (resultSet.next()) {
                 review = new Review();
+                review.setId(id);
                 review.setText(resultSet.getString("text"));
                 review.setUserName(resultSet.getString("user_name"));
                 Date date = resultSet.getDate("date_of_comment");

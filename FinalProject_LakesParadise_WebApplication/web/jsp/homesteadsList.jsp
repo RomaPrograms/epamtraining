@@ -87,6 +87,7 @@
         <div class="col-md-6">
             <form method="post" action="${findHomesteadByPriceUrl}"
                   id="find_by_price_form" role="form">
+                <input type="hidden" name="res" value="${res}"/>
                 <div class="col-md-8">
                     <label><fmt:message
                             key="homesteadPrice"/>:</label>

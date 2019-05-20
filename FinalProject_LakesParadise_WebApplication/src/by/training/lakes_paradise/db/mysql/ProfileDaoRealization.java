@@ -146,54 +146,6 @@ public class ProfileDaoRealization extends BaseDaoRealization
     }
 
     /**
-     * Method reads all objects from "profiles" table.
-     *
-     * @return objects from "profiles" table
-     */
-    @Override
-    public List<Profile> read() throws PersistentException {
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try {
-            statement = getConnection().prepareStatement(
-                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE);
-            resultSet = statement.executeQuery();
-            List<Profile> profiles = new ArrayList<>();
-            Profile profile = null;
-
-            while (resultSet.next()) {
-                profile = new Profile();
-                profile.setId(resultSet.getInt(1));
-                profile.setLogin(resultSet.getString(2));
-                profile.setRole(Role.getByIdentity(
-                        resultSet.getInt(4)));
-
-                profiles.add(profile);
-            }
-
-            return profiles;
-        } catch (SQLException e) {
-            LOGGER.error(SQL_EXCEPTION);
-            throw new PersistentException(e);
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
-            }
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error(CLOSE_RESULT_SET_EXCEPTION);
-            }
-        }
-    }
-
-    /**
      * Method adds new object to "profiles" table.
      *
      * @param profile - new object
@@ -267,6 +219,7 @@ public class ProfileDaoRealization extends BaseDaoRealization
 
             while (resultSet.next()) {
                 profile = new Profile();
+                profile.setId(resultSet.getInt("id"));
                 profile.setLogin(resultSet.getString("login"));
                 profile.setRole(Role.getByIdentity(
                         resultSet.getInt("role")));

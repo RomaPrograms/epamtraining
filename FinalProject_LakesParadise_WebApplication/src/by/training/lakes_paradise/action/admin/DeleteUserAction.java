@@ -43,8 +43,9 @@ public class DeleteUserAction extends Action {
         int userIdentity = Integer.parseInt(stringUserIdentity);
         userService.delete(userIdentity);
         profileService.delete(userIdentity);
-        //String login = (String) request.getAttribute("userLogin");
-        //forward.getAttributes().put("userLogin", login);
+        String login = (String) request.getAttribute("userLogin");
+        forward.getAttributes().put("userLogin", login);
+        LOGGER.info("User was deleted successfully");
 
         return forward;
     }

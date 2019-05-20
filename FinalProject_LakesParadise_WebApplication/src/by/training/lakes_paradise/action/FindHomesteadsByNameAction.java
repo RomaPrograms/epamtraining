@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Class handles user request for finding homesteads.
+ * Class handles user request for finding homesteads by name.
  */
 public class FindHomesteadsByNameAction extends Action {
 
@@ -24,7 +24,7 @@ public class FindHomesteadsByNameAction extends Action {
             = LogManager.getLogger(FindHomesteadsByNameAction.class);
 
     /**
-     * Method executes request for finding homesteads.
+     * Method executes request for finding homesteads by name.
      *
      * @param request  - user request
      * @param response - user response
@@ -44,6 +44,7 @@ public class FindHomesteadsByNameAction extends Action {
                 = homesteadService.readAllByTitle(homesteadName);
         forward.getAttributes().put("res", homesteads);
         forward.getAttributes().put("homesteadName", homesteadName);
+        LOGGER.info("Homesteads were found by name successfully");
 
         return forward;
     }

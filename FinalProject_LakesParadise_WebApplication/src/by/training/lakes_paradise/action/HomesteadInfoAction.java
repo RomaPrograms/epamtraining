@@ -3,7 +3,6 @@ package by.training.lakes_paradise.action;
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Homestead;
-import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.HomesteadService;
 import org.apache.logging.log4j.LogManager;
@@ -42,8 +41,6 @@ public class HomesteadInfoAction extends Action {
         Forward forward = new Forward("/homesteadInfo.jsp",
                 false);
         HttpSession session = request.getSession(true);
-        Profile profile = (Profile) session.getAttribute("profile");
-        request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");
         request.setAttribute("locale", locale);
         Config.set(request, Config.FMT_LOCALE, locale);

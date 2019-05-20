@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Class which contains common methods and variables for all action classes.
  */
-abstract public class Action {
+public abstract class Action {
     /**
      * Action name.
      */
@@ -55,7 +55,7 @@ abstract public class Action {
      * @return URL of jsp page which should be shown
      * @throws PersistentException - exception connected with DAO
      */
-    abstract public Forward exec(HttpServletRequest request,
+    public abstract Forward exec(HttpServletRequest request,
                                  HttpServletResponse response)
             throws PersistentException;
 }

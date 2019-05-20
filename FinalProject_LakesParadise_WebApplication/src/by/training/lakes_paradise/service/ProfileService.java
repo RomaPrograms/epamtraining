@@ -1,10 +1,7 @@
 package by.training.lakes_paradise.service;
 
 import by.training.lakes_paradise.db.entity.Profile;
-import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
-
-import java.util.List;
 
 /**
  * Interface with methods for working throw the DAO with "profiles" table.
@@ -18,13 +15,6 @@ public interface ProfileService extends Service {
      * @return profile of user
      */
     Profile read(String login, String password) throws PersistentException;
-
-    /**
-     * Method reads all objects from "profiles" table.
-     *
-     * @return objects from "profiles" table
-     */
-    List<Profile> readAll() throws PersistentException;
 
     /**
      * Method adds new object to "profiles" table.

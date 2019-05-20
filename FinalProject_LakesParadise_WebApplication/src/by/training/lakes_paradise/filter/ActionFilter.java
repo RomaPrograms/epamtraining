@@ -1,10 +1,33 @@
 package by.training.lakes_paradise.filter;
 
-import by.training.lakes_paradise.action.*;
-import by.training.lakes_paradise.action.admin.*;
-import by.training.lakes_paradise.action.authorized_user.*;
+import by.training.lakes_paradise.action.HomesteadsListAction;
+import by.training.lakes_paradise.action.HomesteadInfoAction;
+import by.training.lakes_paradise.action.LogInAction;
+import by.training.lakes_paradise.action.MenuAction;
+import by.training.lakes_paradise.action.SignUpAction;
+import by.training.lakes_paradise.action.ChangeLanguageAction;
+import by.training.lakes_paradise.action.ErrorAction;
+import by.training.lakes_paradise.action.FindHomesteadsByNameAction;
+import by.training.lakes_paradise.action.FindHomesteadsByPriceAction;
+import by.training.lakes_paradise.action.admin.FindUserByLoginAction;
+import by.training.lakes_paradise.action.admin.DeleteHomesteadAction;
+import by.training.lakes_paradise.action.admin.DeleteReviewAction;
+import by.training.lakes_paradise.action.admin.DeleteUserAction;
+import by.training.lakes_paradise.action.admin.UsersListAction;
+import by.training.lakes_paradise.action.authorized_user.LogOutAction;
+import by.training.lakes_paradise.action.authorized_user.ReserveHomesteadAction;
+import by.training.lakes_paradise.action.authorized_user.ReserveHomesteadInfoAction;
+import by.training.lakes_paradise.action.authorized_user.UserCabinetAction;
+import by.training.lakes_paradise.action.authorized_user.DeleteAccountAction;
+import by.training.lakes_paradise.action.authorized_user.ReviewAction;
+import by.training.lakes_paradise.action.authorized_user.UpdateUserInfoAction;
 import by.training.lakes_paradise.action.entity.Action;
-import by.training.lakes_paradise.action.owner.*;
+import by.training.lakes_paradise.action.owner.AddPhotoAction;
+import by.training.lakes_paradise.action.owner.OwnerCabinetAction;
+import by.training.lakes_paradise.action.owner.OwnerHomesteadsListAction;
+import by.training.lakes_paradise.action.owner.UpdateHomesteadAction;
+import by.training.lakes_paradise.action.owner.AddHomesteadAction;
+import by.training.lakes_paradise.action.owner.DeleteOwnerHomesteadAction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,6 +54,10 @@ public class ActionFilter implements Filter {
     private static final Logger LOGGER
             = LogManager.getLogger(ActionFilter.class);
 
+    /**
+     * Map with names of actions and appropriate classes for executing that
+     * actions.
+     */
     private static Map<String, Class<? extends Action>> actions
             = new ConcurrentHashMap<>();
 
@@ -42,7 +69,8 @@ public class ActionFilter implements Filter {
         actions.put("/homesteadInfo", HomesteadInfoAction.class);
         actions.put("/homesteadsList", HomesteadsListAction.class);
         actions.put("/findHomesteadsByName", FindHomesteadsByNameAction.class);
-        actions.put("/findHomesteadsByPrice", FindHomesteadsByPriceAction.class);
+        actions.put("/findHomesteadsByPrice",
+                FindHomesteadsByPriceAction.class);
         actions.put("/error", ErrorAction.class);
 
         actions.put("/language/en_US", ChangeLanguageAction.class);
@@ -68,7 +96,6 @@ public class ActionFilter implements Filter {
         actions.put("/owner/ownerHomesteads", OwnerHomesteadsListAction.class);
         actions.put("/owner/addPhoto", AddPhotoAction.class);
 
-        actions.put("/admin/cabinetAdmin", AdminCabinetAction.class);
         actions.put("/admin/deleteReview", DeleteReviewAction.class);
         actions.put("/admin/deleteHomestead", DeleteHomesteadAction.class);
         actions.put("/admin/deleteUser", DeleteUserAction.class);
@@ -126,7 +153,7 @@ public class ActionFilter implements Filter {
     }
 
     @Override
-    public void init(final FilterConfig filterConfig) throws ServletException {
+    public void init(final FilterConfig filterConfig) {
     }
 
     @Override

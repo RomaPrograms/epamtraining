@@ -4,10 +4,17 @@
 <suite name="Suite1" verbose="1" >
     <test name="action"   >
         <classes>
-            <class name = "crud_action.HomesteadAction">
+            <class name = "crud_action.ReviewAction">
                 <methods>
-                    <include name = "readByIdAction"/>
+                    <include name = "readReviewByIdAction"/>
+                    <include name = "readReviewsByHomesteadIdAction"/>
+                    <include name = "createReviewAction"/>
+                    <include name = "updateReviewAction"/>
+                    <include name = "deleteReviewAction"/>
                 </methods>
+            </class>
+
+            <class name = "crud_action.ProfileAction">
             </class>
         </classes>
     </test>

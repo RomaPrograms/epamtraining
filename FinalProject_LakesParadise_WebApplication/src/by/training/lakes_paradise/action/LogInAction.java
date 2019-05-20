@@ -38,7 +38,6 @@ public class LogInAction extends Action {
     public Forward exec(final HttpServletRequest request,
                         final HttpServletResponse response)
             throws PersistentException {
-
         Forward forward;
         HttpSession session = request.getSession(true);
         String lastAction = request.getHeader("referer");

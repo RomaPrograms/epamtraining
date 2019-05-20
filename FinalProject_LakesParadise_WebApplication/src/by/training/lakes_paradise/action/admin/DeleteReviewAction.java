@@ -3,7 +3,6 @@ package by.training.lakes_paradise.action.admin;
 import by.training.lakes_paradise.action.entity.Action;
 import by.training.lakes_paradise.action.entity.Forward;
 import by.training.lakes_paradise.db.entity.Homestead;
-import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.Review;
 import by.training.lakes_paradise.exception.PersistentException;
 import by.training.lakes_paradise.service.ReviewService;
@@ -13,9 +12,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.jstl.core.Config;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Class handles admin request for deleting review about homestead.

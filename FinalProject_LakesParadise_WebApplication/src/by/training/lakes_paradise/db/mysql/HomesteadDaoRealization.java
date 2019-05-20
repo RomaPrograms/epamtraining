@@ -82,7 +82,7 @@ public class HomesteadDaoRealization extends BaseDaoRealization
      * Script gets all objects from table homesteads.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID
-            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " where h.owner_id=(?)";
+            = SQL_SCRIPT_SELECT_DATA_FROM_TABLE + " WHERE h.owner_id=(?)";
 
     /**
      * Script updates object in table homesteads.

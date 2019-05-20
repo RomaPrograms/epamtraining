@@ -93,7 +93,7 @@
                        value="${elem.getId()}"/>
                 <div class="col-md-4">
                     <img width="300px" height="200px" class="img-rounded"
-                         src="/img/avatar.png"/>
+                         src="../img/avatar.png"/>
                 </div>
                 <div class="col-md-8">
                     <c:if test="${elem.getRole().equals(Role.OWNER)}">

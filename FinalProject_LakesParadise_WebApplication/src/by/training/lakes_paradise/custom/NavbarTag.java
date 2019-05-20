@@ -184,12 +184,8 @@ public class NavbarTag extends TagSupport {
                     && profile.getRole().equals(Role.USER)) {
                 out.write("<li><a href=\"" + USER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
             } else {
-                if(profile != null && profile.getRole().equals(Role.USER)) {
-                    out.write("<li><a href=\"" + ADMIN_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
-                } else {
-                    if(profile != null) {
-                        out.write("<li><a href=\"" + OWNER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
-                    }
+                if(profile != null && profile.getRole().equals(Role.OWNER)) {
+                    out.write("<li><a href=\"" + OWNER_CABINET_URL + "\">" + rb.getString("personalCabinet") + "</a></li>");
                 }
             }
 

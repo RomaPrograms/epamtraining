@@ -26,12 +26,21 @@ public class AddPhotoAction extends Action {
     private static final Logger LOGGER
             = LogManager.getLogger(AddPhotoAction.class);
 
+    /**
+     * Local path to hidden folder with project after compilation.
+     */
     private static final String NAME_OF_HIDDEN_FOLDER
             = "\\out\\artifact";
 
+    /**
+     * Local path to folder with images.
+     */
     private static final String PATH_TO_IMAGE_FOLDER
             =  "\\web\\img\\";
 
+    /**
+     * Web version of path to folder with images.
+     */
     private static final String PATH_TO_IMAGE_FOLDER_FROM_TABLE
             = "../img/";
     /**

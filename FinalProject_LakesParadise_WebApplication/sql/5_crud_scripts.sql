@@ -15,5 +15,3 @@ select id, text, user_name, date_of_comment from reviews where home_id = (?);
 select text, user_name, date_of_comment, home_id from reviews where id = (?);
 
 update reviews set text = ?, user_name = ?, date_of_comment = ?, home_id = ? where id = ?;
-
-/*У меня есть ещё большое колличество запросов, однако мне не совсем удобно их все переписывать сюда.*/

@@ -6,7 +6,6 @@ import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,8 +25,16 @@ public class UserServiceRealization extends ServiceRealization
         return userDao.read();
     }
 
+    /**
+     * Method that reads all objects from "users" table by login.
+     *
+     * @param login - user login
+     * @return list with users
+     * @throws PersistentException - exception with adding object to database
+     */
     @Override
-    public List<User> readByLogin(String login) throws PersistentException {
+    public List<User> readByLogin(final String login)
+            throws PersistentException {
         UserDao userDao = transaction.createDao(UserDao.class);
         return userDao.readByLogin(login);
     }

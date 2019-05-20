@@ -6,7 +6,15 @@ import by.training.lakes_paradise.service.ServiceFactory;
  * Class with static method for getting instance of
  * {@code ActionManagerRealization} class.
  */
-public class ActionManagerFactory {
+public final class ActionManagerFactory {
+
+    /**
+     * Private constructor for utility class.
+     */
+    private ActionManagerFactory() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      * Method returns initialized instance of {@code ActionManagerRealization}
      * class.

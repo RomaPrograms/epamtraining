@@ -19,8 +19,8 @@ public class ServiceInvocationHandlerRealization implements InvocationHandler {
     private ServiceRealization service;
 
     public ServiceInvocationHandlerRealization(
-            final ServiceRealization service) {
-        this.service = service;
+            final ServiceRealization serviceRealization) {
+        this.service = serviceRealization;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ServiceInvocationHandlerRealization implements InvocationHandler {
             throw e;
         } catch (InvocationTargetException e) {
             rollback(method);
-            throw e.getCause();//dfadsfadsf
+            throw e.getCause();
         }
     }
 

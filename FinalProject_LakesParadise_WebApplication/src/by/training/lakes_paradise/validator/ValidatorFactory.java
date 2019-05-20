@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Factory for creating validation classes.
  */
-public class ValidatorFactory {
+public final class ValidatorFactory {
 
     /**
      * Logger for creation notes to some appender.
@@ -35,6 +35,13 @@ public class ValidatorFactory {
         validators.put(User.class, UserValidator.class);
         validators.put(Order.class, OrderValidator.class);
         validators.put(Homestead.class, HomesteadValidator.class);
+    }
+
+    /**
+     * Private constructor for utility class.
+     */
+    private ValidatorFactory() {
+        throw new IllegalStateException("Utility class");
     }
 
     /**

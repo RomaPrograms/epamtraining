@@ -29,10 +29,10 @@ public class Image extends Entity {
     /**
      * Sets the value of pathToImage property.
      *
-     * @param pathToImage - value of pathToImage property
+     * @param newPathToImage - value of pathToImage property
      */
-    public void setPathToImage(String pathToImage) {
-        this.pathToImage = pathToImage;
+    public void setPathToImage(final String newPathToImage) {
+        this.pathToImage = newPathToImage;
     }
 
     /**
@@ -47,10 +47,10 @@ public class Image extends Entity {
     /**
      * Sets the value of homesteadId property.
      *
-     * @param homesteadId - value of homestead property
+     * @param newHomesteadId - value of homestead property
      */
-    public void setHomesteadId(int homesteadId) {
-        this.homesteadId = homesteadId;
+    public void setHomesteadId(final int newHomesteadId) {
+        this.homesteadId = newHomesteadId;
     }
 
     /**
@@ -63,7 +63,7 @@ public class Image extends Entity {
      * {@code false} otherwise
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

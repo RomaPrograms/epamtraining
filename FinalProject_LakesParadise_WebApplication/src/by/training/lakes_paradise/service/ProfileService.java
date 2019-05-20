@@ -13,6 +13,7 @@ public interface ProfileService extends Service {
      * @param login    - login of user
      * @param password - profile of user
      * @return profile of user
+     * @throws PersistentException - exception with reading object from database
      */
     Profile read(String login, String password) throws PersistentException;
 
@@ -38,6 +39,7 @@ public interface ProfileService extends Service {
      * Method updates object in "profiles" table by id.
      *
      * @param profile - updated object
+     * @throws PersistentException - exception with reading object from database
      */
     void update(Profile profile) throws PersistentException;
 
@@ -45,6 +47,7 @@ public interface ProfileService extends Service {
      * Method deletes object in "profiles" table by id.
      *
      * @param id - id of object for deletion
+     * @throws PersistentException - exception with reading object from database
      */
     void delete(Integer id) throws PersistentException;
 }

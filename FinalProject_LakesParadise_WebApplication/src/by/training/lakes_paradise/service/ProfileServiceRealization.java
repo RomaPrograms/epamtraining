@@ -3,11 +3,7 @@ package by.training.lakes_paradise.service;
 import by.training.lakes_paradise.db.dao.ProfileDao;
 import by.training.lakes_paradise.db.dao.UserDao;
 import by.training.lakes_paradise.db.entity.Profile;
-import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class with methods for working throw the DAO with "profiles" table.

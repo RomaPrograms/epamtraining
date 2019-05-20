@@ -17,5 +17,12 @@ public interface UserDao extends Dao<User> {
      */
     List<User> read() throws PersistentException;
 
+    /**
+     * Method that reads all objects from "users" table by login of user.
+     *
+     * @param login - login of user
+     * @return list with objects from "users" table
+     * @throws PersistentException - exception with searching in users table
+     */
     List<User> readByLogin(String login) throws PersistentException;
 }

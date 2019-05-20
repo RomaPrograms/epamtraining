@@ -29,6 +29,13 @@ public interface OrderService extends Service {
     List<Order> readByHomestead(Integer homesteadId)
             throws PersistentException;
 
+    /**
+     * Method that search all orders by id of owner.
+     *
+     * @param ownerId - id of homestead
+     * @return list with orders which were done with expected homestead
+     * @throws PersistentException - exception with searching in orders table
+     */
     List<Order> readByOwner(Integer ownerId) throws PersistentException;
 
     /**
@@ -61,6 +68,7 @@ public interface OrderService extends Service {
      * Method updates object in "orders" table by id.
      *
      * @param order - updated object
+     * @throws PersistentException - exception with reading object from database
      */
     void update(Order order) throws PersistentException;
 
@@ -68,6 +76,7 @@ public interface OrderService extends Service {
      * Method deletes object in "orders" table by id.
      *
      * @param id - id of object for deletion
+     * @throws PersistentException - exception with reading object from database
      */
     void delete(Integer id) throws PersistentException;
 }

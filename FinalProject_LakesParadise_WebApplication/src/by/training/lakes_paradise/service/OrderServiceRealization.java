@@ -28,12 +28,20 @@ public class OrderServiceRealization extends ServiceRealization
         return orderDaoRealization.readByProfile(profileId);
     }
 
+    /**
+     * Method that search all orders by id of owner.
+     *
+     * @param ownerId - id of owner
+     * @return list with orders which were done by expected profile
+     * @throws PersistentException - exception with searching in orders table
+     */
     @Override
-    public List<Order> readByOwner(Integer ownerId) throws PersistentException {
+    public List<Order> readByOwner(final Integer ownerId)
+            throws PersistentException {
         OrderDao orderDaoRealization = transaction.createDao(OrderDao.class);
         List<Order> orders = orderDaoRealization.readByOwner(ownerId);
         UserDao userDaoRealization = transaction.createDao(UserDao.class);
-        for(var order : orders) {
+        for (var order : orders) {
             User orderUser = order.getUser();
             User user = userDaoRealization.read(orderUser.getId());
             orderUser.setPhone(user.getPhone());

@@ -37,4 +37,5 @@ public class PersistentException extends Exception {
     public PersistentException(final Throwable cause) {
         super(cause);
     }
+
 }

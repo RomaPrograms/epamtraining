@@ -43,7 +43,7 @@ public class UsersListAction extends Action {
         UserService userService
                 = factory.getService(UserService.class);
 
-        if(request.getAttribute("res") == null) {
+        if (request.getAttribute("res") == null) {
             request.setAttribute("res", userService.readAll());
             LOGGER.info("Users list was shown successfully.");
         }

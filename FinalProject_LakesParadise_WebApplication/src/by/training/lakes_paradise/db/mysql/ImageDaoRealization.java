@@ -1,7 +1,6 @@
 package by.training.lakes_paradise.db.mysql;
 
 import by.training.lakes_paradise.db.dao.ImageDao;
-import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Image;
 import by.training.lakes_paradise.exception.PersistentException;
 import org.apache.logging.log4j.LogManager;

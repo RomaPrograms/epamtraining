@@ -18,6 +18,9 @@ import javax.servlet.jsp.jstl.core.Config;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Class handles owner request for showing owner cabinet.
+ */
 public class OwnerCabinetAction extends Action {
     /**
      * Logger for creation notes to some appender.

@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Interface with common method for all validators.
  *
- * @param <Type> - type of entity class which will be validated
+ * @param <T> - type of entity class which will be validated
  */
-public interface Validator<Type extends Entity> {
+public interface Validator<T extends Entity> {
     /**
      * Method for validation entity classes.
      *
@@ -19,5 +19,5 @@ public interface Validator<Type extends Entity> {
      * successfully
      * @throws IncorrectDataException - incorrect validation exception
      */
-    Type validate(HttpServletRequest request) throws IncorrectDataException;
+    T validate(HttpServletRequest request) throws IncorrectDataException;
 }

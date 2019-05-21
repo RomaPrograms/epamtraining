@@ -41,20 +41,20 @@ public class TransactionRealization implements Transaction {
         classes.put(ReviewDao.class, ReviewDaoRealization.class);
     }
 
-    public TransactionRealization(final Connection connection) {
+    TransactionRealization(final Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public <Type extends Dao<?>> Type createDao(
-            final Class<Type> key) throws PersistentException {
+    public <T extends Dao<?>> T createDao(
+            final Class<T> key) throws PersistentException {
         Class<? extends BaseDaoRealization> value = classes.get(key);
         if (value != null) {
             try {
                 BaseDaoRealization dao;
                 dao = value.getConstructor().newInstance();
                 dao.setConnection(connection);
-                return (Type) dao;
+                return (T) dao;
             } catch (InstantiationException | IllegalAccessException e) {
                 LOGGER.error(
                         "It is impossible to create data access object", e);

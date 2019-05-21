@@ -48,16 +48,16 @@ public final class ValidatorFactory {
      * Method creates required validator class.
      *
      * @param entity - entity class
-     * @param <Type> - entity class
+     * @param <T> - entity class
      * @return required validator by entity class
      * @throws PersistentException - required validator doesn't exist exception
      */
-    public static <Type extends Entity> Validator<Type> createValidator(
-            final Class<Type> entity) throws PersistentException {
+    public static <T extends Entity> Validator<T> createValidator(
+            final Class<T> entity) throws PersistentException {
         Class<? extends Validator> value = validators.get(entity);
         if (value != null) {
             try {
-                return (Validator<Type>) value.getConstructor().newInstance();
+                return (Validator<T>) value.getConstructor().newInstance();
             } catch (IllegalAccessException | InstantiationException e) {
                 LOGGER.error("It is impossible to instance service class", e);
                 throw new PersistentException(e);

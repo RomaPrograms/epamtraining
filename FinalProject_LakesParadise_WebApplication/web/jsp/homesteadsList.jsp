@@ -27,7 +27,7 @@
 <ctg:navbar-tag profile="${profile}" language="${locale}"
                 logInMessage="${logInMessage}"/>
 
-<div id="search_row" class="container">
+<div class="container">
 
     <c:set var="enteredName" scope="page">
         <fmt:message key="enterName"/>
@@ -72,7 +72,8 @@
                         <div class="col-md-6">
                             <input type="text" placeholder="${enteredName}"
                                    id="homesteadName" name="homesteadName"
-                                   class="form-control" value="${homesteadName}">
+                                   class="form-control"
+                                   value="${homesteadName}">
                         </div>
 
                         <div class="col-md-6">
@@ -85,13 +86,13 @@
         </div>
 
         <div class="col-md-6">
-            <form method="post" action="${findHomesteadByPriceUrl}"
-                  id="find_by_price_form" role="form">
-                <input type="hidden" name="res" value="${res}"/>
-                <div class="col-md-8">
-                    <label><fmt:message
-                            key="homesteadPrice"/>:</label>
-                    <div class="row">
+            <input type="hidden" name="res" value="${res}"/>
+            <div class="col-md-8">
+                <label><fmt:message
+                        key="homesteadPrice"/>:</label>
+                <div class="row">
+                    <form method="post" action="${findHomesteadByPriceUrl}"
+                          id="find_by_price_form" role="form">
                         <div class="col-md-8">
                             <input type="text" placeholder="${minPriceLabel}"
                                    id="minPrice" name="minPrice"
@@ -104,10 +105,16 @@
                         <div class="col-md-4 form-group">
                             <input type="submit" class="btn btn-primary"
                                    value="${findByPrice}">
+                            <c:if test="${findByPriceErrorMessage.size() == 0}">
+                                <div class="alert alert-warning">
+                                    <strong>Warning!</strong> Sorry but we couldn't find any homestead
+                                    by your criteria :(
+                                </div>
+                            </c:if>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -172,7 +179,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    <jsp:include page="/js/find_by_price_validation.js"/>
+    <jsp:include page="../js/find_by_price_validation.js"/>
     <jsp:include page="../js/log_in_validation.js"/>
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>

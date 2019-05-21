@@ -26,6 +26,11 @@ public class HomesteadInfoAction extends Action {
             = LogManager.getLogger(HomesteadInfoAction.class);
 
     /**
+     * String with homestead for getting and saving homestead.
+     */
+    private static final String HOMESTEAD_STRING = "homestead";
+
+    /**
      * Method executes request for showing detailed information about homestead.
      *
      * @param request  - user request
@@ -50,15 +55,15 @@ public class HomesteadInfoAction extends Action {
         HomesteadService homesteadService = factory.getService(
                 HomesteadService.class);
         if (stringHomesteadId == null) {
-            homestead = (Homestead) session.getAttribute("homestead");
+            homestead = (Homestead) session.getAttribute(HOMESTEAD_STRING);
         } else {
             int homesteadId = Integer.parseInt(stringHomesteadId);
             homestead = homesteadService.readById(homesteadId);
             homestead.setId(homesteadId);
         }
 
-        session.setAttribute("homestead", homestead);
-        request.setAttribute("homestead", homestead);
+        session.setAttribute(HOMESTEAD_STRING, homestead);
+        request.setAttribute(HOMESTEAD_STRING, homestead);
         LOGGER.info("Homestead " + homestead.getTitle()
                 + "was showed successfully.");
 

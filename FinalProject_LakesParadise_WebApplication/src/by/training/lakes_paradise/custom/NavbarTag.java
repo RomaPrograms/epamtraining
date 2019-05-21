@@ -3,7 +3,6 @@ package by.training.lakes_paradise.custom;
 import by.training.lakes_paradise.db.entity.Profile;
 import by.training.lakes_paradise.db.entity.Role;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -80,12 +79,6 @@ public class NavbarTag extends TagSupport {
      * Name of action to log out.
      */
     private static final String LOG_OUT_URL = "/authorized_user/log_out.html";
-
-    /**
-     * Name of action for opening admin cabinet page.
-     */
-    private static final String ADMIN_CABINET_URL
-            = "/admin/cabinetAdmin.html";
 
     /**
      * Gets the value of profile property.

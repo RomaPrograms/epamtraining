@@ -34,7 +34,7 @@ public abstract class Entity implements Serializable {
      * Checks equality of entities by id.
      *
      * @param object - object of entity class
-     * @return {@true} if entities are equal, {@false} otherwise
+     * @return {@code true} if entities are equal, {@code false} otherwise
      */
     @Override
     public boolean equals(final Object object) {

@@ -39,6 +39,7 @@ public class HomesteadsListAction extends Action {
                         final HttpServletResponse response)
             throws PersistentException {
 
+
         Forward forward = new Forward("/homesteadsList.jsp",
                 false);
         HttpSession session = request.getSession(true);

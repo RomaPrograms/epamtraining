@@ -44,7 +44,7 @@ public class LogInAction extends Action {
         lastAction = lastAction.substring(lastAction.lastIndexOf('/'));
         forward = new Forward(lastAction, true);
         if (lastAction.equals("/sign_up.html")) {
-            forward.setForward("/menu.html");
+            forward.setForwardUrl("/menu.html");
         }
         Profile profile;
 

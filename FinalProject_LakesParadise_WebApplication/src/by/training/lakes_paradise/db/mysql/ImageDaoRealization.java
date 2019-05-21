@@ -69,7 +69,7 @@ public class ImageDaoRealization extends BaseDaoRealization
      * Script updates object in table images.
      */
     private static final String SQL_SCRIPT_UPDATE_DATA_IN_TABLE
-            = "update images set pathToImage = ?, home_id = ? where id = (?)";
+            = " update images set pathToImage = ?, home_id = ? where id = (?)";
 
     /**
      * Method that searches all images by id of homestead.

@@ -104,7 +104,7 @@ public class ReviewDaoRealization extends BaseDaoRealization
                     SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_HOME_ID);
             statement.setInt(1, homeId);
             resultSet = statement.executeQuery();
-            Review review = null;
+            Review review;
 
             while (resultSet.next()) {
                 review = new Review();

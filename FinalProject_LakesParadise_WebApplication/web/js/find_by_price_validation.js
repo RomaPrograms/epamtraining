@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('#find_by_price_form').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -10,7 +10,7 @@ $(document).ready(function() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9]{0,10}((\.[0-9]{0,3}))?$/,
-                        message: 'Please, follow pattern: ##########.### #-unnecessary numeral.'
+                        message: 'Please, follow pattern: ##########.### #-unnecessary symbol.'
                     }
                 }
             },
@@ -18,7 +18,7 @@ $(document).ready(function() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9]{0,10}((\.[0-9]{0,3}))?$/,
-                        message: 'Please, follow pattern: ##########.###  #-unnecessary numeral.'
+                        message: 'Please, follow pattern: ##########.### #-unnecessary symbol.'
                     }
                 }
             }

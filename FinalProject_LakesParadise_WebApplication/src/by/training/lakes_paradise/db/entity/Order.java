@@ -124,10 +124,9 @@ public class Order extends Entity {
     /**
      * Checks equality of orders by matching properties.
      *
-     * @param  o -
-     *        The object to compare this {@code Order} against
-     *
-     * @return  {@code true} if the given object equivalent to this object,
+     * @param o -
+     *          The object to compare this {@code Order} against
+     * @return {@code true} if the given object equivalent to this object,
      * {@code false} otherwise
      */
     @Override

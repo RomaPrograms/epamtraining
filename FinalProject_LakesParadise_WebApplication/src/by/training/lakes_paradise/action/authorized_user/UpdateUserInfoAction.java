@@ -31,6 +31,11 @@ public class UpdateUserInfoAction extends Action {
             = LogManager.getLogger(UpdateUserInfoAction.class);
 
     /**
+     * String with profile for getting and saving profile.
+     */
+    private static final String PROFILE_STRING = "profile";
+
+    /**
      * Method executes request for updating user info.
      *
      * @param request  - user request
@@ -43,11 +48,12 @@ public class UpdateUserInfoAction extends Action {
                         final HttpServletResponse response)
             throws PersistentException {
 
-        Forward forward = new Forward("/authorized_user/updateUser.jsp",
+        Forward forward = new Forward(
+                "/authorized_user/updateUser.jsp",
                 false);
         HttpSession session = request.getSession(true);
-        Profile profile = (Profile) session.getAttribute("profile");
-        request.setAttribute("profile", profile);
+        Profile profile = (Profile) session.getAttribute(PROFILE_STRING);
+        request.setAttribute(PROFILE_STRING, profile);
         Locale locale = (Locale) session.getAttribute("language");
         request.setAttribute("locale", locale);
         Config.set(request, Config.FMT_LOCALE, locale);
@@ -68,8 +74,8 @@ public class UpdateUserInfoAction extends Action {
                     "You data were successfully updated.");
             profile = profileService.read(user.getId());
             profile.setId(user.getId());
-            session.setAttribute("profile", profile);
-            request.setAttribute("profile", profile);
+            session.setAttribute(PROFILE_STRING, profile);
+            request.setAttribute(PROFILE_STRING, profile);
             LOGGER.info("User data were successfully updated");
         } catch (IncorrectDataException e) {
             user = userService.read(profile.getId());

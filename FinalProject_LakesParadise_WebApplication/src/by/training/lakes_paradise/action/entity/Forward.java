@@ -11,7 +11,7 @@ public class Forward {
     /**
      * URL of next jsp page or name of next action.
      */
-    private String forward;
+    private String forwardUrl;
     /**
      * Shows is request should be redirected.
      */
@@ -24,11 +24,11 @@ public class Forward {
     /**
      * Two-argument constructor.
      *
-     * @param curForward - value of forward property
+     * @param curForward - value of forwardUrl property
      * @param curIsRedirect - value of isRedirect property
      */
     public Forward(final String curForward, final boolean curIsRedirect) {
-        this.forward = curForward;
+        this.forwardUrl = curForward;
         this.isRedirect = curIsRedirect;
     }
 
@@ -36,28 +36,28 @@ public class Forward {
      * One-argument constructor, which calls two-argument constructor where
      * second argument will be true.
      *
-     * @param curForward - value of forward property
+     * @param curForward - value of forwardUrl property
      */
     public Forward(final String curForward) {
         this(curForward, true);
     }
 
     /**
-     * Gets the value of forward property.
+     * Gets the value of forwardUrl property.
      *
-     * @return value of forward property
+     * @return value of forwardUrl property
      */
-    public String getForward() {
-        return forward;
+    public String getForwardUrl() {
+        return forwardUrl;
     }
 
     /**
-     * Sets the value of forward property.
+     * Sets the value of forwardUrl property.
      *
-     * @param curForward - value of forward property
+     * @param curForward - value of forwardUrl property
      */
-    public void setForward(final String curForward) {
-        this.forward = curForward;
+    public void setForwardUrl(final String curForward) {
+        this.forwardUrl = curForward;
     }
 
     /**

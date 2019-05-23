@@ -34,11 +34,13 @@ public class EncodingFilter implements Filter {
     }
 
     @Override
-    public void init(final FilterConfig filterConfig) throws ServletException {
+    public void init(final FilterConfig filterConfig) {
+        /*Do nothing cause parameters aren't passed throw the FilterConfig
+         instance*/
     }
 
     @Override
     public void destroy() {
-
+        /*Do nothing cause there no parameters for destroying*/
     }
 }

@@ -105,13 +105,13 @@
                         <div class="col-md-4 form-group">
                             <input type="submit" class="btn btn-primary"
                                    value="${findByPrice}">
-                            <c:if test="${findByPriceErrorMessage.size() == 0}">
-                                <div class="alert alert-warning">
-                                    <strong>Warning!</strong> Sorry but we couldn't find any homestead
-                                    by your criteria :(
-                                </div>
-                            </c:if>
                         </div>
+                        <c:if test="${findByPriceErrorMessage != null}">
+                            <div class="col-md-12 alert alert-warning">
+                                <strong><fmt:message key="issue"/>!</strong>
+                                <fmt:message key="incorrectData"/>
+                            </div>
+                        </c:if>
                     </form>
                 </div>
             </div>
@@ -126,8 +126,8 @@
 
     <c:if test="${res.size() == 0}">
         <div class="alert alert-warning">
-            <strong>Warning!</strong> Sorry but we couldn't find any homestead
-            by your criteria :(
+            <strong><fmt:message key="warning"/>!</strong>
+            <fmt:message key="findedHomesteadIssue"/>
         </div>
     </c:if>
     <c:if test="${res.size() != 0}">

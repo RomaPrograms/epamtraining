@@ -27,18 +27,6 @@ public class ReviewServiceRealization extends ServiceRealization
     }
 
     /**
-     * Method deletes reviews from "reviews" table by homestead id.
-     *
-     * @param homeId - id of homestead
-     */
-    @Override
-    public void deleteReviewsByHomeId(
-            final Integer homeId) throws PersistentException {
-        ReviewDao reviewDao = transaction.createDao(ReviewDao.class);
-        reviewDao.deleteByHomeId(homeId);
-    }
-
-    /**
      * Method adds new review to "reviews" table.
      *
      * @param review - new object

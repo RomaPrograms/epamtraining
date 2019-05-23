@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Class handles user request for registration.
@@ -47,6 +48,8 @@ public class SignUpAction extends Action {
         request.setAttribute("profile", profile);
         Locale locale = (Locale) session.getAttribute("language");
         request.setAttribute("locale", locale);
+        ResourceBundle resourceBundle = ResourceBundle
+                .getBundle("property.text", locale);
         Config.set(request, Config.FMT_LOCALE, locale);
 
         User user = null;
@@ -62,15 +65,14 @@ public class SignUpAction extends Action {
             UserService userService = factory.getService(UserService.class);
             userService.create(user);
             request.setAttribute("successMessage",
-                    "You were successfully signed up, right now you"
-                            + " can log in.");
+                    resourceBundle.getString("successfulRegistration"));
             LOGGER.info("User " + user.getLogin()
                     + " signed up successfully.");
         } catch (IncorrectDataException e) {
             LOGGER.error("User validation wasn't passed.");
         } catch (PersistentException e) {
-            request.setAttribute("errorMessage", "Sorry, but profile with"
-                    + " such login already exist, change your login please.");
+            request.setAttribute("errorMessage",
+                    resourceBundle.getString("equalsProfileIssue"));
             request.setAttribute("userInfo", user);
         }
 

@@ -103,16 +103,7 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
             User user;
 
             while (resultSet.next()) {
-                user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("surname"));
-                user.setPhone(Long.parseLong(resultSet
-                        .getString("phone")));
-                user.setLogin(resultSet.getString("login"));
-                user.setRole(Role.getByIdentity(
-                        resultSet.getInt("role")));
-
+                user = readUserWithProfileProperties(resultSet);
                 users.add(user);
             }
 
@@ -193,16 +184,7 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
             User user;
 
             while (resultSet.next()) {
-                user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("surname"));
-                user.setPhone(Long.parseLong(resultSet
-                        .getString("phone")));
-                user.setLogin(resultSet.getString("login"));
-                user.setRole(Role.getByIdentity(
-                        resultSet.getInt("role")));
-
+                user = readUserWithProfileProperties(resultSet);
                 users.add(user);
             }
 
@@ -330,5 +312,26 @@ public class UserDaoRealization extends BaseDaoRealization implements UserDao {
                 LOGGER.error(CLOSE_STATEMENT_EXCEPTION);
             }
         }
+    }
+
+    /**
+     * Creates instance {@code User} class with filled properties.
+     *
+     * @param resultSet - result set with data from database
+     * @return created user
+     * @throws SQLException - exception connected with database
+     */
+    private User readUserWithProfileProperties(final ResultSet resultSet)
+            throws SQLException {
+        User user = new User();
+        user.setId(resultSet.getInt("id"));
+        user.setName(resultSet.getString("name"));
+        user.setSurname(resultSet.getString("surname"));
+        user.setPhone(Long.parseLong(resultSet
+                .getString("phone")));
+        user.setLogin(resultSet.getString("login"));
+        user.setRole(Role.getByIdentity(
+                resultSet.getInt("role")));
+        return user;
     }
 }

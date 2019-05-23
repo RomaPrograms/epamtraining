@@ -20,14 +20,6 @@ public interface ReviewService extends Service {
     List<Review> readReviewsByHomeId(Integer homeId) throws PersistentException;
 
     /**
-     * Method deletes reviews by id of homestead in "orders" table..
-     *
-     * @param homeId - id of homestead
-     * @throws PersistentException - exception with deleting in review table
-     */
-    void deleteReviewsByHomeId(Integer homeId) throws PersistentException;
-
-    /**
      * Method adds new review to "reviews" table.
      *
      * @param review - new object

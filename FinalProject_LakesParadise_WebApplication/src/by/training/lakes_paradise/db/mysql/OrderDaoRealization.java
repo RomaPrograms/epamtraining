@@ -70,17 +70,11 @@ public class OrderDaoRealization extends BaseDaoRealization
     /**
      * Script gets all objects from table orders.
      */
-    private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE
-            = SQL_SCRIPT_SELECT_BY_USER + " orders";
-
-    /**
-     * Script gets all objects from table orders.
-     */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_OWNER_ID
             = SQL_SCRIPT_SELECT_BY_USER
             + " where h.owner_id = (?)";
 
-    /**
+    /**z
      * Script insert new object into the table orders.
      */
     private static final String SQL_SCRIPT_INSERT_DATA_INTO_TABLE
@@ -170,7 +164,7 @@ public class OrderDaoRealization extends BaseDaoRealization
         ResultSet resultSet = null;
         try {
             statement = getConnection().prepareStatement(
-                    SQL_SCRIPT_SELECT_DATA_FROM_TABLE,
+                    SQL_SCRIPT_SELECT_BY_USER,
                     Statement.RETURN_GENERATED_KEYS);
             resultSet = statement.executeQuery();
             List<Order> orders = new ArrayList<>();

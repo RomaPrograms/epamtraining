@@ -29,7 +29,7 @@ public class TransactionFactoryRealization implements TransactionFactory {
     }
 
     @Override
-    public Transaction createTransaction() throws PersistentException {
+    public Transaction createTransaction() {
         return new TransactionRealization(connection);
     }
 
@@ -38,7 +38,7 @@ public class TransactionFactoryRealization implements TransactionFactory {
         try {
             this.connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Connection was closed incorrectly");
         }
     }
 }

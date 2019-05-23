@@ -6,9 +6,9 @@ import by.training.lakes_paradise.exception.PersistentException;
 /**
  * Interface for realization DAO pattern.
  *
- * @param <Type> - some Entity class
+ * @param <T> - some Entity class
  */
-public interface Dao<Type extends Entity> {
+public interface Dao<T extends Entity> {
     /**
      * Method adds new object to database.
      *
@@ -16,7 +16,7 @@ public interface Dao<Type extends Entity> {
      * @return id of new object in database
      * @throws PersistentException - exception with adding object to database
      */
-    Integer create(Type entity) throws PersistentException;
+    Integer create(T entity) throws PersistentException;
 
     /**
      * Method searches object from database by id.
@@ -25,7 +25,7 @@ public interface Dao<Type extends Entity> {
      * @return object which was read
      * @throws PersistentException - exception with reading object from database
      */
-    Type read(Integer id) throws PersistentException;
+    T read(Integer id) throws PersistentException;
 
     /**
      * Method updates object in database by id.
@@ -34,7 +34,7 @@ public interface Dao<Type extends Entity> {
      * @throws PersistentException - exception with updating object in
      *                             database
      */
-    void update(Type entity) throws PersistentException;
+    void update(T entity) throws PersistentException;
 
     /**
      * Method deletes object in database by id.

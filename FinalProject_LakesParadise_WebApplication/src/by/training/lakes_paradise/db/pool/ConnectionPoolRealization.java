@@ -38,13 +38,13 @@ public class ConnectionPoolRealization implements ConnectionPool {
 
     private static Lock lock = new ReentrantLock();
 
-    private static int maxPoolSize;
+    private int maxPoolSize;
 
-    private static String url;
+    private String url;
 
-    private static String user;
+    private String user;
 
-    private static String password;
+    private String password;
 
     private static ConnectionPoolRealization instance
             = new ConnectionPoolRealization();
@@ -79,6 +79,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
                 | InterruptedException e) {
             LOGGER.fatal(
                     "It is impossible to initialize connection pool", e);
+            Thread.currentThread().interrupt();
             throw new PersistentException(e);
         } finally {
             lock.unlock();
@@ -105,6 +106,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
             } catch (InterruptedException | SQLException e) {
                 LOGGER.error(CONNECTION_RECEIVED_EXCEPTION, e);
                 lock.unlock();
+                Thread.currentThread().interrupt();
                 throw new PersistentException(e);
             }
         }
@@ -129,11 +131,8 @@ public class ConnectionPoolRealization implements ConnectionPool {
 
         } catch (SQLException | InterruptedException e) {
             LOGGER.warn(CONNECTION_RECEIVED_EXCEPTION);
-            try {
-                connection.close();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
+            Thread.currentThread().interrupt();
+            connection.close();
         } finally {
             lock.unlock();
         }
@@ -154,11 +153,7 @@ public class ConnectionPoolRealization implements ConnectionPool {
         usedConnection.addAll(freeConnection);
         freeConnection.clear();
         for (PooledConnection connection : usedConnection) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            connection.close();
         }
         usedConnection.clear();
         lock.unlock();

@@ -10,12 +10,12 @@ public interface ServiceFactory {
      * Method creates instance of required service class.
      *
      * @param key - required service
-     * @param <Type> - type of required service
+     * @param <T> - type of required service
      * @return required service
      * @throws PersistentException - exception connected with DAO
      */
-    <Type extends Service> Type getService(
-            Class<Type> key) throws PersistentException;
+    <T extends Service> T getService(
+            Class<T> key) throws PersistentException;
 
     /**
      * Method closes all resources after creation service.

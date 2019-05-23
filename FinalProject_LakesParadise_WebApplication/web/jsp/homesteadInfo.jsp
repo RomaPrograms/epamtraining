@@ -125,7 +125,7 @@
                        value="${bookHomestead}"/>
                 <c:if test="${registerMessage != null}">
                     <div class="alert alert-danger">
-                        <strong><fmt:message key="navbarIssue"/>!</strong>
+                        <strong><fmt:message key="issue"/>!</strong>
                         <c:out value="${registerMessage}"/>
                     </div>
                 </c:if>
@@ -140,7 +140,7 @@
                       name="comment"></textarea>
                 <c:if test="${reviewMessage != null}">
                     <div class="alert alert-danger">
-                        <strong><fmt:message key="navbarIssue"/>!</strong>
+                        <strong><fmt:message key="issue"/>!</strong>
                         <c:out value="${reviewMessage }"/>
                     </div>
                 </c:if>

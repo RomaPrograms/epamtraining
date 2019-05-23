@@ -1,5 +1,6 @@
 package by.training.lakes_paradise.custom;
 
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.util.Locale;
@@ -60,7 +61,7 @@ public class FooterTag extends TagSupport {
      * @return code which means how to process footer-tag body
      */
     @Override
-    public int doStartTag() {
+    public int doStartTag() throws JspException {
         try {
 
             ResourceBundle rb = ResourceBundle
@@ -72,7 +73,7 @@ public class FooterTag extends TagSupport {
                     + "    </div>\n"
                     + "</footer>");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new JspException(e.getMessage());
         }
         return SKIP_BODY;
     }

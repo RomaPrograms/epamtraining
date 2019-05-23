@@ -23,7 +23,7 @@ public class PooledConnection
         implements Connection, Comparable<PooledConnection> {
     private Connection connection;
 
-    public PooledConnection(final Connection connection) {
+    PooledConnection(final Connection connection) {
         this.connection = connection;
     }
 
@@ -52,7 +52,7 @@ public class PooledConnection
     }
 
     @Override
-    public void close() throws SQLException {
+    public void close() {
         ConnectionPoolRealization.getInstance().releaseConnection(this);
     }
 

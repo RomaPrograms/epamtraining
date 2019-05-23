@@ -32,14 +32,14 @@ public class ServiceFactoryRealization implements ServiceFactory {
     private TransactionFactory factory;
 
     public ServiceFactoryRealization(
-            final TransactionFactory curFactory) throws PersistentException {
+            final TransactionFactory curFactory) {
         this.factory = curFactory;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public <Type extends Service> Type getService(
-            final Class<Type> key) throws PersistentException {
+    public <T extends Service> T getService(
+            final Class<T> key) throws PersistentException {
         Class<? extends ServiceRealization> value = SERVICES.get(key);
         if (value != null) {
             try {
@@ -51,10 +51,8 @@ public class ServiceFactoryRealization implements ServiceFactory {
                 service.setTransaction(transaction);
                 InvocationHandler handler
                         = new ServiceInvocationHandlerRealization(service);
-                return (Type) Proxy.newProxyInstance(classLoader,
+                return (T) Proxy.newProxyInstance(classLoader,
                         interfaces, handler);
-            } catch (PersistentException e) {
-                throw e;
             } catch (IllegalAccessException | InstantiationException e) {
                 LOGGER.error("It is impossible to instance service class", e);
                 throw new PersistentException(e);

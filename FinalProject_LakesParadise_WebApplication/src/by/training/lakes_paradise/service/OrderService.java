@@ -39,14 +39,6 @@ public interface OrderService extends Service {
     List<Order> readByOwner(Integer ownerId) throws PersistentException;
 
     /**
-     * Method that reads all objects from "orders" table.
-     *
-     * @return list with objects from "orders" table
-     * @throws PersistentException - exception with searching in orders table
-     */
-    List<Order> readAll() throws PersistentException;
-
-    /**
      * Method adds new object to "orders" table.
      *
      * @param order - new object

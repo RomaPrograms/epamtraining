@@ -15,6 +15,11 @@ import java.util.Date;
 public class OrderValidator implements Validator<Order> {
 
     /**
+     * String with start date for getting and saving start date.
+     */
+    private static final String START_DATE_STRING = "startDate";
+
+    /**
      * Method for validation {@code Order} class.
      *
      * @param request - user request
@@ -27,17 +32,17 @@ public class OrderValidator implements Validator<Order> {
             throws IncorrectDataException {
         Order order = new Order();
 
-        String startDate = request.getParameter("startDate");
+        String startDate = request.getParameter(START_DATE_STRING);
         if (startDate != null && !startDate.isEmpty()) {
             try {
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = format.parse(startDate);
                 order.setStartRenting(date);
             } catch (ParseException e) {
-                throw new IncorrectDataException("startDate", startDate);
+                throw new IncorrectDataException(START_DATE_STRING, startDate);
             }
         } else {
-            throw new IncorrectDataException("startDate", startDate);
+            throw new IncorrectDataException(START_DATE_STRING, startDate);
         }
 
         String endDate = request.getParameter("endDate");
@@ -47,10 +52,10 @@ public class OrderValidator implements Validator<Order> {
                 Date date = format.parse(endDate);
                 order.setEndRenting(date);
             } catch (ParseException e) {
-                throw new IncorrectDataException("startDate", startDate);
+                throw new IncorrectDataException(START_DATE_STRING, startDate);
             }
         } else {
-            throw new IncorrectDataException("startDate", startDate);
+            throw new IncorrectDataException(START_DATE_STRING, startDate);
         }
 
         if (order.getStartRenting().getTime()

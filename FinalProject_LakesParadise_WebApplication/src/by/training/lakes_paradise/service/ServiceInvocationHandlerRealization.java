@@ -18,7 +18,7 @@ public class ServiceInvocationHandlerRealization implements InvocationHandler {
 
     private ServiceRealization service;
 
-    public ServiceInvocationHandlerRealization(
+    ServiceInvocationHandlerRealization(
             final ServiceRealization serviceRealization) {
         this.service = serviceRealization;
     }
@@ -31,15 +31,15 @@ public class ServiceInvocationHandlerRealization implements InvocationHandler {
             service.transaction.commit();
             return result;
         } catch (PersistentException e) {
-            rollback(method);
+            rollback();
             throw e;
         } catch (InvocationTargetException e) {
-            rollback(method);
+            rollback();
             throw e.getCause();
         }
     }
 
-    private void rollback(final Method method) {
+    private void rollback() {
         try {
             service.transaction.rollback();
         } catch (PersistentException e) {

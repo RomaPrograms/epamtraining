@@ -64,17 +64,6 @@ public class OrderServiceRealization extends ServiceRealization
     }
 
     /**
-     * Method that reads all objects from "orders" table.
-     *
-     * @return list with objects from "orders" table
-     * @throws PersistentException - exception with searching in orders table
-     */
-    @Override
-    public List<Order> readAll() throws PersistentException {
-        return null;
-    }
-
-    /**
      * Method adds new object to "orders" table.
      *
      * @param order - new object
@@ -96,7 +85,8 @@ public class OrderServiceRealization extends ServiceRealization
      */
     @Override
     public Order read(final Integer id) throws PersistentException {
-        return null;
+        OrderDao orderDaoRealization = transaction.createDao(OrderDao.class);
+        return orderDaoRealization.read(id);
     }
 
     /**
@@ -106,7 +96,8 @@ public class OrderServiceRealization extends ServiceRealization
      */
     @Override
     public void update(final Order order) throws PersistentException {
-
+        OrderDao orderDaoRealization = transaction.createDao(OrderDao.class);
+        orderDaoRealization.update(order);
     }
 
     /**
@@ -116,6 +107,7 @@ public class OrderServiceRealization extends ServiceRealization
      */
     @Override
     public void delete(final Integer id) throws PersistentException {
-
+        OrderDao orderDaoRealization = transaction.createDao(OrderDao.class);
+        orderDaoRealization.delete(id);
     }
 }

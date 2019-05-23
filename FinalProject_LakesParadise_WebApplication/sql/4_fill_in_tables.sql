@@ -24,7 +24,7 @@ insert into homesteads (id, title, price, description, people_number,
 
 insert into orders (id, user_id, home_id, date_start, date_end) values
 (1, 1, 2, "2019-06-15", "2019-06-25"),
-(2, 2, 1, "2019-07-15", "2013-07-25"),
+(2, 2, 1, "2019-07-15", "2019-07-25"),
 (3, 4, 3, "2019-08-15", "2019-08-25"),
 (4, 4, 4, "2019-09-15", "2019-09-25");
 

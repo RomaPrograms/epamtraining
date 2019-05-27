@@ -109,9 +109,8 @@
     <hr>
     <c:if test="${profile == null}">
         <div class="alert alert-info container text-center">
-            <strong>Info!</strong> If you want to sent a review or rent a
-            homestead
-            you should log in.
+            <strong><fmt:message key="info"/>!</strong>
+            <fmt:message key="infoForReview"/>
         </div>
     </c:if>
 

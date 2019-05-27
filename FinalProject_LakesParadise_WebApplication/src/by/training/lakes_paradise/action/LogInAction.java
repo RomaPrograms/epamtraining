@@ -14,6 +14,8 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Class handles user request for authentication.
@@ -43,6 +45,10 @@ public class LogInAction extends Action {
         String lastAction = request.getHeader("referer");
         lastAction = lastAction.substring(lastAction.lastIndexOf('/'));
         forward = new Forward(lastAction, true);
+        Locale locale = (Locale) session.getAttribute("language");
+        request.setAttribute("locale", locale);
+        ResourceBundle resourceBundle = ResourceBundle
+                .getBundle("property.text", locale);
         if (lastAction.equals("/sign_up.html")) {
             forward.setForwardUrl("/menu.html");
         }
@@ -59,7 +65,7 @@ public class LogInAction extends Action {
 
             if (profile == null) {
                 forward.getAttributes().put("logInMessage",
-                        "Such profile doesn't exist!");
+                        resourceBundle.getString("incorrectData"));
                 LOGGER.info("Incorrect data. User doesn't exist.");
             } else {
                 session.setAttribute("profile", profile);
@@ -68,8 +74,6 @@ public class LogInAction extends Action {
             }
 
         } catch (IncorrectDataException e) {
-            forward.getAttributes().put("logInMessage",
-                    "Incorrect data were entered!");
             LOGGER.info("Incorrect data. User doesn't exist.");
         }
 

@@ -25,6 +25,10 @@
     <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 </head>
 
+<c:if test="${!profile.getRole().equals(Role.ADMINISTRATOR)}">
+    <jsp:forward page="/jsp/error.jsp"/>
+</c:if>
+
 <ctg:navbar-tag profile="${profile}" language="${locale}"
                 logInMessage="${logInMessage}"/>
 

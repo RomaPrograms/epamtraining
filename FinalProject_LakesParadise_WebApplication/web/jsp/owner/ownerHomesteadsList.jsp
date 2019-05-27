@@ -5,6 +5,7 @@
 <%@ taglib prefix="ctg" uri="customtags" %>
 <%@ taglib prefix="cng" uri="customtags" %>
 <%@ page errorPage="../error.jsp" %>
+<%@ page import="by.training.lakes_paradise.db.entity.Role" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
@@ -25,6 +26,10 @@
 </head>
 
 <body id="body">
+
+<c:if test="${!profile.getRole().equals(Role.OWNER)}">
+    <jsp:forward page="/jsp/error.jsp"/>
+</c:if>
 
 <ctg:navbar-tag profile="${profile}" language="${locale}"
                 logInMessage="${logInMessage}"/>

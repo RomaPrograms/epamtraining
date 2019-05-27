@@ -24,6 +24,10 @@
 
 <body>
 
+<c:if test="${!profile.getRole().equals(Role.USER)}">
+    <jsp:forward page="/jsp/error.jsp"/>
+</c:if>
+
 <ctg:navbar-tag profile="${profile}" language="${locale}"
                 logInMessage="${logInMessage}"/>
 

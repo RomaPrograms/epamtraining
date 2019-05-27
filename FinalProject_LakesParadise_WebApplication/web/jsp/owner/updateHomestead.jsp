@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
 <%@ taglib prefix="cng" uri="customtags" %>
+<%@ page import="by.training.lakes_paradise.db.entity.Role" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <fmt:setBundle basename="property.text"/>
@@ -22,6 +23,10 @@
           href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 </head>
 <body>
+
+<c:if test="${!profile.getRole().equals(Role.OWNER)}">
+    <jsp:forward page="/jsp/error.jsp"/>
+</c:if>
 
 <ctg:navbar-tag profile="${profile}" language="${locale}"
                 logInMessage="${logInMessage}"/>

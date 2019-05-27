@@ -23,6 +23,10 @@
 </head>
 <body>
 
+<c:if test="${profile != null}">
+    <jsp:forward page="/jsp/error.jsp"/>
+</c:if>
+
 <ctg:navbar-tag profile="${profile}" language="${locale}"
                 logInMessage="${logInMessage}"/>
 
@@ -88,12 +92,12 @@
 
         <c:if test="${successMessage != null}">
             <div class="alert alert-success form-group">
-                <strong>Success!</strong> <c:out value="${successMessage}"/>
+                <strong><fmt:message key="success"/>!</strong> <c:out value="${successMessage}"/>
             </div>
         </c:if>
         <c:if test="${errorMessage != null}">
             <div class="alert alert-warning form-group">
-                <strong>Warning!</strong> <c:out value="${errorMessage}"/>
+                <strong><fmt:message key="warning"/>!</strong> <c:out value="${errorMessage}"/>
             </div>
         </c:if>
 

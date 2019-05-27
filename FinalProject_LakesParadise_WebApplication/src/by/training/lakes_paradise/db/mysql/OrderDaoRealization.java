@@ -49,7 +49,7 @@ public class OrderDaoRealization extends BaseDaoRealization
      * String first part of SQL query for reading from database.
      */
     private static final String SQL_SCRIPT_SELECT_BY_USER
-            = "select o.user_id, o.home_id, o.date_start, o.date_end, "
+            = "select o.id, o.user_id, o.home_id, o.date_start, o.date_end, "
             + " h.title, p.login from orders o inner join"
             + " homesteads h on o.home_id = h.id inner join profiles p on"
             + " o.user_id = p.id ";
@@ -85,8 +85,7 @@ public class OrderDaoRealization extends BaseDaoRealization
      * Script gets all objects from table orders by id.
      */
     private static final String SQL_SCRIPT_SELECT_DATA_FROM_TABLE_BY_ID
-            = "select user_id, home_id, date_start, date_end "
-            + " from orders where id = (?)";
+            = SQL_SCRIPT_SELECT_BY_USER + " where O.id = (?)";
 
     /**
      * Script gets all objects from table orders by profile id.
@@ -268,19 +267,7 @@ public class OrderDaoRealization extends BaseDaoRealization
             Order order = null;
 
             while (resultSet.next()) {
-                order = new Order();
-                User user = new User();
-                user.setId(
-                        resultSet.getInt("user_id"));
-                order.setUser(user);
-                Homestead homestead = new Homestead();
-                homestead.setId(
-                        resultSet.getInt("home_id"));
-                order.setHomestead(homestead);
-                Date date = resultSet.getDate("date_start");
-                order.setStartRenting(new java.util.Date(date.getTime()));
-                date = resultSet.getDate("date_end");
-                order.setEndRenting(new java.util.Date(date.getTime()));
+                order = createOrder(resultSet);
             }
 
             return order;
@@ -429,6 +416,7 @@ public class OrderDaoRealization extends BaseDaoRealization
      */
     private Order createOrder(final ResultSet resultSet) throws SQLException {
         Order order = new Order();
+        order.setId(resultSet.getInt("id"));
         User user = new User();
         user.setId(resultSet.getInt("user_id"));
         user.setLogin(resultSet.getString("login"));

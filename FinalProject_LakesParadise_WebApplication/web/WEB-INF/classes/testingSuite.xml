@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+    <test name="action"   >
+        <classes>
+            <class name = "crud_action.ReviewAction">
+                <methods>
+                    <include name = "readReviewByIdAction"/>
+                    <include name = "readReviewsByHomesteadIdAction"/>
+                    <include name = "createReviewAction"/>
+                    <include name = "updateReviewAction"/>
+                    <include name = "deleteReviewAction"/>
+                </methods>
+            </class>
+
+            <class name = "crud_action.ProfileAction">
+            </class>
+        </classes>
+    </test>
+</suite>

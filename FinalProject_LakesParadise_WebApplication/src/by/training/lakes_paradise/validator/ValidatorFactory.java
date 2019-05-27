@@ -6,6 +6,7 @@ import by.training.lakes_paradise.db.entity.Homestead;
 import by.training.lakes_paradise.db.entity.Order;
 import by.training.lakes_paradise.db.entity.User;
 import by.training.lakes_paradise.exception.PersistentException;
+import by.training.lakes_paradise.validator.entity.ValidatorType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,14 +28,14 @@ public final class ValidatorFactory {
     /**
      * Map which helps to create required validation class by entity class.
      */
-    private static Map<Class<? extends Entity>, Class<? extends Validator>>
+    private static Map<Class<? extends Entity>, ValidatorType>
             validators = new HashMap<>();
 
     static {
-        validators.put(Profile.class, ProfileValidator.class);
-        validators.put(User.class, UserValidator.class);
-        validators.put(Order.class, OrderValidator.class);
-        validators.put(Homestead.class, HomesteadValidator.class);
+        validators.put(Profile.class, ValidatorType.PROFILE_VALIDATOR);
+        validators.put(User.class, ValidatorType.USER_VALIDATOR);
+        validators.put(Order.class, ValidatorType.ORDER_VALIDATOR);
+        validators.put(Homestead.class, ValidatorType.HOMESTEAD_VALIDATOR);
     }
 
     /**
@@ -54,23 +55,28 @@ public final class ValidatorFactory {
      */
     public static <T extends Entity> Validator<T> createValidator(
             final Class<T> entity) throws PersistentException {
-        Class<? extends Validator> value = validators.get(entity);
+        ValidatorType value = validators.get(entity);
         if (value != null) {
-            try {
-                return (Validator<T>) value.getConstructor().newInstance();
-            } catch (IllegalAccessException | InstantiationException e) {
-                LOGGER.error("It is impossible to instance service class", e);
-                throw new PersistentException(e);
-            } catch (InvocationTargetException e) {
-                LOGGER.error("Constructor of " + value.getSimpleName()
-                        + " throws an exception", e);
-                throw new PersistentException(e);
-            } catch (NoSuchMethodException e) {
-                LOGGER.error("Matching method is not found", e);
-                throw new PersistentException(e);
-            }
+            return chooseValidator(value);
         }
         throw new PersistentException("Validator class named "
                 + entity.getSimpleName() + " wasn't founded");
+    }
+
+    private static <T extends Entity> Validator<T> chooseValidator(
+            ValidatorType validatorType) throws PersistentException {
+        switch(validatorType) {
+            case USER_VALIDATOR:
+                return (Validator<T>) new UserValidator();
+            case ORDER_VALIDATOR:
+                return (Validator<T>) new OrderValidator();
+            case PROFILE_VALIDATOR:
+                return (Validator<T>) new ProfileValidator();
+            case HOMESTEAD_VALIDATOR:
+                return (Validator<T>) new HomesteadValidator();
+                default:
+                    throw new PersistentException(
+                            "Validator class wasn't founded");
+        }
     }
 }

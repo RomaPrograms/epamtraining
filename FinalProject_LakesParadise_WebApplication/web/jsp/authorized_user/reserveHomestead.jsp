@@ -5,6 +5,7 @@
 <%@ taglib prefix="ctg" uri="customtags" %>
 <%@ taglib prefix="cng" uri="customtags" %>
 <%@ page errorPage="../error.jsp" %>
+<%@ page import="by.training.lakes_paradise.db.entity.Role" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>

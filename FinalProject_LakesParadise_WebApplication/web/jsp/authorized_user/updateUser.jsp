@@ -4,6 +4,7 @@
 <%@ taglib prefix="cng" uri="customtags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ page import="by.training.lakes_paradise.db.entity.Role" %>
 <fmt:setBundle basename="property.text"/>
 
 <html>
